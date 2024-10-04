@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 
 public class Cart {
 	
-	private Integer cart_no;//PK
-	private Integer cart_qty;
-	private Customer customer_no;//FK
+	private Integer cartNo;//PK
+	private Integer cartQty;
+	private Customer customerNo;//FK
 	
 }

@@ -17,17 +17,17 @@ import lombok.NoArgsConstructor;
 
 public class Customer {
 	
-	private Integer customer_no;
-	private String customer_id;
-	private String customer_password;
-	private String customer_name;
-	private Date customer_dob;
-	private String customer_address;
-	private String customer_gender;
-	private String customer_phone;
-	private String customer_email;
-	private String customer_nickname;
-	private Date customer_joindate;
+	private Integer customerNo;
+	private String customerId;
+	private String customerPassword;
+	private String customerName;
+	private Date customerDob;
+	private String customerAddress;
+	private String customerGender;
+	private String customerPhone;
+	private String customerEmail;
+	private String customerNickname;
+	private Date customerJoindate;
 	
-	private List<Coupon> coupon_no;//보류
+	private List<Coupon> couponNo;//보류
 }
