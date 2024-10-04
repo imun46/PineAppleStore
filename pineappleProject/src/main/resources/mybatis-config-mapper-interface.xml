@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="jdbc.properties" />
+	<settings>
+		<!-- 카멜 케이스 VO 매핑 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- 쿼리 결과 필드가 null인 경우, 누락이 되서 나오지 않게 설정 -->
+		<setting name="callSettersOnNulls" value="true" />
+		<!-- 쿼리에 보내는 파라미터가 null인 경우, 오류가 발생하는 것 방지 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.itwill.shop.cart.Cart" alias="Cart" />
+		<typeAlias type="com.itwill.shop.cart.ProductSelected" alias="ProductSelected" />
+		<typeAlias type="com.itwill.shop.coupon.Coupon" alias="Coupon" />
+		<typeAlias type="com.itwill.shop.customer.Customer" alias="Customer" />
+		<typeAlias type="com.itwill.shop.customer.CustomerCoupons" alias="CustomerCoupons" />
+		<typeAlias type="com.itwill.shop.orders.Orders" alias="Orders" />
+		<typeAlias type="com.itwill.shop.orders.OrdersItems" alias="OrdersItems" />
+		<typeAlias type="com.itwill.shop.product.Product" alias="Product" />
+		<typeAlias type="com.itwill.shop.product.ProductImage" alias="ProductImage" />
+		<typeAlias type="com.itwill.shop.product.ProductOption" alias="ProductOption" />
+		<typeAlias type="com.itwill.shop.product.ProductOptionDetail" alias="ProductOptionDetail" />
+		<typeAlias type="com.itwill.shop.review.Review" alias="Review" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driverClassName}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+
+			<!-- <dataSource type="POOLED"> <property name="driver" value="oracle.jdbc.driver.OracleDriver" 
+				/> <property name="url" value="jdbc:oracle:thin:@182.237.126.19:1521:XE" 
+				/> <property name="username" value="javabackend99" /> <property name="password" 
+				value="javabackend99" /> </dataSource> -->
+		</environment>
+	</environments>
+	<mappers>
+		<mapper class="com.itwill.shop.mapper.CartMapper" />
+		<mapper class="com.itwill.shop.mapper.CouponMapper" />
+		<mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
+		<mapper class="com.itwill.shop.mapper.CustomerMapper" />
+		<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
+		<mapper class="com.itwill.shop.mapper.OrdersMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductImageMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductSelectedMapper" />
+		<mapper class="com.itwill.shop.mapper.ReviewMapper" />
+	</mappers>
+</configuration>
