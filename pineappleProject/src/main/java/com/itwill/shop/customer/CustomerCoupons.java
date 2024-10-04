@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 
 public class CustomerCoupons {
 	
-	private Integer customer_coupons_no;//PK
-	private Date customer_coupons_enddate;
-	private String customer_coupons_status;
+	private Integer customerCouponsNo;//PK
+	private Date customerCouponsEnddate;
+	private String customerCouponsStatus;
 	
-	private Coupon coupon_no;//FK
-	private Customer customer_no;//FK
+	private Coupon couponNo;//FK
+	private Customer customerNo;//FK
 	
 }
