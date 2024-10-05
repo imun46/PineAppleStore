@@ -60,7 +60,8 @@ public class CustomerService {
 	}
 	
 	
-	/*** CustomerCoupon 메소드 ***/
+	/********** CustomerCoupon 메소드 **********/
+	
 	/*** (어드민) 사용자 쿠폰 발급 ***/
 	public int insertCustomerCoupon(CustomerCoupons customerCoupons) throws Exception {
 		System.out.println("CustomerService : insertCoupon");

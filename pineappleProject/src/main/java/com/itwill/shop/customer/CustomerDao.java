@@ -28,7 +28,7 @@ public interface CustomerDao {
 	//(어드민전용) 전체사용자 정보  출력
 	List<Customer> customerList () throws Exception;
 	
-	/*** CustomerCoupon 제어 ***/ 
+	/********** CustomerCoupon 제어 **********/ 
 	//(어드민) 쿠폰 발급
 	int insertCustomerCoupon(CustomerCoupons customerCoupons) throws Exception;
 	
