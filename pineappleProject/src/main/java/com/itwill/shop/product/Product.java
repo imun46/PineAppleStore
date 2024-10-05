@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 
 public class Product {
 	
+	//dd
 	/****** PK ***************/
 	private Integer productNo;			// 제품 번호
 	
