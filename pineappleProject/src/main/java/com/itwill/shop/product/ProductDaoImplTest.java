@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ProductDaoImplTest {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception  {
 		ProductDao productDao = new ProductDaoImpl();
 		
 //		List<Product> productList = productDao.findAll();

@@ -9,16 +9,16 @@ import com.itwill.shop.product.Product;
 @Mapper
 public interface ProductMapper {
 	
-	public List<Product> selectAll();
+	public List<Product> selectAll() throws Exception ;
 	
-	public List<Product> selectAllOnSale();
+	public List<Product> selectAllOnSale() throws Exception ;
 	
-	public List<Product> selectAllOnSaleExclOOS();
+	public List<Product> selectAllOnSaleExclOOS() throws Exception ;
 	
-	public List<Product> selectByCategoryOnSale(String productCategory);
+	public List<Product> selectByCategoryOnSale(String productCategory) throws Exception ;
 	
-	public List<Product> selectByNameOnSale(String productName);
+	public List<Product> selectByNameOnSale(String productName) throws Exception ;
 	
-	public Product selectByNo(int productNo);
+	public Product selectByNo(int productNo) throws Exception ;
 	
 }

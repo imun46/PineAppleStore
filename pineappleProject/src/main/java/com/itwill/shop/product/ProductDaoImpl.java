@@ -25,7 +25,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<Product> findAll() {
+	public List<Product> findAll() throws Exception {
 		SqlSession sqlSession =sqlSessionFactory.openSession(true);
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		List<Product> productList = productMapper.selectAll();
@@ -34,7 +34,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<Product> findAllOnSale() {
+	public List<Product> findAllOnSale() throws Exception {
 		SqlSession sqlSession =sqlSessionFactory.openSession(true);
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		List<Product> productList = productMapper.selectAllOnSale();
@@ -43,7 +43,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<Product> findAllOnSaleExclOOS() {
+	public List<Product> findAllOnSaleExclOOS() throws Exception {
 		SqlSession sqlSession =sqlSessionFactory.openSession(true);
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		List<Product> productList = productMapper.selectAllOnSaleExclOOS();
@@ -52,7 +52,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<Product> findByCategoryOnSale(String productCategory) {
+	public List<Product> findByCategoryOnSale(String productCategory) throws Exception {
 		SqlSession sqlSession =sqlSessionFactory.openSession(true);
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		List<Product> productList = productMapper.selectByCategoryOnSale(productCategory);
@@ -61,7 +61,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public List<Product> findByNameOnSale(String productName) {
+	public List<Product> findByNameOnSale(String productName) throws Exception {
 		SqlSession sqlSession =sqlSessionFactory.openSession(true);
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		List<Product> productList = productMapper.selectByNameOnSale(productName);
@@ -70,7 +70,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public Product findByNo(int productNo) {
+	public Product findByNo(int productNo) throws Exception {
 		SqlSession sqlSession =sqlSessionFactory.openSession(true);
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		Product product = productMapper.selectByNo(productNo);
