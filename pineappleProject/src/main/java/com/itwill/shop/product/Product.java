@@ -28,4 +28,5 @@ public class Product {
 	
 	/******** FK *****************/
 	private List<Product> productList;  // 제품 전체 리스트
+	
 }
