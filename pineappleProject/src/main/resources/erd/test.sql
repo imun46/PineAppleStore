@@ -7,6 +7,7 @@ SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.prod
   JOIN product_image pi
     ON p.product_no=pi.product_no;
 
+>>>>>>> branch 'nuri' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 --판매 중인 제품 전체 리스트
 SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
        pi.product_image_no, pi.product_image_file

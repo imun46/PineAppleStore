@@ -96,6 +96,7 @@ insert into product_option_detail values (product_option_detail_product_option_d
 
 
 
+
 --PRODUCT_SELECTED insert
 INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
 VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,1,1);
