@@ -16,18 +16,24 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class Customer {
+	/********** PK ************/
+	private Integer customerNo;			//  번호
 	
-	private Integer customerNo;
-	private String customerId;
-	private String customerPassword;
-	private String customerName;
-	private Date customerDob;
-	private String customerAddress;
-	private String customerGender;
-	private String customerPhone;
-	private String customerEmail;
-	private String customerNickname;
-	private Date customerJoindate;
+	private String customerId;			//  아이디
+	private String customerPassword;	//  비밀번호
+	private String customerName;		//  이름
+	private Date customerDob;			//  날짜
+	private String customerAddress;		//  주소
+	private String customerGender;		//  성별
+	private String customerPhone;		//  전화번호
+	private String customerEmail;		//  이메일
+	private String customerNickname;	//	닉네임
+	private Date customerJoindate;		// 	가입한 날짜
 	
-	private List<Coupon> couponNo;//보류
+	
+	/**************List ****************/
+	// 어드민 사용시
+	private List<Customer> customerList; // 고객 리스트
+	
+	
 }
