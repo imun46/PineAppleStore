@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CartDao {
 	
-	//cart 제품 존재여부
+	//cart 상품수량조회
 	
 	int countByProductNo(String sCustomerId, int productSelectedNo) throws Exception;
 	

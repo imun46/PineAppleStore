@@ -2,10 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CartMapper">
 
-<select id ="countByProductNo" resultType="int">
-	
-
-
+<select id="countByProductNo" parameterType="map" resultType="int">
+	SELECT COUNT(*) FROM Cart WHERE customer_id = #{sCustomerId}
+	AND product_no = #{productSelectedNo}
 </select>
 
 
