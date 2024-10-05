@@ -17,32 +17,14 @@ public class CouponDaoImpl implements CouponDao {
 				.build(Resources.getResourceAsStream("mybatis-config-mapper-interface.xml"));
 	}
 	
-	/*** 쿠폰 발급 메소드 (어드민용) (COUPON 클래스)***/
+	/*** 쿠폰 발급 메소드 (어드민용) ***/
 	@Override
-	public int insert(Coupon coupon) throws Exception {
+	public int insertCoupon(Coupon coupon) throws Exception {
 		System.out.println("CouponDaoImpl : insert 메소드 호출");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		sqlSession.getMapper(CouponMapper.class);
-		return 0;
+		int rowCount = sqlSession.getMapper(CouponMapper.class).insert(coupon);
+		return rowCount;
 	}
 
-	
-	@Override
-	public int update(Coupon coupon) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int delete(Integer couponNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Coupon selectCoupon(Integer customerNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

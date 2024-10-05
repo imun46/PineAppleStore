@@ -1,5 +1,7 @@
 package com.itwill.shop.customer;
 
+import com.itwill.shop.coupon.Coupon;
+
 public class CustomerService {
 
 	private CustomerDao customerDao;
@@ -56,5 +58,19 @@ public class CustomerService {
 	public int deleteCustomerNo(Integer customerId) throws Exception {
 		return customerDao.delete(customerId);
 	}
+	
+	
+	/*** CustomerCoupon 메소드 ***/
+	
+	public CustomerCoupons findCoupon(Integer customerNo) throws Exception {
+		System.out.println("CustomerService : findCoupon");
+		return customerDao.findCoupon(customerNo);
+	}
+	
+	public int updateCoupon(Integer customerCouponsNo) throws Exception {
+		System.out.println("CustomerService : updateCoupon");
+		return customerDao.updateCoupon(customerCouponsNo);
+	}
+	
 
 }

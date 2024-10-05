@@ -18,12 +18,11 @@ import lombok.NoArgsConstructor;
 public class Coupon {
 	
 	/*********** PK *******************/
-	private Integer coupon_no;			// 쿠폰 번호
-	
-	private String coupon_name;			// 쿠폰 이름
-	private String coupon_id;			// 쿠폰 아이디
-	private String coupon_discount;		// 쿠폰 할인율
-	private String coupon_desc;			// 쿠폰 설명
+	private Integer couponNo;			// 쿠폰 번호
+	private String couponName;			// 쿠폰 이름
+	private String couponId;			// 쿠폰 아이디
+	private String couponDiscount;		// 쿠폰 할인율
+	private String couponDesc;			// 쿠폰 설명
 	
 	/********** List *****************/
 	private List<Coupon> couponList ;	// 쿠폰 전체리스트

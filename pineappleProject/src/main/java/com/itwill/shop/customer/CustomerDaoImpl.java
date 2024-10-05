@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.itwill.shop.coupon.Coupon;
+import com.itwill.shop.mapper.CustomerCouponsMapper;
 import com.itwill.shop.mapper.CustomerMapper;
 
 public class CustomerDaoImpl implements CustomerDao {
@@ -77,10 +79,29 @@ public class CustomerDaoImpl implements CustomerDao {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		List<Customer> customerList = sqlSession.getMapper(CustomerMapper.class).customerList();
 		sqlSession.close();
-	return customerList;
+		return customerList;
 	}
-
-
+	
+	
+	
+	/********* CustomerCoupon 메소드 **********/
+	/********* CustomerCoupon 쿠폰조회(Select) **********/
+	@Override
+	public CustomerCoupons findCoupon(Integer customerNo) throws Exception {
+		System.out.println("CustomerDaoImpl : findCoupon");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		CustomerCoupons customerCoupons = sqlSession.getMapper(CustomerCouponsMapper.class).findCoupon(customerNo);
+		return customerCoupons;
+	}
+	
+	/********* CustomerCoupon 쿠폰 사용완료(Update) **********/
+	@Override
+	public int updateCoupon(Integer customerCouponsNo) throws Exception {
+		System.out.println("CustomerDaoImpl : updateCoupon");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).updateCoupon(customerCouponsNo);
+		return rowCount;
+	}
 	
 
 }

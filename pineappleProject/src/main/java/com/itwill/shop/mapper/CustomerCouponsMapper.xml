@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CustomerCouponsMapper">
+	<!-- 쿠폰 조회 resultMap type = CustomerCoupons -->
+	<resultMap id="couponResultMap" type="com.itwill.shop.customer.CustomerCoupons">
+    <result property="couponNo.couponName" column="coupon_name"/> 
+    <result property="couponNo.couponDesc" column="coupon_desc"/> 
+    <result property="customerCouponsEnddate" column="customer_coupons_enddate"/> 
+    <result property="customerCouponsStatus" column="customer_coupons_status"/> 
+    <result property="customerCouponsNo" column="customer_coupons_no"/> 
+	</resultMap>
+	
 	<!-- 쿠폰 조회 -->
- 	<select id="selectCoupon" parameterType="Integer" resultType="com.itwill.shop.mapper.Coupon">
-		select * from coupon c
-		join customer_coupons cu
-		on c.coupon_no = cu.coupon_no
-		where cu.customer_no=#{customerNo}; 
+ 	<select id="findCoupon" parameterType="Integer" resultMap="couponResultMap">
+	select
+    c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate, 
+    cu.customer_coupons_status, cu.customer_coupons_no
+	from coupon c
+	join customer_coupons cu
+	on c.coupon_no = cu.coupon_no
+	where cu.customer_no = #{customerNo}
 	</select>
 	
 	<!-- 쿠폰 사용(사용완료 상태로 변경) -->
 	<update id="updateCoupon" parameterType="Integer">
-		update customer_coupons
-		set customer_coupons_status ='사용완료'
-		where customor_coupons_no=#{couponsNo};
+	update customer_coupons
+	set customer_coupons_status ='사용가능'
+	where customer_coupons_no=#{customerCouponsNo}
 	</update>
 	
-	
 </mapper>
+
+
