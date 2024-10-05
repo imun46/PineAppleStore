@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.ProductMapper">
+	<resultMap id="productMapImage" type="Product">
+		<id column="PRODUCT_NO" property="productNo"/>
+		
+		<collection property="productImageList" ofType="ProductImage">
+			<id column="PRODUCT_IMAGE_NO" property="productImageNo"/>
+		</collection>
+	</resultMap>
 	
 	
-
+	<select id="selectAll" resultMap="productMapImage">
+		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
+       		   pi.product_image_no, pi.product_image_file
+  		  FROM product p
+  		  JOIN product_image pi
+    		ON p.product_no=pi.product_no
+	</select>
+	
+	<select id="selectAllOnSale" resultMap="productMapImage">
+		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
+      		   pi.product_image_no, pi.product_image_file
+  		  FROM product p
+ 		  JOIN product_image pi
+ 		    ON p.product_no=pi.product_no
+ 		 WHERE p.product_status!='inactive'
+	</select>
 	
 	
 </mapper>
