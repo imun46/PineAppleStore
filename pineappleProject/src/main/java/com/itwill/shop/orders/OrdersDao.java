@@ -4,16 +4,20 @@ import java.util.List;
 
 public interface OrdersDao {
 	//주문 등록
+<<<<<<< Upstream, based on origin/Ateam/기현
 	int insert(Orders order) throws Exception;
 
+=======
+	int insertOrder(Orders order) throws Exception;
+>>>>>>> 02c44db orders insert 완성
 	
 	//주문 전체 리스트(특정 사용자)
-	List<Orders> selectAll() throws Exception;
+	List<Orders> findAll() throws Exception;
 	
 	//주문+주문 아이템(특정사용자, 특정 주문)
-	List<Orders> selectOrderByOrderItems() throws Exception;
+	List<Orders> findOrderByOrderItems() throws Exception;
 	
 	// 주문 1건 삭제(특정 주문)
-	int delete(int orderNo) throws Exception;
+	int deleteOrder(int orderNo) throws Exception;
 	
 }

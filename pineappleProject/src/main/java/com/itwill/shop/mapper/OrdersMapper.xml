@@ -3,8 +3,32 @@
 <mapper namespace="com.itwill.shop.mapper.OrdersMapper">
 	
 <<<<<<< Upstream, based on origin/Ateam/기현
+<<<<<<< Upstream, based on origin/Ateam/기현
 =======
 	<insert id="insert">
+=======
+	<insert id="insertOrder" parameterType="Orders">
+		<selectKey order="BEFORE" resultType="int" keyProperty="ordersNo">
+			select orders_orders_no_seq.nextval from dual
+		</selectKey>
+		insert into orders(Orders_No, Orders_Date, Orders_Arrivaldate, Orders_Totprice, Orders_Finalprice, Orders_Totqty, Orders_Address, Orders_Status, Customer_No, Customer_Coupons_No) 
+		values (#{ordersNo}, sysdate, Sysdate+3, #{ordersTotprice}, #{ordersFinalprice}, #{ordersTotqty}, #{ordersAddress}, #{ordersStatus}, #{customer.customerNo}, 
+            #{customerCoupons.customerCouponsNo})
+>>>>>>> 02c44db orders insert 완성
 	</insert>
+<<<<<<< Upstream, based on origin/Ateam/기현
 >>>>>>> 720e04b orderMapper 수정중
+=======
+	<insert id="insertOrderItem" parameterType="OrdersItems">
+		<selectKey order="BEFORE" resultType="int" keyProperty="ordersItemsNo">
+			select orders_items_orders_items_no_seq.nextval from dual 
+		</selectKey>
+		 insert into orders_items (orders_items_no, orders_items_price,orders_items_finalprice, orders_items_qty, orders_items_options, orders_no, product_no) 
+		 values (#{ordersItemsNo}, #{ordersItemsprice}, #{ordersItemsFinalprice}, #{ordersItemsQty}, #{ordersItemsOptions},orders_orders_no_seq.currval, #{product.productNo})
+	</insert>
+	
+	<delete id="deleteOrder">
+	
+	</delete>
+>>>>>>> 02c44db orders insert 완성
 </mapper>
