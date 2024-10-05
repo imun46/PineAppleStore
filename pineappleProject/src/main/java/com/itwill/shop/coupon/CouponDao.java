@@ -13,6 +13,6 @@ public interface CouponDao {
 	int delete(Integer couponNo) throws Exception;
 	
 	//쿠폰 조회(사용자 번호로 쿠폰 번호 조회)
-	Coupon findCoupon(Integer customerNo) throws Exception;
+	Coupon selectCoupon(Integer customerNo) throws Exception;
 	
 }

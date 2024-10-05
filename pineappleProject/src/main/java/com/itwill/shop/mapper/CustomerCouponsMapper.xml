@@ -2,17 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CustomerCouponsMapper">
 	<!-- 쿠폰 조회 -->
- 	<select id="selectCoupon"  resultType="com.itwill.shop.mapper.CustomerCouponsMapper">
-		
-	</select>
-	
-	<select id="selectByCoupon"  
-			parameterType="Integer" 
-			resultType="com.itwill.shop.mapper.Coupon">
+ 	<select id="selectCoupon" parameterType="Integer" resultType="com.itwill.shop.mapper.Coupon">
 		select * from coupon c
 		join customer_coupons cu
 		on c.coupon_no = cu.coupon_no
 		where cu.customer_no=#{customerNo}; 
 	</select>
+	
+	<!-- 쿠폰 사용(사용완료 상태로 변경) -->
+	<update id="updateCoupon" parameterType="Integer">
+		update customer_coupons
+		set customer_coupons_status ='사용완료'
+		where customor_coupons_no=#{couponsNo};
+	</update>
+	
 	
 </mapper>

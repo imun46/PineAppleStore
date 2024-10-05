@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CouponMapper">
+	<!-- 쿠폰 발급(어드민용)  -->
 	<insert id="insert" parameterType="com.itwill.shop.mapper.Coupon">
-		insert into Coupon
+		insert into coupon (coupon_no,coupon_name,coupon_id,coupon_discount,coupon_desc) 
+		values (coupon_coupon_no_seq.nextval,#{couponoName},#{couponId},#{couponDiscount},#{couponDesc});
 	</insert>
+	
 	
 	
 </mapper>
