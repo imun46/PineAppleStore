@@ -16,7 +16,9 @@ public interface CartDao {
 	
 	int updateByProductNo(String sCustomerId, int productSelectNo, int cartQty) throws Exception;
 	
+	//카트리스트 수정
 	
+	int updateByCartNo(int cartNo, int cartQty) throws Exception;
 	
 	//cart pk delete
 	
@@ -28,14 +30,9 @@ public interface CartDao {
 	
 	Cart findByCartNo(int cartNo) throws Exception;
 	
-	
-	//카트리스트 수정
-	
-		int updateByCartNo(int cartNo, int cartQty) throws Exception;
+	//카트리스트
 		
-		//카트리스트
-		
-		List<Cart> findByCustomerId(String customerId) throws Exception;
+	List<Cart> findByCustomerId(String customerId) throws Exception;
 	
 	
 }

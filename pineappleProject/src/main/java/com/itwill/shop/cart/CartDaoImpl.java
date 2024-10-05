@@ -1,6 +1,9 @@
 package com.itwill.shop.cart;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -51,6 +54,16 @@ public class CartDaoImpl implements CartDao {
 		return rowCount;
 	}
 	
+	//카트리스트 수정
+		@Override
+		public int updateByCartNo(int cartNo, int cartQty) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		CartMapper cartMapper=sqlSession.getMapper(CartMapper.class);
+		int rowCount = cartMapper.updateByCartNo(cartNo, cartQty);
+		sqlSession.close();
+		return 0;
+		}
+	
 	// cart pk delete
 	@Override
 	public int deleteByCartNo(int cartNo) throws Exception{
@@ -78,6 +91,18 @@ public class CartDaoImpl implements CartDao {
 		Cart cart = cartMapper.findByCartNo(cartNo);
 		sqlSession.close();
 		return cart;
+	}
+	
+	//카트리스트
+
+	@Override
+	public List<Cart> findByCustomerId(String customerId) throws Exception {
+		List<Cart> cartList=new ArrayList<Cart>();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		CartMapper cartMapper=sqlSession.getMapper(CartMapper.class);
+		cartList=cartMapper.findByCustomerId(customerId);
+		sqlSession.close();
+		return cartList;
 	}
 	
 	
