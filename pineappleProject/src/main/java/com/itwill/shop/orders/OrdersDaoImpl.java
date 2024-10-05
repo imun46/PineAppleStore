@@ -8,6 +8,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.boot.autoconfigure.flyway.FlywayProperties.Sqlserver;
 
 import com.itwill.shop.mapper.OrdersMapper;
 
@@ -37,19 +38,17 @@ public class OrdersDaoImpl implements OrdersDao {
 	public List<Orders> findAll() throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		OrdersMapper ordersMapper = sqlSession.getMapper(OrdersMapper.class);
+		List<Orders> orderList = ordersMapper.selectAll();
 		sqlSession.close();
-		return ordersMapper.selectAll();
+		return orderList;
 	}
 	
 	@Override
 	public List<Orders> findByOrderNo(int orderNo) throws Exception{
-		return null;
-	}
-	
-	
-	@Override
-	public List<Orders> findOrderByOrderItems(int customerNo, int orderNo) throws Exception {
-		return null;
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		OrdersMapper ordersMapper = sqlSession.getMapper(OrdersMapper.class);
+		List<Orders> orderList = ordersMapper.selectByOrderNo(orderNo);
+		return orderList;
 	}
 	
 	@Override

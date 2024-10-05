@@ -27,8 +27,8 @@ public class OrderDaoTest {
 							.ordersTotprice(50000)
 							.ordersFinalprice(450000)
 							.ordersTotqty(6)
-							.ordersAddress("주소임당")
-							.ordersStatus("배송완료")
+							.ordersAddress("주소일걸요")
+							.ordersStatus("배송중")
 							.orderItemList(newOrderItemsList)
 							.customer(Customer.builder().customerNo(1).build())
 							.customerCoupons(CustomerCoupons.builder().customerCouponsNo(1).build())
@@ -40,6 +40,9 @@ public class OrderDaoTest {
 		/************delete*************/
 //		System.out.println(ordersDao.deleteOrder(4));
 		
-		System.out.println(ordersDao.findAll());
+//		System.out.println(ordersDao.findAll());
+		
+		/************select*************/
+		System.out.println(ordersDao.findByOrderNo(5));
 	}
 }
