@@ -44,17 +44,17 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper class="com.itwill.shop.mapper.CartMapper" />
-		<mapper class="com.itwill.shop.mapper.CouponMapper" />
-		<mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
+		<!-- <mapper class="com.itwill.shop.mapper.CartMapper" />
+		<mapper class="com.itwill.shop.mapper.CouponMapper" /> -->
+		<!-- <mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" /> -->
 		<mapper class="com.itwill.shop.mapper.CustomerMapper" />
-		<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
+	<!-- 	<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
 		<mapper class="com.itwill.shop.mapper.OrdersMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductImageMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductSelectedMapper" />
-		<mapper class="com.itwill.shop.mapper.ReviewMapper" />
+		<mapper class="com.itwill.shop.mapper.ReviewMapper" /> -->
 	</mappers>
 </configuration>
