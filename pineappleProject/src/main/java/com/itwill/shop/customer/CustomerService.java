@@ -50,7 +50,7 @@ public class CustomerService {
 	}
 
 	// 사용자 삭제
-	public int deleteCustomer(Integer customerId)throws Exception{
+	public int deleteCustomerNo(Integer customerId)throws Exception{
 		return customerDao.delete(customerId);
 	}
 	

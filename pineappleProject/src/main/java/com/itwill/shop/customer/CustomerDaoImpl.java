@@ -66,7 +66,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public int countByCustomerId(String customerId) throws Exception {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int countByCustomerId = sqlSession.getMapper(CustomerMapper.class).countByCustomerId(customerId);
 		sqlSession.close();
 		return countByCustomerId ;
@@ -74,7 +74,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	@Override
 	public List<Customer> customerList() throws Exception {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		List<Customer> customerList = sqlSession.getMapper(CustomerMapper.class).customerList();
 		sqlSession.close();
 	return customerList;
