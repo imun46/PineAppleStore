@@ -32,7 +32,7 @@ public class CustomerTest {
 		
 		/*********** select ********************/
 		System.out.println(customerService.findCustomerNo(2));
-	
+//	
 		
 		/*********** delete ********************/
 		System.out.println(customerService.deleteCustomerNo(2));
