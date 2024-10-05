@@ -18,6 +18,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
 		sqlSessionFactory = sqlSessionFactoryBuilder.build(mybatisInputStream);
 	}
+	
 	@Override
 	public int insertOrder(Orders order) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
@@ -31,16 +32,26 @@ public class OrdersDaoImpl implements OrdersDao {
 		sqlSession.close();
 		return 1; 
 	}
+	
 	@Override
 	public List<Orders> findAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		OrdersMapper ordersMapper = sqlSession.getMapper(OrdersMapper.class);
+		sqlSession.close();
+		return ordersMapper.selectAll();
 	}
+	
 	@Override
-	public List<Orders> findOrderByOrderItems() throws Exception {
-		// TODO Auto-generated method stub
+	public List<Orders> findByOrderNo(int orderNo) throws Exception{
 		return null;
 	}
+	
+	
+	@Override
+	public List<Orders> findOrderByOrderItems(int customerNo, int orderNo) throws Exception {
+		return null;
+	}
+	
 	@Override
 	public int deleteOrder(int orderNo) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
