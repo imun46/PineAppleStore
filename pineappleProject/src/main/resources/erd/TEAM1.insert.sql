@@ -82,7 +82,6 @@ insert into product_option values(product_option_product_option_no_seq.nextval,'
 
 
 
-
 --PRODUCT_OPTION_DETAIL insert
 
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'128GB',100000,1);
@@ -93,7 +92,6 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'빨간색',0,3);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'파란색',0,3);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'노란색',0,3);
-
 
 
 
