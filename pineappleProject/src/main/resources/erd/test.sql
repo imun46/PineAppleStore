@@ -6,7 +6,7 @@ SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.prod
   FROM product p
   JOIN product_image pi
     ON p.product_no=pi.product_no;
-트
+
 --판매 중인 제품 전체 리스트
 SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
        pi.product_image_no, pi.product_image_file
