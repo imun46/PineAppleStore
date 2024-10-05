@@ -1,5 +1,12 @@
 package com.itwill.shop.product;
 
-public interface ProductDao {
+import java.util.List;
 
+public interface ProductDao {
+	
+//	전체 제품 리스트 찾기
+	public List<Product> findAll();
+	
+
+	
 }
