@@ -9,33 +9,46 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.itwill.shop.mapper.OrdersMapper;
+
 public class OrdersDaoImpl implements OrdersDao {
 	SqlSessionFactory sqlSessionFactory;
 	public OrdersDaoImpl() throws Exception {
-		InputStream mybatisInputStream = Resources.getResourceAsStream("mybatis-config-mapper-interface");
+		InputStream mybatisInputStream = Resources.getResourceAsStream("mybatis-config-mapper-interface.xml");
 		SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
 		sqlSessionFactory = sqlSessionFactoryBuilder.build(mybatisInputStream);
 	}
 	@Override
-	public int insert(Orders order) throws Exception {
+	public int insertOrder(Orders order) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		return sqlSession.getMapper(null);
+		OrdersMapper ordersMapper =  sqlSession.getMapper(OrdersMapper.class);
+		
+		ordersMapper.insertOrder(order);
+		for(OrdersItems orderItems:order.getOrderItemList()) {
+			ordersMapper.insertOrderItem(orderItems);
+		}
+		
+		sqlSession.close();
+		return 1; 
 	}
 	@Override
-	public List<Orders> selectAll() throws Exception {
+	public List<Orders> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public List<Orders> selectOrderByOrderItems() throws Exception {
+	public List<Orders> findOrderByOrderItems() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public int delete(int orderNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteOrder(int orderNo) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		OrdersMapper ordersMapper = sqlSession.getMapper(OrdersMapper.class);
+		return ordersMapper.delete(orderNo);
 	}
+
+	
 
 	
 }
