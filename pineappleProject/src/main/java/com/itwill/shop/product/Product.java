@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 public class Product {
 	
-	/****** PK ***************/
+	/*********** PK ***************/
 	private Integer productNo;			// 제품 번호
 	
 	private String productName;			// 제품 이름
@@ -27,10 +27,14 @@ public class Product {
 	private String productStatus;		// 제품 상태 (품절,미품절)
 	
 <<<<<<< Upstream, based on origin/Ateam/기현
+<<<<<<< Upstream, based on origin/Ateam/기현
 	/******** FK *****************/
 	private List<Product> productList;  // 제품 전체 리스트
 	
 =======
+=======
+	/************* FK *****************/
+>>>>>>> b972a88 orders 주석 수정
 	private List<ProductImage> productImageList;	// 제품 이미지 리스트
 	private List<Review> productReviewList;			// 제품 리뷰 리스트
 	private List<ProductOption> productOptionList;	// 제품 옵션 리스트

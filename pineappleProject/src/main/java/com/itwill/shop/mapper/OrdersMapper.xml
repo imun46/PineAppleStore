@@ -24,12 +24,16 @@
 		
 	</resultMap>
 	
+<<<<<<< Upstream, based on origin/Ateam/기현
 	
 <<<<<<< Upstream, based on origin/Ateam/기현
 <<<<<<< Upstream, based on origin/Ateam/기현
 =======
 	<insert id="insert">
 =======
+=======
+	<!-- 주문 등록 -->
+>>>>>>> b972a88 orders 주석 수정
 	<insert id="insertOrder" parameterType="Orders">
 		<selectKey order="BEFORE" resultType="int" keyProperty="ordersNo">
 			select orders_orders_no_seq.nextval from dual
@@ -45,7 +49,11 @@
 =======
 =======
 	
+<<<<<<< Upstream, based on origin/Ateam/기현
 >>>>>>> 5ede523 orders select 완성 , service 구현 완료
+=======
+	<!-- 주문아이템 등록 -->
+>>>>>>> b972a88 orders 주석 수정
 	<insert id="insertOrderItem" parameterType="OrdersItems">
 		<selectKey order="BEFORE" resultType="int" keyProperty="ordersItemsNo">
 			select orders_items_orders_items_no_seq.nextval from dual 
@@ -54,11 +62,13 @@
 		 values (#{ordersItemsNo}, #{ordersItemsprice}, #{ordersItemsFinalprice}, #{ordersItemsQty}, #{ordersItemsOptions},orders_orders_no_seq.currval, #{product.productNo})
 	</insert>
 	
+	<!-- 주문 전체 리스트(어드민) -->
 	<select id="selectAll" resultMap="orderResultMap">
 		select orders_no, orders_date, orders_arrivaldate,orders_totprice, orders_finalprice,orders_totqty, orders_address,orders_status,customer_no, customer_coupons_no
 		from orders
 	</select>
 	
+	<!-- 주문+주문아이템 리스트(특정회원) -->
 	<select id="selectByOrderNo" parameterType="int" resultMap="orderResultMap">
 		select o.orders_no, o.orders_date,o.orders_finalprice,o.orders_status, 
 			   oi.orders_items_no,oi.orders_items_price,oi.orders_items_finalprice,oi.orders_items_qty,oi.orders_items_options,oi.product_no
@@ -68,7 +78,7 @@
 		where o.orders_no = #{ordersNo}
 	</select>
 
-	
+	<!-- 주문 1건 삭제 -->
 	<delete id="delete" parameterType="int">
 		delete from orders where orders_no = #{ordersNo}
 	</delete>
