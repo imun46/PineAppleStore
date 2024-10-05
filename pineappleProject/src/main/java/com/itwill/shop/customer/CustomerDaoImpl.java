@@ -85,6 +85,16 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	
 	/********* CustomerCoupon 메소드 **********/
+	
+	/********* (어드민) CustomerCoupon 쿠폰발급(Insert) **********/
+	@Override
+	public int insertCustomerCoupon(CustomerCoupons customerCoupons) throws Exception {
+		System.out.println("CustomerDaoImpl : insertCustomerCoupon");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).insertCustomerCoupon(customerCoupons);
+		return rowCount;
+	}
+	
 	/********* CustomerCoupon 쿠폰조회(Select) **********/
 	@Override
 	public CustomerCoupons findCoupon(Integer customerNo) throws Exception {

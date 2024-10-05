@@ -61,15 +61,22 @@ public class CustomerService {
 	
 	
 	/*** CustomerCoupon 메소드 ***/
-	
-	public CustomerCoupons findCoupon(Integer customerNo) throws Exception {
-		System.out.println("CustomerService : findCoupon");
-		return customerDao.findCoupon(customerNo);
+	/*** (어드민) 사용자 쿠폰 발급 ***/
+	public int insertCustomerCoupon(CustomerCoupons customerCoupons) throws Exception {
+		System.out.println("CustomerService : insertCoupon");
+		return customerDao.insertCustomerCoupon(customerCoupons);
 	}
 	
+	/*** 쿠폰 사용완료 업데이트 ***/
 	public int updateCoupon(Integer customerCouponsNo) throws Exception {
 		System.out.println("CustomerService : updateCoupon");
 		return customerDao.updateCoupon(customerCouponsNo);
+	}
+	
+	/*** 사용자 쿠폰 조회 ***/
+	public CustomerCoupons findCoupon(Integer customerNo) throws Exception {
+		System.out.println("CustomerService : findCoupon");
+		return customerDao.findCoupon(customerNo);
 	}
 	
 
