@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 
 public class Cart {
 	/******* PK **********/
-	private Integer cartNo;				// 번호
-	private Integer cartQty;			// 수량
+	private Integer cartNo;		// 번호
+	private Integer cartQty;	// 수량
 	
 	/*********** FK ************/
 	private Customer customerNo;
