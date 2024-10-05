@@ -15,5 +15,6 @@ public class ProductOptionDetail {
 	private Integer productOptionDetailNo;//PK
 	private String productOptionDetailName;
 	private Integer productOptionDetailPrice;
-	private Integer productOptionNo;//FK
+	
+	private ProductOption productOption;	//FK
 }

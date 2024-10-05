@@ -1,6 +1,8 @@
 package com.itwill.shop.product;
 
-import com.itwill.shop.review.Review;
+
+
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,5 +16,7 @@ import lombok.NoArgsConstructor;
 public class ProductOption {
 	private Integer productOptionNo;//PK
 	private String productOptionType;
-	private Integer productNo;//FK
+	
+	private Product product;	//FK
+	private List<ProductOptionDetail> productOptionDetailList;
 }
