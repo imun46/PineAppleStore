@@ -17,7 +17,7 @@ VALUES
  
  
  
- <!--  사용자 아이디로 찾기 -->
+ <!--  사용자 번호로 찾기 -->
  <select id="findCustomer" parameterType="int" resultType="Customer">
  select * from customer where customer_no = #{customer_no];
  </select>

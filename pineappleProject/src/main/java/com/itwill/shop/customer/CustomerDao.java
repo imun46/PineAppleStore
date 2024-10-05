@@ -2,6 +2,7 @@ package com.itwill.shop.customer;
 
 public interface CustomerDao {
 	
+	
 	//사용자 정보 추가(회원 가입)
 	int insert(Customer customer) throws Exception;
 	
