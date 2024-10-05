@@ -12,6 +12,8 @@ public interface OrdersMapper {
 	List<Orders> selectAll() throws Exception;
 	
 	//주문+주문 아이템(특정사용자, 특정 주문)
+	List<Orders> selectOrderByOrderItems() throws Exception;
 	
-	//주문 1개 
+	// 주문 1건 삭제(특정 주문)
+	int delete(int orderNo) throws Exception;
 }
