@@ -2,19 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CartMapper">
 
+<select id ="countByProductNo" resultType="int">
+	
 
-<resultMap id="cartResultMap"
 
-type="com.itwill.shop.cart.Cart" autoMapping="true">
-<id column="cartNo" property="cartNo"/>
-<association property="product" autoMapping="true"
-javaType="com.itwill.shop.product.Product">
-<id column="p_no" property="p_no"/>
-
-</association>
-
-</resultMap>
-
+</select>
 
 
 </mapper>
