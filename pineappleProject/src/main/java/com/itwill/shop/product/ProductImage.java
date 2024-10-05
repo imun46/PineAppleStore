@@ -1,6 +1,5 @@
 package com.itwill.shop.product;
 
-import com.itwill.shop.review.Review;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,5 +13,6 @@ import lombok.NoArgsConstructor;
 public class ProductImage {
 	private Integer productImageNo;//PK
 	private String productImageFile;
-	private Integer productNo;//FK
+	
+	private Product product; //FK
 }
