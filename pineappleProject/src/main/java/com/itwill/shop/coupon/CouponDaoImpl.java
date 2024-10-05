@@ -22,7 +22,7 @@ public class CouponDaoImpl implements CouponDao {
 	public int insertCoupon(Coupon coupon) throws Exception {
 		System.out.println("CouponDaoImpl : insert 메소드 호출");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int rowCount = sqlSession.getMapper(CouponMapper.class).insert(coupon);
+		int rowCount = sqlSession.getMapper(CouponMapper.class).insertCoupon(coupon);
 		return rowCount;
 	}
 
