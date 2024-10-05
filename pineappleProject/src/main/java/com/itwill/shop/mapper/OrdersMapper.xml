@@ -27,8 +27,18 @@
 		 values (#{ordersItemsNo}, #{ordersItemsprice}, #{ordersItemsFinalprice}, #{ordersItemsQty}, #{ordersItemsOptions},orders_orders_no_seq.currval, #{product.productNo})
 	</insert>
 	
-	<delete id="deleteOrder">
+	<select id="selectAll" resultMap="orderResultMap">
+		select orders_no, orders_date, orders_arrivaldate,orders_totprice, orders_finalprice,orders_totqty, orders_address,orders_status,customer_no, customer_coupons_no
+		from orders
+	</select>
 	
+	<select id="selectByOrderNo" parameterType="int">
+		select orders_no, orders_date, orders_arrivaldate,orders_totprice, orders_finalprice,orders_totqty, orders_address,orders_status,customer_no, customer_coupons_no
+		from orders where customer_no = #{ordersNo}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from orders where orders_no = #{ordersNo}
 	</delete>
 >>>>>>> 02c44db orders insert 완성
 </mapper>
