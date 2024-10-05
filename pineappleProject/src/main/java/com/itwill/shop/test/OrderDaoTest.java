@@ -34,7 +34,12 @@ public class OrderDaoTest {
 							.customerCoupons(CustomerCoupons.builder().customerCouponsNo(1).build())
 							.build();
 		
-		System.out.println(ordersDao.insertOrder(newOrder));
+//		System.out.println(ordersDao.insertOrder(newOrder));
 		
+		
+		/************delete*************/
+//		System.out.println(ordersDao.deleteOrder(4));
+		
+		System.out.println(ordersDao.findAll());
 	}
 }
