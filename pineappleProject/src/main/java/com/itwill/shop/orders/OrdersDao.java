@@ -5,7 +5,6 @@ import java.util.List;
 public interface OrdersDao {
 	//주문 등록
 	int insert(Orders order) throws Exception;
-
 	
 	//주문 전체 리스트(특정 사용자)
 	List<Orders> selectAll() throws Exception;

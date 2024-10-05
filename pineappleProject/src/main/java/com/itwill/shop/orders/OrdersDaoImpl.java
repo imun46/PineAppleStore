@@ -18,8 +18,8 @@ public class OrdersDaoImpl implements OrdersDao {
 	}
 	@Override
 	public int insert(Orders order) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		return sqlSession.getMapper(null);
 	}
 	@Override
 	public List<Orders> selectAll() throws Exception {
