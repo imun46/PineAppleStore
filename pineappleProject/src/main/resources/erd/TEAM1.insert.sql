@@ -37,19 +37,9 @@ insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nex
 insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/10/31', '사용가능',4,4);
 
 
-
---ORDERS + OrderItems insert
+--ORDERS insert
 INSERT INTO ORDERS (ORDERS_NO,ORDERS_DATE,ORDERS_ARRIVALDATE,ORDERS_TOTPRICE,ORDERS_FINALPRICE,ORDERS_TOTQTY,ORDERS_ADDRESS,ORDERS_STATUS,CUSTOMER_NO,CUSTOMER_COUPONS_NO) 
-VALUES (ORDERS_ORDERS_NO_SEQ.nextval,sysdate,sysdate+3,150000,125000,4,'서울시 강남구','배송전',1,1);
-INSERT INTO orders_items (ORDERS_ITEMS_NO,ORDERS_ITEMS_PRICE,ORDERS_ITEMS_FINALPRICE,ORDERS_ITEMS_QTY,ORDERS_ITEMS_OPTIONS,ORDERS_NO,PRODUCT_NO)
-values(orders_items_orders_items_no_seq.nextval, 30000, 20000, 1, '색상: 검정, 용량: 256GB', ORDERS_ORDERS_NO_SEQ.currval, 1);
-INSERT INTO orders_items (ORDERS_ITEMS_NO,ORDERS_ITEMS_PRICE,ORDERS_ITEMS_FINALPRICE,ORDERS_ITEMS_QTY,ORDERS_ITEMS_OPTIONS,ORDERS_NO,PRODUCT_NO)
-values(orders_items_orders_items_no_seq.nextval, 30000, 25000, 1, '색상: 노랑, 용량: 256GB', ORDERS_ORDERS_NO_SEQ.currval, 2);
-INSERT INTO orders_items (ORDERS_ITEMS_NO,ORDERS_ITEMS_PRICE,ORDERS_ITEMS_FINALPRICE,ORDERS_ITEMS_QTY,ORDERS_ITEMS_OPTIONS,ORDERS_NO,PRODUCT_NO)
-values(orders_items_orders_items_no_seq.nextval, 30000, 20000, 1, '색상: 빨강, 용량: 256GB', ORDERS_ORDERS_NO_SEQ.currval, 3);
-
-
-
+VALUES (ORDERS_ORDERS_NO_SEQ.nextval,'2024-10-04','2024-10-07',150000,125000,4,'서울시 강남구','배송중',1,1);
 INSERT INTO ORDERS (ORDERS_NO,ORDERS_DATE,ORDERS_ARRIVALDATE,ORDERS_TOTPRICE,ORDERS_FINALPRICE,ORDERS_TOTQTY,ORDERS_ADDRESS,ORDERS_STATUS,CUSTOMER_NO,CUSTOMER_COUPONS_NO) 
 VALUES (ORDERS_ORDERS_NO_SEQ.nextval,'2024-10-01','2024-10-03',3000000,250000,10,'부산시 부산구','배송완료',1,2);
 INSERT INTO ORDERS (ORDERS_NO,ORDERS_DATE,ORDERS_ARRIVALDATE,ORDERS_TOTPRICE,ORDERS_FINALPRICE,ORDERS_TOTQTY,ORDERS_ADDRESS,ORDERS_STATUS,CUSTOMER_NO,CUSTOMER_COUPONS_NO) 
@@ -79,21 +69,32 @@ VALUES (cart_cart_no_seq.nextval , 6, 4);
 
 
 --PRODUCT_OPTION insert
-insert into product_option values(product_option_product_option_no_seq.nextval,'아이폰 14',1);
-insert into product_option values(product_option_product_option_no_seq.nextval,'아이폰 15',2);
-insert into product_option values(product_option_product_option_no_seq.nextval,'아이폰 16',3);
+insert into product_option values(product_option_product_option_no_seq.nextval,'용량',1);
+insert into product_option values(product_option_product_option_no_seq.nextval,'스마트케어',1);
+insert into product_option values(product_option_product_option_no_seq.nextval,'색상',1);
+insert into product_option values(product_option_product_option_no_seq.nextval,'용량',2);
+insert into product_option values(product_option_product_option_no_seq.nextval,'스마트케어',2);
+insert into product_option values(product_option_product_option_no_seq.nextval,'색상',2);
+insert into product_option values(product_option_product_option_no_seq.nextval,'용량',3);
+insert into product_option values(product_option_product_option_no_seq.nextval,'스마트케어',3);
+insert into product_option values(product_option_product_option_no_seq.nextval,'용량',3);
+
+
+
+
 
 --PRODUCT_OPTION_DETAIL insert
 
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'128GB',100000,1);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'256GB',200000,1);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'512GB',300000,1);
-insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'128GB',100000,2);
-insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'256GB',200000,2);
-insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'512GB',300000,2);
-insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'128GB',100000,3);
-insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'256GB',200000,3);
-insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'512GB',300000,3);
+insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'O',100000,2);
+insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'X',100000,2);
+insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'빨간색',0,3);
+insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'파란색',0,3);
+insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'노란색',0,3);
+
+
 
 --PRODUCT_SELECTED insert
 INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
