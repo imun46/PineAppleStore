@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class OrdersItems {
-	//PK
+	/****PK****/
 	private Integer ordersItemsNo;
 	private Integer ordersItemsprice;
 	private Integer ordersItemsFinalprice;
