@@ -36,6 +36,8 @@ dependencies {
     implementation 'jakarta.servlet:jakarta.servlet-api' 					
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' 	
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' 
+    /******* my batis 3 설정 *************/
+    implementation 'org.mybatis:mybatis:3.5.15'
 }
 
 tasks.named('test') {
