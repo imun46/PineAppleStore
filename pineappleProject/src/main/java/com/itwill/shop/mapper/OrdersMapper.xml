@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.OrdersMapper">
+	<resultMap id="orderResultMap" type="Orders" autoMapping="true">
+		<id column="orders_no" property="ordersNo"/>
+		
+		<association property="customer" autoMapping="true" javaType="Customer">
+			<id column="customer_no" property="customerNo"/>
+		</association>
+		
+		<association property="customerCoupons" autoMapping="true" javaType="CustomerCoupons">
+			<id column="customerCoupons_no" property="customerCouponsNo"/>
+		</association>
+		
+		<collection property="orderItemList" autoMapping="true" ofType="OrdersItems">
+			<id column="orderItems_no" property="orderItemsNo"/>
+			<association property="orders" javaType="Orders" autoMapping="true">
+				<id column="ordersItems_no" property="ordersItemsNo"/>			
+			</association>
+			<association property="product" javaType="Product" autoMapping="true">
+				<id column="product_no" property="productNo"/>			
+			</association>
+		</collection>
+		
+	</resultMap>
+	
 	
 <<<<<<< Upstream, based on origin/Ateam/기현
 <<<<<<< Upstream, based on origin/Ateam/기현
@@ -17,8 +40,12 @@
 >>>>>>> 02c44db orders insert 완성
 	</insert>
 <<<<<<< Upstream, based on origin/Ateam/기현
+<<<<<<< Upstream, based on origin/Ateam/기현
 >>>>>>> 720e04b orderMapper 수정중
 =======
+=======
+	
+>>>>>>> 5ede523 orders select 완성 , service 구현 완료
 	<insert id="insertOrderItem" parameterType="OrdersItems">
 		<selectKey order="BEFORE" resultType="int" keyProperty="ordersItemsNo">
 			select orders_items_orders_items_no_seq.nextval from dual 
@@ -32,10 +59,15 @@
 		from orders
 	</select>
 	
-	<select id="selectByOrderNo" parameterType="int">
-		select orders_no, orders_date, orders_arrivaldate,orders_totprice, orders_finalprice,orders_totqty, orders_address,orders_status,customer_no, customer_coupons_no
-		from orders where customer_no = #{ordersNo}
+	<select id="selectByOrderNo" parameterType="int" resultMap="orderResultMap">
+		select o.orders_no, o.orders_date,o.orders_finalprice,o.orders_status, 
+			   oi.orders_items_no,oi.orders_items_price,oi.orders_items_finalprice,oi.orders_items_qty,oi.orders_items_options,oi.product_no
+		from orders o
+		join orders_items oi
+		on o.orders_no = oi.orders_no
+		where o.orders_no = #{ordersNo}
 	</select>
+
 	
 	<delete id="delete" parameterType="int">
 		delete from orders where orders_no = #{ordersNo}
