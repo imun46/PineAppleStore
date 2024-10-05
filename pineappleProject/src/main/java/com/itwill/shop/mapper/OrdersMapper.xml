@@ -3,6 +3,5 @@
 <mapper namespace="com.itwill.shop.mapper.OrdersMapper">
 	
 	<insert id="insert">
-		
 	</insert>
 </mapper>
