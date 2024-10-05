@@ -37,7 +37,6 @@ insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nex
 insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/10/31', '사용가능',4,4);
 
 
-
 --ORDERS + OrderItems insert
 INSERT INTO ORDERS (ORDERS_NO,ORDERS_DATE,ORDERS_ARRIVALDATE,ORDERS_TOTPRICE,ORDERS_FINALPRICE,ORDERS_TOTQTY,ORDERS_ADDRESS,ORDERS_STATUS,CUSTOMER_NO,CUSTOMER_COUPONS_NO) 
 VALUES (ORDERS_ORDERS_NO_SEQ.nextval,sysdate,sysdate+3,150000,125000,4,'서울시 강남구','배송전',1,1);
@@ -131,7 +130,6 @@ insert into product_option values(product_option_product_option_no_seq.nextval,'
 
 
 
-
 --PRODUCT_OPTION_DETAIL insert
 
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'128GB',100000,1);
@@ -142,7 +140,6 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'빨간색',0,3);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'파란색',0,3);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'노란색',0,3);
-
 
 
 --PRODUCT_SELECTED insert
