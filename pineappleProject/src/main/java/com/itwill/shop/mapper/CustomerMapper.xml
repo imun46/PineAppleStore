@@ -4,57 +4,63 @@
 
 
 
-<!--  사용자 등록 -->
-<insert id="insertCustomer" parameterType="Customer">
-<selectKey order="BEFORE" resultType="int" keyProperty="customerNo">select customer_customer_no_seq.nextval from dual
-   </selectKey>
+	<!-- 사용자 등록 -->
+	<insert id="insertCustomer" parameterType="Customer">
+		<selectKey order="BEFORE" resultType="int"
+			keyProperty="customerNo">
+			select customer_customer_no_seq.nextval from dual
+		</selectKey>
 
-insert into customer  (customer_no,customer_id,customer_password,customer_name,customer_dob,customer_address,
-							 customer_gender,customer_phone,customer_email,customer_nickname,customer_joindate) 
-values
-(#{customerNo},#{customerId},#{customerPassword},#{customerName},#{customerDob},#{customerAddress},
-#{customerGender},#{customerPhone},#{customerEmail},#{customerNickname},#{customerJoindate})
- </insert>
- 
- <!--  사용자 아이디로 찾기 -->
- <select id="findCustomerId" parameterType="String" resultType="Customer">
- select * from customer where customer_id = #{customer_Id}
- </select> 
- 
- 
- 
- <!--  사용자 번호로 찾기 -->
- <select id="findCustomerNo" parameterType="int" resultType="Customer">
- select * from customer where customer_no = #{customer_no}
- </select>
- 
- <!--  사용자 정보 수정 -->
- <update id="updateCustomer" parameterType="Customer">
- update customer set 
-customer_password = #{customerPassword},
-customer_address = #{customerAddress} , 
-customer_gender = #{customerGender}, 
-customer_phone = #{customerPhone} ,
-customer_email = #{customerEmail},
-customer_nickname = #{customerNickname}
-where customer_no = #{customerNo}
- </update>
+		insert into customer
+		(customer_no,customer_id,customer_password,customer_name,customer_dob,customer_address,
+		customer_gender,customer_phone,customer_email,customer_nickname,customer_joindate)
+		values
 
-<!--  사용자 회원 탈퇴 -->
-<delete id="deleteCustomer" parameterType="int">
-delete from customer where customer_no = #{customer_no}
-</delete>
+		(#{customerNo},#{customerId},#{customerPassword},#{customerName},#{customerDob},#{customerAddress},
+		#{customerGender},#{customerPhone},#{customerEmail},#{customerNickname},#{customerJoindate})
+	</insert>
 
-<!--  사용자 중복체크 -->
-<select id="countByCustomerId" parameterType="String">
-select  count(*) from customer where customer_id = #{customer_id}
-</select>
+	<!-- 사용자 아이디로 찾기 -->
+	<select id="findCustomerId" parameterType="String"
+		resultType="Customer">
+		select * from customer where customer_id = #{customer_Id}
+	</select>
 
 
-<!--(어드민전용) 전체 사용자 리스트 -->
-<select id="customerList" resultType="Customer">
-select * from customer
-</select>
+
+	<!-- 사용자 번호로 찾기 -->
+	<select id="findCustomerNo" parameterType="int"
+		resultType="Customer">
+		select * from customer where customer_no = #{customer_no}
+	</select>
+
+	<!-- 사용자 정보 수정 -->
+	<update id="updateCustomer" parameterType="Customer">
+		update customer set
+		customer_password = #{customerPassword},
+		customer_address = #{customerAddress} ,
+		customer_gender = #{customerGender},
+		customer_phone = #{customerPhone} ,
+		customer_email = #{customerEmail},
+		customer_nickname = #{customerNickname}
+		where customer_no = #{customerNo}
+	</update>
+
+	<!-- 사용자 회원 탈퇴 -->
+	<delete id="deleteCustomer" parameterType="int">
+		delete from customer where customer_no = #{customer_no}
+	</delete>
+
+	<!-- 사용자 중복체크 -->
+	<select id="countByCustomerId" parameterType="String">
+		select count(*) from customer where customer_id = #{customer_id}
+	</select>
+
+
+	<!--(어드민전용) 전체 사용자 리스트 -->
+	<select id="customerList" resultType="Customer">
+		select * from customer
+	</select>
 
 
 </mapper>
