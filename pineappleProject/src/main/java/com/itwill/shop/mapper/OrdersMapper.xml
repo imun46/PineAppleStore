@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.OrdersMapper">
-	<resultMap id="orderResultMap" type="Orders" autoMapping="true">
-		<id column="orders_no" property="ordersNo"/>
+	<resultMap id="ordersMap" type="Orders" autoMapping="true">
 		
 		<association property="customer" autoMapping="true" javaType="Customer">
-			<id column="customer_no" property="customerNo"/>
 		</association>
 		
 		<association property="customerCoupons" autoMapping="true" javaType="CustomerCoupons">
-			<id column="customer_coupons_no" property="customerCouponsNo"/>
 		</association>
 		
 		<collection property="orderItems" autoMapping="true" ofType="OrdersItems">
-			<id column="orderItems_no" property="orderItemsNo"/>
 			<association property="orders" javaType="Orders" autoMapping="true">
-				<id column="ordersItems_no" property="ordersItemsNo"/>			
 			</association>
 			<association property="product" javaType="Product" autoMapping="true">
-				<id column="product_no" property="productNo"/>			
 			</association>
 		</collection>
 		
@@ -59,13 +53,13 @@
 	</update>
 	
 	<!-- 주문 전체 리스트(어드민) -->
-	<select id="selectAll" resultMap="orderResultMap">
+	<select id="selectAll" resultMap="ordersMap">
 		select orders_no, orders_date, orders_arrivaldate,orders_totprice, orders_finalprice,orders_totqty, orders_address,orders_status,customer_no, customer_coupons_no
 		from orders
 	</select>
 	
 	<!-- 주문+주문아이템 리스트(특정회원) -->
-	<select id="selectByOrderNo" parameterType="int" resultMap="orderResultMap">
+	<select id="selectByOrderNo" parameterType="int" resultMap="ordersMap">
 		select o.orders_no, o.orders_date,o.orders_finalprice,o.orders_status, 
 			   oi.orders_items_no,oi.orders_items_price,oi.orders_items_finalprice,oi.orders_items_qty,oi.orders_items_options,oi.product_no
 		from orders o
