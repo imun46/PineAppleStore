@@ -30,7 +30,7 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public int countByProductNo(int cartNo, int productSelectedNo) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int rowCount = sqlSession.getMapper(CartMapper.class).countByProductNo(cartNo, productSelectedNo);
+		int rowCount = sqlSession.getMapper(CartMapper.class).countByProductNo(productSelectedNo, productSelectedNo, productSelectedNo, cartNo);
 		sqlSession.close();
 		return rowCount;
 				
@@ -38,7 +38,7 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public int updateByproductSelected(int productOptionDetail) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int rowCount = sqlSession.getMapper(CartMapper.class).updateByproductSelected(productOptionDetail, productOptionDetail, productOptionDetail);
+		int rowCount = sqlSession.getMapper(CartMapper.class).updateByproductSelected(productOptionDetail, productOptionDetail, productOptionDetail, productOptionDetail);
 		sqlSession.close();
 		return rowCount;
 	}

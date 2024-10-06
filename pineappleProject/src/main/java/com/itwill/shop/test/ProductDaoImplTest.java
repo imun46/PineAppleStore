@@ -44,13 +44,8 @@ public class ProductDaoImplTest {
 //		}
 		
 		
-<<<<<<< HEAD
 ////		Product productDetail = productDao.findByNo(1);
 //		System.out.println(productDetail);
-=======
-		Product productDetail = productDao.findByNo(1);
-		System.out.println(productDetail);
->>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 		
 	}
 }
