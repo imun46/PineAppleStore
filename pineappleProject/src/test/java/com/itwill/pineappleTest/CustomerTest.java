@@ -1,9 +1,12 @@
-package com.itwill.shop.customer;
+package com.itwill.pineappleTest;
 
 import java.util.Date;
 import java.util.List;
 
 import com.itwill.shop.coupon.Coupon;
+import com.itwill.shop.customer.Customer;
+import com.itwill.shop.customer.CustomerCoupons;
+import com.itwill.shop.customer.CustomerService;
 import com.itwill.shop.orders.Orders;
 import com.itwill.shop.review.Review;
 

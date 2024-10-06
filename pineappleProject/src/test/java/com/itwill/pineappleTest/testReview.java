@@ -1,7 +1,8 @@
-package com.itwill.shop.review;
+package com.itwill.pineappleTest;
 
 import com.itwill.shop.customer.Customer;
 import com.itwill.shop.product.Product;
+import com.itwill.shop.review.ReviewService;
 
 public class testReview {
 

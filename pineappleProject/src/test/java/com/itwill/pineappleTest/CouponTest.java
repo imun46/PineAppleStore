@@ -1,4 +1,7 @@
-package com.itwill.shop.coupon;
+package com.itwill.pineappleTest;
+
+import com.itwill.shop.coupon.Coupon;
+import com.itwill.shop.coupon.CouponService;
 
 public class CouponTest {
 
