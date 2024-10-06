@@ -5,6 +5,7 @@
 	<resultMap id="couponResultMap" 
 				type="com.itwill.shop.customer.CustomerCoupons"
 				autoMapping="true">
+	<!-- 리스트 타입 collection 설정 -->
     <collection property="couponNo" 
     			javaType="com.itwill.shop.coupon.Coupon"
     			autoMapping="true">
@@ -22,6 +23,16 @@
 	where cu.customer_no = #{customerNo}
 	</select>
 	
+	<!-- 쿠폰 조회 -->
+ 	<select id="findCoupon" parameterType="Integer" resultMap="couponResultMap">
+	select
+  	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate, 
+  	cu.customer_coupons_status, cu.customer_coupons_no, c.coupon_no
+	from coupon c
+	join customer_coupons cu
+	on c.coupon_no = cu.coupon_no
+	where cu.customer_coupons_no = #{customerCouponsNo}
+	</select>
 	
 	<!-- 쿠폰 사용(사용완료 상태로 변경) -->
 	<update id="updateCoupon" parameterType="Integer">
@@ -37,7 +48,9 @@
 	sysdate+30, #{customerCouponsStatus},#{couponNo.couponNo},#{customerNo.customerNo})
 	</insert>
 	
-	<insert id="insertCustomerCouponByCouponId"></insert>
+	<insert id="insertCustomerCouponByCouponId">
+	
+	</insert>
 	
 	
 </mapper>
