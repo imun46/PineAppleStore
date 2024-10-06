@@ -10,7 +10,7 @@
 		</collection>
 		
 		<collection property="couponList"
-		 resultMap="com.itwill.shop.mapper.CustomerCouponsMapper.couponResultMap" >
+		 resultMap="com.itwill.shop.mapper.CustomerCouponsMapper.customerCouponResultMap" >
 		</collection>
 	
 
