@@ -9,7 +9,7 @@ public class CartServiceTest {
 		
 //		System.out.println(cartDao.findAll());
 		
-		System.out.println(cartDao.findByCartNo(1));
+		System.out.println(cartDao.findByCartNo(2));
 		
 		System.out.println(cartDao.deleteByCustomerNo(1));
 	}

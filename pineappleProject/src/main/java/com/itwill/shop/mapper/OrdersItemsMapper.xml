@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.OrdersItemsMapper">
-	<resultMap id="ordersItemsMap" type="OrdersItems" autoMapping="true">
+
+	<!--OrdersItems 맵 Product 포함-->
+	<resultMap id="ordersItemsMapProduct" type="OrdersItems" autoMapping="true">
+		<id column="ORDERS_ITEMS_NO" property="ordersItemsNo"/>
+		<result column="ORDERS_ITEMS_PRICE" property="ordersItemsPrice"/>
+		<result column="ORDERS_ITEMS_FINALPRICE" property="ordersItemsFinalprice"/>
+		<result column="ORDERS_ITEMS_QTY" property="ordersItemsQty"/>
+		<result column="ORDERS_ITEMS_OPTIONS" property="ordersItemsOptions"/>
+		
+		<association property="product" javaType="Product"
+					 resultMap="com.itwill.shop.mapper.ProductMapper.productMapBasic"></association>
 	</resultMap>
+	
 </mapper>

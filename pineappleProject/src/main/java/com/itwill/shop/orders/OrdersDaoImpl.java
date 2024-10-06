@@ -27,7 +27,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		OrdersMapper ordersMapper =  sqlSession.getMapper(OrdersMapper.class);
 		
 		int rowCount = ordersMapper.insertOrder(order);
-		for(OrdersItems orderItems:order.getOrderItemList()) {
+		for(OrdersItems orderItems:order.getOrdersItemsList()) {
 			ordersMapper.insertOrderItem(orderItems);
 		}
 		sqlSession.close();

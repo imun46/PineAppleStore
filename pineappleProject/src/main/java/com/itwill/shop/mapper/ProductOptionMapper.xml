@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.ProductOptionMapper">
-	<resultMap id="productOptionMap" type="ProductOption" autoMapping="true">
+	
+	<!--Product_Option 기본 맵-->
+	<resultMap id="productOptionMapBasic" type="ProductOption" autoMapping="true">
+		<id column="PRODUCT_OPTION_NO" property="productOptionNo"/>
+		<result column="PRODUCT_OPTION_TYPE" property="productOptionType"/>
+		
+	</resultMap>
+	
+	<!--Product_Option 맵 Product_Option_Detail 맵 포함-->
+	<resultMap id="productOptionMapDetail" type="ProductOption" autoMapping="true">
+		<id column="PRODUCT_OPTION_NO" property="productOptionNo"/>
+		<result column="PRODUCT_OPTION_TYPE" property="productOptionType"/>
 		
 		<collection property="productOptionDetailList" ofType="ProductOptionDetail"
-					resultMap="com.itwill.shop.mapper.ProductOptionDetailMapper.productOptionDetailMap">
+					resultMap="com.itwill.shop.mapper.ProductOptionDetailMapper.productOptionDetailMapBasic">
 		</collection>
 		
 	</resultMap>

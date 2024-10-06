@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CouponMapper">
-	<resultMap id="couponResultMap" type="Coupon" autoMapping="true">
+	
+	<!--Coupon 기본 맵-->
+	<resultMap id="couponMapBasic" type="Coupon" autoMapping="true">
+		<id column="COUPON_NO" property="couponNo"/>
+		<result column="COUPON_NAME" property="couponName"/>
+		<result column="COUPON_ID" property="couponId"/>
+		<result column="COUPON_DISCOUNT" property="couponDiscount"/>
+		<result column="COUPON_DESC" property="couponDesc"/>
+		
 	</resultMap>
+
 	
 	<!-- 쿠폰 생성(어드민용)  -->
 	<insert id="insertCoupon" parameterType="Coupon">
@@ -11,14 +20,14 @@
 	</insert>
 	
 	<!-- 쿠폰 하나 조회(어드민용) -->
-	<select id="findAdminCoupon" parameterType="Integer" resultMap="couponResultMap">
+	<select id="findAdminCoupon" parameterType="Integer" resultMap="couponMapBasic">
 	select
 	coupon_no, coupon_name, coupon_id, coupon_discount, coupon_desc
 	from coupon where coupon_no= #{couponNo}
 	</select> 
 	
 	<!-- 쿠폰 리스트 조회(어드민용) -->
-	<select id="findAdminCouponList" resultMap="couponResultMap">
+	<select id="findAdminCouponList" resultMap="couponMapBasic">
 	select
 	coupon_no, coupon_name, coupon_id, coupon_discount, coupon_desc
 	from coupon

@@ -1,35 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.ProductMapper">
-	<resultMap id="productMapImage" type="Product" autoMapping="true">
-		
-		<collection property="productImageList" ofType="ProductImage">
-			<id column="PRODUCT_IMAGE_NO" property="productImageNo"/>
-		</collection>
+
+	<!--Product 기본 맵-->
+	<resultMap id="productMapBasic" type="Product" autoMapping="true">
+		<id column="PRODUCT_NO" property="productNo"/>
+		<result column="PRODUCT_NAME" property="productName"/>
+		<result column="PRODUCT_PRICE" property="productPrice"/>
+		<result column="PRODUCT_CATEGORY" property="productCategory"/>
+		<result column="PRODUCT_DETAILPAGE" property="productDetailpage"/>
+		<result column="PRODUCT_DESC" property="productDesc"/>
+		<result column="PRODUCT_STATUS" property="productStatus"/>
 	</resultMap>
 	
+	<!--Product 맵 Product_Image 맵 포함-->
+	<resultMap id="productMapImage" type="Product" autoMapping="true">
+		<id column="PRODUCT_NO" property="productNo"/>
+		<result column="PRODUCT_NAME" property="productName"/>
+		<result column="PRODUCT_PRICE" property="productPrice"/>
+		<result column="PRODUCT_CATEGORY" property="productCategory"/>
+		<result column="PRODUCT_DETAILPAGE" property="productDetailpage"/>
+		<result column="PRODUCT_DESC" property="productDesc"/>
+		<result column="PRODUCT_STATUS" property="productStatus"/>
+		
+		<collection property="productImageList" ofType="ProductImage"
+					resultMap="com.itwill.shop.mapper.ProductImageMapper.productImageMapBasic">
+		</collection>
+		
+	</resultMap>
+	
+	<!--Product 맵 Product_Image, Product_Option, Product_Review 맵 포함-->
 	<resultMap id="productMapDetail" type="Product" autoMapping="true">
 		<id column="PRODUCT_NO" property="productNo"/>
+		<result column="PRODUCT_NAME" property="productName"/>
+		<result column="PRODUCT_PRICE" property="productPrice"/>
+		<result column="PRODUCT_CATEGORY" property="productCategory"/>
+		<result column="PRODUCT_DETAILPAGE" property="productDetailpage"/>
+		<result column="PRODUCT_DESC" property="productDesc"/>
+		<result column="PRODUCT_STATUS" property="productStatus"/>
 
 		<collection property="productImageList" ofType="ProductImage"
-					resultMap="com.itwill.shop.mapper.ProductImageMapper.productImageMap">
+					resultMap="com.itwill.shop.mapper.ProductImageMapper.productImageMapBasic">
 		</collection>
 		
 		<collection property="productOptionList" ofType="ProductOption"
-					resultMap="com.itwill.shop.mapper.ProductOptionMapper.productOptionMap">
+					resultMap="com.itwill.shop.mapper.ProductOptionMapper.productOptionMapDetail">
 		</collection>
 		
 		<collection property="productReviewList" ofType="Review"
-					resultMap="com.itwill.shop.mapper.ReviewMapper.reviewMap">
-			
-			<association property="customer" javaType="Customer"
-						 resultMap="com.itwill.shop.mapper.Customer.customerMap">
-			</association>
-			
+					resultMap="com.itwill.shop.mapper.ReviewMapper.reviewMapCustomer">
 		</collection>
 		
 	</resultMap>
 	
+
+
 	
 	
 	<!--전체 제품 리스트 뽑기-->

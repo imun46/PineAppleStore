@@ -2,19 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CustomerMapper">
 
-	<resultMap id="customerResultMap" type="Customer" autoMapping="true">
-		<id column="customer_no" property="customerNo"/>
-		
-		<collection property="reviewList" 
-		 resultMap="com.itwill.shop.mapper.ReviewMapper.reviewResultMap" autoMapping="true" >
-		</collection>
-		
-		<collection property="couponList"
-		 resultMap="com.itwill.shop.mapper.CustomerCouponsMapper.customerCouponResultMap" autoMapping="true">
-		</collection>
-		<!--  order 안들어가있음 넣어줘야합니다 .-->
+	<!--Customer 기본 맵-->
+	<resultMap id="customerMapBasic" type="Customer" autoMapping="true">
+		<id column="CUSTOMER_NO" property="customerNo"/>
+		<result column="CUSTOMER_ID" property="customerId"/>
+		<result column="CUSTOMER_PASSWORD" property="customerPassword"/>
+		<result column="CUSTOMER_NAME" property="customerName"/>
+		<result column="CUSTOMER_DOB" property="customerDob"/>
+		<result column="CUSTOMER_ADDRESS" property="customerAddress"/>
+		<result column="CUSTOMER_GENDER" property="customerGender"/>
+		<result column="CUSTOMER_PHONE" property="customerPhone"/>
+		<result column="CUSTOMER_EMAIL" property="customerEmail"/>
+		<result column="CUSTOMER_NICKNAME" property="customerNickname"/>
+		<result column="CUSTOMER_JOINDATE" property="customerJoindate"/>
+	</resultMap>
 	
-
+	<!--Customer 맵 Review, Orders, CustomerCoupons 맵 포함-->
+	<resultMap id="customerMapDetail" type="Customer" autoMapping="true">
+		<id column="CUSTOMER_NO" property="customerNo"/>
+		<result column="CUSTOMER_ID" property="customerId"/>
+		<result column="CUSTOMER_PASSWORD" property="customerPassword"/>
+		<result column="CUSTOMER_NAME" property="customerName"/>
+		<result column="CUSTOMER_DOB" property="customerDob"/>
+		<result column="CUSTOMER_ADDRESS" property="customerAddress"/>
+		<result column="CUSTOMER_GENDER" property="customerGender"/>
+		<result column="CUSTOMER_PHONE" property="customerPhone"/>
+		<result column="CUSTOMER_EMAIL" property="customerEmail"/>
+		<result column="CUSTOMER_NICKNAME" property="customerNickname"/>
+		<result column="CUSTOMER_JOINDATE" property="customerJoindate"/>
+		
+		<collection property="ordersList" ofType="Orders"
+					resultMap="com.itwill.shop.mapper.OrdersMapper.ordersMapOrdersItems">
+		</collection>
+		
+		<collection property="reviewList" ofType="Review"
+					resultMap="com.itwill.shop.mapper.ReviewMapper.reviewMapProduct">
+		</collection>
+		
+		<collection property="customerCouponList" ofType="CustomerCoupons"
+					resultMap="com.itwill.shop.mapper.CustomerCouponsMapper.customerCouponsMapCoupon">
+		</collection>
+		
 	</resultMap>
 
 	<!-- 사용자 등록 -->
@@ -30,7 +58,7 @@
 	</insert>
 	
 	<!--  사용자 정보 리스트  -->
-	<select id="findCustomerNoListAll" parameterType="int" resultMap="customerResultMap">
+	<select id="findCustomerNoListAll" parameterType="int" resultMap="customerMapDetail">
 				select * from customer c
 				join review r
 				on c.customer_no = r.customer_no

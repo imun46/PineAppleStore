@@ -2,21 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--  dto 멤버 변수 이름이랑 id 콜럼에 있는 프로퍼티 이름이랑 다르게 하기 -->
 <mapper namespace="com.itwill.shop.mapper.ReviewMapper">
-	 <resultMap id="reviewResultMap" type="Review" autoMapping="true">
-        <id column="review_no" property="reviewNo" />
-        <association property="product" javaType="Product" autoMapping="true">
-            <id column="product_no" property="productNo" />
-        </association>
-        <association property="customer" javaType="Customer" autoMapping="true">
-            <id column="customer_no" property="customerNo" />
-            <!-- 필요에 따라 다른 필드도 추가 -->
-        </association>
-    </resultMap>
+
+	<!--Review 맵 Product 포함-->
+	<resultMap id="reviewMapProduct" type="Review" autoMapping="true">
+		<id column="REVIEW_NO" property="reviewNo"/>
+		<result column="REVIEW_TITLE" property="reviewTitle"/>
+		<result column="REVIEW_CONTENT" property="reviewContent"/>
+		<result column="REVIEW_IMAGE" property="reviewImage"/>
+		<result column="REVIEW_RATING" property="reviewRating"/>
+		
+		<association property="product" javaType="Product"
+					 resultMap="com.itwill.shop.mapper.ProductMapper.productMapBasic"></association>
+		
+	</resultMap>
+
+	<!--Review 맵 Customer 포함-->
+	<resultMap id="reviewMapCustomer" type="Review" autoMapping="true">
+		<id column="REVIEW_NO" property="reviewNo"/>
+		<result column="REVIEW_TITLE" property="reviewTitle"/>
+		<result column="REVIEW_CONTENT" property="reviewContent"/>
+		<result column="REVIEW_IMAGE" property="reviewImage"/>
+		<result column="REVIEW_RATING" property="reviewRating"/>
+		
+		<association property="customer" javaType="Customer"
+					 resultMap="com.itwill.shop.mapper.CustomerMapper.customerMapBasic"></association>
+		
+	</resultMap>
+
+
 
 	
 	<!-- 리뷰 작성 -->
 	<insert id="insert"
-		parameterType="com.itwill.shop.review.Review">
+		parameterType="Review">
 		<selectKey order="BEFORE" resultType="int"
 			keyProperty="reviewNo"> select review_review_no_seq.nextval from dual</selectKey>
 		INSERT INTO review (review_no, product_no, review_title,
@@ -62,7 +80,7 @@
 	</select>
 	
 	<!-- 리뷰 한개 보기 -->
-	<select id="findByReview" parameterType="Integer" resultMap="reviewResultMap">
+	<select id="findByReview" parameterType="int" resultType="Review">
 		select * from review where review_no =#{reviewNo}
 	</select>
 </mapper>

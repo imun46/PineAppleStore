@@ -55,7 +55,7 @@ public class CustomerTest {
 		System.out.println(customer.getCustomerName());
 		System.out.println(customer.getCustomerJoindate());
 		
-		List<CustomerCoupons> customerCouponList = customer.getCouponList();
+		List<CustomerCoupons> customerCouponList = customer.getCustomerCouponList();
 		if (customerCouponList != null) {
 		    for (CustomerCoupons customerCoupons : customerCouponList) {
 		        System.out.println("/****************쿠폰 번호*************************/");
@@ -107,7 +107,7 @@ public class CustomerTest {
 			
 		}
 		System.out.println("오더 리스트 크기: " + customer.getOrdersList().size());
-		System.out.println("쿠폰 리스트 크기: " + customer.getCouponList().size());
+		System.out.println("쿠폰 리스트 크기: " + customer.getCustomerCouponList().size());
 		System.out.println("리뷰 리스트 크기: " + customer.getReviewList().size());
 		
 		
@@ -144,7 +144,8 @@ public class CustomerTest {
 			System.out.println("customerCoupons.getCoupon().getCouponNo() : " + customerCoupons.getCoupon().getCouponNo());
 			System.out.println("customerCoupons.getCoupon().getCouponId() : " + customerCoupons.getCoupon().getCouponId());
 			System.out.println("customerCoupons.getCoupon().getCouponDiscount() : " + customerCoupons.getCoupon().getCouponDiscount());
-			System.out.println("customerCoupons.getCustomer().getCustomerNo() : " + customerCoupons.getCustomer().getCustomerNo());
+//			CustomerNo(사용자 번호)로 찾는데 이걸 여기 담을 이유는 없어 보임
+//			System.out.println("customerCoupons.getCustomer().getCustomerNo() : " + customerCoupons.getCustomer().getCustomerNo());  
 			System.out.println("customerCoupons.getCustomerCouponsNo() : " + customerCoupons.getCustomerCouponsNo());
 		}
 		

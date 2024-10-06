@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.ProductSelectedMapper">
+
+	<!--ProductSelected 맵 ProductOptionDetail 포함-->
 	<resultMap id="productSelectedMap" type="ProductSelected" autoMapping="true">
+		<id column="PRODUCT_SELECTED_NO" property="productSelectedNo"/>
+		
+		<association property="product" javaType="Product"
+					 resultMap="com.itwill.shop.mapper.ProductMapper.productMapBasic">
+		</association>
+		
+		<association property="productOptionDetail" javaType="ProductOptionDetail"
+					 resultMap="com.itwill.shop.mapper.ProductOptionDetailMapper.productOptionDetailMapBasic">
+		</association>			 
 	</resultMap>
 </mapper>

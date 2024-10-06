@@ -17,11 +17,11 @@ public class OrderDaoTest {
 		OrdersDao ordersDao = new OrdersDaoImpl();
 		
 		/************insert*************/
-		List<OrdersItems> newOrderItemsList = new ArrayList<>();
+		List<OrdersItems> newOrdersItemsList = new ArrayList<>();
 		
-		newOrderItemsList.add(new OrdersItems(1,5000,35000,5,"색상: 검정, 용량: 256gb", Orders.builder().ordersNo(13).build(), Product.builder().productNo(1).build()));
-		newOrderItemsList.add(new OrdersItems(1,5000,35000,5,"색상: 노랑, 용량: 256gb", Orders.builder().ordersNo(13).build(), Product.builder().productNo(1).build()));
-		newOrderItemsList.add(new OrdersItems(1,5000,35000,5,"색상: 빨강, 용량: 256gb", Orders.builder().ordersNo(13).build(), Product.builder().productNo(1).build()));
+		newOrdersItemsList.add(new OrdersItems(1,5000,35000,5,"색상: 검정, 용량: 256gb", Orders.builder().ordersNo(13).build(), Product.builder().productNo(1).build()));
+		newOrdersItemsList.add(new OrdersItems(1,5000,35000,5,"색상: 노랑, 용량: 256gb", Orders.builder().ordersNo(13).build(), Product.builder().productNo(1).build()));
+		newOrdersItemsList.add(new OrdersItems(1,5000,35000,5,"색상: 빨강, 용량: 256gb", Orders.builder().ordersNo(13).build(), Product.builder().productNo(1).build()));
 		
 		Orders newOrder = Orders.builder()
 							.ordersTotprice(50000)
@@ -29,7 +29,7 @@ public class OrderDaoTest {
 							.ordersTotqty(6)
 							.ordersAddress("주소일걸요")
 							.ordersStatus("배송중")
-							.orderItemList(newOrderItemsList)
+							.ordersItemsList(newOrdersItemsList)
 							.customer(Customer.builder().customerNo(1).build())
 							.customerCoupons(CustomerCoupons.builder().customerCouponsNo(1).build())
 							.build();

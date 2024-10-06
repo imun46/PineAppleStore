@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CustomerCouponsMapper">
-	<!-- 쿠폰 조회 resultMap type = CustomerCoupons -->
-	<resultMap id="customerCouponResultMap" 
-				type="CustomerCoupons"
-				autoMapping="true">
-	<id column="CUSTOMER_COUPONS_NO" property="customerCouponsNo"/>	
-	<association property="customer" 
-    			javaType="Customer"
-    			autoMapping="true">
-    <id column="CUSTOMER_NO" property="customerNo"/>				
-    </association>
-	<!-- 리스트 타입 collection 설정 -->
-    <association property="coupon" 
-    			javaType="Coupon"
-    			autoMapping="true">
-    <id column="COUPON_NO" property="couponNo"/>			
-    </association>
-</resultMap>
+	
+	<!--Customer 맵 Coupon 포함-->
+	<resultMap id="customerCouponsMapCoupon" type="CustomerCoupons" autoMapping="true">
+		<id column="CUSTOMER_COUPONS_NO" property="customerCouponsNo"/>
+		<result column="CUSTOMER_COUPONS_ENDDATE" property="customerCouponsEnddate"/>
+		<result column="CUSTOMER_COUPONS_STATUS" property="customerCouponsStatus"/>
+		
+		<association property="coupon" javaType="Coupon"
+					 resultMap="com.itwill.shop.mapper.CouponMapper.couponMapBasic"></association>
+	</resultMap>
+	
 	
 	<!-- 쿠폰 리스트 조회 -->
-	<select id="findCouponList" parameterType = "Integer" resultMap="customerCouponResultMap">
+	<select id="findCouponList" parameterType = "Integer" resultMap="customerCouponsMapCoupon">
 	select 
 	c.coupon_no, c.coupon_name, c.coupon_desc, c.coupon_id, c.coupon_discount,
 	cu.customer_coupons_no, cu.customer_coupons_enddate, cu.customer_coupons_status, cu.customer_no
@@ -31,7 +25,7 @@
 	</select>
 	
 	<!-- 쿠폰 조회 -->
- 	<select id="findCoupon" parameterType="Integer" resultMap="customerCouponResultMap">
+ 	<select id="findCoupon" parameterType="Integer" resultMap="customerCouponsMapCoupon">
 	select
   	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate,
   	cu.customer_coupons_status, cu.customer_coupons_no, c.coupon_no
