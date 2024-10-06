@@ -8,7 +8,6 @@
     <collection property="couponNo" 
     			javaType="com.itwill.shop.coupon.Coupon"
     			autoMapping="true">
-
     </collection>
 </resultMap>
 	
@@ -27,7 +26,7 @@
 	<!-- 쿠폰 사용(사용완료 상태로 변경) -->
 	<update id="updateCoupon" parameterType="Integer">
 	update customer_coupons
-	set customer_coupons_status ='사용가능'
+	set customer_coupons_status ='사용완료'
 	where customer_coupons_no=#{customerCouponsNo}
 	</update>
 	
@@ -38,7 +37,7 @@
 	sysdate+30, #{customerCouponsStatus},#{couponNo.couponNo},#{customerNo.customerNo})
 	</insert>
 	
-	
+	<insert id="insertCustomerCouponByCouponId"></insert>
 	
 	
 </mapper>
