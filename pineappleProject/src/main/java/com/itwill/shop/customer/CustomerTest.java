@@ -66,16 +66,16 @@ public class CustomerTest {
 //		System.out.println(customerService.updateCoupon(3));
 //		
 		/********** CustomerCoupon 쿠폰 발급(Insert) *********/
-//		customerService.insertCustomerCoupon(CustomerCoupons.builder()
-//				.customerCouponsStatus("사용가능")
-//				.customerCouponsNo(1)
-//				.coupon(new Coupon().builder()
-//						.couponNo(4)
-//						.build())
-//				.customer(new Customer().builder()
-//						.customerNo(3)
-//						.build())
-//				.build());
+		customerService.insertCustomerCoupon(CustomerCoupons.builder()
+				.customerCouponsStatus("사용가능")
+				.customerCouponsNo(1)
+				.coupon(new Coupon().builder()
+						.couponNo(4)
+						.build())
+				.customer(new Customer().builder()
+						.customerNo(3)
+						.build())
+				.build());
 	}
 
 }
