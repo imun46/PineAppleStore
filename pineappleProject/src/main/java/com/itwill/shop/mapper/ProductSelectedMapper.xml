@@ -2,8 +2,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.ProductSelectedMapper">
 	<resultMap id="productSelectedMap" type="ProductSelected" autoMapping="true">
-		<id column="product_selected_no" property="productSelectedNo"/>
-		<association property="product" javaType="Product" resultMap="com.itwill.shop.mapper.ProductMapper.productMapDetail"></association>
-		<association property="cart" javaType="Cart" resultMap="com.itwill.shop.mapper.CartMapper.cartMap"></association>
 	</resultMap>
 </mapper>

@@ -13,7 +13,8 @@ public class CartService {
 	
 	/*카트 등록*/
 	public int insertCart(Cart cart) throws Exception {
-		return cartDao.insert(cart);
+		return cartDao.insertCart(cart);
+		
 	}
 	
 	/*카트 중복 수정*/
