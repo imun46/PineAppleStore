@@ -1,20 +1,7 @@
 package com.itwill.shop.product;
 
-<<<<<<< HEAD
-import java.util.List;
-
-public class ProductDaoImpl implements ProductDao {
-=======
 import java.io.InputStream;
 import java.util.List;
->>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
-
-<<<<<<< HEAD
-	@Override
-	public List<Product> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-=======
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -88,7 +75,6 @@ public class ProductDaoImpl implements ProductDao {
 		Product product = productMapper.selectByNo(productNo);
 		sqlSession.close();
 		return product;
->>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 	}
 	
 }

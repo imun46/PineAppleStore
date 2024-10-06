@@ -18,14 +18,10 @@ public interface CartMapper {
 	int insert(Cart cart) throws Exception;
 	
 	//카트 중복 체크
-	int countByProductNo(int cartNo, int productSelectedNo) throws Exception;
+	int countByProductNo(int productNo, int productoptionNo, int productOptionDetailNo, int cartNo) throws Exception;
 	
 	//카트 옵션 수정
-	int updateByproductSelected(@Param("productNo") int productNo,
-								@Param("prodcutOptionNo") int productOptionNo,
-								@Param("productOptionDetailNo") int productOptionDetailNo,
-								@Param("cartNo") int cartNo
-			) throws Exception;
+	int updateByproductSelected(int productNo, int productoptionNo, int productOptionDetailNo, int cartNo) throws Exception;
 	
 	//카트 수량 증가
 	int update(Cart cart) throws Exception;

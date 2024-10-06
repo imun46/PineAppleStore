@@ -30,21 +30,11 @@ public class Orders {
 	private String ordersStatus;		// 주문 주소
 	
 	/*****************List *********************/
-<<<<<<< HEAD
 	private List<OrdersItems> orderItems;	
-=======
-	private List<OrdersItems> orderItemList;	
-	
->>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 	
 	/**************** FK ********************/
-<<<<<<< HEAD
 	private Customer customer;
 	private CustomerCoupons customerCoupons;
-=======
-	private Customer customer;//FK
-	private CustomerCoupons customerCoupons;//FK
->>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 	
 	
 }

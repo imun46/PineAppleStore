@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CartMapper">
 
+<!-- 카트 등록 -->
 <insert id="insert" parameterType="Cart">
 	INSERT INTO cart 
 	VALUES(cart_cart_no_seq.nextval, #{cartQty}, #{customerNo})
 </insert>
 
+<!-- 카트 중복 체크(옵션) -->
 <select id="countByProductNo" parameterType="int" resultType="int">
 	SELECT COUNT(*) as count
 	FROM product_selected ps
@@ -17,41 +19,49 @@
 	WHERE  ps.product_no =#{productNo} AND po.product_option_no = #{productOptionNo} AND pod.product_option_detail_no = #{productOptionDetailNo} AND ps.cart_no = #{cartNo}; 
 </select>
 
+
+<!-- 카트 옵션수정 -->
 <update id="updateByproductSelected">
-	UPDATE product_selected ps
-	SET ps.product_option_detail_no = #{productOptionDetailNo}
-	WHERE ps.product_option_detail_no IN (
-    SELECT pd.product_option_detail_no
-    FROM product_option_detail pd
-    JOIN product_option po
-    ON pd.product_option_no = po.product_option_no
-    WHERE po.product_no = #{productNo}
-    AND po.product_option_no = {productOptionNo}
-)
+		UPDATE product_selected ps
+		SET ps.product_option_detail_no = 4
+		WHERE ps.product_option_detail_no IN (
+		    SELECT pod.product_option_detail_no
+		    FROM product_option_detail pod
+		    JOIN product_option po
+		    ON pod.product_option_no = po.product_option_no
+		    WHERE po.product_no = #{productNo} AND po.product_option_no = #{productOptionNo}
+		    AND pod.product_option_detail_no = #{productOptionDetailNo} AND ps.cart_no = #{cartNo}
+		)
 </update>
 
+<!-- 카트 수량 증가 -->
 <update id="update" parameterType="Cart">
 	UPDATE cart
 	SET cart_qty = cart_qty + #{cartQty}
 	WHERE cart_no = #{cartNo}
 </update>
 
+<!-- 카트 1개 삭제 -->
 <delete id="deleteByCartNo" parameterType="int">
 	DELETE FROM cart
 	WHERE cart_no = #{cartNo}
 </delete>
 
+<!-- 카트 전체 삭제 -->
 <delete id="deleteByCustomerNo" parameterType="int">
 	DELETE FROM cart
 	WHERE customer_no = #{customerNo}
 </delete>
 
+<!-- 카트 전체 리스트(어드민) -->
 <select id="findAll">
 	SELECT * FROM cart
 </select>
 
+<!-- 카트 리스트(회원) -->
 <select id="findByCustomerNo" parameterType="int">
 	SELECT * FROM cart WHERE customerNo=#{customerNo}
 </select>
+
 
 </mapper>
