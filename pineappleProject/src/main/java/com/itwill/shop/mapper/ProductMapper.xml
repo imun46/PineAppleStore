@@ -10,7 +10,7 @@
 		</collection>
 	</resultMap>
 	
-	<resultMap id="productMapDetail" type="Product">
+	<resultMap id="productMapDetail" type="Product" autoMapping="true">
 		<id column="PRODUCT_NO" property="productNo"/>
 
 		<collection property="productImageList" ofType="ProductImage"
@@ -21,16 +21,14 @@
 					resultMap="com.itwill.shop.mapper.ProductOptionMapper.productOptionMap">
 		</collection>
 		
-		<!--
-		<collection property="productReviewList" ofType="Review">
-			<id column="REVIEW_NO" property="reviewNo"/>
+		<collection property="productReviewList" ofType="Review"
+					resultMap="com.itwill.shop.mapper.ReviewMapper.reviewMap">
 			
-			<association property="customer" javaType="Customer">
-				<id column="CUSTOMER_NO" property="customerNo"/>
+			<association property="customer" javaType="Customer"
+						 resultMap="com.itwill.shop.mapper.Customer.customerMap">
 			</association>
 			
 		</collection>
-		-->
 		
 	</resultMap>
 	
