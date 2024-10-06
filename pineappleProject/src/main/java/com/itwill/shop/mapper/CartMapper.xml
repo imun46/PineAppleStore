@@ -3,15 +3,27 @@
 <mapper namespace="com.itwill.shop.mapper.CartMapper">
 	<resultMap id="cartMap" type="Cart" autoMapping="true">
 		<collection property="productSelectedList" ofType="ProductSelected"
-			 resultMap="com.itwill.shop.mapper.ProductSelectedMapper.productSelectedMap">
+					resultMap="com.itwill.shop.mapper.ProductSelectedMapper.productSelectedMap">
 		</collection>
 	</resultMap>
 
 
 <!-- 카트 등록 -->
-<insert id="insert" parameterType="Cart">
+<insert id="insertCart" parameterType="Cart">
+	<selectKey order="BEFORE" resultType="int" keyProperty="cartNo">
+		SELECT cart_cart_no_seq.nextval FROM DUAL
+	</selectKey>
 	INSERT INTO cart 
-	VALUES(cart_cart_no_seq.nextval, #{cartQty}, #{customerNo})
+	VALUES (#{cartNo}, #{cartQty}, #{customerNo})
+</insert>
+
+<!-- ProductSelected 등록 -->
+<insert id="insertProductSelected" parameterType="ProductSelected">
+	<selectKey order="BEFORE" resultType="int" keyProperty="productSelectedNo">
+		SELECT product_selected_product_selected_no_seq.nextval FROM DUAL
+	</selectKey>
+	INSERT INTO product_selected 
+	VALUES (#{productSelectedNo},#{productNo},#{productOptionDetailNo}#{cartNo})
 </insert>
 
 <!-- 카트 중복 체크(옵션) -->
