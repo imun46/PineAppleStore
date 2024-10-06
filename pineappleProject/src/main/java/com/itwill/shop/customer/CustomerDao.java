@@ -36,6 +36,12 @@ public interface CustomerDao {
 	//(어드민) 쿠폰 발급
 	int insertCustomerCoupon(CustomerCoupons customerCoupons) throws Exception;
 	
+	//일련번호 입력 시 쿠폰 존재 체크
+	int countByCouponId(String couponId) throws Exception;
+	
+	//일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert)
+	int insertCustomerCouponById(CustomerCoupons customerCoupons) throws Exception;
+	
 	//쿠폰 사용완료로 업데이트
 	int updateCoupon(Integer customerCouponsNo) throws Exception;
 	

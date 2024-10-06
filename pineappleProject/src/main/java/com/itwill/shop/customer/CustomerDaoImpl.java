@@ -103,6 +103,26 @@ public class CustomerDaoImpl implements CustomerDao {
 		return rowCount;
 	}
 	
+	/***** 일련번호 입력 시 쿠폰 존재 체크 *****/
+	@Override
+	public int countByCouponId(String couponId) throws Exception {
+		System.out.println("CustomerDaoImpl : countByCouponId");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int countByCouponId = sqlSession.getMapper(CustomerCouponsMapper.class).countByCouponId(couponId);
+		sqlSession.close();
+		return countByCouponId;
+	}
+	
+	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
+	@Override
+	public int insertCustomerCouponById(CustomerCoupons customerCoupons) throws Exception {
+		System.out.println("CustomerDaoImpl : insertCustomerCouponById");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).insertCustomerCouponById(customerCoupons);
+		sqlSession.close();
+		return rowCount;
+	}
+	
 	/********* CustomerCoupon 쿠폰조회(Select) **********/
 	@Override
 	public CustomerCoupons findCoupon(Integer customerCouponsNo) throws Exception {

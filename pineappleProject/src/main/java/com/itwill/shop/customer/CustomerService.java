@@ -82,6 +82,7 @@ public class CustomerService {
 		System.out.println("CustomerService : updateCoupon");
 		return customerDao.updateCoupon(customerCouponsNo);
 	}
+	//종료날짜 이후에 사용시 사용불가 출력해야함
 	
 	/*** 사용자 쿠폰 리스트 조회 ***/
 	public List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception {
@@ -93,5 +94,15 @@ public class CustomerService {
 		System.out.println("CustomerService : findCoupon");
 		return customerDao.findCoupon(customerCouponsNo);
 	}
-
+	
+	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
+	public int insertCustomerCouponById(String couponId, CustomerCoupons customerCoupons) throws Exception {
+		System.out.println("CustomerService : insertCouponById");
+		if(customerDao.countByCouponId(couponId) == 1) {
+			return customerDao.insertCustomerCouponById(customerCoupons);
+		} else {
+			System.out.println("존재하지 않는 쿠폰번호입니다.");
+		};
+		return 0;
+	}
 }

@@ -77,7 +77,6 @@
 		select count(*) from customer where customer_id = #{customer_id}
 	</select>
 
-
 	<!--(어드민전용) 전체 사용자 리스트 -->
 	<select id="customerList" resultType="Customer">
 		select * from customer

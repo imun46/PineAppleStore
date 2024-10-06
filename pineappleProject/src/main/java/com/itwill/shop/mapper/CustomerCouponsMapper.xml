@@ -56,6 +56,18 @@
 	sysdate+30, #{customerCouponsStatus},#{coupon.couponNo},#{customer.customerNo})
 	</insert>
 	
+	<!-- 사용자가 입력한 쿠폰 일련 번호가 존재하는지 체크 -->
+	<select id="countByCouponId" parameterType="String" resultType="int">
+	select count(*) from coupon where coupon_id=#{couponId}
+	</select>
+	
+	<!-- 일련 번호 입력 시 사용자 쿠폰 발급 -->
+	<insert id="insertCustomerCouponById" parameterType="CustomerCoupons">
+	insert into customer_coupons
+	values(customer_coupons_customer_coupons_no_seq.nextval, sysdate+30,
+	'사용가능', #{coupon.couponNo}, #{customer.customerNo})
+	</insert>
+	
 </mapper>
 
 
