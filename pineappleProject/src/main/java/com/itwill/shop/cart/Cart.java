@@ -23,6 +23,6 @@ public class Cart {
 	
 	/*********** FK ************/
 	private Customer customer;
-	private List<ProductSelected> productSelecteds;
+	private List<ProductSelected> productSelectedList;
 	
 }
