@@ -21,11 +21,6 @@ public class OrdersDaoImpl implements OrdersDao {
 	}
 	
 	@Override
-<<<<<<< Upstream, based on origin/Ateam/기현
-	public int insert(Orders order) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-=======
 	public int insertOrder(Orders order) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		OrdersMapper ordersMapper =  sqlSession.getMapper(OrdersMapper.class);
@@ -36,7 +31,6 @@ public class OrdersDaoImpl implements OrdersDao {
 		}
 		sqlSession.close();
 		return 1; 
->>>>>>> 02c44db orders insert 완성
 	}
 	
 	@Override

@@ -44,8 +44,8 @@ public class ProductDaoImplTest {
 //		}
 		
 		
-		Product productDetail = productDao.findByNo(1);
-		System.out.println(productDetail);
+////		Product productDetail = productDao.findByNo(1);
+//		System.out.println(productDetail);
 		
 	}
 }

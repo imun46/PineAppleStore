@@ -24,16 +24,7 @@
 		
 	</resultMap>
 	
-<<<<<<< Upstream, based on origin/Ateam/기현
-	
-<<<<<<< Upstream, based on origin/Ateam/기현
-<<<<<<< Upstream, based on origin/Ateam/기현
-=======
-	<insert id="insert">
-=======
-=======
 	<!-- 주문 등록 -->
->>>>>>> b972a88 orders 주석 수정
 	<insert id="insertOrder" parameterType="Orders">
 		<selectKey order="BEFORE" resultType="int" keyProperty="ordersNo">
 			select orders_orders_no_seq.nextval from dual
@@ -41,19 +32,8 @@
 		insert into orders(Orders_No, Orders_Date, Orders_Arrivaldate, Orders_Totprice, Orders_Finalprice, Orders_Totqty, Orders_Address, Orders_Status, Customer_No, Customer_Coupons_No) 
 		values (#{ordersNo}, sysdate, null, #{ordersTotprice}, #{ordersFinalprice}, #{ordersTotqty}, #{ordersAddress}, #{ordersStatus}, #{customer.customerNo}, 
             #{customerCoupons.customerCouponsNo})
->>>>>>> 02c44db orders insert 완성
 	</insert>
-<<<<<<< Upstream, based on origin/Ateam/기현
-<<<<<<< Upstream, based on origin/Ateam/기현
->>>>>>> 720e04b orderMapper 수정중
-=======
-=======
-	
-<<<<<<< Upstream, based on origin/Ateam/기현
->>>>>>> 5ede523 orders select 완성 , service 구현 완료
-=======
 	<!-- 주문아이템 등록 -->
->>>>>>> b972a88 orders 주석 수정
 	<insert id="insertOrderItem" parameterType="OrdersItems">
 		<selectKey order="BEFORE" resultType="int" keyProperty="ordersItemsNo">
 			select orders_items_orders_items_no_seq.nextval from dual 
@@ -82,5 +62,4 @@
 	<delete id="delete" parameterType="int">
 		delete from orders where orders_no = #{ordersNo}
 	</delete>
->>>>>>> 02c44db orders insert 완성
 </mapper>
