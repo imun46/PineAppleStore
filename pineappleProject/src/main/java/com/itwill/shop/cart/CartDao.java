@@ -4,35 +4,33 @@ import java.util.List;
 
 public interface CartDao {
 	
-	//cart 상품수량조회
 	
-	int countByProductNo(String sCustomerId, int productSelectedNo) throws Exception;
+	//카트 등록
+	int insert(Cart cart) throws Exception;
 	
-	//cart insert
+	//카트 중복 체크
+	int countByProductNo(int cartNo, int productSelectedNo) throws Exception;
 	
-	int insert(String sCustomerId, int productSelectedNo, int cartQty) throws Exception;
+	//카트 옵션 수정
+	int updateByproductSelected(int productOptionDetail) throws Exception;
 	
-	//상품에서 카트 추가 업데이트
+	//카트 수량 증가
+	int update(Cart cart) throws Exception;
 	
-	int updateByProductNo(String sCustomerId, int productSelectNo, int cartQty) throws Exception;
-	
-	//카트리스트 수정
-	
-	int updateByCartNo(int cartNo, int cartQty) throws Exception;
-	
-	//cart pk delete
-	
+	//카트 한개 삭제
 	int deleteByCartNo(int cartNo) throws Exception;
 	
-	// cart delete
+	//카트 전체 삭제
+	int deleteByCustomerNo(int customerNo) throws Exception;
 	
-	int deleteByCustomerId(String sCustomerId) throws Exception;
 	
+	//카트 전체 리스트(어드민)
+	List<Cart> findAll() throws Exception;
+	
+	//카트 리스트 (회원)
+	List<Cart> findByCustomerNo(int customerNo) throws Exception;
+	
+	//카트 한개 선택(회원)
 	Cart findByCartNo(int cartNo) throws Exception;
-	
-	//카트리스트
-		
-	List<Cart> findByCustomerId(String customerId) throws Exception;
-	
 	
 }

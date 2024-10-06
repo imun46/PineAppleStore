@@ -13,7 +13,6 @@
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 	<typeAliases>
-	<!-- 
 		<typeAlias type="com.itwill.shop.cart.Cart" alias="Cart" />
 		<typeAlias type="com.itwill.shop.cart.ProductSelected" alias="ProductSelected" />
 		<typeAlias type="com.itwill.shop.coupon.Coupon" alias="Coupon" />
@@ -24,7 +23,7 @@
 		<typeAlias type="com.itwill.shop.product.Product" alias="Product" />
 		<typeAlias type="com.itwill.shop.product.ProductImage" alias="ProductImage" />
 		<typeAlias type="com.itwill.shop.product.ProductOption" alias="ProductOption" />
-		<typeAlias type="com.itwill.shop.product.ProductOptionDetail" alias="ProductOptionDetail" /> -->
+		<typeAlias type="com.itwill.shop.product.ProductOptionDetail" alias="ProductOptionDetail" />
 		<typeAlias type="com.itwill.shop.review.Review" alias="Review" />
 	</typeAliases>
 	<environments default="development">
@@ -45,8 +44,9 @@
 		</environment>
 	</environments>
 	<mappers>
-<<<<<<< Upstream, based on origin/Ateam/기현
-		   <!-- <mapper class="com.itwill.shop.mapper.CartMapper" />
+	 <mapper class="com.itwill.shop.mapper.CartMapper" />
+	<mapper class="com.itwill.shop.mapper.OrdersMapper" />
+		   <!--
       <mapper class="com.itwill.shop.mapper.CouponMapper" />
       <mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
       <mapper class="com.itwill.shop.mapper.CustomerMapper" />
@@ -57,21 +57,6 @@
       <mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
       <mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
       <mapper class="com.itwill.shop.mapper.ProductSelectedMapper" /> -->
-=======
-		<mapper class="com.itwill.shop.mapper.OrdersMapper" />
-	<!-- 
-		<mapper class="com.itwill.shop.mapper.CartMapper" />
-		<mapper class="com.itwill.shop.mapper.CouponMapper" />
-		<mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
-		<mapper class="com.itwill.shop.mapper.CustomerMapper" />
-		<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductImageMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductSelectedMapper" />
->>>>>>> 02c44db orders insert 완성
-		<mapper class="com.itwill.shop.mapper.ReviewMapper" />
-	 -->
+
 	</mappers>
 </configuration>
