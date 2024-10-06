@@ -22,11 +22,9 @@ public class CustomerCoupons {
 	private Date customerCouponsEnddate;	//사용자 종료 날짜
 	private String customerCouponsStatus;	//사용자 쿠폰 상태 (사용,미사용) 
 	
-	/********** List *****************/
-	private List<Coupon> customerCouponList; //사용자 쿠폰 전체리스트
 	
 	/************* FK *********************/
-	private Coupon couponNo;//FK
-	private Customer customerNo;//FK
+	private Coupon coupon;//FK
+	private Customer customer;//FK
 	
 }

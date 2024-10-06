@@ -3,7 +3,6 @@
 <mapper namespace="com.itwill.shop.mapper.CustomerMapper">
 
 
-
 	<!-- 사용자 등록 -->
 	<insert id="insertCustomer" parameterType="Customer">
 		<selectKey order="BEFORE" resultType="int"
