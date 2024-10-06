@@ -3,18 +3,7 @@
 <mapper namespace="com.itwill.shop.mapper.CustomerMapper">
 	<resultMap id="customerList" type="Customer">
 		<id column="customer_no" property="customerNo"/>
-		<result column="customer_password" property="customerId"/>
-		<result column="customer_name" property="customerName"/>
-		<result column="customer_password" property="customerPassword"/>
-		<result column="customer_dob" property="customerDob"/>
-		<result column="customer_address" property="customerAddress"/>
-		<result column="customer_gender" property="customerGender"/>
-		<result column="customer_phone" property="customerPhone"/>
-		<result column="customer_email" property="customerEmail"/>
-		<result column="customer_nickname" property="customerNickname"/>
-		<result column="customer_joindate" property="customerJoindate"/>
-		
-		<collection property="" resultMap="" ></collection>
+		<association property="reviewList" resultMap="com.itwill.shop.mapper.ReviewMapper.reviewResultMap"></association>
 	</resultMap>
 
 	<!-- 사용자 등록 -->
@@ -28,6 +17,12 @@
 		(#{customerNo},#{customerId},#{customerPassword},#{customerName},#{customerDob},#{customerAddress},
 		#{customerGender},#{customerPhone},#{customerEmail},#{customerNickname},#{customerJoindate})
 	</insert>
+	
+	<!--  사용자 정보 리스트  -->
+	<select id="findCustomerNoListAll"></select>
+	
+	
+	
 
 	<!-- 사용자 아이디로 찾기 -->
 	<select id="findCustomerId" parameterType="String"
