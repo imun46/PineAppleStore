@@ -35,7 +35,6 @@ public class Customer {
 	
 	
 	/**************List ****************/
-	private List<CustomerCoupons> customerCouponsList; // 고객 쿠폰함
 	private List<Orders> ordersList; // 고객 주문 내역
 	private List<Review> reviewList; // 고객 리뷰 내역
 	private List<Cart> cartList; // 고객 카트
