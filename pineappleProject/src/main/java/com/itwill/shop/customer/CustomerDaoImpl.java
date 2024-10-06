@@ -108,9 +108,9 @@ public class CustomerDaoImpl implements CustomerDao {
 	public int countByCouponId(String couponId) throws Exception {
 		System.out.println("CustomerDaoImpl : countByCouponId");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).countByCouponId(couponId);
+		int countByCouponId = sqlSession.getMapper(CustomerCouponsMapper.class).countByCouponId(couponId);
 		sqlSession.close();
-		return rowCount;
+		return countByCouponId;
 	}
 	
 	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/

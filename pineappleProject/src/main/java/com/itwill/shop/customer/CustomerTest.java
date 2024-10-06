@@ -107,22 +107,21 @@ public class CustomerTest {
 		/****************************CustomerCoupon**********************************/
 		
 		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
-//		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
-//		System.out.println("customerCouponsList : " + customerCouponsList);
-//		for (CustomerCoupons customerCoupons : customerCouponsList) {
-//			System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
-//			System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
-//			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
-//			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
-//			System.out.println("customerCoupons.getCoupon().getCouponNo() : " + customerCoupons.getCoupon().getCouponNo());
-//			System.out.println("customerCoupons.getCoupon().getCouponId() : " + customerCoupons.getCoupon().getCouponId());
-//			System.out.println("customerCoupons.getCoupon().getCouponDiscount() : " + customerCoupons.getCoupon().getCouponDiscount());
-//			System.out.println("customerCoupons.getCustomer().getCustomerNo() : " + customerCoupons.getCustomer().getCustomerNo());
-//			System.out.println("customerCoupons.getCustomerCouponsNo() : " + customerCoupons.getCustomerCouponsNo());
-//		}
-//		System.out.println(customerCouponsList.size());
+		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
+		System.out.println("customerCouponsList : " + customerCouponsList);
+		for (CustomerCoupons customerCoupons : customerCouponsList) {
+			System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
+			System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
+			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
+			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
+			System.out.println("customerCoupons.getCoupon().getCouponNo() : " + customerCoupons.getCoupon().getCouponNo());
+			System.out.println("customerCoupons.getCoupon().getCouponId() : " + customerCoupons.getCoupon().getCouponId());
+			System.out.println("customerCoupons.getCoupon().getCouponDiscount() : " + customerCoupons.getCoupon().getCouponDiscount());
+			System.out.println("customerCoupons.getCustomer().getCustomerNo() : " + customerCoupons.getCustomer().getCustomerNo());
+			System.out.println("customerCoupons.getCustomerCouponsNo() : " + customerCoupons.getCustomerCouponsNo());
+		}
 		
-		//CustomerCoupons customerCoupons = customerService.findCoupon(1);
+		CustomerCoupons customerCoupons = customerService.findCoupon(1);
 		
 		/********** CustomerCoupon 사용자가 보유한 쿠폰 조회(Select) 매개변수 : customerCouponNo(사용자 번호)*********/
 //		System.out.println(customerCoupons);
@@ -145,11 +144,17 @@ public class CustomerTest {
 //						.customerNo(3)
 //						.build())
 //				.build());
-		CustomerCoupons customerCoupons = customerService.findCoupon(1);
-		customerService.insertCustomerCouponById("A123456", CustomerCoupons.builder()
-																			.c
-																			.build());
-		System.out.println();
+		
+		/********** 일련번호 입력 시 CustomerCoupon 쿠폰 발급(Insert) *********/
+		customerService.insertCustomerCouponById("1123456", 
+				CustomerCoupons.builder()
+								.coupon(new Coupon().builder()
+									.couponNo(1)
+									.build())
+								.customer(new Customer().builder()
+									.customerNo(1)
+									.build())
+								.build());
 	}
 	
 	

@@ -57,7 +57,7 @@
 	</insert>
 	
 	<!-- 사용자가 입력한 쿠폰 일련 번호가 존재하는지 체크 -->
-	<select id="countByCouponId" parameterType="String" resultMap="customerCouponResultMap">
+	<select id="countByCouponId" parameterType="String" resultType="int">
 	select count(*) from coupon where coupon_id=#{couponId}
 	</select>
 	
@@ -67,6 +67,7 @@
 	values(customer_coupons_customer_coupons_no_seq.nextval, sysdate+30,
 	'사용가능', #{coupon.couponNo}, #{customer.customerNo})
 	</insert>
+	
 </mapper>
 
 
