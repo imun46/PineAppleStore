@@ -92,6 +92,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		System.out.println("CustomerDaoImpl : insertCustomerCoupon");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).insertCustomerCoupon(customerCoupons);
+		sqlSession.close();
 		return rowCount;
 	}
 	
@@ -101,6 +102,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		System.out.println("CustomerDaoImpl : findCouponList");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		List<CustomerCoupons> customerCoupons = sqlSession.getMapper(CustomerCouponsMapper.class).findCouponList(customerNo);
+		sqlSession.close();
 		return customerCoupons;
 	}
 	
@@ -110,6 +112,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		System.out.println("CustomerDaoImpl : updateCoupon");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).updateCoupon(customerCouponsNo);
+		sqlSession.close();
 		return rowCount;
 	}
 	
