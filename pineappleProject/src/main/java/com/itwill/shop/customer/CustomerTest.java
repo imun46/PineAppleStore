@@ -95,6 +95,15 @@ public class CustomerTest {
 //		/*********** delete ********************/
 //		System.out.println(customerService.deleteCustomerNo(2));
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		/****************************CustomerCoupon**********************************/
 		
 		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
