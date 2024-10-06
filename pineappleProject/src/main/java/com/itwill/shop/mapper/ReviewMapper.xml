@@ -30,6 +30,7 @@
 		#{reviewRating},
 		#{customerNo, <!--  typeHandler=com.itwill.shop.review.CustomerTypeHandler-->})
 	</insert>
+	
 	<!-- 리뷰 수정 -->
 	<update id="update" parameterType="Review">
 		update review set
@@ -40,16 +41,19 @@
 		where product_no=#{productNo}
 		and customer_no=#{customerNo}
 	</update>
+	
 	<!-- 리뷰 삭제 -->
 	<delete id="delete" parameterType="int">
 		delete from review where
 		product_no=#{productNo} 
 		and customer_no=#{customerNo}
 	</delete>
+	
 	<!-- 리뷰리스트(회원) -->
 	<select id="findMyReview" parameterType ="int" resultType="Review">
 		select * from review where product_no=#{productNo,<!--  typeHandler=com.itwill.shop.review.ProductTypeHandler-->}
 	</select>
+	
 	<!-- 리뷰리스트(상품) -->
 	<select id="findProductReview" parameterType ="int" resultType="Review">
 		select * from review where customer_no=#{customerNo,<!--  typeHandler=com.itwill.shop.review.CustomerTypeHandler-->}
