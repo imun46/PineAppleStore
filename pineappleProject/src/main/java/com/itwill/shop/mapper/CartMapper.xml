@@ -3,8 +3,8 @@
 <mapper namespace="com.itwill.shop.mapper.CartMapper">
 	<resultMap id="cartMap" type="Cart" autoMapping="true">
 		
-		<collection property="productSelectedList" ofType="ProductSelected"
-					resultMap="productSelectedMap">
+		<collection property="productSelectedList" ofType="ProductSelected" autoMapping="true">
+			<id column="product_selecte_no" property="productSelectedNo"/>
 		</collection>
 	</resultMap>
 
