@@ -22,6 +22,9 @@ public interface CustomerDao {
 	//사용자 정보 아이디로 찾기(내 정보)
 	Customer findCustomerId(String customerId) throws Exception;
 	
+	//사용자 전체 정보 번호로 찾기(내정보)
+	Customer findCustomerNoListAll(Integer customerNo)throws Exception;
+	
 	//사용자 아이디 개수 출력(아이디 중복 유효성 체크)
 	int countByCustomerId(String customerId) throws Exception;
 	

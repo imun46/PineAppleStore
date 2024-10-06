@@ -19,6 +19,8 @@ public interface CustomerMapper  {
 	
 	int deleteCustomer(Integer customerNo) throws Exception;
 	
+	Customer findCustomerNoListAll(Integer customerNo)throws Exception;
+	
 	Customer findCustomerId(String customerId) throws Exception;
 		
 

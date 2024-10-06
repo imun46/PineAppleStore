@@ -50,6 +50,11 @@ public class CustomerService {
 	public Customer findCustomerNo(Integer customerNo) throws Exception {
 		return customerDao.findCustomerNo(customerNo);
 	}
+	
+	// 사용자 전체 정보 번호로 찾기
+	public Customer findCustomerNoListAll(Integer customerNo)throws Exception{
+		return customerDao.findCustomerNoListAll(customerNo);
+	}
 
 	// 사용자 정보 수정
 	public int updateCustomerId(Customer customer) throws Exception {
@@ -60,6 +65,8 @@ public class CustomerService {
 	public int deleteCustomerNo(Integer customerId) throws Exception {
 		return customerDao.delete(customerId);
 	}
+	
+	
 	
 	
 	/********** CustomerCoupon 메소드 **********/

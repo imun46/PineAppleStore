@@ -50,7 +50,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	@Override
 	public Customer findCustomerNo(Integer customerNo) throws Exception {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		Customer customer =sqlSession.getMapper(CustomerMapper.class).findCustomerNo(customerNo);
 		sqlSession.close();
 		return customer;
@@ -60,10 +60,17 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public Customer findCustomerId(String customerId) throws Exception {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		Customer customer =sqlSession.getMapper(CustomerMapper.class).findCustomerId(customerId);
 		sqlSession.close();
 		return customer;
+	}
+	
+	@Override
+	public Customer findCustomerNoListAll(Integer customerNo) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		Customer customer  = sqlSession.getMapper(CustomerMapper.class).findCustomerNoListAll(customerNo);
+	return customer;
 	}
 
 	@Override

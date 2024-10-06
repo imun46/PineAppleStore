@@ -7,7 +7,6 @@
         <id column="review_no" property="reviewNo" />
         <association property="product" javaType="Product" autoMapping="true">
             <id column="product_no" property="productNo" />
-            <result column="product_name" property="productName"/>
         </association>
         <association property="customer" javaType="Customer" autoMapping="true">
             <id column="customer_no" property="customerNo" />

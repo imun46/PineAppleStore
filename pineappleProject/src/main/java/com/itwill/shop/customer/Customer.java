@@ -38,6 +38,7 @@ public class Customer {
 	private List<Orders> ordersList; // 고객 주문 내역
 	private List<Review> reviewList; // 고객 리뷰 내역
 	private List<Cart> cartList; // 고객 카트
+	private List<CustomerCoupons> couponList; // 고객 카트
 	
 	
 }
