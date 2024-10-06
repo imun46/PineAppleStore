@@ -1,12 +1,15 @@
 INSERT INTO Cart(cart_no, cart_qty, customer_no)
 VALUES (cart_cart_no_seq.nextval , 3, 1);
 
--- 카트 중복 체크
-select count(*) as count 
-from cart c
-join product_selected ps
-on c.cart_no = ps.cart_no
-where ps.product_no = 1;
+-- 카트 중복 옵션 체크
+
+SELECT COUNT(*) as count
+FROM product_selected ps
+JOIN product_option_detail pod 
+ON ps.product_option_detail_no = pod.product_option_detail_no
+JOIN  product_option po 
+ON pod.product_option_no = po.product_option_no
+WHERE  ps.product_no =1 AND po.product_option_no = 1 AND pod.product_option_detail_no = 1 AND ps.cart_no = 1; 
 
 --카트 상품 옵션 변경
 --- productseleted 옵션 변경

@@ -8,11 +8,13 @@
 </insert>
 
 <select id="countByProductNo" parameterType="int" resultType="int">
-	SELECT count(*) as count 
-	FROM cart c
-	JOIN product_selected ps
-	ON c.cart_no = ps.cart_no
-	WHERE ps.product_no = #{productNo};
+	SELECT COUNT(*) as count
+	FROM product_selected ps
+	JOIN product_option_detail pod 
+	ON ps.product_option_detail_no = pod.product_option_detail_no
+	JOIN  product_option po 
+	ON pod.product_option_no = po.product_option_no
+	WHERE  ps.product_no =#{productNo} AND po.product_option_no = #{productOptionNo} AND pod.product_option_detail_no = #{productOptionDetailNo} AND ps.cart_no = #{cartNo}; 
 </select>
 
 <update id="updateByproductSelected">
