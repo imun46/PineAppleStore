@@ -40,6 +40,15 @@ public class CustomerTest {
 //		/*********** delete ********************/
 //		System.out.println(customerService.deleteCustomerNo(2));
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		/****************************CustomerCoupon**********************************/
 		
 		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
@@ -66,16 +75,16 @@ public class CustomerTest {
 //		System.out.println(customerService.updateCoupon(3));
 //		
 		/********** CustomerCoupon 쿠폰 발급(Insert) *********/
-		customerService.insertCustomerCoupon(CustomerCoupons.builder()
-				.customerCouponsStatus("사용가능")
-				.customerCouponsNo(1)
-				.coupon(new Coupon().builder()
-						.couponNo(4)
-						.build())
-				.customer(new Customer().builder()
-						.customerNo(3)
-						.build())
-				.build());
+//		customerService.insertCustomerCoupon(CustomerCoupons.builder()
+//				.customerCouponsStatus("사용가능")
+//				.customerCouponsNo(1)
+//				.coupon(new Coupon().builder()
+//						.couponNo(4)
+//						.build())
+//				.customer(new Customer().builder()
+//						.customerNo(3)
+//						.build())
+//				.build());
 	}
 
 }

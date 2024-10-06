@@ -1,5 +1,7 @@
 package com.itwill.shop.coupon;
 
+import java.util.List;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -25,6 +27,21 @@ public class CouponDaoImpl implements CouponDao {
 		int rowCount = sqlSession.getMapper(CouponMapper.class).insertCoupon(coupon);
 		return rowCount;
 	}
-
+	
+	/*** 쿠폰 조회 메소드 (어드민용) ***/
+	@Override
+	public Coupon findAdminCoupon(Integer couponNo) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		Coupon coupon = sqlSession.getMapper(CouponMapper.class).findAdminCoupon(couponNo);
+		return coupon;
+	}
+	
+	/*** 쿠폰 리스트 조회 메소드 (어드민용) ***/
+	@Override
+	public List<Coupon> findAdminCouponList() throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Coupon> couponList = sqlSession.getMapper(CouponMapper.class).findAdminCouponList();
+		return couponList;
+	}
 
 }

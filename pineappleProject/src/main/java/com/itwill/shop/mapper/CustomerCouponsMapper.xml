@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CustomerCouponsMapper">
 	<!-- 쿠폰 조회 resultMap type = CustomerCoupons -->
-	<resultMap id="couponResultMap" 
+	<resultMap id="customerCouponResultMap" 
 				type="CustomerCoupons"
 				autoMapping="true">
 	<id column="CUSTOMER_COUPONS_NO" property="customerCouponsNo"/>	
@@ -20,7 +20,7 @@
 </resultMap>
 	
 	<!-- 쿠폰 리스트 조회 -->
-	<select id="findCouponList" parameterType = "Integer" resultMap="couponResultMap">
+	<select id="findCouponList" parameterType = "Integer" resultMap="customerCouponResultMap">
 	select 
 	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate, 
     cu.customer_coupons_status, cu.customer_coupons_no, c.coupon_no
@@ -31,7 +31,7 @@
 	</select>
 	
 	<!-- 쿠폰 조회 -->
- 	<select id="findCoupon" parameterType="Integer" resultMap="couponResultMap">
+ 	<select id="findCoupon" parameterType="Integer" resultMap="customerCouponResultMap">
 	select
   	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate,
   	cu.customer_coupons_status, cu.customer_coupons_no, c.coupon_no
