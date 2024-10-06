@@ -65,7 +65,7 @@
 	<insert id="insertCustomerCouponById" parameterType="CustomerCoupons">
 	insert into customer_coupons
 	values(customer_coupons_customer_coupons_no_seq.nextval, sysdate+30,
-	'사용가능', #{coupon.couponNo}, #{customer.customerNo});
+	'사용가능', #{coupon.couponNo}, #{customer.customerNo})
 	</insert>
 </mapper>
 

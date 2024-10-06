@@ -97,11 +97,11 @@ public class CustomerService {
 	}
 	
 	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
-	public int insertCustomerCouponById(CustomerCoupons customerCoupons) throws Exception {
+	public int insertCustomerCouponById(String couponId, CustomerCoupons customerCoupons) throws Exception {
 		System.out.println("CustomerService : insertCouponById");
-		
-		
-		int rowCount = customerDao.insertCustomerCouponById(customerCoupons);
-		return rowCount;
+		if(customerDao.countByCouponId(couponId) == 1) {
+			return customerDao.insertCustomerCouponById(customerCoupons);
+		};
+		return 0;
 	}
 }
