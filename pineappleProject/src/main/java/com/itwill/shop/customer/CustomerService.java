@@ -77,6 +77,8 @@ public class CustomerService {
 		return customerDao.insertCustomerCoupon(customerCoupons);
 	}
 	
+	
+	
 	/*** 쿠폰 사용완료 업데이트 ***/
 	public int updateCoupon(Integer customerCouponsNo) throws Exception {
 		System.out.println("CustomerService : updateCoupon");
@@ -93,5 +95,13 @@ public class CustomerService {
 		System.out.println("CustomerService : findCoupon");
 		return customerDao.findCoupon(customerCouponsNo);
 	}
-
+	
+	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
+	public int insertCustomerCouponById(CustomerCoupons customerCoupons) throws Exception {
+		System.out.println("CustomerService : insertCouponById");
+		
+		
+		int rowCount = customerDao.insertCustomerCouponById(customerCoupons);
+		return rowCount;
+	}
 }
