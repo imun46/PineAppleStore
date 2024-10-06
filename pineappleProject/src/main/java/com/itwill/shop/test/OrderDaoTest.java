@@ -29,12 +29,12 @@ public class OrderDaoTest {
 							.ordersTotqty(6)
 							.ordersAddress("주소일걸요")
 							.ordersStatus("배송중")
-							.orderItemList(newOrderItemsList)
+							.orderItems(newOrderItemsList)
 							.customer(Customer.builder().customerNo(1).build())
 							.customerCoupons(CustomerCoupons.builder().customerCouponsNo(1).build())
 							.build();
 		
-//		System.out.println(ordersDao.insertOrder(newOrder));
+		System.out.println(ordersDao.insertOrder(newOrder));
 		
 		
 		/************delete*************/
@@ -43,6 +43,6 @@ public class OrderDaoTest {
 //		System.out.println(ordersDao.findAll());
 		
 		/************select*************/
-		System.out.println(ordersDao.findByOrderNo(5));
+//		System.out.println(ordersDao.findByOrderNo(5));
 	}
 }

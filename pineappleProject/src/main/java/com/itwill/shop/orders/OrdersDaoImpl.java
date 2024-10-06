@@ -31,10 +31,9 @@ public class OrdersDaoImpl implements OrdersDao {
 		OrdersMapper ordersMapper =  sqlSession.getMapper(OrdersMapper.class);
 		
 		ordersMapper.insertOrder(order);
-		for(OrdersItems orderItems:order.getOrderItemList()) {
+		for(OrdersItems orderItems:order.getOrderItems()) {
 			ordersMapper.insertOrderItem(orderItems);
 		}
-		
 		sqlSession.close();
 		return 1; 
 >>>>>>> 02c44db orders insert 완성
