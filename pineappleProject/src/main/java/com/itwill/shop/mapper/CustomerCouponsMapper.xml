@@ -49,10 +49,10 @@
 	</update>
 	
 	<!-- (어드민) 쿠폰 발급 -->
-	<insert id="insertCustomerCoupon" parameterType="com.itwill.shop.customer.CustomerCoupons">
+	<insert id="insertCustomerCoupon" parameterType="CustomerCoupons">
 	insert into customer_coupons 
 	values(customer_coupons_customer_coupons_no_seq.nextval,
-	sysdate+30, #{customerCouponsStatus},#{couponNo.couponNo},#{customerNo.customerNo})
+	sysdate+30, #{customerCouponsStatus},#{coupon.couponNo},#{customer.customerNo})
 	</insert>
 	
 </mapper>

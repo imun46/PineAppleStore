@@ -43,36 +43,37 @@ public class CustomerTest {
 		/****************************CustomerCoupon**********************************/
 		
 		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
-		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
-		System.out.println("customerCouponsList : " + customerCouponsList);
-		for (CustomerCoupons customerCoupons : customerCouponsList) {
-			System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
-			System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
-			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
-			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
-		}
-		System.out.println(customerCouponsList.size());
-		
-		CustomerCoupons customerCoupons = customerService.findCoupon(1);
-		
-		System.out.println(customerCoupons);
-		System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
-		System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
-		System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
-		System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
-		
-		/********** CustomerCoupon 쿠폰 업데이트(Update) *********/
-		//System.out.println(customerService.updateCoupon(6));
-		
+//		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
+//		System.out.println("customerCouponsList : " + customerCouponsList);
+//		for (CustomerCoupons customerCoupons : customerCouponsList) {
+//			System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
+//			System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
+//			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
+//			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
+//		}
+//		System.out.println(customerCouponsList.size());
+//		
+//		CustomerCoupons customerCoupons = customerService.findCoupon(1);
+//		
+//		/********** CustomerCoupon 사용자가 보유한 쿠폰 조회(Select) 매개변수 : customerCouponNo(사용자 번호)*********/
+//		System.out.println(customerCoupons);
+//		System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
+//		System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
+//		System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
+//		System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
+//		
+//		/********** CustomerCoupon 쿠폰 업데이트(Update) 매개변수 : customer_coupons_no *********/
+//		System.out.println(customerService.updateCoupon(3));
+//		
 		/********** CustomerCoupon 쿠폰 발급(Insert) *********/
 //		customerService.insertCustomerCoupon(CustomerCoupons.builder()
 //				.customerCouponsStatus("사용가능")
 //				.customerCouponsNo(1)
-//				.couponNo(new Coupon().builder()
-//						.couponNo(5)
+//				.coupon(new Coupon().builder()
+//						.couponNo(4)
 //						.build())
-//				.customerNo(new Customer().builder()
-//						.customerNo(5)
+//				.customer(new Customer().builder()
+//						.customerNo(3)
 //						.build())
 //				.build());
 	}
