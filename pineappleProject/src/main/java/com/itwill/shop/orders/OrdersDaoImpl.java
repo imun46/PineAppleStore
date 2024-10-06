@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.boot.autoconfigure.flyway.FlywayProperties.Sqlserver;
 
+import com.itwill.shop.mapper.CartMapper;
 import com.itwill.shop.mapper.OrdersMapper;
 
 public class OrdersDaoImpl implements OrdersDao {
@@ -26,15 +27,27 @@ public class OrdersDaoImpl implements OrdersDao {
 		OrdersMapper ordersMapper =  sqlSession.getMapper(OrdersMapper.class);
 		
 		int rowCount = ordersMapper.insertOrder(order);
-		for(OrdersItems orderItems:order.getOrderItems()) {
+		for(OrdersItems orderItems:order.getOrderItemList()) {
 			ordersMapper.insertOrderItem(orderItems);
 		}
 		sqlSession.close();
 		return rowCount; 
 	}
 	
-	public int updateArrivaldate() throws Exception{
-		return 0;
+	@Override
+	public int updateOrderStatus(Orders orders) throws Exception{
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int rowCount = sqlSession.getMapper(OrdersMapper.class).updateOrderStatus(orders);
+		sqlSession.close();
+		return rowCount;
+	}
+	
+	@Override
+	public int updateOrderConfirm(Orders orders) throws Exception{
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int rowCount = sqlSession.getMapper(OrdersMapper.class).updateOrderConfirm(orders);
+		sqlSession.close();
+		return rowCount;
 	}
 	
 	@Override

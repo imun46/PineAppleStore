@@ -31,7 +31,7 @@
 			select orders_orders_no_seq.nextval from dual
 		</selectKey>
 		insert into orders(Orders_No, Orders_Date, Orders_Arrivaldate, Orders_Totprice, Orders_Finalprice, Orders_Totqty, Orders_Address, Orders_Status, Customer_No, Customer_Coupons_No) 
-		values (#{ordersNo}, sysdate, Sysdate+3, #{ordersTotprice}, #{ordersFinalprice}, #{ordersTotqty}, #{ordersAddress}, #{ordersStatus}, #{customer.customerNo}, 
+		values (#{ordersNo}, sysdate, sysdate+3, #{ordersTotprice}, #{ordersFinalprice}, #{ordersTotqty}, #{ordersAddress}, #{ordersStatus}, #{customer.customerNo}, 
             #{customerCoupons.customerCouponsNo})
 	</insert>
 	
@@ -43,6 +43,20 @@
 		 insert into orders_items (orders_items_no, orders_items_price,orders_items_finalprice, orders_items_qty, orders_items_options, orders_no, product_no) 
 		 values (#{ordersItemsNo}, #{ordersItemsprice}, #{ordersItemsFinalprice}, #{ordersItemsQty}, #{ordersItemsOptions},orders_orders_no_seq.currval, #{product.productNo})
 	</insert>
+	
+	<!-- 배송상태 변경(어드민) -->
+	<update id="updateOrderStatus" parameterType="Orders">
+		UPDATE orders
+		SET orders_status = #{ordersStatus}
+		WHERE orders_no = #{ordersNo}
+	</update>
+	
+	<!-- 구매확정(회원) -->
+	<update id="updateOrderConfirm" parameterType="Orders">
+		UPDATE orders
+		SET orders_status = #{ordersStatus}, orders_arrivaldate = sysdate
+		WHERE orders_no = #{ordersNo}
+	</update>
 	
 	<!-- 주문 전체 리스트(어드민) -->
 	<select id="selectAll" resultMap="orderResultMap">

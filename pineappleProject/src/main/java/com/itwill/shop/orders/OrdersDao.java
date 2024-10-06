@@ -6,10 +6,13 @@ public interface OrdersDao {
 	//주문 등록
 	int insertOrder(Orders order) throws Exception;
 	
-	//도착 일정 업데이트
-	int updateArrivaldate() throws Exception;
-	
-	// [어드민] 주문 전체 리스트(전체)
+	//[어드민]배송상태 변경
+	int updateOrderStatus(Orders orders) throws Exception; 
+
+	//[회원]구매확정 
+	int updateOrderConfirm(Orders orders) throws Exception; 
+ 
+	//[어드민] 주문 전체 리스트(전체)
 	List<Orders> findAll() throws Exception;
 	
 	//주문 + 주문 아이템 전체 리스트(특정 사용자)

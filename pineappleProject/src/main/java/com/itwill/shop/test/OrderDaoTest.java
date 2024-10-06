@@ -29,7 +29,7 @@ public class OrderDaoTest {
 							.ordersTotqty(6)
 							.ordersAddress("주소일걸요")
 							.ordersStatus("배송중")
-							.orderItems(newOrderItemsList)
+							.orderItemList(newOrderItemsList)
 							.customer(Customer.builder().customerNo(1).build())
 							.customerCoupons(CustomerCoupons.builder().customerCouponsNo(1).build())
 							.build();

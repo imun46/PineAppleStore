@@ -16,19 +16,30 @@ public class OrdersService {
 		cartDao = new CartDaoImpl();
 	}
 	
-	/*바로주문 등록*/
+	/*바로 주문 등록*/
 	public int insertOrder(Orders order) throws Exception{
-		return ordersDao.insertOrder(order);
+		int rowCount = ordersDao.insertOrder(order);
+		return rowCount;
 	}
 	
-	/*카트에서 전체주문 등록*/
-	public int cartOrder() throws Exception{
-//		List<Cart> cartList = cartDao.
-		int totPrice = 0;
-		int totCount = 0;
-		
-		return 0;
+	/*카트 주문 등록*/
+	public int insertOrderCart(Orders order) throws Exception{
+		int rowCount = ordersDao.insertOrder(order);
+		rowCount += cartDao.deleteByCustomerNo(order.getCustomer().getCustomerNo());
+		return rowCount;
 	}
+	
+	/*[어드민]배송상태 변경*/
+	public int updateOrderStatus(Orders order) throws Exception{
+		return ordersDao.updateOrderStatus(order);
+	}
+	
+	/*[회원]구매확정*/
+	public int updateOrderConfirm(Orders order) throws Exception{
+		return ordersDao.updateOrderStatus(order);
+	}
+	
+	/*카트주문 등록*/
 	
 	/* [어드민] 주문 전체 리스트(전체) */
 	public List<Orders> finfAll() throws Exception{
