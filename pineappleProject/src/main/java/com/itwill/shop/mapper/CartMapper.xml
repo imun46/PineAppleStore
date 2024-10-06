@@ -23,7 +23,7 @@
 <!-- 카트 옵션수정 -->
 <update id="updateByproductSelected">
 		UPDATE product_selected ps
-		SET ps.product_option_detail_no = 4
+		SET ps.product_option_detail_no = #{productOptionDetailNo}
 		WHERE ps.product_option_detail_no IN (
 		    SELECT pod.product_option_detail_no
 		    FROM product_option_detail pod
@@ -60,7 +60,15 @@
 
 <!-- 카트 리스트(회원) -->
 <select id="findByCustomerNo" parameterType="int">
-	SELECT * FROM cart WHERE customerNo=#{customerNo}
+	SELECT c.cart_no, ps.product_selected_no,pod.product_option_detail_no,pod.product_option_detail_name,pod.product_option_detail_no,pod.product_option_detail_price,po.product_no,po.product_option_type
+	FROM cart c
+	JOIN product_selected ps
+	ON c.cart_no = ps.cart_no
+	JOIN product_option_detail pod
+	ON ps.product_option_detail_no = pod.product_option_detail_no
+	JOIN product_option po
+	ON pod.product_option_no = po.product_option_no
+	WHERE ps.cart_no = #{cartNo};
 </select>
 
 
