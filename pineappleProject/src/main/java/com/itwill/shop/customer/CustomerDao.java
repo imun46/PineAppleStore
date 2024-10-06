@@ -38,6 +38,7 @@ public interface CustomerDao {
 	//사용자 쿠폰 조회
 	CustomerCoupons findCoupon(Integer customerNo) throws Exception;
 	
+	//사용자 쿠폰 리스트 조회
+	List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception;
 	
-
 }
