@@ -11,6 +11,9 @@
 
 <!-- 카트 등록 -->
 <insert id="insert" parameterType="Cart">
+	<selectKey order="BEFORE" resultType="int">
+	
+	</selectKey>
 	INSERT INTO cart 
 	VALUES(cart_cart_no_seq.nextval, #{cartQty}, #{customerNo})
 </insert>
