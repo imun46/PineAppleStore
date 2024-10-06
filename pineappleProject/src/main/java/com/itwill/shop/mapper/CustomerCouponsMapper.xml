@@ -48,6 +48,7 @@
 	where customer_coupons_no=#{customerCouponsNo}
 	</update>
 	
+	
 	<!-- (어드민) 쿠폰 발급 -->
 	<insert id="insertCustomerCoupon" parameterType="CustomerCoupons">
 	insert into customer_coupons 
