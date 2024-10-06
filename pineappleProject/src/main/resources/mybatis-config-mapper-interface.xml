@@ -26,6 +26,10 @@
 		<typeAlias type="com.itwill.shop.product.ProductOptionDetail" alias="ProductOptionDetail" />
 		<typeAlias type="com.itwill.shop.review.Review" alias="Review" />
 	</typeAliases>
+	<typeHandlers>
+        <typeHandler handler="com.itwill.shop.review.ProductTypeHandler" javaType="com.itwill.shop.product.Product"/>
+        <typeHandler handler="com.itwill.shop.review.CustomerTypeHandler" javaType="com.itwill.shop.customer.Customer"/>
+    </typeHandlers>
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -44,17 +48,17 @@
 		</environment>
 	</environments>
 	<mappers>
-		<!-- <mapper class="com.itwill.shop.mapper.CartMapper" />  -->
+		<mapper class="com.itwill.shop.mapper.CartMapper" />
 		<mapper class="com.itwill.shop.mapper.CouponMapper" />
 		<mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
 		<mapper class="com.itwill.shop.mapper.CustomerMapper" />
-	<!-- 	<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
+		<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
 		<mapper class="com.itwill.shop.mapper.OrdersMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductImageMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductSelectedMapper" />
-		<mapper class="com.itwill.shop.mapper.ReviewMapper" /> -->
+		<mapper class="com.itwill.shop.mapper.ReviewMapper" />
 	</mappers>
 </configuration>

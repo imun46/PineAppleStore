@@ -92,15 +92,26 @@ public class CustomerDaoImpl implements CustomerDao {
 		System.out.println("CustomerDaoImpl : insertCustomerCoupon");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).insertCustomerCoupon(customerCoupons);
+		sqlSession.close();
 		return rowCount;
 	}
 	
 	/********* CustomerCoupon 쿠폰조회(Select) **********/
 	@Override
-	public CustomerCoupons findCoupon(Integer customerNo) throws Exception {
+	public CustomerCoupons findCoupon(Integer customerCouponsNo) throws Exception {
 		System.out.println("CustomerDaoImpl : findCoupon");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		CustomerCoupons customerCoupons = sqlSession.getMapper(CustomerCouponsMapper.class).findCoupon(customerNo);
+		CustomerCoupons customerCoupons = sqlSession.getMapper(CustomerCouponsMapper.class).findCoupon(customerCouponsNo);
+		return customerCoupons;
+	}
+	
+	/********** CustomerCoupon 쿠폰 리스트 조회(Select) **********/
+	@Override
+	public List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception {
+		System.out.println("CustomerDaoImpl : findCouponList");
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<CustomerCoupons> customerCoupons = sqlSession.getMapper(CustomerCouponsMapper.class).findCouponList(customerNo);
+		sqlSession.close();
 		return customerCoupons;
 	}
 	
@@ -110,8 +121,10 @@ public class CustomerDaoImpl implements CustomerDao {
 		System.out.println("CustomerDaoImpl : updateCoupon");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).updateCoupon(customerCouponsNo);
+		sqlSession.close();
 		return rowCount;
 	}
+	
 	
 
 }

@@ -10,11 +10,7 @@
 			select customer_customer_no_seq.nextval from dual
 		</selectKey>
 
-		insert into customer
-		(customer_no,customer_id,customer_password,customer_name,customer_dob,customer_address,
-		customer_gender,customer_phone,customer_email,customer_nickname,customer_joindate)
-		values
-
+		insert into customer values 
 		(#{customerNo},#{customerId},#{customerPassword},#{customerName},#{customerDob},#{customerAddress},
 		#{customerGender},#{customerPhone},#{customerEmail},#{customerNickname},#{customerJoindate})
 	</insert>

@@ -1,6 +1,7 @@
 package com.itwill.shop.customer;
 
 import java.util.Date;
+import java.util.List;
 
 import com.itwill.shop.coupon.Coupon;
 
@@ -41,28 +42,32 @@ public class CustomerTest {
 		
 		/****************************CustomerCoupon**********************************/
 		
-		/********** CustomerCoupon 쿠폰 조회(Select) *********/
-		CustomerCoupons customerCoupons = customerService.findCoupon(4);
-		System.out.println("쿠폰 이름 : " + customerCoupons.getCouponNo().getCouponName());
-		System.out.println("쿠폰 내용 : " + customerCoupons.getCouponNo().getCouponDesc());
-		System.out.println("쿠폰 종료날짜 : " + customerCoupons.getCustomerCouponsEnddate());
-		System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
-		System.out.println("customerCoupons.getCustomerCouponsNo() : " + customerCoupons.getCustomerCouponsNo());
+		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
+		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
+		System.out.println("customerCouponsList : " + customerCouponsList);
+		for (CustomerCoupons customerCoupons : customerCouponsList) {
+			System.out.println("쿠폰 이름 : " + customerCoupons.getCouponNo().getCouponName());
+			System.out.println("쿠폰 내용 : " + customerCoupons.getCouponNo().getCouponDesc());
+			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
+			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
+		}
+		
+		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
 		
 		/********** CustomerCoupon 쿠폰 업데이트(Update) *********/
-		System.out.println(customerService.updateCoupon(customerCoupons.getCustomerCouponsNo()));
+		//System.out.println(customerService.updateCoupon(6));
 		
 		/********** CustomerCoupon 쿠폰 발급(Insert) *********/
-		customerService.insertCustomerCoupon(CustomerCoupons.builder()
-				.customerCouponsStatus("사용가능")
-				.customerCouponsNo(1)
-				.couponNo(new Coupon().builder()
-						.couponNo(5)
-						.build())
-				.customerNo(new Customer().builder()
-						.customerNo(5)
-						.build())
-				.build());
+//		customerService.insertCustomerCoupon(CustomerCoupons.builder()
+//				.customerCouponsStatus("사용가능")
+//				.customerCouponsNo(1)
+//				.couponNo(new Coupon().builder()
+//						.couponNo(5)
+//						.build())
+//				.customerNo(new Customer().builder()
+//						.customerNo(5)
+//						.build())
+//				.build());
 	}
 
 }
