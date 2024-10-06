@@ -12,7 +12,7 @@
 		<collection property="couponList"
 		 resultMap="com.itwill.shop.mapper.CustomerCouponsMapper.customerCouponResultMap" autoMapping="true">
 		</collection>
-		<!--  order 안들어가있음 넣어줘야합니다 -->
+		<!--  order 안들어가있음 넣어줘야합니다 .-->
 	
 
 	</resultMap>
