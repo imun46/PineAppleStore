@@ -6,11 +6,11 @@
 		<id column="customer_no" property="customerNo"/>
 		
 		<collection property="reviewList" 
-		 resultMap="com.itwill.shop.mapper.ReviewMapper.reviewResultMap" >
+		 resultMap="com.itwill.shop.mapper.ReviewMapper.reviewResultMap" autoMapping="true" >
 		</collection>
 		
 		<collection property="couponList"
-		 resultMap="com.itwill.shop.mapper.CustomerCouponsMapper.customerCouponResultMap" >
+		 resultMap="com.itwill.shop.mapper.CustomerCouponsMapper.customerCouponResultMap" autoMapping="true">
 		</collection>
 	
 
@@ -31,10 +31,10 @@
 	<!--  사용자 정보 리스트  -->
 	<select id="findCustomerNoListAll" parameterType="int" resultMap="customerResultMap">
 		select * from customer c 
-		left join review r on c.customer_no = r.customer_no
-		left join orders o on c.customer_no = o.customer_no
-		left join customer_coupons cc on c.customer_no = cc.customer_no
-		left join coupon cp on cc.coupon_no = cp.coupon_no
+		 join review r on c.customer_no = r.customer_no
+		 join orders o on c.customer_no = o.customer_no
+		join customer_coupons cc on c.customer_no = cc.customer_no
+		join coupon cp on cc.coupon_no = cp.coupon_no
 		where c.customer_no = #{customer_no}
 	</select>
 	
