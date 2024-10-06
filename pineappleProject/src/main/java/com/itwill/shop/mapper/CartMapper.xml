@@ -2,9 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CartMapper">
 	<resultMap id="cartMap" type="Cart" autoMapping="true">
-		
-		<collection property="productSelectedList" ofType="ProductSelected" autoMapping="true">
-			<id column="product_selecte_no" property="productSelectedNo"/>
+		<collection property="productSelectedList" ofType="ProductSelected"
+			 resultMap="com.itwill.shop.mapper.ProductSelectedMapper.productSelectedMap">
 		</collection>
 	</resultMap>
 
@@ -76,6 +75,19 @@
 	JOIN product_option po
 	ON pod.product_option_no = po.product_option_no
 	WHERE c.customer_no = #{customerNo}
+</select>
+
+<!-- 카트 한개 선택(회원) -->
+<select id="findByCartNo" parameterType="int" resultMap="cartMap">
+	SELECT c.cart_no, ps.product_selected_no,pod.product_option_detail_no,pod.product_option_detail_name,pod.product_option_detail_no,pod.product_option_detail_price,po.product_no,po.product_option_type
+	FROM cart c
+	JOIN product_selected ps
+	ON c.cart_no = ps.cart_no
+	JOIN product_option_detail pod
+	ON ps.product_option_detail_no = pod.product_option_detail_no
+	JOIN product_option po
+	ON pod.product_option_no = po.product_option_no
+	WHERE c.cart_no= #{cartNo}
 </select>
 
 

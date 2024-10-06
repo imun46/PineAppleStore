@@ -25,12 +25,16 @@ public class OrdersDaoImpl implements OrdersDao {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		OrdersMapper ordersMapper =  sqlSession.getMapper(OrdersMapper.class);
 		
-		ordersMapper.insertOrder(order);
+		int rowCount = ordersMapper.insertOrder(order);
 		for(OrdersItems orderItems:order.getOrderItems()) {
 			ordersMapper.insertOrderItem(orderItems);
 		}
 		sqlSession.close();
-		return 1; 
+		return rowCount; 
+	}
+	
+	public int updateArrivaldate() throws Exception{
+		return 0;
 	}
 	
 	@Override

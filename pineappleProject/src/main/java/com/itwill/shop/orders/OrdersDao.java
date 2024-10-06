@@ -6,6 +6,9 @@ public interface OrdersDao {
 	//주문 등록
 	int insertOrder(Orders order) throws Exception;
 	
+	//도착 일정 업데이트
+	int updateArrivaldate() throws Exception;
+	
 	// [어드민] 주문 전체 리스트(전체)
 	List<Orders> findAll() throws Exception;
 	
