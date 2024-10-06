@@ -65,29 +65,26 @@ public class CartDaoImpl implements CartDao {
 	}
 	
 	@Override
-	public Cart findByCartNo(int cartNo) throws Exception {
+	public List<Cart> findByCartNo(int cartNo) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		Cart cart = sqlSession.getMapper(CartMapper.class).findByCartNo(cartNo);
+		List<Cart> cartList = sqlSession.getMapper(CartMapper.class).findByCartNo(cartNo);
 		sqlSession.close();
-		return cart;
+		return cartList;
 	}
 	
 	@Override
 	public List<Cart> findAll() throws Exception {
-		
-		List<Cart> cartList = new ArrayList<Cart>();
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		CartMapper cartMapper = sqlSession.getMapper(CartMapper.class);
-		cartList=cartMapper.findAll();
+		List<Cart> cartList=cartMapper.findAll();
 		sqlSession.close();
 		return cartList;
 	}
 	@Override
 	public List<Cart> findByCustomerNo(int customerNo) throws Exception {
-		List<Cart> cartList = new ArrayList<Cart>();
 		SqlSession sqlSession= sqlSessionFactory.openSession(true);
 		CartMapper cartMapper = sqlSession.getMapper(CartMapper.class);
-		cartList=cartMapper.findByCustomerNo(customerNo);
+		List<Cart> cartList=cartMapper.findByCustomerNo(customerNo);
 		sqlSession.close();
 		return cartList;
 	}

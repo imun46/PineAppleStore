@@ -40,6 +40,6 @@ public interface CartMapper {
 	List<Cart> findByCustomerNo(int customerNo) throws Exception;
 	
 	//카트 한개 선택(회원)
-	Cart findByCartNo(int cartNo) throws Exception;
+	List<Cart> findByCartNo(int cartNo) throws Exception;
 	
 }
