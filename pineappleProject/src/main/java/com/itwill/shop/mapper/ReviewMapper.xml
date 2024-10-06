@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.ReviewMapper">
-
+	<resultMap id = "reviewResultMap" type ="Review" autoMapping ="true">
+	<id column = "review_no" property="reviewNo"></id>
+	<collection property="productNo" javaType = "Product" autoMapping="true">
+		<id column = "product_no" property="productNo"></id>
+		</collection>
+	<collection property="customerNo" javaType = "Customer" autoMapping="true">	
+		<id column = "customer_no" property="customerNo"></id>
+		</collection>
+	</resultMap>
+	
 	<!-- 리뷰 작성 -->
 	<insert id="insert"
 		parameterType="com.itwill.shop.review.Review">
@@ -11,12 +20,12 @@
 		review_content, review_image, review_rating, customer_no)
 		VALUES(
 		#{reviewNo},
-		#{productNo, typeHandler=com.itwill.shop.review.ProductTypeHandler},
+		#{productNo, <!--  typeHandler=com.itwill.shop.review.ProductTypeHandler-->},
 		#{reviewTitle},
 		#{reviewContent},
 		#{reviewImage},
 		#{reviewRating},
-		#{customerNo, typeHandler=com.itwill.shop.review.CustomerTypeHandler})
+		#{customerNo, <!--  typeHandler=com.itwill.shop.review.CustomerTypeHandler-->})
 	</insert>
 	<!-- 리뷰 수정 -->
 	<update id="update" parameterType="Review">
@@ -36,16 +45,16 @@
 	</delete>
 	<!-- 리뷰리스트(회원) -->
 	<select id="findMyReview" parameterType ="int" resultType="Review">
-		select * from review where product_no=#{productNo,typeHandler=com.itwill.shop.review.ProductTypeHandler}
+		select * from review where product_no=#{productNo,<!--  typeHandler=com.itwill.shop.review.ProductTypeHandler-->}
 	</select>
 	<!-- 리뷰리스트(상품) -->
 	<select id="findProductReview" parameterType ="int" resultType="Review">
-		select * from review where customer_no=#{customerNo,typeHandler=com.itwill.shop.review.CustomerTypeHandler}
+		select * from review where customer_no=#{customerNo,<!--  typeHandler=com.itwill.shop.review.CustomerTypeHandler-->}
 	
 	</select>
 	
 	<!-- 리뷰 한개 보기 -->
-	<select id="findByReview" parameterType="int" resultType="Review">
+	<select id="findByReview" parameterType="int" resultMap="reviewResultMap">
 		select * from review where review_no =#{reviewNo}
 	</select>
 </mapper>
