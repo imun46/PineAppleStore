@@ -1,5 +1,6 @@
 package com.itwill.shop.cart;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -50,24 +51,45 @@ public class CartDaoImpl implements CartDao {
 	}
 	@Override
 	public int deleteByCartNo(int cartNo) throws Exception {
-		
-		return 0;
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int rowCount = sqlSession.getMapper(CartMapper.class).deleteByCartNo(cartNo);
+		sqlSession.close();
+		return rowCount;
 	}
 	@Override
 	public int deleteByCustomerNo(int customerNo) throws Exception {
-		return 0;
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int rowCount = sqlSession.getMapper(CartMapper.class).deleteByCustomerNo(customerNo);
+		sqlSession.close();
+		return rowCount;
 	}
-	@Override
-	public List<Cart> findAll() throws Exception {
-		return null;
-	}
+	
 	@Override
 	public Cart findByCartNo(int cartNo) throws Exception {
-		return null;
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		Cart cart = sqlSession.getMapper(CartMapper.class).findByCartNo(cartNo);
+		sqlSession.close();
+		return cart;
+	}
+	
+	@Override
+	public List<Cart> findAll() throws Exception {
+		
+		List<Cart> cartList = new ArrayList<Cart>();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		CartMapper cartMapper = sqlSession.getMapper(CartMapper.class);
+		cartList=cartMapper.findAll();
+		sqlSession.close();
+		return cartList;
 	}
 	@Override
 	public List<Cart> findByCustomerNo(int customerNo) throws Exception {
-		return null;
+		List<Cart> cartList = new ArrayList<Cart>();
+		SqlSession sqlSession= sqlSessionFactory.openSession(true);
+		CartMapper cartMapper = sqlSession.getMapper(CartMapper.class);
+		cartList=cartMapper.findByCustomerNo(customerNo);
+		sqlSession.close();
+		return cartList;
 	}
 	
 
