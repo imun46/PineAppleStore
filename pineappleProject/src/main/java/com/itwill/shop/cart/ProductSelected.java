@@ -1,5 +1,7 @@
 package com.itwill.shop.cart;
 
+import com.itwill.shop.product.Product;
+import com.itwill.shop.product.ProductOptionDetail;
 import com.itwill.shop.review.Review;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductSelected {
 	private Integer productSelectedNo;//PK
-	private Integer productNo;//FK
-	private Integer productOptionDetailNo;//FK
-	private Integer cartNo;//FK
+	private Product product;//FK
+	private ProductOptionDetail productOptionDetail;//FK
+	private Cart cart;//FK
 }
