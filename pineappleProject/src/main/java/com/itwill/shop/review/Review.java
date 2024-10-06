@@ -33,7 +33,7 @@ public class Review {
 	private List<Review> reviewList;	// 전체 리뷰리스트
 	
 	/*************** FK *********************/
-	private Product productNo;//FK
-	private Customer customerNo;//FK
+	private Product product;//FK
+	private Customer customer;//FK
 	
 }
