@@ -61,10 +61,6 @@
 		<mapper resource="com/itwill/shop/mapper/ProductImageMapper.xml" />
 		<mapper resource="com/itwill/shop/mapper/ProductOptionMapper.xml" />
 		<mapper resource="com/itwill/shop/mapper/ProductOptionDetailMapper.xml" />
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> branch 'nuri' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 	</mappers>
 </configuration>
