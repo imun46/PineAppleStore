@@ -26,9 +26,16 @@ public class OrdersDaoImpl implements OrdersDao {
 		OrdersMapper ordersMapper =  sqlSession.getMapper(OrdersMapper.class);
 		
 		ordersMapper.insertOrder(order);
+<<<<<<< HEAD
 		for(OrdersItems orderItems:order.getOrderItems()) {
 			ordersMapper.insertOrderItem(orderItems);
 		}
+=======
+		for(OrdersItems orderItems:order.getOrderItemList()) {
+			ordersMapper.insertOrderItem(orderItems);
+		}
+		
+>>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 		sqlSession.close();
 		return 1; 
 	}

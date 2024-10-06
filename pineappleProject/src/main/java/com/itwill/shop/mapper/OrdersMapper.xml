@@ -9,6 +9,7 @@
 		</association>
 		
 		<association property="customerCoupons" autoMapping="true" javaType="CustomerCoupons">
+<<<<<<< HEAD
 			<id column="customer_coupons_no" property="customerCouponsNo"/>
 		</association>
 		
@@ -33,6 +34,33 @@
 		values (#{ordersNo}, sysdate, null, #{ordersTotprice}, #{ordersFinalprice}, #{ordersTotqty}, #{ordersAddress}, #{ordersStatus}, #{customer.customerNo}, 
             #{customerCoupons.customerCouponsNo})
 	</insert>
+=======
+			<id column="customerCoupons_no" property="customerCouponsNo"/>
+		</association>
+		
+		<collection property="orderItemList" autoMapping="true" ofType="OrdersItems">
+			<id column="orderItems_no" property="orderItemsNo"/>
+			<association property="orders" javaType="Orders" autoMapping="true">
+				<id column="ordersItems_no" property="ordersItemsNo"/>			
+			</association>
+			<association property="product" javaType="Product" autoMapping="true">
+				<id column="product_no" property="productNo"/>			
+			</association>
+		</collection>
+		
+	</resultMap>
+	
+	<!-- 주문 등록 -->
+	<insert id="insertOrder" parameterType="Orders">
+		<selectKey order="BEFORE" resultType="int" keyProperty="ordersNo">
+			select orders_orders_no_seq.nextval from dual
+		</selectKey>
+		insert into orders(Orders_No, Orders_Date, Orders_Arrivaldate, Orders_Totprice, Orders_Finalprice, Orders_Totqty, Orders_Address, Orders_Status, Customer_No, Customer_Coupons_No) 
+		values (#{ordersNo}, sysdate, Sysdate+3, #{ordersTotprice}, #{ordersFinalprice}, #{ordersTotqty}, #{ordersAddress}, #{ordersStatus}, #{customer.customerNo}, 
+            #{customerCoupons.customerCouponsNo})
+	</insert>
+	
+>>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 	<!-- 주문아이템 등록 -->
 	<insert id="insertOrderItem" parameterType="OrdersItems">
 		<selectKey order="BEFORE" resultType="int" keyProperty="ordersItemsNo">

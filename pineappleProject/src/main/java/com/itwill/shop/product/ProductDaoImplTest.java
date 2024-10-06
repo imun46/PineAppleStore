@@ -1,10 +1,6 @@
-package com.itwill.shop.test;
+package com.itwill.shop.product;
 
 import java.util.List;
-
-import com.itwill.shop.product.Product;
-import com.itwill.shop.product.ProductDao;
-import com.itwill.shop.product.ProductDaoImpl;
 
 public class ProductDaoImplTest {
 	
@@ -44,13 +40,8 @@ public class ProductDaoImplTest {
 //		}
 		
 		
-<<<<<<< HEAD
-////		Product productDetail = productDao.findByNo(1);
-//		System.out.println(productDetail);
-=======
 		Product productDetail = productDao.findByNo(1);
 		System.out.println(productDetail);
->>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 		
 	}
 }

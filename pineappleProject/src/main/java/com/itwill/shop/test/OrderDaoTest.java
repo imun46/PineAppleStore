@@ -29,6 +29,7 @@ public class OrderDaoTest {
 							.ordersTotqty(6)
 							.ordersAddress("주소일걸요")
 							.ordersStatus("배송중")
+<<<<<<< HEAD
 							.orderItems(newOrderItemsList)
 							.customer(Customer.builder().customerNo(1).build())
 							.customerCoupons(CustomerCoupons.builder().customerCouponsNo(1).build())
@@ -44,5 +45,22 @@ public class OrderDaoTest {
 		
 		/************select*************/
 //		System.out.println(ordersDao.findByOrderNo(5));
+=======
+							.orderItemList(newOrderItemsList)
+							.customer(Customer.builder().customerNo(1).build())
+							.customerCoupons(CustomerCoupons.builder().customerCouponsNo(1).build())
+							.build();
+		
+//		System.out.println(ordersDao.insertOrder(newOrder));
+		
+		
+		/************delete*************/
+//		System.out.println(ordersDao.deleteOrder(4));
+		
+//		System.out.println(ordersDao.findAll());
+		
+		/************select*************/
+		System.out.println(ordersDao.findByOrderNo(5));
+>>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 	}
 }
