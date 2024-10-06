@@ -1,5 +1,22 @@
 package com.itwill.shop.mapper;
 
-public class ReviewMapper {
+import java.util.List;
 
-}
+import com.itwill.shop.customer.Customer;
+import com.itwill.shop.product.Product;
+import com.itwill.shop.review.Review;
+
+public interface ReviewMapper {
+
+	int insert(Review review) throws Exception;
+	
+	int update(Review review) throws Exception;
+	
+	int delete(int reviewNo) throws Exception;
+	
+	List<Review> findMyReview(Customer customerNo)throws Exception;
+	
+	List<Review> findProductReview(Product productNo)throws Exception;
+	
+	Review findByReview(Integer reviewNo) throws Exception;
+} 
