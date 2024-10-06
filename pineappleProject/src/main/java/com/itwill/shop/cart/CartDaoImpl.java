@@ -23,7 +23,13 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public int insertCart(Cart cart) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int rowCount = sqlSession.getMapper(CartMapper.class).insertCart(cart);
+		CartMapper cartMapper = sqlSession.getMapper(CartMapper.class);
+		
+		int rowCount = cartMapper.insertCart(cart);
+		for(ProductSelected productSelected : cart.getProductSelectedList()) {
+			cartMapper.insertCart(cart);
+		}
+		
 		sqlSession.close();
 		return rowCount; 
 	}
