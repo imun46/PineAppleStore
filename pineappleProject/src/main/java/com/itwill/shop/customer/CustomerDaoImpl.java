@@ -102,6 +102,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		System.out.println("CustomerDaoImpl : findCoupon");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		CustomerCoupons customerCoupons = sqlSession.getMapper(CustomerCouponsMapper.class).findCoupon(customerCouponsNo);
+		sqlSession.close();
 		return customerCoupons;
 	}
 	
