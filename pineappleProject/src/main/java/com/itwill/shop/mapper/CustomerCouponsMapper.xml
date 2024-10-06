@@ -2,20 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CustomerCouponsMapper">
 	<!-- 쿠폰 조회 resultMap type = CustomerCoupons -->
-	<resultMap id="couponResultMap" type="com.itwill.shop.customer.CustomerCoupons">
-    <result property="customerCouponsNo" column="customer_coupons_no"/>
-    <result property="customerCouponsEnddate" column="customer_coupons_enddate"/>
-    <result property="customerCouponsStatus" column="customer_coupons_status"/>
-    <collection property="couponNo" javaType="com.itwill.shop.coupon.Coupon">
-        <result property="couponName" column="coupon_name"/>
-        <result property="couponDesc" column="coupon_desc"/>
+	<resultMap id="couponResultMap" 
+				type="com.itwill.shop.customer.CustomerCoupons"
+				autoMapping="true">
+    <collection property="couponNo" 
+    			javaType="com.itwill.shop.coupon.Coupon"
+    			autoMapping="true">
+
     </collection>
 </resultMap>
 	
 	<!-- 쿠폰 리스트 조회 -->
 	<select id="findCouponList" parameterType = "Integer" resultMap="couponResultMap">
 	select 
-	*
+	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate, 
+    cu.customer_coupons_status, cu.customer_coupons_no, c.coupon_no
 	from coupon c
 	join customer_coupons cu
 	on c.coupon_no = cu.coupon_no
