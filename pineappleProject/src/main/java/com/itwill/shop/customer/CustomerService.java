@@ -76,12 +76,6 @@ public class CustomerService {
 		return customerDao.updateCoupon(customerCouponsNo);
 	}
 	
-	/*** 사용자 쿠폰 조회 ***/
-	public CustomerCoupons findCoupon(Integer customerNo) throws Exception {
-		System.out.println("CustomerService : findCoupon");
-		return customerDao.findCoupon(customerNo);
-	}
-	
 	/*** 사용자 쿠폰 리스트 조회 ***/
 	public List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception {
 		System.out.println("CustomerService : findCouponList");

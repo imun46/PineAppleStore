@@ -43,14 +43,14 @@ public class CustomerTest {
 		/****************************CustomerCoupon**********************************/
 		
 		/********** CustomerCoupon 쿠폰 조회(Select) *********/
-//		CustomerCoupons customerCoupons = customerService.findCoupon(4);
-//		System.out.println("쿠폰 이름 : " + customerCoupons.getCouponNo().getCouponName());
-//		System.out.println("쿠폰 내용 : " + customerCoupons.getCouponNo().getCouponDesc());
-//		System.out.println("쿠폰 종료날짜 : " + customerCoupons.getCustomerCouponsEnddate());
-//		System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
-		//System.out.println("customerCoupons.getCustomerCouponsNo() : " + customerCoupons.getCustomerCouponsNo());
 		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
 		System.out.println("customerCouponsList : " + customerCouponsList);
+//		for (CustomerCoupons customerCoupons : customerCouponsList) {
+//			System.out.println("쿠폰 이름 : " + customerCoupons.getCouponNo().getCouponName());
+//			System.out.println("쿠폰 내용 : " + customerCoupons.getCouponNo().getCouponDesc());
+//			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
+//			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
+//		}
 		/********** CustomerCoupon 쿠폰 업데이트(Update) *********/
 		//System.out.println(customerService.updateCoupon(customerCoupons.getCustomerCouponsNo()));
 		

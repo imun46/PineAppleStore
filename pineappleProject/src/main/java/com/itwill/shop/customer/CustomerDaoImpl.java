@@ -95,15 +95,6 @@ public class CustomerDaoImpl implements CustomerDao {
 		return rowCount;
 	}
 	
-	/********* CustomerCoupon 쿠폰조회(Select) **********/
-	@Override
-	public CustomerCoupons findCoupon(Integer customerNo) throws Exception {
-		System.out.println("CustomerDaoImpl : findCoupon");
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		CustomerCoupons customerCoupons = sqlSession.getMapper(CustomerCouponsMapper.class).findCoupon(customerNo);
-		return customerCoupons;
-	}
-	
 	/********** CustomerCoupon 쿠폰 리스트 조회(Select) **********/
 	@Override
 	public List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception {

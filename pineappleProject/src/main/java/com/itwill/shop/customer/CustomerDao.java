@@ -34,9 +34,6 @@ public interface CustomerDao {
 	
 	//쿠폰 사용완료로 업데이트
 	int updateCoupon(Integer customerCouponsNo) throws Exception;
-			
-	//사용자 쿠폰 조회
-	CustomerCoupons findCoupon(Integer customerNo) throws Exception;
 	
 	//사용자 쿠폰 리스트 조회
 	List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception;
