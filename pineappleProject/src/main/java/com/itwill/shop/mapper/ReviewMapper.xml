@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-
 <!--  dto 멤버 변수 이름이랑 id 콜럼에 있는 프로퍼티 이름이랑 다르게 하기 -->
 <mapper namespace="com.itwill.shop.mapper.ReviewMapper">
 	 <resultMap id="reviewResultMap" type="Review" autoMapping="true">
@@ -14,6 +12,7 @@
             <!-- 필요에 따라 다른 필드도 추가 -->
         </association>
     </resultMap>
+
 	
 	<!-- 리뷰 작성 -->
 	<insert id="insert"

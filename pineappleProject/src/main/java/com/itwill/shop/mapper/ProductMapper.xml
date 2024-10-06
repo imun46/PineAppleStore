@@ -1,5 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.ProductMapper">
+	<resultMap id="productMapImage" type="Product" autoMapping="true">
+		
+		<collection property="productImageList" ofType="ProductImage">
+			<id column="PRODUCT_IMAGE_NO" property="productImageNo"/>
+		</collection>
+	</resultMap>
+	
+	<resultMap id="productMapDetail" type="Product" autoMapping="true">
+		<id column="PRODUCT_NO" property="productNo"/>
 
+		<collection property="productImageList" ofType="ProductImage"
+					resultMap="com.itwill.shop.mapper.ProductImageMapper.productImageMap">
+		</collection>
+		
+		<collection property="productOptionList" ofType="ProductOption"
+					resultMap="com.itwill.shop.mapper.ProductOptionMapper.productOptionMap">
+		</collection>
+		
+		<collection property="productReviewList" ofType="Review"
+					resultMap="com.itwill.shop.mapper.ReviewMapper.reviewMap">
+			
+			<association property="customer" javaType="Customer"
+						 resultMap="com.itwill.shop.mapper.Customer.customerMap">
+			</association>
+			
+		</collection>
+		
+	</resultMap>
+	
+	
+	
+	<!--전체 제품 리스트 뽑기-->
+	<select id="selectAll" resultMap="productMapImage">
+		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
+       		   pi.product_image_no, pi.product_image_file
+  		  FROM product p
+  		  JOIN product_image pi
+    		ON p.product_no=pi.product_no
+	</select>
+	
+	<!--판매 중인 제품 리스트 뽑기 (품절 제품 포함)-->
+	<select id="selectAllOnSale" resultMap="productMapImage">
+		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
+      		   pi.product_image_no, pi.product_image_file
+  		  FROM product p
+ 		  JOIN product_image pi
+ 		    ON p.product_no=pi.product_no
+ 		 WHERE p.product_status!='inactive'
+	</select>
+	
+	<!--판매 중인 제품 리스트 뽑기 (품절 제품 제외)-->
+	<select id="selectAllOnSaleExclOOS" resultMap="productMapImage">
+		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
+      		   pi.product_image_no, pi.product_image_file
+  		  FROM product p
+ 		  JOIN product_image pi
+ 		    ON p.product_no=pi.product_no
+ 		 WHERE p.product_status='active'
+	</select>
+	
+	<!--판매 중인 제품 리스트 카테고리 검색 (품절 제품 포함)-->
+	<select id="selectByCategoryOnSale" parameterType="String" resultMap="productMapImage">
+		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
+       		   pi.product_image_no, pi.product_image_file
+  		  FROM product p
+ 		  JOIN product_image pi
+ 		    ON p.product_no=pi.product_no
+		 WHERE p.product_status!='inactive'
+ 		   AND p.product_category like '${productCategory}'
+	</select>
+	
+	<!--판매 중인 제품 리스트 이름으로 검색 (품절 제품 포함)-->
+	<select id="selectByNameOnSale" parameterType="String" resultMap="productMapImage">
+		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
+       		   pi.product_image_no, pi.product_image_file
+  		  FROM product p
+ 		  JOIN product_image pi
+ 		    ON p.product_no=pi.product_no
+		 WHERE p.product_status!='inactive'
+ 		   AND p.product_name like '%'||'${productName}'||'%'
+	</select>
+	
+	<!--제품 상세 내용-->
+	<select id="selectByNo" parameterType="int" resultMap="productMapDetail">
+		SELECT p.product_no, p.product_price, p.product_category, p.product_detailpage, p.product_desc, p.product_status,
+       		   pi.product_image_no, pi.product_image_file,
+      		   po.product_option_no, po.product_option_type,
+    		   pod.product_option_detail_no, pod.product_option_detail_name, pod.product_option_detail_price,
+    		   r.review_no, r.review_title, r.review_content, r.review_image, r.review_rating,
+    		   c.customer_no, c.customer_name, c.customer_nickname
+ 		  FROM product p
+		  JOIN product_image pi
+  		    ON p.product_no=pi.product_no
+  		  JOIN product_option po
+   		    ON p.product_no=po.product_no
+  		  JOIN product_option_detail pod
+  		    ON po.product_option_no=pod.product_option_no
+ 		  JOIN review r
+ 		    ON p.product_no=r.product_no
+ 		  JOIN customer c
+ 		    ON r.customer_no=c.customer_no
+		 WHERE p.product_no=${productNo}
+	</select>
+	
+	
+	
 </mapper>

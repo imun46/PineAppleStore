@@ -13,7 +13,6 @@
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 	<typeAliases>
-	<!-- 
 		<typeAlias type="com.itwill.shop.cart.Cart" alias="Cart" />
 		<typeAlias type="com.itwill.shop.cart.ProductSelected" alias="ProductSelected" />
 		<typeAlias type="com.itwill.shop.coupon.Coupon" alias="Coupon" />
@@ -24,7 +23,7 @@
 		<typeAlias type="com.itwill.shop.product.Product" alias="Product" />
 		<typeAlias type="com.itwill.shop.product.ProductImage" alias="ProductImage" />
 		<typeAlias type="com.itwill.shop.product.ProductOption" alias="ProductOption" />
-		<typeAlias type="com.itwill.shop.product.ProductOptionDetail" alias="ProductOptionDetail" /> -->
+		<typeAlias type="com.itwill.shop.product.ProductOptionDetail" alias="ProductOptionDetail" />
 		<typeAlias type="com.itwill.shop.review.Review" alias="Review" />
 	</typeAliases>
 		<environments default="development">
@@ -45,7 +44,6 @@
 		</environment>
 	</environments>
 	<mappers>
-<<<<<<< HEAD
 		   <!-- <mapper class="com.itwill.shop.mapper.CartMapper" />
       <mapper class="com.itwill.shop.mapper.CouponMapper" />
       <mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
@@ -57,20 +55,28 @@
       <mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
       <mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
       <mapper class="com.itwill.shop.mapper.ProductSelectedMapper" /> -->
-		<mapper class="com.itwill.shop.mapper.ReviewMapper" />
-=======
+
+
 		<mapper class="com.itwill.shop.mapper.CartMapper" />
 		<mapper class="com.itwill.shop.mapper.CouponMapper" />
-		<mapper class="com.itwill.shop.mapper.CustomerMapper" />
 		<mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
-		<mapper class="com.itwill.shop.mapper.ReviewMapper" />
+		<mapper class="com.itwill.shop.mapper.CustomerMapper" />
 		<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
 		<mapper class="com.itwill.shop.mapper.OrdersMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductImageMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductSelectedMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductMapper" />
->>>>>>> refs/heads/Bteam/customer
+		<mapper resource="com/itwill/shop/mapper/ReviewMapper.xml" />
+		<mapper resource="com/itwill/shop/mapper/ProductSelectedMapper.xml" />
+		<mapper resource="com/itwill/shop/mapper/ProductImageMapper.xml" />
+		<mapper resource="com/itwill/shop/mapper/ProductOptionMapper.xml" />
+		<mapper resource="com/itwill/shop/mapper/ProductOptionDetailMapper.xml" />
+		<mapper resource="com/itwill/shop/mapper/ProductSelectedMapper.xml" />
+
 	</mappers>
 </configuration>
+<!-- 
+		<mapper class="com.itwill.shop.mapper.ProductSelectedMapper" />
+		<mapper class="com.itwill.shop.mapper.ReviewMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductImageMapper" />
+-->

@@ -30,10 +30,11 @@ public class Orders {
 	private String ordersStatus;		// 주문 주소
 	
 	/*****************List *********************/
-	private List<Orders> orderList;		//주문 전체 리스트
-	
+	private List<OrdersItems> orderItemList;	
 	
 	/**************** FK ********************/
-	private Customer customerNo;//FK
-	private CustomerCoupons customerCouponsNo;//FK
+	private Customer customer;
+	private CustomerCoupons customerCoupons;
+	
+	
 }

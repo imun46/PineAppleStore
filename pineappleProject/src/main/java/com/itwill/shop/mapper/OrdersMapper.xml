@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.OrdersMapper">
+	<resultMap id="ordersMap" type="Orders" autoMapping="true">
+		
+		<association property="customer" autoMapping="true" javaType="Customer">
+		</association>
+		
+		<association property="customerCoupons" autoMapping="true" javaType="CustomerCoupons">
+		</association>
+		
+		<collection property="orderItems" autoMapping="true" ofType="OrdersItems">
+			<association property="orders" javaType="Orders" autoMapping="true">
+			</association>
+			<association property="product" javaType="Product" autoMapping="true">
+			</association>
+		</collection>
+		
+	</resultMap>
+	
+	
+	<!-- 주문 등록 -->
+	<insert id="insertOrder" parameterType="Orders">
+		<selectKey order="BEFORE" resultType="int" keyProperty="ordersNo">
+			select orders_orders_no_seq.nextval from dual
+		</selectKey>
+		insert into orders(Orders_No, Orders_Date, Orders_Arrivaldate, Orders_Totprice, Orders_Finalprice, Orders_Totqty, Orders_Address, Orders_Status, Customer_No, Customer_Coupons_No) 
+		values (#{ordersNo}, sysdate, sysdate+3, #{ordersTotprice}, #{ordersFinalprice}, #{ordersTotqty}, #{ordersAddress}, #{ordersStatus}, #{customer.customerNo}, 
+            #{customerCoupons.customerCouponsNo})
+	</insert>
+	
+	<!-- 주문아이템 등록 -->
+	<insert id="insertOrderItem" parameterType="OrdersItems">
+		<selectKey order="BEFORE" resultType="int" keyProperty="ordersItemsNo">
+			select orders_items_orders_items_no_seq.nextval from dual 
+		</selectKey>
+		 insert into orders_items (orders_items_no, orders_items_price,orders_items_finalprice, orders_items_qty, orders_items_options, orders_no, product_no) 
+		 values (#{ordersItemsNo}, #{ordersItemsprice}, #{ordersItemsFinalprice}, #{ordersItemsQty}, #{ordersItemsOptions},orders_orders_no_seq.currval, #{product.productNo})
+	</insert>
+	
+	<!-- 배송상태 변경(어드민) -->
+	<update id="updateOrderStatus" parameterType="Orders">
+		UPDATE orders
+		SET orders_status = #{ordersStatus}
+		WHERE orders_no = #{ordersNo}
+	</update>
+	
+	<!-- 구매확정(회원) -->
+	<update id="updateOrderConfirm" parameterType="Orders">
+		UPDATE orders
+		SET orders_status = #{ordersStatus}, orders_arrivaldate = sysdate
+		WHERE orders_no = #{ordersNo}
+	</update>
+	
+	<!-- 주문 전체 리스트(어드민) -->
+	<select id="selectAll" resultMap="ordersMap">
+		select orders_no, orders_date, orders_arrivaldate,orders_totprice, orders_finalprice,orders_totqty, orders_address,orders_status,customer_no, customer_coupons_no
+		from orders
+	</select>
+	
+	<!-- 주문+주문아이템 리스트(특정회원) -->
+	<select id="selectByOrderNo" parameterType="int" resultMap="ordersMap">
+		select o.orders_no, o.orders_date,o.orders_finalprice,o.orders_status, 
+			   oi.orders_items_no,oi.orders_items_price,oi.orders_items_finalprice,oi.orders_items_qty,oi.orders_items_options,oi.product_no
+		from orders o
+		join orders_items oi
+		on o.orders_no = oi.orders_no
+		where o.orders_no = #{ordersNo}
+	</select>
 
+	<!-- 주문 1건 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from orders where orders_no = #{ordersNo}
+	</delete>
 </mapper>
