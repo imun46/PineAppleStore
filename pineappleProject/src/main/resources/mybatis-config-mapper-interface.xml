@@ -27,7 +27,7 @@
 		<typeAlias type="com.itwill.shop.product.ProductOptionDetail" alias="ProductOptionDetail" /> -->
 		<typeAlias type="com.itwill.shop.review.Review" alias="Review" />
 	</typeAliases>
-	<environments default="development">
+		<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 
@@ -45,6 +45,7 @@
 		</environment>
 	</environments>
 	<mappers>
+<<<<<<< HEAD
 		   <!-- <mapper class="com.itwill.shop.mapper.CartMapper" />
       <mapper class="com.itwill.shop.mapper.CouponMapper" />
       <mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
@@ -57,5 +58,19 @@
       <mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
       <mapper class="com.itwill.shop.mapper.ProductSelectedMapper" /> -->
 		<mapper class="com.itwill.shop.mapper.ReviewMapper" />
+=======
+		<mapper class="com.itwill.shop.mapper.CartMapper" />
+		<mapper class="com.itwill.shop.mapper.CouponMapper" />
+		<mapper class="com.itwill.shop.mapper.CustomerMapper" />
+		<mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
+		<mapper class="com.itwill.shop.mapper.ReviewMapper" />
+		<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
+		<mapper class="com.itwill.shop.mapper.OrdersMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductImageMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductSelectedMapper" />
+		<mapper class="com.itwill.shop.mapper.ProductMapper" />
+>>>>>>> refs/heads/Bteam/customer
 	</mappers>
 </configuration>

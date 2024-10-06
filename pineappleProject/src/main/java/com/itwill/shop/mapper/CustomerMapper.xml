@@ -2,48 +2,94 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CustomerMapper">
 
+	<resultMap id="customerResultMap" type="Customer" autoMapping="true">
+		<id column="customer_no" property="customerNo"/>
+		
+		<collection property="reviewList" 
+		 resultMap="com.itwill.shop.mapper.ReviewMapper.reviewResultMap" autoMapping="true" >
+		</collection>
+		
+		<collection property="couponList"
+		 resultMap="com.itwill.shop.mapper.CustomerCouponsMapper.customerCouponResultMap" autoMapping="true">
+		</collection>
+		<!--  order 안들어가있음 넣어줘야합니다 -->
+	
+
+	</resultMap>
+
+	<!-- 사용자 등록 -->
+	<insert id="insertCustomer" parameterType="Customer">
+		<selectKey order="BEFORE" resultType="int"
+			keyProperty="customerNo">
+			select customer_customer_no_seq.nextval from dual
+		</selectKey>
+
+		insert into customer values 
+		(#{customerNo},#{customerId},#{customerPassword},#{customerName},#{customerDob},#{customerAddress},
+		#{customerGender},#{customerPhone},#{customerEmail},#{customerNickname},#{customerJoindate})
+	</insert>
+	
+	<!--  사용자 정보 리스트  -->
+	<select id="findCustomerNoListAll" parameterType="int" resultMap="customerResultMap">
+				select * from customer c
+				join review r
+				on c.customer_no = r.customer_no
+				join orders o
+				on c.customer_no = o.customer_no
+				join orders_items oi
+				on o.orders_no = oi.orders_no
+				join product p
+				on oi.product_no = p.product_no
+				join customer_coupons cc
+				on c.customer_no = cc.customer_no
+				join coupon cp
+				on cc.coupon_no = cp.coupon_no 
+				where c.customer_no = #{customer_no}
+	</select>
+	
+	
+	
+
+	<!-- 사용자 아이디로 찾기 -->
+	<select id="findCustomerId" parameterType="String"
+		resultType="Customer">
+		select * from customer where customer_id = #{customer_Id}
+	</select>
 
 
-<!--  사용자 등록 -->
-<insert id="insertUser" parameterType="Customer">
-<selectKey order="BEFORE" resultType="int" keyProperty="customerNo">select customer_customer_no_seq.nextval from dual;   </selectKey>
 
-insert into customer values (customer_no,customer_id,customer_password,customer_name,customer_dob,customer_address,
-							 customer_gender,customer_phone,customer_email,customer_nickname,customer_joindate) 
-VALUES 
-(#{customerNo},#{customerId},#{customerPassword,#{customerName},#{customerDob},#{customerAddress},
-#{customerGender},#{customerPhone},#{customerEmail},#{customerNickname},#{customerJoindate});
- </insert>
- 
- 
- 
- <!--  사용자 아이디로 찾기 -->
- <select id="findCustomer" parameterType="int" resultType="Customer">
- select * from customer where customer_no = #{customer_no];
- </select>
- 
- <!--  사용자 정보 수정 -->
- <update id="updateCustomer" parameterType="Customer">
- update customer set 
-customer_password = #{customerPassword},
-customer_address = #{customerAddress} , 
-customer_gender =#{customerGender}, 
-customer_phone =#{customerPhone} ,
-customer_email = #{customerEmail},
-customer_nickname = #{customerNickname},
-where customer_no = #{customerNo};
- </update>
+	<!-- 사용자 번호로 찾기 -->
+	<select id="findCustomerNo" parameterType="int"
+		resultType="Customer">
+		select * from customer where customer_no = #{customer_no}
+	</select>
 
-<!--  사용자 회원 탈퇴 -->
-<delete id="deleteCustomer" parameterType="int">
-delete from customer where customer_no = #{customer_no};
-</delete>
+	<!-- 사용자 정보 수정 -->
+	<update id="updateCustomer" parameterType="Customer">
+		update customer set
+		customer_password = #{customerPassword},
+		customer_address = #{customerAddress} ,
+		customer_gender = #{customerGender},
+		customer_phone = #{customerPhone} ,
+		customer_email = #{customerEmail},
+		customer_nickname = #{customerNickname}
+		where customer_no = #{customerNo}
+	</update>
 
-<!--  사용자 중복체크 -->
-<select id="countByCustomerId" parameterType="int">
-select  count(*) from customer where customer_no = #{custmoer_no}
-</select>
+	<!-- 사용자 회원 탈퇴 -->
+	<delete id="deleteCustomer" parameterType="int">
+		delete from customer where customer_no = #{customer_no}
+	</delete>
 
+	<!-- 사용자 중복체크 -->
+	<select id="countByCustomerId" parameterType="String">
+		select count(*) from customer where customer_id = #{customer_id}
+	</select>
+
+	<!--(어드민전용) 전체 사용자 리스트 -->
+	<select id="customerList" resultType="Customer">
+		select * from customer
+	</select>
 
 
 </mapper>

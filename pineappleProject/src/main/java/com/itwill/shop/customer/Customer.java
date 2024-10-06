@@ -3,17 +3,23 @@ package com.itwill.shop.customer;
 import java.util.Date;
 import java.util.List;
 
+import com.itwill.shop.cart.Cart;
 import com.itwill.shop.coupon.Coupon;
+import com.itwill.shop.orders.Orders;
+import com.itwill.shop.review.Review;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
 
 public class Customer {
 	/********** PK ************/
@@ -32,8 +38,10 @@ public class Customer {
 	
 	
 	/**************List ****************/
-	// 어드민 사용시
-	private List<Customer> customerList; // 고객 리스트
+	private List<Orders> ordersList; // 고객 주문 내역
+	private List<Review> reviewList; // 고객 리뷰 내역
+	private List<Cart> cartList; // 고객 카트
+	private List<CustomerCoupons> couponList; // 고객 카트
 	
 	
 }

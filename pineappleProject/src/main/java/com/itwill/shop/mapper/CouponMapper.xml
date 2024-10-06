@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CouponMapper">
-
+	<resultMap id="couponResultMap" type="Coupon" autoMapping="true">
+	</resultMap>
+	
+	<!-- 쿠폰 생성(어드민용)  -->
+	<insert id="insertCoupon" parameterType="Coupon">
+		insert into coupon (coupon_no,coupon_name,coupon_id,coupon_discount,coupon_desc) 
+		values (coupon_coupon_no_seq.nextval,#{couponName},#{couponId},#{couponDiscount},#{couponDesc})
+	</insert>
+	
+	<!-- 쿠폰 하나 조회(어드민용) -->
+	<select id="findAdminCoupon" parameterType="Integer" resultMap="couponResultMap">
+	select
+	coupon_no, coupon_name, coupon_id, coupon_discount, coupon_desc
+	from coupon where coupon_no= #{couponNo}
+	</select> 
+	
+	<!-- 쿠폰 리스트 조회(어드민용) -->
+	<select id="findAdminCouponList" resultMap="couponResultMap">
+	select
+	coupon_no, coupon_name, coupon_id, coupon_discount, coupon_desc
+	from coupon
+	</select> 
+	
 </mapper>
