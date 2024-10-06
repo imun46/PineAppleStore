@@ -82,5 +82,9 @@ public class CustomerService {
 		return customerDao.findCouponList(customerNo);
 	}
 	
+	public CustomerCoupons findCoupon(Integer customerCouponsNo) throws Exception {
+		System.out.println("CustomerService : findCoupon");
+		return customerDao.findCoupon(customerCouponsNo);
+	}
 
 }

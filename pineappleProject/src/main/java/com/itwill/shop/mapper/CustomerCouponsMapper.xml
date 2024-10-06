@@ -5,14 +5,17 @@
 	<resultMap id="couponResultMap" 
 				type="CustomerCoupons"
 				autoMapping="true">
+	<id column="CUSTOMER_COUPONS_NO" property="customerCouponsNo"/>	
 	<association property="customer" 
     			javaType="Customer"
     			autoMapping="true">
+    <id column="CUSTOMER_NO" property="customerNo"/>				
     </association>
 	<!-- 리스트 타입 collection 설정 -->
     <association property="coupon" 
     			javaType="Coupon"
     			autoMapping="true">
+    <id column="COUPON_NO" property="couponNo"/>			
     </association>
 </resultMap>
 	
@@ -30,7 +33,7 @@
 	<!-- 쿠폰 조회 -->
  	<select id="findCoupon" parameterType="Integer" resultMap="couponResultMap">
 	select
-  	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate, 
+  	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate,
   	cu.customer_coupons_status, cu.customer_coupons_no, c.coupon_no
 	from coupon c
 	join customer_coupons cu

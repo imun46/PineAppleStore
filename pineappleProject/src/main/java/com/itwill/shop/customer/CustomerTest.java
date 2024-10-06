@@ -53,6 +53,14 @@ public class CustomerTest {
 		}
 		System.out.println(customerCouponsList.size());
 		
+		CustomerCoupons customerCoupons = customerService.findCoupon(1);
+		
+		System.out.println(customerCoupons);
+		System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
+		System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
+		System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
+		System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
+		
 		/********** CustomerCoupon 쿠폰 업데이트(Update) *********/
 		//System.out.println(customerService.updateCoupon(6));
 		
