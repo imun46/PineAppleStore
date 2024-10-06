@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.ProductMapper">
-	
-	
-	<resultMap id="productMapImage" type="Product">
-		<id column="PRODUCT_NO" property="productNo"/>
+
+
+	<resultMap id="productMapImage" type="Product" autoMapping="true">
 		
 		<collection property="productImageList" ofType="ProductImage">
 			<id column="PRODUCT_IMAGE_NO" property="productImageNo"/>
@@ -13,31 +12,13 @@
 	
 	<resultMap id="productMapDetail" type="Product">
 		<id column="PRODUCT_NO" property="productNo"/>
-		
-		<result column="PRODUCT_NAME" property="productName"/>
-		<result column="PRODUCT_PRICE" property="productPrice"/>
-		<result column="PRODUCT_CATEGORY" property="productCategory"/>
-		<result column="PRODUCT_DETAILPAGE" property="productDetailpage"/>
-		<result column="PRODUCT_DESC" property="productDesc"/>
-		<result column="PRODUCT_STATUS" property="productStatus"/>
-		<!--
-		-->
-		
-		<collection property="productImageList" ofType="ProductImage">
-			<id column="PRODUCT_IMAGE_NO" property="productImageNo"/>
-			<result column="PRODUCT_IMAGE_FILE" property="productImageFile"/>
+
+		<collection property="productImageList" ofType="ProductImage"
+					resultMap="com.itwill.shop.mapper.ProductImageMapper.productImageMap">
 		</collection>
 		
-		<collection property="productOptionList" ofType="ProductOption">
-			<id column="PRODUCT_OPTION_NO" property="productOptionNo"/>
-			<result column="PRODUCT_OPTION_TYPE" property="productOptionType"/>
-		
-			<collection property="productOptionDetailList" ofType="ProductOptionDetail">
-				<id column="PRODUCT_OPTION_DETAIL_NO" property="productOptionDetailNo"/>
-				<result column="PRODUCT_OPTION_DETAIL_NAME" property="productOptionDetailName"/>
-				<result column="PRODUCT_OPTION_DETAIL_PRICE" property="productOptionDetailPrice"/>
-			</collection>
-			
+		<collection property="productOptionList" ofType="ProductOption"
+					resultMap="com.itwill.shop.mapper.ProductOptionMapper.productOptionMap">
 		</collection>
 		
 		<!--
