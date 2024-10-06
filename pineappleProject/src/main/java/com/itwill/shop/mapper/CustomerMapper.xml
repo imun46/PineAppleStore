@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CustomerMapper">
+
 	<resultMap id="customerList" type="Customer">
 		<id column="customer_no" property="customerNo"/>
+
 		<association property="reviewList" resultMap="com.itwill.shop.mapper.ReviewMapper.reviewResultMap"></association>
+	
+
 	</resultMap>
 
 	<!-- 사용자 등록 -->
