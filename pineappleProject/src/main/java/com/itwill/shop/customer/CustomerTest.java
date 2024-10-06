@@ -51,8 +51,7 @@ public class CustomerTest {
 			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
 			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
 		}
-		
-		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
+		System.out.println(customerCouponsList.size());
 		
 		/********** CustomerCoupon 쿠폰 업데이트(Update) *********/
 		//System.out.println(customerService.updateCoupon(6));

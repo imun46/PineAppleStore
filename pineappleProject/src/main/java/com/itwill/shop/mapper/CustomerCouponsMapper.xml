@@ -10,10 +10,10 @@
     			autoMapping="true">
     </association>
 	<!-- 리스트 타입 collection 설정 -->
-    <collection property="coupon" 
+    <association property="coupon" 
     			javaType="Coupon"
     			autoMapping="true">
-    </collection>
+    </association>
 </resultMap>
 	
 	<!-- 쿠폰 리스트 조회 -->
