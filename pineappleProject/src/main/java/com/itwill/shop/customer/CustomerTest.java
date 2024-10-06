@@ -45,12 +45,12 @@ public class CustomerTest {
 		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
 		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
 		System.out.println("customerCouponsList : " + customerCouponsList);
-//		for (CustomerCoupons customerCoupons : customerCouponsList) {
-//			System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
-//			System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
-//			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
-//			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
-//		}
+		for (CustomerCoupons customerCoupons : customerCouponsList) {
+			System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
+			System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
+			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
+			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
+		}
 		
 		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
 		
