@@ -7,7 +7,10 @@ public interface CartDao {
 	//create read update delete
 	
 	//카트 등록
-	int insert(Cart cart) throws Exception;
+	int insertCart(Cart cart) throws Exception;
+	
+	//ProductSelected 등록
+	int insertProductSelected(ProductSelected productSelected) throws Exception;
 	
 	//카트 중복 체크
 	int countByProductNo(int cartNo, int productSelectedNo) throws Exception;

@@ -15,7 +15,10 @@ import com.itwill.shop.cart.ProductSelected;
 public interface CartMapper {
 	
 	//카트 등록
-	int insert(Cart cart) throws Exception;
+	int insertCart(Cart cart) throws Exception;
+	
+	//카트 등록
+	int insertProductSelected(ProductSelected productSelected) throws Exception;
 	
 	//카트 중복 체크
 	int countByProductNo(int productNo, int productoptionNo, int productOptionDetailNo, int cartNo) throws Exception;
