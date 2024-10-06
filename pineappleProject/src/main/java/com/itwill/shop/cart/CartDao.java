@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface CartDao {
 	
+	//create read update delete
 	
 	//카트 등록
 	int insert(Cart cart) throws Exception;
@@ -21,6 +22,7 @@ public interface CartDao {
 	int deleteByCartNo(int cartNo) throws Exception;
 	
 	//카트 전체 삭제
+	
 	int deleteByCustomerNo(int customerNo) throws Exception;
 	
 	

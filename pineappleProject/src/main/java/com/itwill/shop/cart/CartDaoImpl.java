@@ -45,33 +45,28 @@ public class CartDaoImpl implements CartDao {
 	public int update(Cart cart) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int rowCount = sqlSession.getMapper(CartMapper.class).update(cart);
-		
-		
-		return 0;
+		sqlSession.close();
+		return rowCount;
 	}
 	@Override
 	public int deleteByCartNo(int cartNo) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 	@Override
 	public int deleteByCustomerNo(int customerNo) throws Exception {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
 	public List<Cart> findAll() throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public Cart findByCartNo(int cartNo) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public List<Cart> findByCustomerNo(int customerNo) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

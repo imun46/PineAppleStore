@@ -38,3 +38,7 @@ SELECT * FROM cart
 
 --카트 리스트(회원)
 SELECT * FROM cart WHERE customerNo=1;
+
+--카트에서 상품 한개 선택 리스트(회원)
+SELECT * FROM cart 
+WHERE customerNo=1;

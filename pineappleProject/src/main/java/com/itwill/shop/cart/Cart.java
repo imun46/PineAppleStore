@@ -22,7 +22,7 @@ public class Cart {
 	private Integer cartQty;	// 수량
 	
 	/*********** FK ************/
-	private Customer customers;
-	private ProductSelected productSelecteds;
+	private Customer customer;
+	private List<ProductSelected> productSelecteds;
 	
 }

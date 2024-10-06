@@ -1,6 +1,5 @@
 package com.itwill.shop.mapper;
 
-<<<<<<< HEAD
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -45,9 +44,5 @@ public interface CartMapper {
 	
 	//카트 한개 선택(회원)
 	Cart findByCartNo(int cartNo) throws Exception;
-
-=======
-public class CartMapper {
 	
->>>>>>> branch 'mjeong' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 }
