@@ -48,7 +48,7 @@
 		<mapper class="com.itwill.shop.mapper.CouponMapper" />
 		<mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
 		<mapper class="com.itwill.shop.mapper.CustomerMapper" />
-	<!-- 	<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
+		<!-- <mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
 		<mapper class="com.itwill.shop.mapper.OrdersMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductImageMapper" />
 		<mapper class="com.itwill.shop.mapper.ProductMapper" />

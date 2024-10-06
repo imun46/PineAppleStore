@@ -42,7 +42,7 @@ public class CustomerTest {
 		
 		/****************************CustomerCoupon**********************************/
 		
-		/********** CustomerCoupon 쿠폰 조회(Select) *********/
+		/********** CustomerCoupon 쿠폰 리스트 조회(Select) 매개변수 : customerNo*********/
 		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
 		System.out.println("customerCouponsList : " + customerCouponsList);
 		for (CustomerCoupons customerCoupons : customerCouponsList) {
@@ -51,8 +51,9 @@ public class CustomerTest {
 			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
 			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
 		}
+		
 		/********** CustomerCoupon 쿠폰 업데이트(Update) *********/
-		//System.out.println(customerService.updateCoupon(customerCoupons.getCustomerCouponsNo()));
+		System.out.println(customerService.updateCoupon(6));
 		
 		/********** CustomerCoupon 쿠폰 발급(Insert) *********/
 //		customerService.insertCustomerCoupon(CustomerCoupons.builder()
