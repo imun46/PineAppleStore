@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CustomerMapper">
-	<resultMap id="" type="">
-		<id column="CUSTOMER_NO" property="customerNo"/>
-		<result column="CUSTOMER_PASSWORD" property="customerPassword"/>
-		<result column="CUSTOMER_NAME" property="customerName"/>
-		<result column="CUSTOMER_PASSWORD" property="customerPassword"/>
-		<result column="CUSTOMER_PASSWORD" property="customerPassword"/>
-		<result column="CUSTOMER_PASSWORD" property="customerPassword"/>
-		<result column="CUSTOMER_PASSWORD" property="customerPassword"/>
+	<resultMap id="customerList" type="Customer">
+		<id column="customer_no" property="customerNo"/>
+		<result column="customer_password" property="customerId"/>
+		<result column="customer_name" property="customerName"/>
+		<result column="customer_password" property="customerPassword"/>
+		<result column="customer_dob" property="customerDob"/>
+		<result column="customer_address" property="customerAddress"/>
+		<result column="customer_gender" property="customerGender"/>
+		<result column="customer_phone" property="customerPhone"/>
+		<result column="customer_email" property="customerEmail"/>
+		<result column="customer_nickname" property="customerNickname"/>
+		<result column="customer_joindate" property="customerJoindate"/>
 		
-		<collection property="reviewList" ></collection>
+		<collection property="" resultMap="" ></collection>
 	</resultMap>
 
 	<!-- 사용자 등록 -->

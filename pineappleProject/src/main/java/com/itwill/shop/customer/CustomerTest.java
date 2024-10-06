@@ -46,8 +46,8 @@ public class CustomerTest {
 		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
 		System.out.println("customerCouponsList : " + customerCouponsList);
 		for (CustomerCoupons customerCoupons : customerCouponsList) {
-			System.out.println("쿠폰 이름 : " + customerCoupons.getCouponNo().getCouponName());
-			System.out.println("쿠폰 내용 : " + customerCoupons.getCouponNo().getCouponDesc());
+			System.out.println("쿠폰 이름 : " + customerCoupons.getCoupon().getCouponName());
+			System.out.println("쿠폰 내용 : " + customerCoupons.getCoupon().getCouponDesc());
 			System.out.println("쿠폰 상태 : " + customerCoupons.getCustomerCouponsStatus());
 			System.out.println("쿠폰 종료 날짜 : " + customerCoupons.getCustomerCouponsEnddate());
 		}
