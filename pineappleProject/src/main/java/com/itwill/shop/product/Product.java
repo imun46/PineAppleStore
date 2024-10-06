@@ -16,9 +16,14 @@ import lombok.NoArgsConstructor;
 
 public class Product {
 	
+<<<<<<< HEAD
 
 	/*********** PK ***************/
 
+=======
+	//dd
+	/****** PK ***************/
+>>>>>>> branch 'nuri' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 	private Integer productNo;			// 제품 번호
 	
 	private String productName;			// 제품 이름
