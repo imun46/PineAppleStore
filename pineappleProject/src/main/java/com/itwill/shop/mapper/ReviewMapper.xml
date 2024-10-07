@@ -56,6 +56,7 @@
 		review_content=#{reviewContent},
 		review_image=#{reviewImage},
 		review_rating=#{reviewRating},
+		review_date=#{reviewDate},
 		product_no=#{product.productNo},
 		customer_no=#{customer.customerNo}
 		where review_no=#{reviewNo}

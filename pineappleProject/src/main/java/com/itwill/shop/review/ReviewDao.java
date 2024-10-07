@@ -16,7 +16,6 @@ public interface ReviewDao {
 	//리뷰 삭제
 	int delete(Integer reviewNo) throws Exception;
 	
-	//자기가 쓴 리뷰 리스트 
 	//자기가 쓴 리뷰 리스트
 	List<Review> findMyReview(Customer customerNo) throws Exception;
 	

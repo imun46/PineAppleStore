@@ -1,5 +1,6 @@
 package com.itwill.shop.review;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Review {
 	private String reviewContent;		// 리뷰 내용
 	private String reviewImage;			// 리뷰 이미지
 	private Integer reviewRating;		// 리뷰 별점
-	
+	private Date reviewDate;
 	/*************** FK *********************/
 	private Product product;//FK
 	private Customer customer;//FK

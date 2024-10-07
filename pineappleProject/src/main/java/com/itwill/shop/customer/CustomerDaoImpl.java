@@ -72,7 +72,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public Customer findCustomerNoListAll(Integer customerNo) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		Customer customer  = sqlSession.getMapper(CustomerMapper.class).findCustomerNoListAll(customerNo);
-	return customer;
+		return customer;
 	}
 
 	@Override
