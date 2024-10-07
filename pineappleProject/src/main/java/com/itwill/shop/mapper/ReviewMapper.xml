@@ -10,6 +10,7 @@
 		<result column="REVIEW_CONTENT" property="reviewContent"/>
 		<result column="REVIEW_IMAGE" property="reviewImage"/>
 		<result column="REVIEW_RATING" property="reviewRating"/>
+		<result column="REVIEW_DATE" property="reviewDate"/>
 		
 		<association property="product" javaType="Product"
 					 resultMap="com.itwill.shop.mapper.ProductMapper.productMapBasic"></association>
@@ -23,6 +24,7 @@
 		<result column="REVIEW_CONTENT" property="reviewContent"/>
 		<result column="REVIEW_IMAGE" property="reviewImage"/>
 		<result column="REVIEW_RATING" property="reviewRating"/>
+		<result column="REVIEW_DATE" property="reviewDate"/>
 		
 		<association property="customer" javaType="Customer"
 					 resultMap="com.itwill.shop.mapper.CustomerMapper.customerMapBasic"></association>
@@ -58,6 +60,7 @@
 		review_rating=#{reviewRating},
 		review_date=#{reviewDate},
 		product_no=#{product.productNo},
+		review_date=sysdate,
 		customer_no=#{customer.customerNo}
 		where review_no=#{reviewNo}
 		
