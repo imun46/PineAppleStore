@@ -1,6 +1,6 @@
 <web-app>
     <welcome-file-list>
         <!-- Forward root URL requests to /main.jsp -->
-        <welcome-file>forward:/WEB-INF/jsp/index.jsp</welcome-file>
+        <welcome-file>forward:/jsp/customer_write_form.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
