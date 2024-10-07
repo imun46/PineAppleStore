@@ -117,15 +117,15 @@
     		   r.review_no, r.review_title, r.review_content, r.review_image, r.review_rating,
     		   c.customer_no, c.customer_id, c.customer_nickname
  		  FROM product p
-		  JOIN product_image pi
+		  LEFT JOIN product_image pi
   		    ON p.product_no=pi.product_no
-  		  JOIN product_option po
+  		  LEFT JOIN product_option po
    		    ON p.product_no=po.product_no
-  		  JOIN product_option_detail pod
+  		  LEFT JOIN product_option_detail pod
   		    ON po.product_option_no=pod.product_option_no
- 		  JOIN review r
+ 		  LEFT JOIN review r
  		    ON p.product_no=r.product_no
- 		  JOIN customer c
+ 		  LEFT JOIN customer c
  		    ON r.customer_no=c.customer_no
 		 WHERE p.product_no=${productNo}
 	</select>
