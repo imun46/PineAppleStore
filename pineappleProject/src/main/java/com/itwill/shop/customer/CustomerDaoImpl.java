@@ -115,6 +115,15 @@ public class CustomerDaoImpl implements CustomerDao {
 		return countByCouponId;
 	}
 	
+	/********** 일련번호 입력 시 쿠폰 정보 가져옴 **********/
+	@Override
+	public Coupon getCouponId(String couponId) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		Coupon getCouponId = sqlSession.getMapper(CustomerCouponsMapper.class).getCouponId(couponId);
+		sqlSession.close();
+		return getCouponId;
+	}
+	
 	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
 	@Override
 	public int insertCustomerCouponById(CustomerCoupons customerCoupons) throws Exception {
