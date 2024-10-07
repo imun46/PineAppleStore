@@ -1,17 +1,29 @@
 package com.itwill.pineappleTest;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.itwill.shop.customer.Customer;
 import com.itwill.shop.orders.Orders;
 import com.itwill.shop.orders.OrdersDao;
 import com.itwill.shop.orders.OrdersDaoImpl;
+import com.itwill.shop.orders.OrdersItems;
 import com.itwill.shop.orders.OrdersService;
+import com.itwill.shop.product.Product;
 
 public class OrderServiceTest {
 	public static void main(String[] args) throws Exception {
 		OrdersService ordersService = new OrdersService();
 		
+		List<OrdersItems> ordersItemsList = new ArrayList<>();
+		ordersItemsList.add(OrdersItems.builder()
+										.ordersItemsprice(30000)
+										.ordersItemsFinalprice(50000)
+										.ordersItemsQty(3)
+										.ordersItemsOptions("desc")
+										.product(Product.builder().productNo(3).build())
+								.build());
 		
 		/* 주문 바로 등록 출력 */
 //		Orders newOrder = Orders.builder()
@@ -21,18 +33,21 @@ public class OrderServiceTest {
 //						.ordersAddress("서울시 강남구")
 //						.ordersStatus("배송중")
 //						.customer(Customer.builder().customerNo(2).build())
+//						.ordersItemsList(ordersItemsList)
 //						.build();
 //		System.out.println("주문등록 완료 : " + ordersService.insertOrder(newOrder));
 		
-		/* 주문 바로 등록 출력 */
+		/* 주문 카트 등록 출력 */
 //		Orders cartOrder = Orders.builder()
 //				.ordersTotprice(50000)
 //				.ordersFinalprice(45000)
 //				.ordersTotqty(5)
 //				.ordersAddress("서울시 강남구")
 //				.ordersStatus("배송중")
+//				.customer(Customer.builder().customerNo(3).build())
+//				.ordersItemsList(ordersItemsList)
 //				.build();
-//		System.out.println("주문등록 완료 : " + ordersService.insertOrder(cartOrder));
+//		System.out.println("주문등록 완료 : " + ordersService.insertOrderCart(cartOrder));
 		
 		
 		/*배송 상태 변경*/

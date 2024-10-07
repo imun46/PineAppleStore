@@ -8,6 +8,7 @@ import com.itwill.shop.customer.Customer;
 import com.itwill.shop.customer.CustomerCoupons;
 import com.itwill.shop.customer.CustomerService;
 import com.itwill.shop.orders.Orders;
+import com.itwill.shop.orders.OrdersItems;
 import com.itwill.shop.review.Review;
 
 public class CustomerTest {
@@ -42,7 +43,7 @@ public class CustomerTest {
 //		System.out.println(customerService.findCustomerNo(2));
 		
 //		/*********** select all *******************/
-		Customer customer = customerService.findCustomerNoListAll(2);
+		Customer customer = customerService.findCustomerNoListAll(1);
 		System.out.println(customer.getCustomerNo());
 		System.out.println(customer.getCustomerId());
 		System.out.println(customer.getCustomerPassword());
@@ -95,9 +96,11 @@ public class CustomerTest {
 				System.out.println(orderList.getOrdersArrivaldate());
 				System.out.println(orderList.getOrdersDate());
 				System.out.println(orderList.getOrdersFinalprice());
-				
-			
-				
+				for (OrdersItems ordersItems : orderList.getOrdersItemsList()) {
+					System.out.println("******* 오더 아이템 정보******");
+					System.out.println(ordersItems.getOrdersItemsNo());
+					System.out.println(ordersItems.getOrdersItemsOptions());
+				}
 				
 			}
 			

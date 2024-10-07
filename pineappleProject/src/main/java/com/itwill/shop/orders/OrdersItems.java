@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class OrdersItems {
 	/****PK****/
 	private Integer ordersItemsNo;
-	private Integer ordersItemsPrice;
+	private Integer ordersItemsprice;
 	private Integer ordersItemsFinalprice;
 	private Integer ordersItemsQty;
 	private String ordersItemsOptions;
