@@ -17,6 +17,8 @@ public interface CustomerCouponsMapper {
 		/***** 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) *****/
 		int insertCustomerCouponById(CustomerCoupons customerCoupons) throws Exception;
 		
+		/********** 일련번호 입력 시 쿠폰 정보 가져옴 **********/
+		Coupon getCouponId(String couponId) throws Exception;
 		
 		/***** 쿠폰 사용완료 업데이트 *****/
 		int updateCoupon(Integer customerCouponsNo) throws Exception;

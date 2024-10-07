@@ -31,7 +31,7 @@ public class ReviewService {
 		return reviewDao.findProductReview(productNo);
 	}
 	//리뷰 하나보기
-	Review findByReviewNo(Integer reviewNo)throws Exception{
+	public Review findByReviewNo(Integer reviewNo)throws Exception{
 		return reviewDao.findByReview(reviewNo);
 	}
 } 

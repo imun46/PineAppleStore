@@ -70,7 +70,6 @@ CREATE TABLE review(
 		review_content                		VARCHAR2(1000)		 NULL ,
 		review_image                  		VARCHAR2(200)		 NULL ,
 		review_rating                 		NUMBER(1)		 NOT NULL,
-		review_date                   		DATE		 DEFAULT sysdate		 NOT NULL,
 		product_no                    		NUMBER(10)		 NOT NULL,
 		customer_no                   		NUMBER(10)		 NOT NULL
 );
@@ -248,3 +247,4 @@ ALTER TABLE product_selected ADD CONSTRAINT IDX_product_selected_PK PRIMARY KEY 
 ALTER TABLE product_selected ADD CONSTRAINT IDX_product_selected_FK0 FOREIGN KEY (product_no) REFERENCES product (product_no) ON DELETE CASCADE;
 ALTER TABLE product_selected ADD CONSTRAINT IDX_product_selected_FK1 FOREIGN KEY (product_option_detail_no) REFERENCES product_option_detail (product_option_detail_no) ON DELETE CASCADE;
 ALTER TABLE product_selected ADD CONSTRAINT IDX_product_selected_FK2 FOREIGN KEY (cart_no) REFERENCES cart (cart_no) ON DELETE CASCADE;
+
