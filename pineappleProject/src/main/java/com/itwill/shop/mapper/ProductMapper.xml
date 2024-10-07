@@ -117,7 +117,7 @@
     		   r.review_no, r.review_title, r.review_content, r.review_image, r.review_rating,
     		   c.customer_no, c.customer_id, c.customer_nickname
  		  FROM product p
-		 LEFT JOIN product_image pi
+		  LEFT JOIN product_image pi
   		    ON p.product_no=pi.product_no
   		  LEFT JOIN product_option po
    		    ON p.product_no=po.product_no
