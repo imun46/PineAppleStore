@@ -1,3 +1,4 @@
+<%@page import="com.itwill.shop.customer.CustomerCoupons"%>
 <%@page import="com.itwill.shop.customer.Customer"%>
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +7,8 @@
 	String customerId = "IDEX1";
 	CustomerService customerService = new CustomerService();
 	Customer loginCustomer = customerService.findCustomerId(customerId);
+	
+	customerService.findCouponList(loginCustomer.getCustomerNo());
 %>
 <!DOCTYPE html>
 <html>
@@ -14,8 +17,6 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 		function customerModifyAction() {
-			
-			
 			document.f.action = "modify_action.jsp";
 			document.f.method='POST';
 			document.f.submit();
@@ -103,6 +104,7 @@
 			<%=loginCustomer.getCustomerJoindate()%>
 			</td>
 		</tr>
+		
 		</table>
 	</form>
 		<table width=590 border=0 cellpadding=0 cellspacing=0>
