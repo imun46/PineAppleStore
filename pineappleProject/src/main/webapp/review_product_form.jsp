@@ -26,15 +26,12 @@
             margin: 0;
             padding: 20px;
         }
-        .review-container {        
-   			display: block; 
-   			text-decoration: none;
+        .review-container {
             background: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin: 20px 0;
-            color: inherit;
         }
         .review-title {
             font-size: 24px;
@@ -60,6 +57,7 @@
     <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
 <<<<<<< Upstream, based on origin/mj
+<<<<<<< Upstream, based on origin/mj
     <div class="review-container">
 <<<<<<< Upstream, based on origin/mj
    <a href="review_detail.jsp" class="review-container">
@@ -84,6 +82,25 @@
         </div>
         <div class="review-author">
         	작성자
+=======
+    <div class="review-container">
+        <h2 class="review-title"><%=review.getReviewTitle() %></h2>
+        
+        <%
+        int rating= review.getReviewRating(); 
+        for(int i=0;i<5;i++){
+        %>
+        <span class="review-rating">
+        <%= (i < rating) ? "★" : "☆" %>
+        
+        </span>
+        <%} %>
+        <div class="review-body">
+            <%=review.getReviewContent() %>
+        </div>
+        <div class="review-author">
+        	<%= review.getProduct().getProductNo()%>
+>>>>>>> a1283a8 Merge branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
         </div>
     </div>
 <%} %>
