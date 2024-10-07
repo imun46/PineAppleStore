@@ -18,13 +18,13 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                  <li class="nav-item"><a class="nav-link" aria-current="page" href="main.jsp">Home</a></li>
-                  <li class="nav-item"><a class="nav-link" href="product_list.jsp?category=phone">Phone</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#!">Laptop</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#!">Pad</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#!">Watch</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#!">EarPhone</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#!">악세사리</a></li>
+                  <li class="nav-item"><a class="nav-link" aria-current="page" href="index.jsp">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="menu_phone.jsp">Phone</a></li>
+                  <li class="nav-item"><a class="nav-link" href="menu_laptop.jsp">Laptop</a></li>
+                  <li class="nav-item"><a class="nav-link" href="menu_pad.jsp">Pad</a></li>
+                  <li class="nav-item"><a class="nav-link" href="menu_watch.jsp">Watch</a></li>
+                  <li class="nav-item"><a class="nav-link" href="menu_earphone.jsp">EarPhone</a></li>
+                  <li class="nav-item"><a class="nav-link" href="menu_accessory.jsp">Accessory</a></li>
               </ul>
               <%if(sCustomerId== null) {%>
               <form class="d-flex">
