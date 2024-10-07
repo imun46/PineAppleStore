@@ -9,6 +9,38 @@ public class CustomerTest {
 
 	public static void main(String[] args) throws Exception {
 		CustomerService customerService = new CustomerService();
+		String customerNo = "1";
+		Customer loginCustomer = customerService.findCustomerId("IDEX1");
+		System.out.println(loginCustomer);
+		
+		
+		String password = "1111";
+		String address = "주소주소";
+		String gender = "M";
+		String phone = "111-1111";
+		String email = "수정@수정수정";
+		String nickname = "수정";
+		
+		
+		int rowCount = customerService.updateCustomerId(Customer.builder()
+				.customerNo(1)
+				.customerPassword(password)
+				.customerAddress(address)
+				.customerGender(gender)
+				.customerPhone(phone)
+				.customerEmail(email)
+				.customerNickname(nickname)
+				.build());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//System.out.println(customerService.findCoupon(1));
 		
 //		Coupon coupon = Coupon.builder()
@@ -21,14 +53,14 @@ public class CustomerTest {
 //		System.out.println("coupon.getCouponNo() : " + coupon.getCouponNo());
 		
 		/********** 일련번호 입력 시 CustomerCoupon 쿠폰 발급(Insert) *********/
-		customerService.insertCustomerCouponById("A123456", 
-				CustomerCoupons.builder()
-								.customer(new Customer().builder()
-									.customerNo(2)
-									.build())
-								.build());
-		
-		
+//		customerService.insertCustomerCouponById("A123456", 
+//				CustomerCoupons.builder()
+//								.customer(new Customer().builder()
+//									.customerNo(2)
+//									.build())
+//								.build());
+//		
+//		
 		
 		/****************************CustomerCoupon**********************************/
 		
