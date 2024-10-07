@@ -1,5 +1,7 @@
 package com.itwill.shop.test;
 
+import java.util.List;
+
 import com.itwill.shop.coupon.Coupon;
 import com.itwill.shop.customer.Customer;
 import com.itwill.shop.customer.CustomerCoupons;
@@ -8,30 +10,45 @@ import com.itwill.shop.customer.CustomerService;
 public class CustomerTest {
 
 	public static void main(String[] args) throws Exception {
+//		CustomerService customerService = new CustomerService();
+//		String customerNo = "1";
+//		Customer loginCustomer = customerService.findCustomerId("IDEX1");
+//		System.out.println(loginCustomer);
+		String customerId = "IDEX1";
 		CustomerService customerService = new CustomerService();
-		String customerNo = "1";
-		Customer loginCustomer = customerService.findCustomerId("IDEX1");
-		System.out.println(loginCustomer);
+		Customer loginCustomer = customerService.findCustomerId(customerId);
 		
 		
-		String password = "1111";
-		String address = "주소주소";
-		String gender = "M";
-		String phone = "111-1111";
-		String email = "수정@수정수정";
-		String nickname = "수정";
+		
+		List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());
+		System.out.println(customerCoupons);
+		
+		for (CustomerCoupons customerCoupon : customerCoupons) {
+			System.out.println("쿠폰 이름 : " + customerCoupon.getCoupon().getCouponName());
+			System.out.println("쿠폰 내용 : " + customerCoupon.getCoupon().getCouponDesc());
+			System.out.println("쿠폰 종료 날짜 : " + customerCoupon.getCustomerCouponsEnddate());
+			System.out.println("쿠폰 상태: " + customerCoupon.getCustomerCouponsStatus());
+		}
 		
 		
-		int rowCount = customerService.updateCustomerId(Customer.builder()
-				.customerNo(1)
-				.customerPassword(password)
-				.customerAddress(address)
-				.customerGender(gender)
-				.customerPhone(phone)
-				.customerEmail(email)
-				.customerNickname(nickname)
-				.build());
-		
+//		String password = "1111";
+//		String address = "주소주소";
+//		String gender = "M";
+//		String phone = "111-1111";
+//		String email = "수정@수정수정";
+//		String nickname = "수정";
+//		
+//		
+//		int rowCount = customerService.updateCustomerId(Customer.builder()
+//				.customerNo(1)
+//				.customerPassword(password)
+//				.customerAddress(address)
+//				.customerGender(gender)
+//				.customerPhone(phone)
+//				.customerEmail(email)
+//				.customerNickname(nickname)
+//				.build());
+//		
 		
 		
 		
