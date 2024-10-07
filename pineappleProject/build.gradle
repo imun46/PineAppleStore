@@ -38,10 +38,6 @@ dependencies {
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' 
 
     /******* my batis 3 설정 *************/
-
-    
-    /******** mybatis설정 **************/
-
     implementation 'org.mybatis:mybatis:3.5.15'
 }
 
