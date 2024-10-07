@@ -26,6 +26,7 @@ public class OrderServiceTest {
 								.build());
 		
 		/* 주문 바로 등록 출력 */
+
 //		Orders newOrder = Orders.builder()
 //						.ordersTotprice(50000)
 //						.ordersFinalprice(45000)
@@ -36,7 +37,8 @@ public class OrderServiceTest {
 //						.ordersItemsList(ordersItemsList)
 //						.build();
 //		System.out.println("주문등록 완료 : " + ordersService.insertOrder(newOrder));
-		
+
+	
 		/* 주문 카트 등록 출력 */
 //		Orders cartOrder = Orders.builder()
 //				.ordersTotprice(50000)
@@ -48,6 +50,7 @@ public class OrderServiceTest {
 //				.ordersItemsList(ordersItemsList)
 //				.build();
 //		System.out.println("주문등록 완료 : " + ordersService.insertOrderCart(cartOrder));
+
 		
 		
 		/*배송 상태 변경*/

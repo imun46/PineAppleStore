@@ -7,7 +7,7 @@
 	String sCustomerId=(String)session.getAttribute("sCustomerId");
 	if(sCustomerId!=null){
 		CartService cartService = new CartService();
-		//cart_item_count = cartService.findByCustomerNo(customerNo).size();
+		//cart_item_count = cartService.findByCustomerNo(customerNo);
 	}
 	
 %>		
