@@ -27,7 +27,7 @@ public class CartDaoImpl implements CartDao {
 		
 		int rowCount = cartMapper.insertCart(cart);
 		for(ProductSelected productSelected : cart.getProductSelectedList()) {
-			cartMapper.insertCart(cart);
+			cartMapper.insertProductSelected(productSelected);
 		}
 		
 		sqlSession.close();

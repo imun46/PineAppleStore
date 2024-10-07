@@ -99,6 +99,8 @@ public class CustomerService {
 	public int insertCustomerCouponById(String couponId, CustomerCoupons customerCoupons) throws Exception {
 		System.out.println("CustomerService : insertCouponById");
 		if(customerDao.countByCouponId(couponId) == 1) {
+			Coupon coupon = customerDao.getCouponId(couponId);
+			customerCoupons.setCoupon(coupon);
 			return customerDao.insertCustomerCouponById(customerCoupons);
 		} else {
 			System.out.println("존재하지 않는 쿠폰번호입니다.");

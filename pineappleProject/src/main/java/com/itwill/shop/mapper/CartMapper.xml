@@ -7,6 +7,8 @@
 		<id column="CART_NO" property="cartNo"/>
 		<result column="CART_QTY" property="cartQty"/>
 		
+		
+		
 		<collection property="productSelectedList" ofType="ProductSelected"
 					resultMap="com.itwill.shop.mapper.ProductSelectedMapper.productSelectedMap"></collection>
 	
@@ -21,7 +23,7 @@
 		SELECT cart_cart_no_seq.nextval FROM DUAL
 	</selectKey>
 	INSERT INTO cart 
-	VALUES (#{cartNo}, #{cartQty}, #{customerNo})
+	VALUES (#{cartNo}, #{cartQty}, #{customer.customerNo})
 </insert>
 
 <!-- ProductSelected 등록 -->
@@ -30,7 +32,7 @@
 		SELECT product_selected_product_selected_no_seq.nextval FROM DUAL
 	</selectKey>
 	INSERT INTO product_selected 
-	VALUES (#{productSelectedNo},#{productNo},#{productOptionDetailNo}#{cartNo})
+	VALUES (#{productSelectedNo},#{product.productNo},#{productOptionDetail.productOptionDetailNo},cart_cart_no_seq.currval)
 </insert>
 
 <!-- 카트 중복 체크(옵션) -->
