@@ -14,25 +14,25 @@ public class OrderServiceTest {
 		
 		
 		/* 주문 바로 등록 출력 */
-//		Orders newOrder = Orders.builder()
-//						.ordersTotprice(50000)
-//						.ordersFinalprice(45000)
-//						.ordersTotqty(5)
-//						.ordersAddress("서울시 강남구")
-//						.ordersStatus("배송중")
-//						.customer(Customer.builder().customerNo(2).build())
-//						.build();
-//		System.out.println("주문등록 완료 : " + ordersService.insertOrder(newOrder));
+		Orders newOrder = Orders.builder()
+						.ordersTotprice(50000)
+						.ordersFinalprice(45000)
+						.ordersTotqty(5)
+						.ordersAddress("서울시 강남구")
+						.ordersStatus("배송중")
+						.customer(Customer.builder().customerNo(2).build())
+						.build();
+		System.out.println("주문등록 완료 : " + ordersService.insertOrder(newOrder));
 		
 		/* 주문 바로 등록 출력 */
-//		Orders cartOrder = Orders.builder()
-//				.ordersTotprice(50000)
-//				.ordersFinalprice(45000)
-//				.ordersTotqty(5)
-//				.ordersAddress("서울시 강남구")
-//				.ordersStatus("배송중")
-//				.build();
-//		System.out.println("주문등록 완료 : " + ordersService.insertOrder(cartOrder));
+		Orders cartOrder = Orders.builder()
+				.ordersTotprice(50000)
+				.ordersFinalprice(45000)
+				.ordersTotqty(5)
+				.ordersAddress("서울시 강남구")
+				.ordersStatus("배송중")
+				.build();
+		System.out.println("주문등록 완료 : " + ordersService.insertOrder(cartOrder));
 		
 		
 		/*배송 상태 변경*/

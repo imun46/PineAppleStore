@@ -69,14 +69,14 @@ public class CartServiceTest {
 //		/* 카트 전체 삭제 */
 //		System.out.println("전체 삭제 :" + cartDao.deleteByCustomerNo(1));
 //		
-//		/* 카트 리스트(어드민)*/
+		/* 카트 리스트(어드민)*/
 //		List<Cart> cartList = cartDao.findAll();
 //		for (Cart cart : cartList) {
 //			System.out.println(cart);
 //		}
 
-		/* 카트 리스트(회원)*/ //확인 필요
-//		List<Cart> cartListByNo = cartDao.findByCartNo(4);
+//		/* 카트 리스트(회원)*/ //확인 필요
+//		List<Cart> cartListByNo = cartDao.findByCartNo(1);
 //		for (Cart cart : cartListByNo) {
 //			System.out.println(cart.getCustomer());
 //			for (ProductSelected productSelected : cart.getProductSelectedList()) {
