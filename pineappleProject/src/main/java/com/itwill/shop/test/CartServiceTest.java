@@ -2,6 +2,7 @@ package com.itwill.shop.test;
 
 import com.itwill.shop.cart.CartDao;
 import com.itwill.shop.cart.CartDaoImpl;
+import com.itwill.shop.cart.CartService;
 
 public class CartServiceTest {
 	public static void main(String[] args) throws Exception {
