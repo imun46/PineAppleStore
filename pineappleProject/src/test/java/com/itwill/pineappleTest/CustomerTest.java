@@ -8,6 +8,7 @@ import com.itwill.shop.customer.Customer;
 import com.itwill.shop.customer.CustomerCoupons;
 import com.itwill.shop.customer.CustomerService;
 import com.itwill.shop.orders.Orders;
+import com.itwill.shop.orders.OrdersItems;
 import com.itwill.shop.review.Review;
 import com.itwill.shop.review.ReviewService;
 
@@ -15,6 +16,7 @@ public class CustomerTest {
 
 	public static void main(String[] args) throws Exception {
 		CustomerService customerService = new CustomerService();
+
 		ReviewService reviewService = new ReviewService();
 		 int customerNo = 1;
 //		 Customer customer = customerService.findCustomerNoListAll(customerNo);
@@ -57,6 +59,7 @@ public class CustomerTest {
 ////		
 ////		/*********** select ********************/
 ////		System.out.println(customerService.findCustomerNo(2));
+
 //		
 ////		/*********** select all *******************/
 //		Customer customer = customerService.findCustomerNoListAll(2);

@@ -60,17 +60,17 @@
 	<!--  사용자 정보 리스트  -->
 	<select id="findCustomerNoListAll" parameterType="int" resultMap="customerMapDetail">
 				select * from customer c
-				join review r
+				left join review r
 				on c.customer_no = r.customer_no
-				join orders o
+				left join orders o
 				on c.customer_no = o.customer_no
-				join orders_items oi
+				left join orders_items oi
 				on o.orders_no = oi.orders_no
-				join product p
+				left join product p
 				on oi.product_no = p.product_no
-				join customer_coupons cc
+				left join customer_coupons cc
 				on c.customer_no = cc.customer_no
-				join coupon cp
+				left join coupon cp
 				on cc.coupon_no = cp.coupon_no 
 				where c.customer_no = #{customer_no}
 	</select>
