@@ -40,7 +40,7 @@ public class CustomerService {
 	}
 
 	// 사용자 정보 아이디로 찾기
-
+	
 	public Customer findCustomerId(String customerNo) throws Exception {
 		return customerDao.findCustomerId(customerNo);
 	}
