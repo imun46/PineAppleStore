@@ -1,6 +1,3 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.itwill.shop.customer.CustomerCoupons"%>
-<%@page import="java.util.List"%>
 <%@page import="com.itwill.shop.customer.Customer"%>
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,10 +6,6 @@
 	String customerId = "IDEX1";
 	CustomerService customerService = new CustomerService();
 	Customer loginCustomer = customerService.findCustomerId(customerId);
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
-    //변환 작업
-	//simpleDateFormat.format(loginCustomer.getCustomerDob()); 
-		
 %>
 <!DOCTYPE html>
 <html>
@@ -21,7 +14,6 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 		function customerModifyForm() {
-			
 			document.f.action = "modify_form.jsp";
 			document.f.method='POST';
 			document.f.submit();
@@ -56,7 +48,7 @@
 		<tr>
 			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 생년월일 : </td>
 			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=simpleDateFormat.format(loginCustomer.getCustomerDob())%>
+			<%=loginCustomer.getCustomerDob() %>
 			</td>
 		</tr>
 		
@@ -99,18 +91,9 @@
 		<tr>
 			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 가입날짜 : </td>
 			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=simpleDateFormat.format(loginCustomer.getCustomerJoindate())%>
+			<%=loginCustomer.getCustomerJoindate()%>
 			</td>
 		</tr>
-		
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">보유 쿠폰 개수 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=customerService.getCouponCount(loginCustomer.getCustomerNo())%>
-			</td>
-		</tr>
-		
-		
 		</table>
 	</form>
 		<table width=590 border=0 cellpadding=0 cellspacing=0>
