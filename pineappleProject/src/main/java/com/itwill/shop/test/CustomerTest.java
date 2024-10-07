@@ -21,7 +21,7 @@ public class CustomerTest {
 //		System.out.println("coupon.getCouponNo() : " + coupon.getCouponNo());
 		
 		/********** 일련번호 입력 시 CustomerCoupon 쿠폰 발급(Insert) *********/
-		customerService.insertCustomerCouponById("D123456", 
+		customerService.insertCustomerCouponById("A123456", 
 				CustomerCoupons.builder()
 								.customer(new Customer().builder()
 									.customerNo(2)
@@ -30,7 +30,7 @@ public class CustomerTest {
 		
 		
 		
-/****************************CustomerCoupon**********************************/
+		/****************************CustomerCoupon**********************************/
 		
 		/********** CustomerCoupon 사용자가 보유한 쿠폰 리스트 조회(Select) 매개변수 : customerNo(사용자 번호)*********/
 //		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(4);
@@ -59,18 +59,6 @@ public class CustomerTest {
 //		
 //		/********** CustomerCoupon 쿠폰 업데이트(Update) 매개변수 : customer_coupons_no *********/
 //		System.out.println(customerService.updateCoupon(3));
-//		
-		/********** CustomerCoupon 쿠폰 발급(Insert) *********/
-//		customerService.insertCustomerCoupon(CustomerCoupons.builder()
-//				.customerCouponsStatus("사용가능")
-//				.customerCouponsNo(1)
-//				.coupon(new Coupon().builder()
-//						.couponNo(4)
-//						.build())
-//				.customer(new Customer().builder()
-//						.customerNo(3)
-//						.build())
-//				.build());
 		
 		
 	}
