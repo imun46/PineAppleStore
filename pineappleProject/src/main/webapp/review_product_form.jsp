@@ -1,5 +1,3 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
 <%@ page import="com.itwill.shop.review.Review" %>
 <%@ page import="com.itwill.shop.review.ReviewService" %>
 <%@ page import="com.itwill.shop.product.Product" %>
@@ -10,12 +8,10 @@
     pageEncoding="UTF-8"%>
  <%
  ReviewService reviewService = new ReviewService();
- 
- //Integer productNo=Integer.parseInt(request.getParameter("productNo"));
- //병합 시 주석 제거
- List<Review> reviewList = reviewService.getProductReview(2);
- 
- 
+ ProductService productService = new ProductService();
+ int productNo=1;
+ Product product = productService.productDetail(productNo);
+ List<Review> reviewList = product.getProductReviewList();
  %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -30,15 +26,12 @@
             margin: 0;
             padding: 20px;
         }
-        .review-container {        
-   			display: block; 
-   			text-decoration: none;
+        .review-container {
             background: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin: 20px 0;
-            color: inherit;
         }
         .review-title {
             font-size: 24px;
@@ -63,7 +56,7 @@
 
     <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
-   <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo() %>" class="review-container">
+    <div class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         
         <%
@@ -79,17 +72,10 @@
             <%=review.getReviewContent() %>
         </div>
         <div class="review-author">
-        	<%=review.getCustomer().getCustomerName() %>
+        	<%= review.getProduct().getProductNo()%>
         </div>
-        <div class="review-time">
-        <%
-        Date reviewDate = review.getReviewDate();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = dateFormat.format(reviewDate);
-        %>
-        	<%=formattedDate %>
-        </div>
-    </a>
+    </div>
+>>>>>>> 10fb1a8 Merge branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 <%} %>
     
 

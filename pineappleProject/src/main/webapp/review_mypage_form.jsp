@@ -8,11 +8,10 @@
     pageEncoding="UTF-8"%>
  <%
  ReviewService reviewService = new ReviewService();
-	 
-	 //Integer customerNo = Integer.parseInt(request.getParameter("customerNo"));
-	 //병합 시 주석 제거
-	 List<Review> reviewList = reviewService.getMyReview(1);
-	
+ CustomerService customerService = new CustomerService();
+	 int customerNo = 3;
+	 Customer customer = customerService.findCustomerNoListAll(customerNo);
+	 List<Review> reviewList = customer.getReviewList();
  %>
 <!DOCTYPE html>
 <html lang="ko">
