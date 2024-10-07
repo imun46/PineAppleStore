@@ -26,15 +26,12 @@
             margin: 0;
             padding: 20px;
         }
-        .review-container {        
-   			display: block; 
-   			text-decoration: none;
+        .review-container {
             background: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin: 20px 0;
-            color: inherit;
         }
         .review-title {
             font-size: 24px;
@@ -60,7 +57,10 @@
     <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
     <div class="review-container">
+<<<<<<< Upstream, based on origin/mj
    <a href="review_detail.jsp" class="review-container">
+=======
+>>>>>>> 8d41f36 Merge branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         
         <%
