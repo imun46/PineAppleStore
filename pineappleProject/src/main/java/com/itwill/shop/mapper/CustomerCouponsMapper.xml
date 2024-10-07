@@ -64,7 +64,7 @@
 	
 	<!-- 일련 번호 입력 시 쿠폰 아이디 조회 후 정보 반환 -->
 	<select id="getCouponId" parameterType="String" resultType="Coupon">
-	select * coupon where coupon_id=#{couponId}
+	select * from coupon where coupon_id=#{couponId}
 	</select>
 	
 </mapper>
