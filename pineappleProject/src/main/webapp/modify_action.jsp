@@ -20,17 +20,17 @@
 try{	 
 	 /*** 1. GET방식이면 customer_main.jsp redirection ***/
 	 if(request.getMethod().equalsIgnoreCase("GET")) {
-		 throw new Exception("get");
+			return;
 	 }
 
 	/*** 3. 파라메타받기 ***/
-	String password = request.getParameter("customer_password");
-	String name = request.getParameter("customer_name");
-	String address = request.getParameter("customer_address");
-	String gender = request.getParameter("customer_gender");
-	String phone = request.getParameter("customer_phone");
-	String email = request.getParameter("customer_email");
-	String nickname = request.getParameter("customer_nickname");
+	String password = request.getParameter("password");
+	String name = request.getParameter("name");
+	String address = request.getParameter("address");
+	String gender = request.getParameter("gender");
+	String phone = request.getParameter("phone");
+	String email = request.getParameter("email");
+	String nickname = request.getParameter("nickname");
 	
 	int rowCount = customerService.updateCustomerId(Customer.builder()
 			.customerNo(loginCustomer.getCustomerNo())
@@ -46,12 +46,19 @@ try{
 	if(rowCount == 0) {
 		throw new Exception("0");
 	}
+	response.sendRedirect("modify_view.jsp");
+	
 	} catch(Exception e) {
 		e.printStackTrace();
-		throw new Exception("catch");
+	    request.setAttribute("errorMessage", e.getMessage());
 	}
+	
 
+<<<<<<< Upstream, based on origin/mj
 >>>>>>> 00b3a1b AcademyCommit
+=======
+	
+>>>>>>> 21ac57d 내정보 : 쿠폰 리스트 작업 진행 중
 %>  
     
     
