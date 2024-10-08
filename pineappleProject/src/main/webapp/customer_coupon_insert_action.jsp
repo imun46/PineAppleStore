@@ -49,6 +49,10 @@
 		/* response.sendRedirect("customer_coupon_list.jsp"); */
 		
 	} catch(Exception e) {
+		out.println("<script>");
+		out.println(" alert('유효한 쿠폰 번호가 아닙니다.');");
+		out.println(" window.close();"); // 현재 창 닫기
+		out.println("</script>");
 		e.printStackTrace();
 	}
 %>
