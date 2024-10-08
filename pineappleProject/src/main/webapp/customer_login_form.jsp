@@ -384,8 +384,10 @@
 			return;
 		}
 		if (document.f.password.value == "") {
+=======
+>>>>>>> 0a03639 수정 완료
 			alert("비밀번호를 입력하세요.");
-			f.password.focus();
+			document.f.customerPassword.focus();
 			return;
 		}
 
