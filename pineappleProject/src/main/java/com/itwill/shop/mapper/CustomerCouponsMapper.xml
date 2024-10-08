@@ -71,12 +71,6 @@
 	select count(*) from customer_coupons where customer_no =#{customer.customerNo}
 	</select>
 	
-	<!-- 사용자 번호로 CustomerCoupons 객체 반환 -->
-	<select id="findCustomerByCustomerNo" parameterType="Integer" resultMap="customerCouponsMapCoupon">
-	select distinct * from customer_coupons where customer_no = #{customer.customerNo}
-	</select>
-	
-	
 	<!-- 사용자 번호로 Customer 객체 반환 -->
 	<select id="findCustomerCouponsByCustomerNo" parameterType="Integer" resultMap="customerCouponsMapCoupon">
 	select * from customer where customer_no = #{customer.customerNo}
