@@ -56,9 +56,9 @@
 	
 	<!-- 일련 번호 입력 시 사용자 쿠폰 발급 -->
 	<insert id="insertCustomerCouponById" parameterType="CustomerCoupons">
-	insert into customer_coupons
-	values(customer_coupons_customer_coupons_no_seq.nextval, sysdate+30,
-	'사용가능', #{coupon.couponNo}, #{customer.customerNo})
+    insert into customer_coupons
+    values(customer_coupons_customer_coupons_no_seq.nextval, sysdate+30,
+    '사용가능', #{coupon.couponNo}, #{customer.customerNo})
 	</insert>
 	
 	<!-- 일련 번호 입력 시 쿠폰 아이디 조회 후 정보 반환 -->
@@ -72,8 +72,14 @@
 	</select>
 	
 	<!-- 사용자 번호로 CustomerCoupons 객체 반환 -->
-	<select id="findCustomerCouponsByNo" parameterType="Integer" resultMap="customerCouponsMapCoupon">
+	<select id="findCustomerByCustomerNo" parameterType="Integer" resultMap="customerCouponsMapCoupon">
 	select distinct * from customer_coupons where customer_no = #{customer.customerNo}
+	</select>
+	
+	
+	<!-- 사용자 번호로 Customer 객체 반환 -->
+	<select id="findCustomerCouponsByCustomerNo" parameterType="Integer" resultMap="customerCouponsMapCoupon">
+	select * from customer where customer_no = #{customer.customerNo}
 	</select>
 	
 	

@@ -127,10 +127,8 @@ public class CustomerDaoImpl implements CustomerDao {
 	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
 	@Override
 	public int insertCustomerCouponById(CustomerCoupons customerCoupons) throws Exception {
-		System.out.println("CustomerDaoImpl : insertCustomerCouponById");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).insertCustomerCouponById(customerCoupons);
-		sqlSession.close();
 		return rowCount;
 	}
 	
@@ -178,7 +176,13 @@ public class CustomerDaoImpl implements CustomerDao {
 	public List<CustomerCoupons> findCustomerCouponsByNo(Integer customerNo) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		List<CustomerCoupons> customerCouponsList = sqlSession.getMapper(CustomerCouponsMapper.class).findCustomerCouponsByNo(customerNo);
-	return customerCouponsList;
+		return customerCouponsList;
 	}
 	
+	@Override
+	public List<Customer> findCustomerCouponsByCustomerNo(Integer customerNo) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<Customer> customer = sqlSession.getMapper(CustomerCouponsMapper.class).findCustomerCouponsByCustomerNo(customerNo);
+		return customer;
+	}
 }

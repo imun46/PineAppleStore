@@ -22,7 +22,7 @@
 	function customerCouponInsert() {
 	
 		/* document.f.action = "customer_coupon_insert.jsp" */
-		window.open("customer_coupon_insert_form.jsp", "popupWindow", "width=600,height=400,scrollbars=yes");
+		popuWindow = window.open("customer_coupon_insert_form.jsp", "popupWindow", "width=600,height=400,scrollbars=yes");
 		document.f.method = 'POST';
 		document.f.submit();
 		
@@ -33,6 +33,11 @@
 		document.f.method = 'POST';
 		document.f.submit();
 	}
+	
+	 // 부모 창 새로 고침
+    function refreshParent() {
+        window.location.reload();
+    }
 	
 </script>
 </head>

@@ -109,22 +109,16 @@ public class CustomerService {
 		return customerDao.countByCouponId(couponId);
 	}
 	
-	
-	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
-	public int insertCustomerCouponById(String couponId, int customerNo, CustomerCoupons customerCoupons) throws Exception {
-//		System.out.println("CustomerService : insertCouponById");
-		if(customerDao.countByCouponId(couponId) == 1) {
-			Coupon coupon = customerDao.getCouponId(couponId);
-			customerCoupons.setCoupon(coupon);
-			customerCoupons.setCustomer(Customer.builder().customerNo(customerNo).build());
-			System.out.println("customerCoupons : " + customerCoupons);
-			return customerDao.insertCustomerCouponById(customerCoupons);
-		} else {
-			Coupon coupon = customerDao.getCouponId(couponId);
-			System.out.println(coupon);
-			System.out.println("존재하지 않는 쿠폰번호입니다.");
-		};
-		return 0;
+	public Coupon getCouponId(String couponId) throws Exception {
+		return customerDao.getCouponId(couponId);
 	}
 	
+	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) *****/
+	public int insertCustomerCouponById(Coupon coupon, Customer customer) throws Exception {
+		CustomerCoupons customerCoupons = CustomerCoupons.builder()
+		        .coupon(coupon)
+		        .customer(customer)
+		        .build();
+		return customerDao.insertCustomerCouponById(customerCoupons);
+	}
 }
