@@ -54,4 +54,7 @@ public interface CustomerDao {
 	//사용자 쿠폰 리스트 조회
 	List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception;
 	
+	// 쿠폰 개수 가져오기
+	int getCouponCount(Integer customerNo) throws Exception;
+	
 }

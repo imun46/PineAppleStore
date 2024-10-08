@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwill.shop.customer.CustomerCoupons"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwill.shop.customer.Customer"%>
@@ -8,8 +9,10 @@
 	String customerId = "IDEX1";
 	CustomerService customerService = new CustomerService();
 	Customer loginCustomer = customerService.findCustomerId(customerId);
-	List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());
-	
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
+    //변환 작업
+	//simpleDateFormat.format(loginCustomer.getCustomerDob()); 
+		
 %>
 <!DOCTYPE html>
 <html>
@@ -18,32 +21,6 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 		function customerModifyForm() {
-			if (document.f.password.value == "") {
-				alert("비밀번호를 입력하십시요.");
-				document.f.password.focus();
-				return false;
-			}
-			if (document.f.password2.value == "") {
-				alert("비밀번호확인을 입력하십시요.");
-				document.f.password2.focus();
-				return false;
-			}
-			if (document.f.name.value == "") {
-				alert("이름을 입력하십시요.");
-				document.f.name.focus();
-				return false;
-			}
-			if (document.f.email.value == "") {
-				alert("이메일 주소를 입력하십시요.");
-				document.f.email.focus();
-				return false;
-			}
-			if (document.f.password.value != f.password2.value) {
-				alert("비밀번호와 비밀번호확인은 일치하여야합니다.");
-				document.f.password.focus();
-				document.f.password.select();
-				return false;
-			}
 			
 			document.f.action = "modify_form.jsp";
 			document.f.method='POST';
@@ -79,7 +56,7 @@
 		<tr>
 			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 생년월일 : </td>
 			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=loginCustomer.getCustomerDob() %>
+			<%=simpleDateFormat.format(loginCustomer.getCustomerDob())%>
 			</td>
 		</tr>
 		
@@ -122,19 +99,16 @@
 		<tr>
 			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 가입날짜 : </td>
 			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=loginCustomer.getCustomerJoindate()%>
+			<%=simpleDateFormat.format(loginCustomer.getCustomerJoindate())%>
 			</td>
 		</tr>
 		
-		<!-- 사용자 쿠폰 리스트 -->
-		<%for (CustomerCoupons customerCoupon : customerCoupons) { %>
 		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">쿠폰 이름 : </td>
+			<td width=100 align=center bgcolor="E6ECDE" heigth="22">보유 쿠폰 개수 : </td>
 			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=customerCoupon.getCoupon().getCouponName()%>
+			<%=customerService.getCouponCount(loginCustomer.getCustomerNo())%>
 			</td>
 		</tr>
-		<% } %>
 		
 		
 		</table>
