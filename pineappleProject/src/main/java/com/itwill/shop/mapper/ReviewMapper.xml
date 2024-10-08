@@ -58,7 +58,7 @@
 		review_content=#{reviewContent},
 		review_image=#{reviewImage},
 		review_rating=#{reviewRating},
-		review_date=#{reviewDate},
+		review_date=SYSDATE,
 		product_no=#{product.productNo},
 		review_date=sysdate,
 		customer_no=#{customer.customerNo}
@@ -84,7 +84,7 @@
 	</select>
 	
 	<!-- 리뷰 한개 보기 -->
-	<select id="findByReview" parameterType="int" resultType="Review">
-		select * from review where review_no =#{reviewNo}
+	<select id="findByReview" parameterType="int" resultMap="reviewMapProduct">
+		select * from review r join product p on r.product_no = p.product_no where review_no =#{reviewNo}
 	</select>
 </mapper>
