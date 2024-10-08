@@ -34,4 +34,5 @@ public class Review {
 	private Product product;//FK
 	private Customer customer;//FK
 	
+	
 }
