@@ -89,6 +89,7 @@
 <<<<<<< Upstream, based on origin/mj
 <<<<<<< Upstream, based on origin/mj
 <<<<<<< Upstream, based on origin/mj
+<<<<<<< Upstream, based on origin/mj
 	<form action="review_delete_action.jsp" method="post" style="display:inline;">
 =======
 	<form action="review_delete_action.jsp?reviewNo=1" method="post" style="display:inline;">
@@ -99,6 +100,9 @@
 =======
 	<form action="review_delete_action.jsp?reviewNo=1" method="post" style="display:inline;">
 >>>>>>> eb351de 씨ㅡㅡ발
+=======
+	<form action="review_delete_action.jsp" method="post" style="display:inline;">
+>>>>>>> d3829bb ....
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
         <input type="submit" value="삭제" class="review_delete" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
