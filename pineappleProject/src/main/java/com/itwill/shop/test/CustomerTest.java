@@ -124,6 +124,7 @@ public class CustomerTest {
 //		System.out.println("coupon.getCouponNo() : " + coupon.getCouponNo());
 		
 		/********** 일련번호 입력 시 CustomerCoupon 쿠폰 발급(Insert) *********/
+<<<<<<< Upstream, based on origin/mj
 //		customerService.insertCustomerCouponById("A123456", 
 //				CustomerCoupons.builder()
 //								.customer(new Customer().builder()
@@ -132,6 +133,17 @@ public class CustomerTest {
 //								.build());
 //		
 //		
+=======
+		customerService.insertCustomerCouponById("A123456", 
+				CustomerCoupons.builder()
+								.customer(new Customer().builder()
+									.customerNo(2)
+									.build())
+								.build());
+		String customerId = "IDEX1";
+		System.out.println(customerService.findCustomerNo(11));
+		
+>>>>>>> ff5bfcb login JSP 완료
 		
 		/****************************CustomerCoupon**********************************/
 		
