@@ -35,7 +35,7 @@ public class CustomerTest {
 //				.build();
 //		/*** 쿠폰 발급 ***/
 //		System.out.println(customerService.findCoupon(1));
-		String customerId = "IDEX2"; //사용자 아이디
+		String customerId = "IDEX1"; //사용자 아이디
 		String couponId = "A123456"; //쿠폰 아이디
 		CustomerService customerService = new CustomerService();
 		
@@ -45,9 +45,10 @@ public class CustomerTest {
 		/*** 쿠폰ID에 맞는 쿠폰 찾기***/
 		Coupon coupon = customerService.getCouponId(couponId);
 		
+		System.out.println(coupon);
 		int rowCount = customerService.insertCustomerCouponById(coupon, loginCustomer);
 		System.out.println(rowCount);
-		//System.out.println(customerService.countByCouponId(couponId));
+		System.out.println(customerService.countByCouponId(couponId));
 		
 		/*** 사용자 번호로 CustomerCoupons 객체 반환 ***/
 		//List<CustomerCoupons> customerCouponsList = customerService.findCustomerCouponsByNo(loginCustomer.getCustomerNo());
