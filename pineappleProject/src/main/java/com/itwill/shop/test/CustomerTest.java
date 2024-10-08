@@ -27,7 +27,8 @@ public class CustomerTest {
 									.customerNo(2)
 									.build())
 								.build());
-		
+		String customerId = "IDEX1";
+		System.out.println(customerService.findCustomerNo(11));
 		
 		
 		/****************************CustomerCoupon**********************************/
