@@ -71,6 +71,13 @@
 			document.f.method='POST';
 			document.f.submit();
 		}
+		
+		function customerMain() {
+			
+			document.f.action = "jsp/index.jsp";
+			document.f.method='POST';
+			document.f.submit();
+		}
 </script>
 </head>
 <body>
@@ -169,7 +176,7 @@
 			<tr>
 				<td align=center><input type="button" value="내정보수정"
 				onClick="customerModifyAction()"> &nbsp; <input type="button"
-				value="메인" onClick="userMain()"></td>
+				value="메인" onClick="customerMain()"></td>
 			</tr>
 		</table>
 	
