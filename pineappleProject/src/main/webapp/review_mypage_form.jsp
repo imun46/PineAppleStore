@@ -9,7 +9,7 @@
  <%
  ReviewService reviewService = new ReviewService();
  CustomerService customerService = new CustomerService();
-	 int customerNo = 3;
+	 int customerNo = 1;
 	 Customer customer = customerService.findCustomerNoListAll(customerNo);
 	 List<Review> reviewList = customer.getReviewList();
  %>
