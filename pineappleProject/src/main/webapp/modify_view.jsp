@@ -26,6 +26,21 @@
 			document.f.method='POST';
 			document.f.submit();
 		}
+		
+		function customerMain() {
+			
+			document.f.action = "jsp/index.jsp";
+			document.f.method='POST';
+			document.f.submit();
+		}
+		
+		function customerCoupon() {
+			document.f.action="customer_coupon_list.jsp"
+			document.f.method='POST';
+			document.f.submit();
+		}
+		
+		
 </script>
 </head>
 <body>
@@ -115,9 +130,11 @@
 	</form>
 		<table width=590 border=0 cellpadding=0 cellspacing=0>
 			<tr>
-				<td align=center><input type="button" value="내정보수정"
-				onClick="customerModifyForm()"> &nbsp; <input type="button"
-				value="메인" onClick="userMain()"></td>
+				<td align=center>
+				<input type="button" value="내정보수정"	onClick="customerModifyForm()"> &nbsp; 
+				<input type="button" value="메인" onClick="customerMain()"> &nbsp;
+				<input type="button" value="쿠폰함" onClick="customerCoupon()">
+				</td>
 			</tr>
 		</table>
 	

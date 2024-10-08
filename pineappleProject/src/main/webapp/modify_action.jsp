@@ -4,16 +4,19 @@
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 로그인 여부 체크   -->
+<!-- include file="login_check.jspf" -->
 <%	
 	/*
 	0.login 여부체크
-	1.GET방식이면 user_main.jsp redirection
+	1.GET방식이면 jsp/index.jsp redirection
 	2.요청객체인코딩설정
-	3.파라메타받기(password,name,email)
+	3.파라메타받기
 	4.세션의 sUserId와 파라메타(password,name,email) 로 User객체생성후  UserService.update 메쏘드호출
-	5.성공:user_view.jsp redirection
-	  실패:user_error.jsp 
+	5.성공:jsp/index.jsp redirection
+	  실패:customer_error.jsp 
 	 */
+	 
 	String customerId = "IDEX1";
 	CustomerService customerService = new CustomerService();
 	Customer loginCustomer = customerService.findCustomerId(customerId);
@@ -52,20 +55,9 @@ try{
 	} catch(Exception e) {
 		e.printStackTrace();
 	    request.setAttribute("errorMessage", e.getMessage());
+	    response.sendRedirect("jsp/index.jsp");
 	}
 	
 
 	
 %>  
-    
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-헤헤헤헤헤
-</body>
-</html>
