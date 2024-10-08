@@ -90,6 +90,7 @@ public class CustomerService {
 		return customerDao.findCouponList(customerNo);
 	}
 	
+	/*** CustomerCouponNO로 CustomerCoupon객체 찾기 ***/
 	public CustomerCoupons findCoupon(Integer customerCouponsNo) throws Exception {
 		System.out.println("CustomerService : findCoupon");
 		return customerDao.findCoupon(customerCouponsNo);
