@@ -95,6 +95,10 @@ public class CustomerService {
 		return customerDao.findCoupon(customerCouponsNo);
 	}
 	
+	public int getCouponCount(Integer customerNo) throws Exception {
+		return customerDao.getCouponCount(customerNo);
+	}
+	
 	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
 	public int insertCustomerCouponById(String couponId, CustomerCoupons customerCoupons) throws Exception {
 		System.out.println("CustomerService : insertCouponById");
