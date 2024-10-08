@@ -47,7 +47,7 @@ if (result == 0) {
 } else if (result == 2) {
 	//2:로그인성공(세션)
 	session.setAttribute("sCustomerId", customerId);
-	response.sendRedirect("customer_main.jsp");
+	response.sendRedirect("customer_view.jsp");
 }
 %>
 
