@@ -1,4 +1,3 @@
-<%@page import="com.itwill.shop.product.ProductService"%>
 <%@page import="com.itwill.shop.product.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,7 +13,6 @@
     String reviewNo = "1";
     Review review = reviewService.findByReviewNo(Integer.parseInt(reviewNo));
     Product product = review.getProduct();
-    
 %>
 
 <!DOCTYPE html>
@@ -44,11 +42,7 @@
         <input type="text" id="reviewTitle" name="reviewTitle" value="" required>
     </div>
     <div>
-<<<<<<< Upstream, based on origin/mj
->>>>>>> 42e37fc 씨ㅡㅡ발
-=======
-    	<input type="hidden" name="productNo">
->>>>>>> 22ca27d ....
+>>>>>>> eb351de 씨ㅡㅡ발
     	<label for="reviewProductOption"><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)</label>
     </div>
 <div id="star-rating">
