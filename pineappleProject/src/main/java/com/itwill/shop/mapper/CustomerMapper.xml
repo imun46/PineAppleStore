@@ -17,7 +17,7 @@
 		<result column="CUSTOMER_JOINDATE" property="customerJoindate"/>
 	</resultMap>
 	
-	<!--Customer 맵 Review, Orders, CustomerCoupons 맵 포함-->
+	<!--Customer 맵 Review, Orders, CustomrCoupons 맵 포함-->
 	<resultMap id="customerMapDetail" type="Customer" autoMapping="true">
 		<id column="CUSTOMER_NO" property="customerNo"/>
 		<result column="CUSTOMER_ID" property="customerId"/>

@@ -9,7 +9,7 @@
  <%
  ReviewService reviewService = new ReviewService();
  CustomerService customerService = new CustomerService();
-	 int customerNo = 2;
+	 int customerNo = 1;
 	 Customer customer = customerService.findCustomerNoListAll(customerNo);
 	 List<Review> reviewList = customer.getReviewList();
  %>
@@ -26,12 +26,15 @@
             margin: 0;
             padding: 20px;
         }
-        .review-container {
+        .review-container {        
+   			display: block; 
+   			text-decoration: none;
             background: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin: 20px 0;
+            color: inherit;
         }
         .review-title {
             font-size: 24px;
@@ -56,7 +59,7 @@
 
     <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
-    <div class="review-container">
+    <a href="review_detail.jsp" class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         
         <%
@@ -71,7 +74,7 @@
         <div class="review-body">
             <%=review.getReviewContent() %>
         </div>
-        <div class="review-author"></div>
+                <div class="review-author"></div>
     </div>
 <%} %>
     
