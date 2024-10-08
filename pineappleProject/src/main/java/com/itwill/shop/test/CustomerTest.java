@@ -18,59 +18,34 @@ public class CustomerTest {
 //		System.out.println(loginCustomer);
 		String customerId = "IDEX1";
 		CustomerService customerService = new CustomerService();
+		
+		
+		
+		
+		//int count =	customerService.getCouponCount(loginCustomer.getCustomerNo());
+		//System.out.println(count);
+		
+		//SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
+        //원하는 데이터 포맷 지정
+		//simpleDateFormat.format(loginCustomer.getCustomerDob()); 
+        //지정한 포맷으로 변환 
+		//System.out.println("포맷 지정 후 : " + simpleDateFormat.format(loginCustomer.getCustomerDob()));
 		/*** 로그인한 사용자 찾기 ***/
 		Customer loginCustomer = customerService.findCustomerId(customerId);
-		
-		/*** 사용자 번호로 CustomerCoupons 객체 반환 ***/
-		CustomerCoupons customerCoupons = customerService.findCustomerCouponsByNo(loginCustomer.getCustomerNo());
-		
-		int count =	customerService.getCouponCount(loginCustomer.getCustomerNo());
-		System.out.println(count);
-		
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
-        //원하는 데이터 포맷 지정
-		simpleDateFormat.format(loginCustomer.getCustomerDob()); 
-        //지정한 포맷으로 변환 
-		System.out.println("포맷 지정 후 : " + simpleDateFormat.format(loginCustomer.getCustomerDob()));
-		
+		/*** CustomerCoupons 객체 생성 ***/
+		CustomerCoupons customerCoupons = CustomerCoupons.builder()
+				.customer(Customer.builder().customerNo(2).build())
+				.build();
 		/*** 쿠폰 발급 ***/
+		System.out.println(customerService.findCoupon(1));
 		String couponId = "A123456";
-		int rowCount = customerService.insertCustomerCouponById(customerId, customerCoupons);
+		int rowCount = customerService.insertCustomerCouponById(customerId, loginCustomer.getCustomerNo(), customerCoupons);
 		System.out.println(rowCount);
 		
+		//System.out.println(customerService.countByCouponId(couponId));
 		
-		
-//		String password = "1111";
-//		String address = "주소주소";
-//		String gender = "M";
-//		String phone = "111-1111";
-//		String email = "수정@수정수정";
-//		String nickname = "수정";
-//		
-//		
-//		int rowCount = customerService.updateCustomerId(Customer.builder()
-//				.customerNo(1)
-//				.customerPassword(password)
-//				.customerAddress(address)
-//				.customerGender(gender)
-//				.customerPhone(phone)
-//				.customerEmail(email)
-//				.customerNickname(nickname)
-//				.build());
-//		
-		
-//		
-//		List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());
-//		System.out.println(customerCoupons);
-//		
-//		for (CustomerCoupons customerCoupon : customerCoupons) {
-//			System.out.println("쿠폰 이름 : " + customerCoupon.getCoupon().getCouponName());
-//			System.out.println("쿠폰 내용 : " + customerCoupon.getCoupon().getCouponDesc());
-//			System.out.println("쿠폰 종료 날짜 : " + customerCoupon.getCustomerCouponsEnddate());
-//			System.out.println("쿠폰 상태: " + customerCoupon.getCustomerCouponsStatus());
-//		}
-//		
-		
+		/*** 사용자 번호로 CustomerCoupons 객체 반환 ***/
+		//List<CustomerCoupons> customerCouponsList = customerService.findCustomerCouponsByNo(loginCustomer.getCustomerNo());
 		
 //		
 //		List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());

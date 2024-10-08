@@ -33,5 +33,5 @@ public interface CustomerCouponsMapper {
 		List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception;
 		
 		/*****사용자 번호로 CustomerCoupons 객체 반환 *****/
-		CustomerCoupons findCustomerCouponsByNo(Integer customerNo) throws Exception;
+		List<CustomerCoupons> findCustomerCouponsByNo(Integer customerNo) throws Exception;
 }
