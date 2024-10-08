@@ -6,12 +6,13 @@
 <%@ page import="com.itwill.shop.review.Review" %> 
 <%@ page import="com.itwill.shop.review.ReviewService" %> 
 <%@ page import="java.util.Date" %>
-
+<%@include file="login_check.jspf"%>
 
 <%
 	ReviewService reviewService = new ReviewService();
     //String reviewNo = request.getParameter("reviewNo");
     String reviewNo = "1";
+    
     Review review = reviewService.findByReviewNo(Integer.parseInt(reviewNo));
     Product product = review.getProduct();
 %>

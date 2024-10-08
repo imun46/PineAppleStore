@@ -45,7 +45,7 @@ public class CartServiceTest {
 //		
 //		System.out.println("카트 등록: " + cartDao.insertCart(newCart));
 //		
-//		/* 카트 수정  */ //확인 필요
+//		/* 카트 수정  */ // 
 //		List<ProductSelected> updateProductSelecteds = new ArrayList<>();
 //		updateProductSelecteds.add(ProductSelected.builder()
 //												.productSelectedNo(6)
@@ -55,13 +55,13 @@ public class CartServiceTest {
 //																.build())
 //												.build());
 //		Cart updateCart = Cart.builder()
-//							.cartNo(2)
+//							.cartNo(3)
 //							.cartQty(4)
 //							.productSelectedList(updateProductSelecteds)
 //							.build();
 //		
-//		System.out.println("수정" + cartService.updateCart(updateCart));
-		
+//		System.out.println("수정" + cartService.update(updateCart));
+//		
 		
 		/* 카트 한개 삭제 */
 //		System.out.println("한개 삭제" + cartDao.deleteByCartNo(1));
@@ -69,16 +69,16 @@ public class CartServiceTest {
 //		/* 카트 전체 삭제 */
 //		System.out.println("전체 삭제 :" + cartDao.deleteByCustomerNo(1));
 //		
-//		/* 카트 리스트(어드민)*/
+		/* 카트 리스트(어드민)*/
 //		List<Cart> cartList = cartDao.findAll();
 //		for (Cart cart : cartList) {
 //			System.out.println(cart);
 //		}
 
 		/* 카트 리스트(회원)*/ //확인 필요
-//		List<Cart> cartListByNo = cartDao.findByCartNo(4);
+//		List<Cart> cartListByNo = cartDao.findByCartNo(3);
 //		for (Cart cart : cartListByNo) {
-//			System.out.println(cart.getCustomer());
+//			System.out.println("카트 번호: "+cart.getCartNo());
 //			for (ProductSelected productSelected : cart.getProductSelectedList()) {
 //				System.out.println(productSelected);
 //			}

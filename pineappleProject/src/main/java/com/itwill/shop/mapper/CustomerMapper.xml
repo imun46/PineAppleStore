@@ -59,7 +59,7 @@
 	
 	<!--  사용자 정보 리스트  -->
 	<select id="findCustomerNoListAll" parameterType="int" resultMap="customerMapDetail">
-				select * from customer c 
+				select * from customer c
 				left join review r
 				on c.customer_no = r.customer_no
 				left join orders o
