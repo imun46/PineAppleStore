@@ -50,6 +50,12 @@
 		
 	} catch(Exception e) {
 		e.printStackTrace();
+		out.println("<script>");
+		// 부모 창의 새로 고침 함수 호출	
+		out.println(" window.opener.refreshParent();");
+		out.println(" alert('유효한 쿠폰번호가 아닙니다.');");
+		out.println(" window.close();"); // 현재 창 닫기
+		out.println("</script>");
 	}
 %>
 
