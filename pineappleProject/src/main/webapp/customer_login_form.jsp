@@ -19,9 +19,9 @@
 			document.f.customerId.focus();
 			return;
 		}
-		if (document.f.password.value == "") {
+		if (document.f.customerPassword.value == "") {
 			alert("비밀번호를 입력하세요.");
-			f.password.focus();
+			document.f.customerPassword.focus();
 			return;
 		}
 
