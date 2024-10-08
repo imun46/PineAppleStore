@@ -18,7 +18,11 @@ public class CustomerTest {
 //		System.out.println(loginCustomer);
 		String customerId = "IDEX1";
 		CustomerService customerService = new CustomerService();
+		/*** 로그인한 사용자 찾기 ***/
 		Customer loginCustomer = customerService.findCustomerId(customerId);
+		
+		/*** 사용자 번호로 CustomerCoupons 객체 반환 ***/
+		CustomerCoupons customerCoupons = customerService.findCustomerCouponsByNo(loginCustomer.getCustomerNo());
 		
 		int count =	customerService.getCouponCount(loginCustomer.getCustomerNo());
 		System.out.println(count);
@@ -29,6 +33,10 @@ public class CustomerTest {
         //지정한 포맷으로 변환 
 		System.out.println("포맷 지정 후 : " + simpleDateFormat.format(loginCustomer.getCustomerDob()));
 		
+		/*** 쿠폰 발급 ***/
+		String couponId = "A123456";
+		int rowCount = customerService.insertCustomerCouponById(customerId, customerCoupons);
+		System.out.println(rowCount);
 		
 		
 		

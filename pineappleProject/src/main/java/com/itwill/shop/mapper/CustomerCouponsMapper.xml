@@ -27,7 +27,7 @@
 	<!-- 쿠폰 조회 -->
  	<select id="findCoupon" parameterType="Integer" resultMap="customerCouponsMapCoupon">
 	select
-  	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate,
+  	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate, c.coupon_id,
   	cu.customer_coupons_status, cu.customer_coupons_no, c.coupon_no
 	from coupon c
 	join customer_coupons cu
@@ -66,9 +66,17 @@
 	select * from coupon where coupon_id=#{couponId}
 	</select>
 	
+	<!-- 사용자의 보유 쿠폰 갯수 반환 -->
 	<select id="getCouponCount" parameterType="Integer"  resultType="int">
 	select count(*) from customer_coupons where customer_no =#{customer.customerNo}
 	</select>
+	
+	<!-- 사용자 번호로 CustomerCoupons 객체 반환 -->
+	<select id="findCustomerCouponsByNo" parameterType="Integer" resultMap="customerCouponsMapCoupon">
+	select distinct customer_no from customer_coupons where customer_no = #{customer.customerNo}
+	</select>
+	
+	
 </mapper>
 
 
