@@ -24,7 +24,7 @@ public class Orders {
 	private Date ordersDate;		 	//주문날짜
 	private Date ordersArrivaldate;	 	//수령날짜
 	private Integer ordersTotprice;		//주문 총 가격
-	private Integer ordersFinalprice;	// 주문 최종 합격
+	private Integer ordersFinalprice;	// 주문 최종 합계
 	private Integer ordersTotqty;		// 주문합계 수량
 	private String ordersAddress;		// 배송주소
 	private String ordersStatus;		// 주문 주소

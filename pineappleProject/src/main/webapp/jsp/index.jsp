@@ -6,7 +6,6 @@
 <%
 	ProductService productService = new ProductService();
 	List<Product> productList = productService.productList();
-	
 %>
 
 <!DOCTYPE html>
@@ -66,7 +65,7 @@
                          </div>
                          <!-- Product actions-->
                          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="product_detail_form.jsp?product_no=<%=product.getProductNo() %>" >상세보기</a></div>
                          </div>
                      </div>
                  </div>

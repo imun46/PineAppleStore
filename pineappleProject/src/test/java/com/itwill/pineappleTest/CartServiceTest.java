@@ -19,32 +19,32 @@ public class CartServiceTest {
 		CartService cartService = new CartService();
 		
 		/* 카트 등록 */
-//		List<ProductSelected> productSelecteds = new ArrayList<>();
-//		productSelecteds.add(ProductSelected.builder()
-//								.product(Product.builder()
-//												.productNo(1)
-//												.productName("아이폰14")
-//												.productPrice(950000)
-//												.build())
-//								.productOptionDetail(ProductOptionDetail.builder()
-//												.productOptionDetailNo(2)
-//												.productOptionDetailName("Pro")
-//												.productOptionDetailPrice(200000)
-//												.productOption(ProductOption.builder()
-//																	.productOptionNo(1)
-//																	.productOptionType("모델")
-//																	.build())
-//												.build())
-//								.cart(Cart.builder().cartNo(1).build())
-//								.build());
-//		Cart newCart = Cart.builder()
-//						.cartQty(3)
-//						.customer(Customer.builder().customerNo(2).build())
-//						.productSelectedList(productSelecteds)
-//						.build();
-//		
-//		System.out.println("카트 등록: " + cartDao.insertCart(newCart));
-//		
+		List<ProductSelected> productSelecteds = new ArrayList<>();
+		productSelecteds.add(ProductSelected.builder()
+								.product(Product.builder()
+												.productNo(1)
+												.productName("아이폰14")
+												.productPrice(950000)
+												.build())
+								.productOptionDetail(ProductOptionDetail.builder()
+												.productOptionDetailNo(2)
+												.productOptionDetailName("Pro")
+												.productOptionDetailPrice(200000)
+												.productOption(ProductOption.builder()
+																	.productOptionNo(1)
+																	.productOptionType("모델")
+																	.build())
+												.build())
+								.cart(Cart.builder().cartNo(1).build())
+								.build());
+		Cart newCart = Cart.builder()
+						.cartQty(3)
+						.customer(Customer.builder().customerNo(2).build())
+						.productSelectedList(productSelecteds)
+						.build();
+		
+		System.out.println("카트 등록: " + cartDao.insertCart(newCart));
+		
 //		/* 카트 수정  */ // 
 //		List<ProductSelected> updateProductSelecteds = new ArrayList<>();
 //		updateProductSelecteds.add(ProductSelected.builder()
