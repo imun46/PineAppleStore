@@ -24,7 +24,7 @@ public class CustomerService {
 	}
 
 	// 로그인
-	public int login(String userId, int password) throws Exception {
+	public int login(String userId, String password) throws Exception {
 
 		// 로그인 유효성체크
 		if (customerDao.countByCustomerId(userId) == 1) {
