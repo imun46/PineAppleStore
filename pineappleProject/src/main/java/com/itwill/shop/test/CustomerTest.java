@@ -1,5 +1,7 @@
 package com.itwill.shop.test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.itwill.shop.coupon.Coupon;
@@ -18,15 +20,17 @@ public class CustomerTest {
 		CustomerService customerService = new CustomerService();
 		Customer loginCustomer = customerService.findCustomerId(customerId);
 		
-		List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());
-		System.out.println(customerCoupons);
+		int count =	customerService.getCouponCount(loginCustomer.getCustomerNo());
+		System.out.println(count);
 		
-		for (CustomerCoupons customerCoupon : customerCoupons) {
-			System.out.println("쿠폰 이름 : " + customerCoupon.getCoupon().getCouponName());
-			System.out.println("쿠폰 내용 : " + customerCoupon.getCoupon().getCouponDesc());
-			System.out.println("쿠폰 종료 날짜 : " + customerCoupon.getCustomerCouponsEnddate());
-			System.out.println("쿠폰 상태: " + customerCoupon.getCustomerCouponsStatus());
-		}
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
+        //원하는 데이터 포맷 지정
+		simpleDateFormat.format(loginCustomer.getCustomerDob()); 
+        //지정한 포맷으로 변환 
+		System.out.println("포맷 지정 후 : " + simpleDateFormat.format(loginCustomer.getCustomerDob()));
+		
+		
+		
 		
 //		String password = "1111";
 //		String address = "주소주소";
@@ -46,6 +50,19 @@ public class CustomerTest {
 //				.customerNickname(nickname)
 //				.build());
 //		
+		
+//		
+//		List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());
+//		System.out.println(customerCoupons);
+//		
+//		for (CustomerCoupons customerCoupon : customerCoupons) {
+//			System.out.println("쿠폰 이름 : " + customerCoupon.getCoupon().getCouponName());
+//			System.out.println("쿠폰 내용 : " + customerCoupon.getCoupon().getCouponDesc());
+//			System.out.println("쿠폰 종료 날짜 : " + customerCoupon.getCustomerCouponsEnddate());
+//			System.out.println("쿠폰 상태: " + customerCoupon.getCustomerCouponsStatus());
+//		}
+//		
+		
 		
 //		
 //		List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());

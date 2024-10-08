@@ -1,13 +1,21 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwill.shop.customer.CustomerCoupons"%>
 <%@page import="com.itwill.shop.customer.Customer"%>
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String customerId = "IDEX1";
+	/*** 서비스 선언 ***/
 	CustomerService customerService = new CustomerService();
+
+	/*** 로그인 아이디 부여 ***/
+	String customerId = "IDEX1";
 	Customer loginCustomer = customerService.findCustomerId(customerId);
 	
+	/*** 날짜 포멧 ***/
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
+	
+	/*** 사용자 보유 쿠폰 리스트 조회 ***/
 	customerService.findCouponList(loginCustomer.getCustomerNo());
 %>
 <!DOCTYPE html>
@@ -17,6 +25,48 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 		function customerModifyAction() {
+			if (document.f.password.value == "") {
+				alert("비밀번호를 입력하십시요.");
+				document.f.password.focus();
+				return false;
+			}
+			if (document.f.password2.value == "") {
+				alert("비밀번호확인을 입력하십시요.");
+				document.f.password2.focus();
+				return false;
+			}
+			if (document.f.address.value == "") {
+				alert("주소를 입력하십시요.");
+				document.f.address.focus();
+				return false;
+			}
+			if (document.f.gender.value == "") {
+				alert("성별을 입력하십시요.");
+				document.f.gender.focus();
+				return false;
+			}
+			if (document.f.phone.value == "") {
+				alert("전화번호를 입력하십시요.");
+				document.f.phone.focus();
+				return false;
+			}
+			if (document.f.email.value == "") {
+				alert("이메일 주소를 입력하십시요.");
+				document.f.email.focus();
+				return false;
+			}
+			if (document.f.nickname.value == "") {
+				alert("닉네임을 입력하십시요.");
+				document.f.nickname.focus();
+				return false;
+			}
+			if (document.f.password.value != f.password2.value) {
+				alert("비밀번호와 비밀번호확인은 일치하여야합니다.");
+				document.f.password.focus();
+				document.f.password.select();
+				return false;
+			}
+			
 			document.f.action = "modify_action.jsp";
 			document.f.method='POST';
 			document.f.submit();
@@ -41,6 +91,14 @@
 			value="<%=loginCustomer.getCustomerPassword() %>">
 			</td>
 		</tr>
+		<!-- 사용자 비밀번호 확인 -->	
+		<tr>
+			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 비밀번호 확인 : </td>
+			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
+			<input type="password" style="width: 150px"	name="password2" 
+			value="">
+			</td>
+		</tr>
 		<!-- 사용자 이름 -->	
 		<tr>
 			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 이름 : </td>
@@ -53,7 +111,7 @@
 		<tr>
 			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 생년월일 : </td>
 			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=loginCustomer.getCustomerDob() %>
+			<%=simpleDateFormat.format(loginCustomer.getCustomerDob()) %>
 			</td>
 		</tr>
 		
@@ -101,7 +159,7 @@
 		<tr>
 			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 가입날짜 : </td>
 			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=loginCustomer.getCustomerJoindate()%>
+			<%=simpleDateFormat.format(loginCustomer.getCustomerJoindate())%>
 			</td>
 		</tr>
 		
