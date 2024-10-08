@@ -36,7 +36,7 @@
                       <i class="fa-solid fa-user-plus"></i>
                       Sign up
                   </a>
-                  <a class="btn btn-outline-dark" href="#">
+                  <a class="btn btn-outline-dark" href="login_form.jsp">
                       <i class="bi-cart-fill me-1"></i>
                       Cart
                       <span class="badge bg-dark text-white ms-1 rounded-pill"><%=cart_item_count %></span>
@@ -52,7 +52,7 @@
                       <i class="fa-solid fa-user"></i>
                       mypage
                   </a>
-                  <a class="btn btn-outline-dark" href="#">
+                  <a class="btn btn-outline-dark" href="cart_form.jsp">
                       <i class="bi-cart-fill me-1"></i>
                       Cart
                       <span class="badge bg-dark text-white ms-1 rounded-pill"><%=cart_item_count %></span>
