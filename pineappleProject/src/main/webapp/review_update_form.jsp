@@ -1,5 +1,6 @@
 <%@page import="ch.qos.logback.core.recovery.ResilientSyslogOutputStream"%>
 <%@page import="com.itwill.shop.product.Product"%>
+<<<<<<< Upstream, based on origin/mj
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat" %>

@@ -1,3 +1,4 @@
+<<<<<<< Upstream, based on origin/mj
 <%@page import="com.itwill.shop.customer.Customer"%>
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@page import="com.itwill.shop.product.ProductService"%>
@@ -49,6 +50,54 @@
         <label for="reviewTitle">상품명:<%= product.getProductName()%>(<%= product.getProductDesc()%>)</label>
     </div>
     
+=======
+<%@page import="com.itwill.shop.product.Product"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.itwill.shop.review.Review" %> 
+<%@ page import="com.itwill.shop.review.ReviewService" %> 
+<%@ page import="java.util.Date" %>
+
+
+<%
+	ReviewService reviewService = new ReviewService();
+    //String reviewNo = request.getParameter("reviewNo");
+    String reviewNo = "1";
+    Review review = reviewService.findByReviewNo(Integer.parseInt(reviewNo));
+    Product product = review.getProduct();
+%>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 등록</title>
+    <style>
+     .star {
+            font-size: 15px;
+            cursor: pointer;
+            color: lightgray; /* 기본 색상 */
+        }
+        .star.checked {
+            color: gold; /* 선택된 색상 */
+        }</style>
+</head>
+<body>
+
+<h1>리뷰 등록</h1>
+
+<form id="reviewForm" action="review_insert_action.jsp" method="post">
+    <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
+    
+    <div>
+        <label for="reviewTitle">리뷰 제목:</label>
+        <input type="text" id="reviewTitle" name="reviewTitle" value="" required>
+    </div>
+    <div>
+    	<label for="reviewProductOption"><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)</label>
+    </div>
+>>>>>>> b54d38e 씨ㅡㅡ발
 <div id="star-rating">
 
     <span class="star" data-value="1">★</span>
