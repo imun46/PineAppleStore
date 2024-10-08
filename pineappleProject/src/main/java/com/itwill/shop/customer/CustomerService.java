@@ -95,26 +95,28 @@ public class CustomerService {
 		return customerDao.findCoupon(customerCouponsNo);
 	}
 	
+	/*** 사용자의 보유 쿠폰 갯수 반환 ***/
 	public int getCouponCount(Integer customerNo) throws Exception {
 		return customerDao.getCouponCount(customerNo);
 	}
 	
-	/*****사용자 번호로 CustomerCoupons 객체 반환 *****/
-	public List<CustomerCoupons> findCustomerCouponsByNo(Integer customerNo) throws Exception {
-		System.out.println(customerDao.findCustomerCouponsByNo(customerNo));
-		return customerDao.findCustomerCouponsByNo(customerNo);
-	}
-	
+	/*** 일련번호 입력 시 맞는 쿠폰이 있는지 확인 ***/
 	public int countByCouponId(String couponId) throws Exception {
 		return customerDao.countByCouponId(couponId);
 	}
 	
+	/*** 쿠폰ID 입력 시 ID와 일치하는 쿠폰 객체 반환 ***/
 	public Coupon getCouponId(String couponId) throws Exception {
 		return customerDao.getCouponId(couponId);
 	}
 	
 	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) *****/
 	public int insertCustomerCouponById(Coupon coupon, Customer customer) throws Exception {
+		if(customerDao.countByCouponId(coupon.getCouponId()) == 0) {
+			 System.out.println("올바르지 않은 쿠폰 번호입니다.");
+			 return 0;
+		}
+		
 		CustomerCoupons customerCoupons = CustomerCoupons.builder()
 		        .coupon(coupon)
 		        .customer(customer)
