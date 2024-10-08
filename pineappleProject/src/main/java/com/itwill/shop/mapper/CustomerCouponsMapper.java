@@ -32,6 +32,14 @@ public interface CustomerCouponsMapper {
 		/***** 사용자 쿠폰 리스트 조회 *****/
 		List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception;
 		
+		
+		
+		
+		
+		
 		/*****사용자 번호로 CustomerCoupons 객체 반환 *****/
 		List<CustomerCoupons> findCustomerCouponsByNo(Integer customerNo) throws Exception;
+		
+		/*****사용자 번호로 Customer 객체 반환 *****/
+		List<Customer> findCustomerCouponsByCustomerNo(Integer customerNo) throws Exception;
 }

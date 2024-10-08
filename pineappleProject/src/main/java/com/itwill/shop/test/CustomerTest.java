@@ -16,8 +16,6 @@ public class CustomerTest {
 //		String customerNo = "1";
 //		Customer loginCustomer = customerService.findCustomerId("IDEX1");
 //		System.out.println(loginCustomer);
-		String customerId = "IDEX1";
-		CustomerService customerService = new CustomerService();
 		
 		
 		
@@ -30,18 +28,25 @@ public class CustomerTest {
 		//simpleDateFormat.format(loginCustomer.getCustomerDob()); 
         //지정한 포맷으로 변환 
 		//System.out.println("포맷 지정 후 : " + simpleDateFormat.format(loginCustomer.getCustomerDob()));
+		
+		/*** CustomerCoupons 객체 생성 ***/
+//		CustomerCoupons customerCoupons = CustomerCoupons.builder()
+//				.customer(Customer.builder().customerNo(2).build())
+//				.build();
+//		/*** 쿠폰 발급 ***/
+//		System.out.println(customerService.findCoupon(1));
+		String customerId = "IDEX2"; //사용자 아이디
+		String couponId = "A123456"; //쿠폰 아이디
+		CustomerService customerService = new CustomerService();
+		
 		/*** 로그인한 사용자 찾기 ***/
 		Customer loginCustomer = customerService.findCustomerId(customerId);
-		/*** CustomerCoupons 객체 생성 ***/
-		CustomerCoupons customerCoupons = CustomerCoupons.builder()
-				.customer(Customer.builder().customerNo(2).build())
-				.build();
-		/*** 쿠폰 발급 ***/
-		System.out.println(customerService.findCoupon(1));
-		String couponId = "A123456";
-		int rowCount = customerService.insertCustomerCouponById(customerId, loginCustomer.getCustomerNo(), customerCoupons);
-		System.out.println(rowCount);
 		
+		/*** 쿠폰ID에 맞는 쿠폰 찾기***/
+		Coupon coupon = customerService.getCouponId(couponId);
+		
+		int rowCount = customerService.insertCustomerCouponById(coupon, loginCustomer);
+		System.out.println(rowCount);
 		//System.out.println(customerService.countByCouponId(couponId));
 		
 		/*** 사용자 번호로 CustomerCoupons 객체 반환 ***/
