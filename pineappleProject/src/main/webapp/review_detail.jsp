@@ -86,7 +86,11 @@
         
     </div>
 	<a href="review_update_form.jsp" class="review_update_form">수정</a>
+<<<<<<< Upstream, based on origin/mj
 	<form action="review_delete_action.jsp" method="post" style="display:inline;">
+=======
+	<form action="review_delete_action.jsp?reviewNo=1" method="post" style="display:inline;">
+>>>>>>> 42e37fc 씨ㅡㅡ발
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
         <input type="submit" value="삭제" class="review_delete" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
