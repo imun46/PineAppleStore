@@ -20,13 +20,12 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function customerCouponInsert() {
-		/* 
-		document.f.action = "customer_coupon_insert.jsp"
-		document.f.method = 'POST';
-		document.f.submit(); */
-		window.open("customer_coupon_insert.jsp", "popupWindow", "width=600,height=400);
+	
+		/* document.f.action = "customer_coupon_insert.jsp" */
+		window.open("customer_coupon_insert_form.jsp", "popupWindow", "width=600,height=400,scrollbars=yes");
 		document.f.method = 'POST';
 		document.f.submit();
+		
 	}
 	
 	function customerMain() {
@@ -34,6 +33,7 @@
 		document.f.method = 'POST';
 		document.f.submit();
 	}
+	
 </script>
 </head>
 <body>

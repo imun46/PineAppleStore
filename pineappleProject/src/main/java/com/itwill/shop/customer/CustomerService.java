@@ -99,6 +99,16 @@ public class CustomerService {
 		return customerDao.getCouponCount(customerNo);
 	}
 	
+	/*****사용자 번호로 CustomerCoupons 객체 반환 *****/
+	public CustomerCoupons findCustomerCouponsByNo(Integer customerNo) throws Exception {
+		return customerDao.findCustomerCouponsByNo(customerNo);
+	}
+	
+	public int countByCouponId(String couponId) throws Exception {
+		return customerDao.countByCouponId(couponId);
+	}
+	
+	
 	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
 	public int insertCustomerCouponById(String couponId, CustomerCoupons customerCoupons) throws Exception {
 		System.out.println("CustomerService : insertCouponById");
@@ -111,4 +121,5 @@ public class CustomerService {
 		};
 		return 0;
 	}
+	
 }

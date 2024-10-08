@@ -173,5 +173,12 @@ public class CustomerDaoImpl implements CustomerDao {
 		return getCount;
 	}
 	
-
+	/*****사용자 번호로 CustomerCoupons 객체 반환 *****/
+	@Override
+	public CustomerCoupons findCustomerCouponsByNo(Integer customerNo) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		CustomerCoupons customerCoupons = sqlSession.getMapper(CustomerCouponsMapper.class).findCustomerCouponsByNo(customerNo);
+	return customerCoupons;
+	}
+	
 }
