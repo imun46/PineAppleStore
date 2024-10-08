@@ -23,6 +23,9 @@ public interface CustomerCouponsMapper {
 		/***** 쿠폰 사용완료 업데이트 *****/
 		int updateCoupon(Integer customerCouponsNo) throws Exception;
 		
+		/***** 쿠폰 개수 가져오기 *****/
+		int getCouponCount(Integer customerNo) throws Exception;
+		
 		/***** 사용자 쿠폰 찾기 *****/
 		CustomerCoupons findCoupon(Integer customerCouponsNo) throws Exception;
 		

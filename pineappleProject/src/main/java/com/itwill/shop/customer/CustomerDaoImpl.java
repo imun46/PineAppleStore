@@ -164,6 +164,14 @@ public class CustomerDaoImpl implements CustomerDao {
 		return rowCount;
 	}
 	
+	/********** CustomerCoupon 쿠폰 보유 개수 조회(Select) **********/
+	@Override
+	public int getCouponCount(Integer customerNo) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int getCount = sqlSession.getMapper(CustomerCouponsMapper.class).getCouponCount(customerNo);
+		sqlSession.close();	
+		return getCount;
+	}
 	
 
 }
