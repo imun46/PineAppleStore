@@ -27,7 +27,7 @@ CustomerService customerService = new CustomerService();
 int result = customerService.login(customerId, customerPassword);
 if (result == 0) {
 	//0:아이디존재안함
-	String msg1=customerId+" 는 존재하지않는 아이디입니다.";
+	String msg1=customerId+" 는 존재하지 않는 아이디 입니다.";
 	/*****************case1 script***********************/
 	out.println("<script>");
 	out.println(" alert('" + msg1 + "');");
@@ -36,7 +36,7 @@ if (result == 0) {
 	/***************************************************/
 } else if (result == 1) {
 	//1:패쓰워드 불일치
-	String msg2="비밀번호가 일치하지않습니다.";
+	String msg2="비밀번호가 일치하지 않습니다.";
 	/*****************case1 script***********************/
 	out.println("<script>");
 	out.println(" alert('" + msg2 + "');");
