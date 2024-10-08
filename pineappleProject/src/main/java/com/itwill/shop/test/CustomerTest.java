@@ -103,14 +103,6 @@ public class CustomerTest {
 //		System.out.println("coupon.getCouponNo() : " + coupon.getCouponNo());
 		
 		/********** 일련번호 입력 시 CustomerCoupon 쿠폰 발급(Insert) *********/
-//		customerService.insertCustomerCouponById("A123456", 
-//				CustomerCoupons.builder()
-//								.customer(new Customer().builder()
-//									.customerNo(2)
-//									.build())
-//								.build());
-//		
-//		
 		
 		/****************************CustomerCoupon**********************************/
 		
