@@ -45,19 +45,23 @@ public class CustomerTest {
 		/*** 쿠폰ID에 맞는 쿠폰 찾기***/
 		Coupon coupon = customerService.getCouponId(couponId);
 		
-		System.out.println(coupon);
-		int rowCount = customerService.insertCustomerCouponById(coupon, loginCustomer);
-		System.out.println(rowCount);
-		System.out.println(customerService.countByCouponId(couponId));
 		
-	
-
-		
-		String customerCouponNoStr = "18";
-		Integer customerCouponNo = Integer.parseInt(customerCouponNoStr);
-		/*** CustomerCoupons번호에 맞는 쿠폰 찾기***/
-		CustomerCoupons findCoupon = customerService.findCoupon(customerCouponNo);
-		System.out.println(findCoupon);
+		System.out.println(customerService.getCouponCount(loginCustomer.getCustomerNo()));
+//		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(loginCustomer.getCustomerNo());
+//		System.out.println("customerCouponsList : " + customerCouponsList);
+//		System.out.println(coupon);
+//		int rowCount = customerService.insertCustomerCouponById(coupon, loginCustomer);
+//		System.out.println(rowCount);
+//		System.out.println(customerService.countByCouponId(couponId));
+//		
+//	
+//
+//		
+//		String customerCouponNoStr = "18";
+//		Integer customerCouponNo = Integer.parseInt(customerCouponNoStr);
+//		/*** CustomerCoupons번호에 맞는 쿠폰 찾기***/
+//		CustomerCoupons findCoupon = customerService.findCoupon(customerCouponNo);
+//		System.out.println(findCoupon);
 //		/*** 사용자 쿠폰 리스트 가져오기 ***/
 //		List<CustomerCoupons> findCouponList = customerService.findCouponList(loginCustomer.getCustomerNo());
 //		System.out.println("findCouponList : " + findCouponList);
@@ -68,8 +72,8 @@ public class CustomerTest {
 		/*** 번호에 맞는 쿠폰 찾기***/
 		//CustomerCoupons findCoupon = customerService.findCoupon(17);
 		/*** 사용자 쿠폰 업데이트(사용) ***/
-		int updateRowCount = customerService.updateCoupon(findCoupon);
-		System.out.println(updateRowCount);
+//		int updateRowCount = customerService.updateCoupon(findCoupon);
+//		System.out.println(updateRowCount);
 		/*** 사용자 번호로 CustomerCoupons 객체 반환 ***/
 		//List<CustomerCoupons> customerCouponsList = customerService.findCustomerCouponsByNo(loginCustomer.getCustomerNo());
 		
