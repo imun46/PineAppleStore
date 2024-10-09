@@ -28,7 +28,19 @@ CustomerService customerService = new CustomerService();
     <link rel="stylesheet" href="customer_view.css">
     <link rel="stylesheet" href="jsp/styles.css">
     <title>회원 마이페이지</title>
-   
+	<script type="text/javascript">
+	       function customerModifyForm() {
+	           location.href = 'customer_modify_form.jsp';
+	       }
+
+	       function customerDelete() {
+	           if (window.confirm("정말 탈퇴하시겠습니까?")) {
+	               document.f.action = "customer_delete_action.jsp";
+	               document.f.method = 'POST';
+	               document.f.submit();
+			   }
+	       }
+	   </script>
 </head>
 <body>
 
@@ -58,7 +70,8 @@ CustomerService customerService = new CustomerService();
             <p>이메일: <%=customer.getCustomerEmail() %>
             <p>전화번호: <%=customer.getCustomerPhone() %></p>
             <p>닉네임: <%=customer.getCustomerNickname() %></p>
-            <button>수정</button> <button>계정 삭제</button>
+            <button onClick="customerModifyForm()">수정</button>
+			<button onClick="customerDelete()">계정 삭제</button>
         </div>
     </div>
 
