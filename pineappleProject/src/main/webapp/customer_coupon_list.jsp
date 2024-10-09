@@ -78,11 +78,10 @@
                 <!-- 쿠폰 상태, 사용불가면 빨간 글씨-->
                 <% if ("사용불가".equals(customerCoupon.getCustomerCouponsStatus())) { %> 
                 <span style="color: red;">쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br></span>
-                <% } %>
-                
+                <% } else { %>
                 <!-- 쿠폰 상태 -->
                 쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br>
-               
+                <% } %>
                 <!-- 쿠폰 만료일   -->
                 쿠폰 만료일 : <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate())%>
             </td>
