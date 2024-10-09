@@ -152,6 +152,7 @@
 			<input type="button" value="회원가입" class="signup-btn" onClick="customerCreateForm()">
 		</form>
 <<<<<<< Upstream, based on origin/mj
+<<<<<<< Upstream, based on origin/mj
 =======
 	function userCreateForm() {
 		location.href = "user_write_form.jsp";
@@ -527,5 +528,8 @@
 =======
 	</div>
 >>>>>>> 4dd55ee ㅎㅎ
+=======
+	</div>
+>>>>>>> 530051f ㅎㅎ
 </body>
 </html>
