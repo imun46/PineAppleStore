@@ -10,7 +10,8 @@
 <%
 	ReviewService reviewService = new ReviewService();
     String reviewNo = request.getParameter("reviewNo");
-    //String productNo = request.getParameter("productNo");
+    String productNo = request.getParameter("productNo");
+    String customerNo= request.getParameter("customerNo");
     Review review = reviewService.findByReviewNo(Integer.parseInt(reviewNo));
     Product product = review.getProduct();
 %>
@@ -56,19 +57,21 @@
     <span class="star" data-value="4">★</span>
     <span class="star" data-value="5">★</span>
 </div>
-<input type="hidden" id="reviewRating" name="reviewRating" value="0">
+<input type="hidden" id="reviewRating" name="reviewRating" value="<%=review.getReviewRating()%>">
 
 <script>
     const stars = document.querySelectorAll('.star');
     const ratingInput = document.getElementById('reviewRating');
-    
+    <!------------------별점 클릭시 색 채워짐------------------------>
     stars.forEach(star => {
         star.addEventListener('click', () => {
             const rating = star.getAttribute('data-value');
 
             // 선택된 별점 설정
+            
             ratingInput.value = rating;
 
+            
             // 별점 표시 업데이트
             stars.forEach(s => {
                 s.classList.remove('checked');
@@ -78,6 +81,8 @@
             });
         });
     });
+    <!------------------별점 클릭시 색 채워짐------------------------>
+    
     reviewForm.addEventListener('submit', (event) => {
         if (ratingInput.value === "0") {
             event.preventDefault(); // 폼 제출 중단

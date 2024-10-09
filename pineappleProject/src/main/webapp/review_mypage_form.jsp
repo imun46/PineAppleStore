@@ -10,7 +10,7 @@
  ReviewService reviewService = new ReviewService();
  
 	 int customerNo = 1;
-	
+	 //Integer customerNo = Integer.parseInt(request.getParameter("customerNo"));
 	 List<Review> reviewList = reviewService.getMyReview(customerNo);
  %>
 <!DOCTYPE html>
