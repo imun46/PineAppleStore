@@ -139,7 +139,14 @@ public class CustomerService {
 	public int insertCustomerCouponById(Coupon coupon, Customer customer) throws Exception {
 		final int COUNTCOUPON = 2;//입력한 쿠폰 번호가 존재하지 않음
 		final int DUPLICATIONCOUPON = 3;//이미 등록된 쿠폰 번호
+		final int NULLCOUPON = 4;
 		
+		// coupon 객체가 null인지 확인
+	    if (coupon == null || coupon.getCouponId() == null) {
+	        System.out.println("쿠폰 번호가 유효하지 않습니다.");
+	        return NULLCOUPON;
+	    }
+	    
 		//입력한 쿠폰 번호가 존재하는지 체크
 		if(customerDao.countByCouponId(coupon.getCouponId()) == 0) {
 			 System.out.println("올바르지 않은 쿠폰 번호입니다.");

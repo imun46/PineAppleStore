@@ -20,7 +20,7 @@
 	from coupon c
 	join customer_coupons cu
 	on c.coupon_no = cu.coupon_no
-	where cu.customer_no = #{customerNo}
+	where cu.customer_no = #{customerNo} and customer_coupons_status='사용가능'
 	</select>
 	
 	<!-- 쿠폰 조회 -->
@@ -73,7 +73,8 @@
 	
 	<!-- 사용자의 보유 쿠폰 갯수 반환 -->
 	<select id="getCouponCount" parameterType="Integer"  resultType="int">
-	select count(*) from customer_coupons where customer_no =#{customer.customerNo}
+	select count(*) from customer_coupons 
+	where customer_no =#{customer.customerNo} and customer_coupons_status='사용가능'
 	</select>
 	
 	<!-- 사용자 번호로 Customer 객체 반환 -->
