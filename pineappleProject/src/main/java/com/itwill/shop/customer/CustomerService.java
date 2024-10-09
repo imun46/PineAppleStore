@@ -1,5 +1,8 @@
 package com.itwill.shop.customer;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.itwill.shop.coupon.Coupon;
@@ -82,11 +85,28 @@ public class CustomerService {
 		System.out.println("CustomerService : updateCoupon");
 		if(customerCoupons.getCustomerCouponsStatus().equals("사용불가")) {
 			System.out.println("사용이 불가능한 쿠폰입니다.");
+			return 0;
 		}
+		//날짜 포맷 설정
+		SimpleDateFormat newDtFormat = new SimpleDateFormat("yyyy-MM-dd");
+		//포맷으로 EndDate 변경
+		String enddate = newDtFormat.format(customerCoupons.getCustomerCouponsEnddate());
 		
+		//포맷으로 today 선언 및 변경
+		String today = newDtFormat.format(new Date(System.currentTimeMillis()));
+		
+		//시간 가져와서 Date객체에 저장
+		Date newEnddate = new Date(newDtFormat.parse(enddate).getTime());
+		Date newToday = new Date(newDtFormat.parse(today).getTime());
+		//시간 비교
+		int compare = newEnddate.compareTo(newToday);
+		
+		if(compare < 0) {
+			System.out.println("사용 가능한 날짜가 지났습니다.");
+			return 0;
+		}
 		return customerDao.updateCoupon(customerCoupons);
 	}
-	//종료날짜 이후에 사용시 사용불가 출력해야함
 	
 	/*** 사용자 쿠폰 리스트 조회 ***/
 	public List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception {
