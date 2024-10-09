@@ -28,7 +28,6 @@ CustomerService customerService = new CustomerService();
     <link rel="stylesheet" href="customer_view.css">
     <link rel="stylesheet" href="jsp/styles.css">
     <title>회원 마이페이지</title>
-   
 	<script type="text/javascript">
 	       function customerModifyForm() {
 	           location.href = 'customer_modify_form.jsp';
