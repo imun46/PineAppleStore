@@ -11,7 +11,7 @@
 	 
 	 //Integer customerNo = Integer.parseInt(request.getParameter("customerNo"));
 	 //병합 시 주석 제거
-	 List<Review> reviewList = reviewService.getMyReview(3);
+	 List<Review> reviewList = reviewService.getMyReview(1);
 	
  %>
 <!DOCTYPE html>
