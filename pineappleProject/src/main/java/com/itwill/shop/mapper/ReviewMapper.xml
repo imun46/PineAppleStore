@@ -36,10 +36,10 @@
 
 	
 	<!-- 리뷰 작성 -->
-	<insert id="insert"
-		parameterType="Review">
-		<selectKey order="BEFORE" resultType="int"
-			keyProperty="reviewNo"> select review_review_no_seq.nextval from dual</selectKey>
+	<insert id="insert" parameterType="Review">
+		<selectKey order="BEFORE" resultType="int" keyProperty="reviewNo"> 
+		select review_review_no_seq.nextval from dual
+		</selectKey>
 		INSERT INTO review (review_no, product_no, review_title,
 		review_content, review_image, review_rating, customer_no)
 		VALUES(
