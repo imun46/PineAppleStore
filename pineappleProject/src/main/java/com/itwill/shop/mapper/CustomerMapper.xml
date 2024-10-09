@@ -95,10 +95,10 @@
     p.product_desc, p.product_status,
     
     -- Customer Coupons details
-    cc.customer_coupons_no , cc.customer_coupons_enddate, cc.customer_coupons_status, cc.coupon_no as a,
+    cc.customer_coupons_no , cc.customer_coupons_enddate, cc.customer_coupons_status, cc.coupon_no ,
     
     -- Coupon details
-    cp.coupon_no as b, cp.coupon_name, cp.coupon_id, cp.coupon_discount, cp.coupon_desc
+    cp.coupon_no , cp.coupon_name, cp.coupon_id, cp.coupon_discount, cp.coupon_desc
     
 	FROM customer c
 	LEFT JOIN review r ON c.customer_no = r.customer_no
