@@ -8,13 +8,18 @@
 <%@page import="com.itwill.shop.customer.Customer"%>
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  	<%@ include file="jsp/includes/login_check.jspf" %>  
 <%	
+
+
+
+
 response.setContentType("text/html; charset=UTF-8");
 
 CustomerService customerService = new CustomerService();
-
+int customerNo = Integer.parseInt(sCustomerNo); 
 		
-		Customer customer =  customerService.findCustomerNoListAll(1);
+		Customer customer =  customerService.findCustomerNoListAll(customerNo);
 
 %>	
 	
@@ -44,9 +49,9 @@ CustomerService customerService = new CustomerService();
 </head>
 <body>
 
-
+<jsp:include page="jsp/includes/include_top_menu.jsp" />
 <!-- 파인애플 상단의 메뉴 -->
-	<jsp:include page="jsp/includes/include_top_menu.jsp" />
+
 
 <!-- 해당 메뉴 이름-->
 	<header class="bg-dark py-5">
