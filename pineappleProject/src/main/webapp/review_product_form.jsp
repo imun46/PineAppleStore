@@ -59,7 +59,7 @@
 
     <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
-   <a href="review_detail.jsp" class="review-container">
+   <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo() %>" class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         
         <%
@@ -77,7 +77,7 @@
         <div class="review-author">
         	작성자
         </div>
-    </div>
+    </a>
 <%} %>
     
 

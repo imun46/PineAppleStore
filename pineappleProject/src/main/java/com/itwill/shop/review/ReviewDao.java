@@ -17,10 +17,10 @@ public interface ReviewDao {
 	int delete(Integer reviewNo) throws Exception;
 	
 	//자기가 쓴 리뷰 리스트
-	List<Review> findMyReview(Customer customerNo) throws Exception;
+	List<Review> findMyReview(Integer customerNo) throws Exception;
 	
 	//상품 리뷰 리스트
-	List<Review> findProductReview(Product productNo) throws Exception;
+	List<Review> findProductReview(Integer productNo) throws Exception;
 	
 	//리뷰 하나보기
 	Review findByReview(Integer reviewNo) throws Exception;
