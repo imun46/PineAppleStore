@@ -82,10 +82,14 @@
                 <!-- 쿠폰 상태 -->
                 쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br>
 <<<<<<< Upstream, based on origin/mj
+<<<<<<< Upstream, based on origin/mj
                 <% } %>
 =======
 >>>>>>> f728de3 리스트 수정
                 <!-- 쿠폰 만료일   -->
+=======
+                <!-- 쿠폰 만료일   --> 
+>>>>>>> 2da8191 insert문 유효성 체크
                 쿠폰 만료일 : <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate())%>
             </td>
           </tr>
