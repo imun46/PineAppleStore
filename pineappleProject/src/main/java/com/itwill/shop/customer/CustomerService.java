@@ -78,9 +78,13 @@ public class CustomerService {
 	}
 	
 	/*** 쿠폰 사용완료 업데이트 ***/
-	public int updateCoupon(Integer customerCouponsNo) throws Exception {
+	public int updateCoupon(CustomerCoupons customerCoupons) throws Exception {
 		System.out.println("CustomerService : updateCoupon");
-		return customerDao.updateCoupon(customerCouponsNo);
+		if(customerCoupons.getCustomerCouponsStatus().equals("사용불가")) {
+			System.out.println("사용이 불가능한 쿠폰입니다.");
+		}
+		
+		return customerDao.updateCoupon(customerCoupons);
 	}
 	//종료날짜 이후에 사용시 사용불가 출력해야함
 	
