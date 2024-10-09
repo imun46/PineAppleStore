@@ -39,6 +39,7 @@ public class CustomerService {
 		return 0;
 	}
 	
+	// customer 서비스 수정한곳
 	// (어드민용) 사용자 전체 리스트
 	public List<Customer> findCustomerAll()throws Exception {
 		return customerDao.customerList();
