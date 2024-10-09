@@ -20,7 +20,7 @@
 	from coupon c
 	join customer_coupons cu
 	on c.coupon_no = cu.coupon_no
-	where cu.customer_no = #{customerNo} and cu.customer_coupons_status = '사용가능'
+	where cu.customer_no = #{customerNo}
 	</select>
 	
 	<!-- 쿠폰 조회 -->
@@ -53,6 +53,12 @@
 	select count(*) from coupon where coupon_id=#{couponId}
 	</select>
 	
+	<!-- 사용자가 입력한 쿠폰이 이미 발급되어 있는지 체크  -->
+	<select id="duplicationCouponCheck" parameterType="CustomerCoupons" resultType="int">
+	 select count(customer_coupons_no) from customer_coupons
+	 where customer_no=#{customer.customerNo} and coupon_no = #{coupon.couponNo}
+	</select>
+	
 	<!-- 일련 번호 입력 시 사용자 쿠폰 발급 -->
 	<insert id="insertCustomerCouponById" parameterType="CustomerCoupons">
     insert into customer_coupons
@@ -67,9 +73,7 @@
 	
 	<!-- 사용자의 보유 쿠폰 갯수 반환 -->
 	<select id="getCouponCount" parameterType="Integer"  resultType="int">
-	select count(*) from customer_coupons 
-	where customer_no =#{customer.customerNo}
-	and customer_coupons_status = '사용가능'
+	select count(*) from customer_coupons where customer_no =#{customer.customerNo}
 	</select>
 	
 	<!-- 사용자 번호로 Customer 객체 반환 -->
@@ -77,9 +81,4 @@
 	select * from customer where customer_no = #{customer.customerNo}
 	</select>
 	
-	
 </mapper>
-
-
-
-   
