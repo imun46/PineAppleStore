@@ -1,3 +1,5 @@
+<%@page import="com.itwill.shop.customer.Customer"%>
+<%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@page import="com.itwill.shop.product.ProductService"%>
 <%@page import="com.itwill.shop.product.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,11 +12,11 @@
 
 <%
 	ReviewService reviewService = new ReviewService();
-    String customerNo = request.getParameter("customerNo");
-    String reviewNoStr = request.getParameter("reviewNo");
+    ProductService productService = new ProductService();
+    Product product = productService.productDetail(1);
     
-    
-    
+    CustomerService customerService = new CustomerService();
+    Customer customer = customerService.findCustomerNo(1);
 %>
 
 <!DOCTYPE html>
@@ -37,10 +39,14 @@
 <h1>리뷰 등록</h1>
 
 <form id="reviewForm" action="review_insert_action.jsp" method="post">
-    
+   <input type="hidden" name="productNo" value="<%= product.getProductNo() %>">
+<input type="hidden" name="customerNo" value="<%= customer.getCustomerNo() %>">
     <div>
         <label for="reviewTitle">리뷰 제목:</label>
         <input type="text" id="reviewTitle" name="reviewTitle" value="" required>
+    </div>
+    <div>
+        <label for="reviewTitle">상품명:<%= product.getProductName()%>(<%= product.getProductDesc()%>)</label>
     </div>
     
 <div id="star-rating">

@@ -12,9 +12,8 @@ if (request.getMethod().equals("GET")) {
 	response.sendRedirect("review_mypage_form.jsp");
 	return;
 }
-//try {
+try {
 	request.setCharacterEncoding("UTF-8");
-	
 	String reviewTitle = request.getParameter("reviewTitle");
 	String reviewContent = request.getParameter("reviewContent");
 	Integer reviewRating = Integer.parseInt(request.getParameter("reviewRating"));
@@ -40,9 +39,9 @@ if (request.getMethod().equals("GET")) {
 	
 	
 
-	response.sendRedirect("review_detail.jsp");
-//} catch (Exception e) {
-//	e.printStackTrace();
-//	response.sendRedirect("ereer");
-//}
+	response.sendRedirect("review_detail.jsp?reviewNo="+review.getReviewNo());
+} catch (Exception e) {
+	e.printStackTrace();
+	response.sendRedirect("ereer");
+}
 %>
