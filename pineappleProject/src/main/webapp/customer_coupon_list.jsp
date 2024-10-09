@@ -12,6 +12,7 @@
 	Customer loginCustomer = customerService.findCustomerId(customerId);
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 	List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());
+	
 %>
 <!DOCTYPE html>
 <html>

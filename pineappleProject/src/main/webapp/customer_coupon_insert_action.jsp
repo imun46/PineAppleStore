@@ -40,12 +40,17 @@
 			/*** script ***/
 		} else if(rowCount == 2) {
 			out.println("<script>");
-			out.println(" alert('유효한 쿠폰 번호가 아닙니다.');");
+			out.println(" alert('올바르지 않은 쿠폰 번호입니다.');");
 			out.println(" window.close();"); // 현재 창 닫기
 			out.println("</script>");
 		} else if(rowCount == 3) {
 			out.println("<script>");
 			out.println(" alert('이미 보유한 쿠폰입니다.');");
+			out.println(" window.close();"); // 현재 창 닫기
+			out.println("</script>");
+		} else if(rowCount == 4) {
+			out.println("<script>");
+			out.println(" alert('쿠폰 번호가 유효하지 않습니다.');");
 			out.println(" window.close();"); // 현재 창 닫기
 			out.println("</script>");
 		}
