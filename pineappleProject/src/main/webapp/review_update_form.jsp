@@ -11,7 +11,8 @@
 <%
 	ReviewService reviewService = new ReviewService();
     String reviewNo = request.getParameter("reviewNo");
-    //String productNo = request.getParameter("productNo");
+    String productNo = request.getParameter("productNo");
+    String customerNo= request.getParameter("customerNo");
     Review review = reviewService.findByReviewNo(Integer.parseInt(reviewNo));
     Product product = review.getProduct();
 %>

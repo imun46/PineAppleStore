@@ -14,7 +14,7 @@ if (request.getMethod().equals("GET")) {
 }
 //try {
 	request.setCharacterEncoding("UTF-8");
-	Integer reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+	
 	String reviewTitle = request.getParameter("reviewTitle");
 	String reviewContent = request.getParameter("reviewContent");
 	Integer reviewRating = Integer.parseInt(request.getParameter("reviewRating"));
@@ -25,7 +25,6 @@ if (request.getMethod().equals("GET")) {
 	Customer customer = Customer.builder().customerNo(cusNoStr).build();
 	
 	Review review = Review.builder()
-	        .reviewNo(reviewNo) 
 	        .reviewTitle(reviewTitle)
 	        .reviewContent(reviewContent)
 	        .reviewRating(reviewRating)
@@ -34,7 +33,7 @@ if (request.getMethod().equals("GET")) {
 	        .customer(customer)
 	        .build();    
 	ReviewService reviewService = new ReviewService();
-    int updateRowCount = reviewService.updateReview(review);
+    int insertCount = reviewService.addReview(review);
     
 
 

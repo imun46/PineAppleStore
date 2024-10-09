@@ -12,8 +12,10 @@
 
 <%
 	ReviewService reviewService = new ReviewService();
-    ProductService productService = new ProductService();
-    Product product = productService.productDetail(1);
+    String customerNo = request.getParameter("customerNo");
+    String reviewNoStr = request.getParameter("reviewNo");
+    
+    
     
     CustomerService customerService = new CustomerService();
     Customer customer = customerService.findCustomerNo(1);
@@ -39,15 +41,11 @@
 <h1>리뷰 등록</h1>
 
 <form id="reviewForm" action="review_insert_action.jsp" method="post">
-   <input type="hidden" name="productNo" value="<%= product.getProductNo() %>">
-<input type="hidden" name="customerNo" value="<%= customer.getCustomerNo() %>">
     <div>
         <label for="reviewTitle">리뷰 제목:</label>
         <input type="text" id="reviewTitle" name="reviewTitle" value="" required>
     </div>
-    <div>
-        <label for="reviewTitle">상품명:<%= product.getProductName()%>(<%= product.getProductDesc()%>)</label>
-    </div>
+    
 <div id="star-rating">
 
     <span class="star" data-value="1">★</span>
@@ -91,7 +89,7 @@
     </div>
      <div>
             <label for="reviewImage">이미지 첨부:</label>
-            <input type="file" id="reviewImage" name="reviewImage" accept="*" >
+            <input type="file" id="reviewImage" name="reviewImage" accept="image/*" >
         </div>
 
     <div>
