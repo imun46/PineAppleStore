@@ -114,5 +114,7 @@
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
         <input type="submit" value="삭제" class="review_delete" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
+    <a href="review_mypage_form.jsp?customer=<%=review.getCustomer().getCustomerNo() %>">이전</a>
+        
 </body>
 </html>

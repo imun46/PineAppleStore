@@ -44,11 +44,7 @@
         <input type="text" id="reviewTitle" name="reviewTitle" value="" required>
     </div>
     <div>
-<<<<<<< Upstream, based on origin/mj
->>>>>>> eb351de 씨ㅡㅡ발
-=======
     	<input type="hidden" name="productNo">
->>>>>>> d3829bb ....
     	<label for="reviewProductOption"><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)</label>
     </div>
 <div id="star-rating">
