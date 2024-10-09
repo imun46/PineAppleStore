@@ -73,6 +73,42 @@
 				left join coupon cp
 				on cc.coupon_no = cp.coupon_no 
 				where c.customer_no = #{customer_no}
+=======
+							SELECT  
+    c.customer_no, c.customer_id, c.customer_password, c.customer_name,
+    c.customer_dob, c.customer_address, c.customer_gender, c.customer_phone,
+    c.customer_email, c.customer_nickname, c.customer_joindate,
+    
+    -- Review details
+    r.review_no, r.review_title, r.review_content, r.review_image, r.review_rating, r.product_no,
+    
+    -- Orders details
+    o.orders_no, o.orders_date, o.orders_arrivaldate, o.orders_totprice, o.orders_finalprice,
+    o.orders_totqty, o.orders_address, o.orders_status, o.customer_coupons_no as order_custom_coupon_no,
+    
+    -- Order Items details
+    oi.orders_items_no, oi.orders_items_price, oi.orders_items_finalprice, oi.orders_items_qty,
+    oi.orders_items_options, oi.product_no,
+    
+    -- Product details
+    p.product_no, p.product_name, p.product_price, p.product_category, p.product_detailpage,
+    p.product_desc, p.product_status,
+    
+    -- Customer Coupons details
+    cc.customer_coupons_no , cc.customer_coupons_enddate, cc.customer_coupons_status, cc.coupon_no as a,
+    
+    -- Coupon details
+    cp.coupon_no as b, cp.coupon_name, cp.coupon_id, cp.coupon_discount, cp.coupon_desc
+    
+	FROM customer c
+	LEFT JOIN review r ON c.customer_no = r.customer_no
+	LEFT JOIN orders o ON c.customer_no = o.customer_no
+	LEFT JOIN orders_items oi ON o.orders_no = oi.orders_no
+	LEFT JOIN product p ON oi.product_no = p.product_no
+	LEFT JOIN customer_coupons cc ON c.customer_no = cc.customer_no
+	LEFT JOIN coupon cp ON cc.coupon_no = cp.coupon_no
+	WHERE c.customer_no = #{c.customer_no}
+>>>>>>> 81899ce customer_view
 	</select>
 	
 	
