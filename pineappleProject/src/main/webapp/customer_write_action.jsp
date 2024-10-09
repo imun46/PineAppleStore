@@ -1,8 +1,9 @@
+<%@page import="java.util.Date"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="com.itwill.shop.customer.exception.ExistedCustomerException"%>
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@page import="com.itwill.shop.customer.Customer"%>
-<%@page import="javax.servlet.RequestDispatcher"%>
+
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
