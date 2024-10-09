@@ -58,4 +58,5 @@ function customerCreate() {
 	f.method='POST';
 	f.submit();
 	
+	
 }

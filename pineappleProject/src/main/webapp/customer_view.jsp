@@ -88,7 +88,7 @@ CustomerService customerService = new CustomerService();
     </div>
 
     <div class="section">
-        <h2>주문 정보 <button class="btn-style">더보기</button> </h2>
+        <h2>주문 정보 <button  class="btn-style">더보기</button> </h2>
         <div class="scroll-section">
         <% List<Orders> orderList = customer.getOrdersList(); %>
         
@@ -122,7 +122,7 @@ CustomerService customerService = new CustomerService();
     </div>
 
 	<div class="section">
-        <h2>리뷰 정보 <button class="btn-style">더보기</button> </h2>	           
+        <h2>리뷰 정보 <a class="a-style" href="review_mypage_form.jsp" >더보기</a> </h2>	           
         <div class="scroll-section">
         <%List<Review> customerReviewList = customer.getReviewList(); %>
         <%for(Review review:customerReviewList) { %>
