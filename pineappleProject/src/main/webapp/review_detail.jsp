@@ -65,7 +65,9 @@
 
     <div class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
-        
+        <div class="review-product-option">
+            <%=review.getProduct().getProductImageList() %><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
+        </div>
         <%
         int rating= review.getReviewRating(); 
         for(int i=0;i<5;i++){
@@ -83,7 +85,7 @@
         <div class = "review-date">
         	 <%= formattedDate %>
         </div>
-        <div class="review-author"></div>
+        <div class="review-author"><%=review.getCustomer().getCustomerName() %></div>
         </div>
         
 <<<<<<< Upstream, based on origin/mj
