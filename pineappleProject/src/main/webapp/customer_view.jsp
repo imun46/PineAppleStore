@@ -8,6 +8,7 @@
 <%@page import="com.itwill.shop.customer.Customer"%>
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  	<!-- 로그인 체크 (세션 값 들어와 있는지 확인) -->
   	<%@ include file="jsp/includes/login_check.jspf" %>  
 <%	
 
@@ -17,6 +18,9 @@
 response.setContentType("text/html; charset=UTF-8");
 
 CustomerService customerService = new CustomerService();
+
+/*customer서비스에서 findcustomerNoListAll(매개변수 int)값이 때문에   */
+// String을 int로 바꿔서 출력
 int customerNo = Integer.parseInt(sCustomerNo); 
 		
 		Customer customer =  customerService.findCustomerNoListAll(customerNo);
@@ -48,6 +52,7 @@ int customerNo = Integer.parseInt(sCustomerNo);
 	   </script>
 </head>
 <body>
+
 
 <jsp:include page="jsp/includes/include_top_menu.jsp" />
 <!-- 파인애플 상단의 메뉴 -->
