@@ -1,6 +1,6 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="com.itwill.shop.customer.exception.ExistedCustomerException"%>
+
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@page import="com.itwill.shop.customer.Customer"%>
 
