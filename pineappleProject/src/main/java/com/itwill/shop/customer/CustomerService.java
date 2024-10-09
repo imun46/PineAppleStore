@@ -149,6 +149,8 @@ public class CustomerService {
 			 return 0;
 		}
 		
+		
+		
 		CustomerCoupons customerCoupons = CustomerCoupons.builder()
 		        .coupon(coupon)
 		        .customer(customer)
