@@ -38,26 +38,29 @@
 			//out.println(" location.href='customer_coupon_list.jsp';");
 			out.println("</script>");
 			/*** script ***/
-		} else {
+		} else if(rowCount == 2) {
 			out.println("<script>");
-			out.println(" alert('쿠폰 등록에 실패했습니다.');");
+			out.println(" alert('유효한 쿠폰 번호가 아닙니다.');");
+			out.println(" window.close();"); // 현재 창 닫기
+			out.println("</script>");
+		} else if(rowCount == 3) {
+			out.println("<script>");
+			out.println(" alert('이미 보유한 쿠폰입니다.');");
 			out.println(" window.close();"); // 현재 창 닫기
 			out.println("</script>");
 		}
-		
-		/*** 쿠폰 리스트로 리다이렉션 ***/
-		/* response.sendRedirect("customer_coupon_list.jsp"); */
 		
 	} catch(Exception e) {
 		e.printStackTrace();
 		out.println("<script>");
 		// 부모 창의 새로 고침 함수 호출	
 		out.println(" window.opener.refreshParent();");
-		out.println(" alert('유효한 쿠폰번호가 아닙니다.');");
+		out.println(" alert('쿠폰이 등록되지 않았습니다.');");
 		out.println(" window.close();"); // 현재 창 닫기
 		out.println("</script>");
 	}
 %>
+
 
 <!-- <script type="text/javascript">
 	/*** 작업 완료 후 부모 창 새로 고침 ***/

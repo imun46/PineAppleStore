@@ -35,18 +35,25 @@ public class CustomerTest {
 //				.build();
 //		/*** 쿠폰 발급 ***/
 //		System.out.println(customerService.findCoupon(1));
-		String customerId = "IDEX1"; //사용자 아이디
-		String couponId = "A123456"; //쿠폰 아이디
-		CustomerService customerService = new CustomerService();
+//		/*** 쿠폰 발급 ***/
+//		System.out.println(customerService.findCoupon(1));
+	String customerId = "IDEX2"; //사용자 아이디
+	String couponId = "C123456"; //쿠폰 아이디
+	/*** 서비스 선언 ***/
+	CustomerService customerService = new CustomerService();
+
+	/*** 로그인한 사용자 찾기 ***/
+	Customer loginCustomer = customerService.findCustomerId(customerId);
+
+	/*** 쿠폰ID에 맞는 쿠폰 찾기***/
+	Coupon coupon = customerService.getCouponId(couponId);
+	System.out.println(coupon);
+
+	/*** 쿠폰 삽입 ***/
+	int rowCount = customerService.insertCustomerCouponById(coupon, loginCustomer);
+	System.out.println(rowCount);
+
 		
-		/*** 로그인한 사용자 찾기 ***/
-		Customer loginCustomer = customerService.findCustomerId(customerId);
-		
-		/*** 쿠폰ID에 맞는 쿠폰 찾기***/
-		Coupon coupon = customerService.getCouponId(couponId);
-		
-		
-		System.out.println(customerService.getCouponCount(loginCustomer.getCustomerNo()));
 //		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(loginCustomer.getCustomerNo());
 //		System.out.println("customerCouponsList : " + customerCouponsList);
 //		System.out.println(coupon);
