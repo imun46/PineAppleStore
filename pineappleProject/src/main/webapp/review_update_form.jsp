@@ -46,9 +46,13 @@
         <input type="text" id="reviewTitle" name="reviewTitle" value="<%= review.getReviewTitle() %>" required>
     </div>
 <<<<<<< Upstream, based on origin/mj
+<<<<<<< Upstream, based on origin/mj
     
 =======
 >>>>>>> 7cd09ce ,.,.,.
+=======
+    
+>>>>>>> 2506e4d Review마무리했어요
       
     <div>
     	<label for="reviewProductOption"><%=review.getProduct().getProductImageList() %><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)</label>

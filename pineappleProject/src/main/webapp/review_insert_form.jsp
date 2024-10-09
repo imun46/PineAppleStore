@@ -12,10 +12,8 @@
 
 <%
 	ReviewService reviewService = new ReviewService();
-    String customerNo = request.getParameter("customerNo");
-    String reviewNoStr = request.getParameter("reviewNo");
-    
-    
+    ProductService productService = new ProductService();
+    Product product = productService.productDetail(1);
     
     CustomerService customerService = new CustomerService();
     Customer customer = customerService.findCustomerNo(1);
@@ -44,6 +42,9 @@
     <div>
         <label for="reviewTitle">리뷰 제목:</label>
         <input type="text" id="reviewTitle" name="reviewTitle" value="" required>
+    </div>
+    <div>
+        <label for="reviewTitle">상품명:<%= product.getProductName()%>(<%= product.getProductDesc()%>)</label>
     </div>
     
 <div id="star-rating">
