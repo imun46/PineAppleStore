@@ -151,6 +151,7 @@
 			<input type="button" value="로그인" onClick="login();">
 			<input type="button" value="회원가입" class="signup-btn" onClick="customerCreateForm()">
 		</form>
+<<<<<<< Upstream, based on origin/mj
 =======
 	function userCreateForm() {
 		location.href = "user_write_form.jsp";
@@ -523,5 +524,8 @@
 >>>>>>> cf6d03f login jsp
 =======
 >>>>>>> ff5bfcb login JSP 완료
+=======
+	</div>
+>>>>>>> 4dd55ee ㅎㅎ
 </body>
 </html>
