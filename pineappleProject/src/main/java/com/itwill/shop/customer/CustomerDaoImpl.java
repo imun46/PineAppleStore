@@ -1,5 +1,7 @@
 package com.itwill.shop.customer;
 
+
+	
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -127,7 +129,6 @@ public class CustomerDaoImpl implements CustomerDao {
 	public int insertCustomerCouponById(CustomerCoupons customerCoupons) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).insertCustomerCouponById(customerCoupons);
-		sqlSession.close();	
 		return rowCount;
 	}
 	
@@ -169,7 +170,6 @@ public class CustomerDaoImpl implements CustomerDao {
 		sqlSession.close();	
 		return getCount;
 	}
-	
 	/***** 입력한 일련번호가 중복인지 체크 *****/
 	@Override
 	public int duplicationCouponCheck(CustomerCoupons customerCoupons) throws Exception {
@@ -179,11 +179,4 @@ public class CustomerDaoImpl implements CustomerDao {
 		return duplicationCoupon;
 	}
 	
-	@Override
-	public List<Customer> findCustomerCouponsByCustomerNo(Integer customerNo) throws Exception {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		List<Customer> customer = sqlSession.getMapper(CustomerCouponsMapper.class).findCustomerCouponsByCustomerNo(customerNo);
-		sqlSession.close();	
-		return customer;
-	}
 }
