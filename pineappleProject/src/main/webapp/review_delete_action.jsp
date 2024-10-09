@@ -8,5 +8,4 @@
 	reviewService.deleteReview(Integer.parseInt(reviewNoStr));
 	
 	response.sendRedirect("review_mypage_form.jsp");
-	
 %>

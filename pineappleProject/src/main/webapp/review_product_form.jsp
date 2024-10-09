@@ -59,7 +59,6 @@
 
     <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
-    <div class="review-container">
    <a href="review_detail.jsp" class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         
@@ -76,7 +75,7 @@
             <%=review.getReviewContent() %>
         </div>
         <div class="review-author">
-        	<%= review.getProduct().getProductNo()%>
+        	작성자
         </div>
     </div>
 <%} %>
