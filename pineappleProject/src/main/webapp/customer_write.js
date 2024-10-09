@@ -58,5 +58,8 @@ function customerCreate() {
 	f.method='POST';
 	f.submit();
 	
+<<<<<<< Upstream, based on origin/mj
 	
+=======
+>>>>>>> c25e15a customer_view
 }

@@ -1,4 +1,3 @@
-<%@page import="com.itwill.shop.review.Review"%>
 <%@page import="com.itwill.shop.product.Product"%>
 <%@page import="com.itwill.shop.orders.OrdersItems"%>
 <%@page import="com.itwill.shop.orders.Orders"%>
@@ -8,22 +7,13 @@
 <%@page import="com.itwill.shop.customer.Customer"%>
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-  	<!-- 로그인 체크 (세션 값 들어와 있는지 확인) -->
-  	<%@ include file="jsp/includes/login_check.jspf" %>  
 <%	
-
-
-
-
 response.setContentType("text/html; charset=UTF-8");
 
 CustomerService customerService = new CustomerService();
 
-/*customer서비스에서 findcustomerNoListAll(매개변수 int)값이 때문에   */
-// String을 int로 바꿔서 출력
-int customerNo = Integer.parseInt(sCustomerNo); 
 		
-		Customer customer =  customerService.findCustomerNoListAll(customerNo);
+		Customer customer =  customerService.findCustomerNoListAll(2);
 
 %>	
 	
@@ -37,26 +27,13 @@ int customerNo = Integer.parseInt(sCustomerNo);
     <link rel="stylesheet" href="customer_view.css">
     <link rel="stylesheet" href="jsp/styles.css">
     <title>회원 마이페이지</title>
-	<script type="text/javascript">
-	       function customerModifyForm() {
-	           location.href = 'customer_modify_form.jsp';
-	       }
-
-	       function customerDelete() {
-	           if (window.confirm("정말 탈퇴하시겠습니까?")) {
-	               document.f.action = "customer_delete_action.jsp";
-	               document.f.method = 'POST';
-	               document.f.submit();
-			   }
-	       }
-	   </script>
+   
 </head>
 <body>
 
 
-<jsp:include page="jsp/includes/include_top_menu.jsp" />
 <!-- 파인애플 상단의 메뉴 -->
-
+	<jsp:include page="jsp/includes/include_top_menu.jsp" />
 
 <!-- 해당 메뉴 이름-->
 	<header class="bg-dark py-5">
@@ -80,22 +57,21 @@ int customerNo = Integer.parseInt(sCustomerNo);
             <p>이메일: <%=customer.getCustomerEmail() %>
             <p>전화번호: <%=customer.getCustomerPhone() %></p>
             <p>닉네임: <%=customer.getCustomerNickname() %></p>
-            <button onClick="customerModifyForm()">수정</button>
-			<button onClick="customerDelete()">계정 삭제</button>
+            
         </div>
     </div>
 
     <div class="section">
-        <h2>쿠폰 정보 </h2>
+        <h2>쿠폰 정보</h2>
         <div class="scroll-section">
         <% List<CustomerCoupons> customerCouponList = customer.getCustomerCouponList(); %>
         	<%if(customerCouponList !=null){ %>
         	<%for(CustomerCoupons customerCoupons: customerCouponList){ %>
             <% Coupon couponList = customerCoupons.getCoupon();%>
             <div class="list-item">
-            쿠폰 번호:<%=customerCoupons.getCustomerCouponsNo() %>
-            <br>
             쿠폰 일련번호:<%=couponList.getCouponId() %>
+            <br>
+            쿠폰 번호:<%=customerCoupons.getCustomerCouponsNo() %>
             <br>
             쿠폰 사용여부:<%=customerCoupons.getCustomerCouponsStatus() %>
              <br>
@@ -106,12 +82,11 @@ int customerNo = Integer.parseInt(sCustomerNo);
             <%} %>
             <%} %>
             
-            
         </div>
     </div>
 
     <div class="section">
-        <h2>주문 정보 <button  class="btn-style">더보기</button> </h2>
+        <h2>주문 정보</h2>
         <div class="scroll-section">
         <% List<Orders> orderList = customer.getOrdersList(); %>
         
@@ -119,7 +94,17 @@ int customerNo = Integer.parseInt(sCustomerNo);
         <% for(Orders orders:orderList){ %>
       <% List<OrdersItems> ordersItems = orders.getOrdersItemsList(); %>
         <% for(OrdersItems orderItem : ordersItems){ %>
-         		
+         		<% Product products = orderItem.getProduct(); %>
+         		   <br>
+         		주문 번호: <%= orderItem.getOrdersItemsNo() %>
+         		   <br>
+         		제품 이름:<%= products.getProductName() %>
+         		   <br>
+         		제품 설명:<%= products.getProductDesc() %>
+        			
+         
+        	
+            <br>
             <%} %>
         
             <div class="list-item">
@@ -137,33 +122,20 @@ int customerNo = Integer.parseInt(sCustomerNo);
             <br>
             주문한 날짜 :<%=orders.getOrdersDate() %>
             <br>
+            
+           
+            
             </div>
-            <%} %>
+            
             <div class="list-item">주문 4 - 2024.09.15 - 상품 D</div>
             <div class="list-item">주문 5 - 2024.09.05 - 상품 E</div>
         </div>
     </div>
-
+<%} %>
 	<div class="section">
-        <h2>리뷰 정보 <a class="a-style" href="review_mypage_form.jsp" >더보기</a> </h2>	           
+        <h2>리뷰 정보</h2>
         <div class="scroll-section">
-        <%List<Review> customerReviewList = customer.getReviewList(); %>
-        <%for(Review review:customerReviewList) { %>
-        
-            <div class="list-item">
-            
-            리뷰 번호 :<%=review.getReviewNo() %>
-            <br>
-            리뷰 제목 :<%=review.getReviewTitle() %>
-            <br>
-            리뷰 설명 :<%=review.getReviewContent() %>
-            <br>
-            리뷰 별점 :<%=review.getReviewRating() %>
-            
-            <br>
-            </div>
-            <br>
-            <%} %>
+            <div class="list-item">리뷰</div>
             <div class="list-item">주문 3 - 2024.09.20 - 상품 C</div>
             <div class="list-item">주문 4 - 2024.09.15 - 상품 D</div>
             <div class="list-item">주문 5 - 2024.09.05 - 상품 E</div>
@@ -172,4 +144,4 @@ int customerNo = Integer.parseInt(sCustomerNo);
 </div>
 </body>
 </html>
->>>>>>> 81899ce customer_view
+>>>>>>> c25e15a customer_view
