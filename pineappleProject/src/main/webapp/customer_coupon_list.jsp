@@ -38,48 +38,62 @@
     function refreshParent() {
         window.location.reload();
     }
+	 
+	function customerCouponUpdate() {
+		let selectedCoupon =  document.querySelector('input[name="selectedCoupon"]:checked');
+		document.f.action = "customer_coupon_update_action.jsp";
+		document.f.method = 'POST';
+		document.f.submit();
+	}
 	
 </script>
 </head>
 <body>
 <form name="f" method="post">
-	<table border="0" cellpadding="0" cellspacing="1" width="590" bgcolor="BBBBBB">
-		<!-- 사용자 쿠폰 리스트 -->
 		<%for (CustomerCoupons customerCoupon : customerCoupons) { %>
+	<table border="0" cellpadding="0" cellspacing="1" width="590" bgcolor="BBBBBB"
+	 <% if ("사용불가".equals(customerCoupon.getCustomerCouponsStatus())) { %> 
+	 style="border: 2px solid gray;" 
+	 <% } %>
+            >
+		<!-- 사용자 쿠폰 리스트 -->
 		<!-- 쿠폰 이름 -->
 		<tr>
+			<!-- 선택한 쿠폰 정보 가져올 라디오 버튼 -->
+			<td width=30 align=center bgcolor="E6ECDE" heigth="22">
+            <input type="radio" name="selectedCoupon" value="<%= customerCoupon.getCustomerCouponsNo() %>">
+            </td>
+            
 			<td width=100 align=center bgcolor="E6ECDE" heigth="22">쿠폰 이름 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=customerCoupon.getCoupon().getCouponName()%>
-			</td>
+            <td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
+                <%= customerCoupon.getCoupon().getCouponName() %>
+            </td>
 		</tr>
 		<!-- 쿠폰 설명 -->
 		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">쿠폰 설명 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=customerCoupon.getCoupon().getCouponDesc()%>
-			</td>
-		</tr>
-		<!-- 쿠폰 상태  -->
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">쿠폰 상태 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=customerCoupon.getCustomerCouponsStatus()%>
-			</td>
-		</tr>
-		<!-- 쿠폰 만료일  -->
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">쿠폰 만료일 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate())%>
-			</td>
-		</tr>
-		<% } %>
+            <td bgcolor="ffffff" colspan="3" align="left">
+            	<!-- 쿠폰 설명 -->
+                쿠폰 설명 : <%=customerCoupon.getCoupon().getCouponDesc()%><br>
+               
+                <!-- 쿠폰 상태, 사용불가면 빨간 글씨-->
+                <% if ("사용불가".equals(customerCoupon.getCustomerCouponsStatus())) { %> 
+                <span style="color: red;">쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br></span>
+                <% } %>
+                
+                <!-- 쿠폰 상태 -->
+                쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br>
+               
+                <!-- 쿠폰 만료일   -->
+                쿠폰 만료일 : <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate())%>
+            </td>
+		<!-- 쿠폰 사용하기  -->
 	</table>
+		<% } %>
 </form>
 	<table width=590 border=0 cellpadding=0 cellspacing=0>
 			<tr>
 				<td align=center>
+				<input type="button" value="쿠폰 사용"	onClick="customerCouponUpdate()"> &nbsp;
 				<input type="button" value="쿠폰 등록"	onClick="customerCouponInsert()"> &nbsp;
 				<input type="button" value="메인" onClick="customerMain()"> &nbsp;
 				</td>
@@ -87,12 +101,3 @@
 		</table>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

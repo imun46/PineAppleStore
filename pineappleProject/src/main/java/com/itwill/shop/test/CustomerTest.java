@@ -50,9 +50,23 @@ public class CustomerTest {
 		System.out.println(rowCount);
 		System.out.println(customerService.countByCouponId(couponId));
 		
-		/*** 번호에 맞는 쿠폰 찾기***/
-		CustomerCoupons findCoupon = customerService.findCoupon(17);
+	
+
 		
+		String customerCouponNoStr = "18";
+		Integer customerCouponNo = Integer.parseInt(customerCouponNoStr);
+		/*** CustomerCoupons번호에 맞는 쿠폰 찾기***/
+		CustomerCoupons findCoupon = customerService.findCoupon(customerCouponNo);
+		System.out.println(findCoupon);
+//		/*** 사용자 쿠폰 리스트 가져오기 ***/
+//		List<CustomerCoupons> findCouponList = customerService.findCouponList(loginCustomer.getCustomerNo());
+//		System.out.println("findCouponList : " + findCouponList);
+//		/*** CustomerCoupons번호에 맞는 쿠폰 찾기***/
+//		CustomerCoupons findCoupon = customerService.findCoupon(findCouponList.get(0).getCustomerCouponsNo());
+//		System.out.println("findCoupon(index : 0) : " + findCoupon);
+		
+		/*** 번호에 맞는 쿠폰 찾기***/
+		//CustomerCoupons findCoupon = customerService.findCoupon(17);
 		/*** 사용자 쿠폰 업데이트(사용) ***/
 		int updateRowCount = customerService.updateCoupon(findCoupon);
 		System.out.println(updateRowCount);
