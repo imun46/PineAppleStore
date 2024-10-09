@@ -10,11 +10,11 @@
     }
 
     // 세션에서 sCustomerId 가져오기
-    String sCustomerId = (String) session.getAttribute("sCustomerId");
+    String sCustomerNo = (String) session.getAttribute("sCustomerNo");
 
-    if (sCustomerId != null) {
+    if (sCustomerNo != null) {
         // 고객 번호를 Integer로 변환 후 삭제
-        int customerId = Integer.parseInt(sCustomerId);
+        int customerId = Integer.parseInt(sCustomerNo);
         CustomerService customerService = new CustomerService();
         customerService.deleteCustomerNo(customerId);
 

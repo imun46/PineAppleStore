@@ -28,7 +28,7 @@ int result = customerService.login(customerId, customerPassword);
 if (result == 1) {
     // 로그인 성공 (세션 설정)
     Customer customer = customerService.findCustomerId(customerId);
-    session.setAttribute("sCustomerId", Integer.toString(customer.getCustomerNo()));
+    session.setAttribute("sCustomerNo", Integer.toString(customer.getCustomerNo()));
     response.sendRedirect("customer_view.jsp");
 } else {
     // 로그인 실패 (아이디 또는 비밀번호 문제)
