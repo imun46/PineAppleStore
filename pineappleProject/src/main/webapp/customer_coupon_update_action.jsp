@@ -17,6 +17,18 @@ try{
 	/*** 선택한 사용자 쿠폰 번호 가져오기 ***/
 	String customerCouponNoStr = request.getParameter("selectedCoupon");
 	
+	/*** 쿠폰이 선택되지 않았을 경우 ***/
+    if (customerCouponNoStr == null || customerCouponNoStr.isEmpty()) {
+        String msg = "쿠폰을 선택해주세요.";
+        /*** script ***/
+        out.println("<script>");
+        out.println("alert('" + msg + "');");
+        out.println("window.location.href='customer_coupon_list.jsp';"); // 리다이렉트
+        out.println("</script>");
+        return; // 이후 코드 실행 방지
+    }
+	
+	
 	/*** 문자열을 정수형으로 바꾸기 ***/
 	Integer customerCouponNo = Integer.parseInt(customerCouponNoStr);
 	
@@ -26,26 +38,26 @@ try{
 	/*** 사용자 쿠폰 업데이트(사용불가로 상태 변경) ***/
 	int updateRowCount = customerService.updateCoupon(findCoupon);
 	
-	if(updateRowCount == 1) {
+	if (updateRowCount == 1) {
 		String msg = "쿠폰이 사용되었습니다.";
 		/*** script ***/
 		out.println("<script>");
-		out.println(" alert('" + msg + "');");
-		out.println(" window.location.href='customer_coupon_list.jsp';"); // 리다이렉트
+		out.println("alert('" + msg + "');");
+		out.println("window.location.href='customer_coupon_list.jsp';"); // 리다이렉트
 		out.println("</script>");
-		} else {
-			out.println("<script>");
-			out.println(" alert('쿠폰을 다시 확인해주세요.');");
-			out.println(" window.location.href='customer_coupon_list.jsp';"); // 리다이렉트
-			out.println("</script>");
-		}
-	} catch(Exception e) {
-		e.printStackTrace();
+	} else {
 		out.println("<script>");
-		out.println(" alert('쿠폰이 정상적으로 사용되지 않았습니다.');");
-		out.println(" window.location.href='customer_coupon_list.jsp';"); // 리다이렉트
+		out.println("alert('쿠폰을 다시 확인해주세요.');");
+		out.println("window.location.href='customer_coupon_list.jsp';"); // 리다이렉트
 		out.println("</script>");
 	}
+} catch (Exception e) {
+	e.printStackTrace();
+	out.println("<script>");
+	out.println("alert('쿠폰이 정상적으로 사용되지 않았습니다.');");
+	out.println("window.location.href='customer_coupon_list.jsp';"); // 리다이렉트
+	out.println("</script>");
+}
 	
 	
 %>
