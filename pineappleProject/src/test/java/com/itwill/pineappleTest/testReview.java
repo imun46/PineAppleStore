@@ -13,6 +13,7 @@ public class testReview {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		ReviewService reviewService = new ReviewService();
+		reviewService.findByReviewNo(1);
 //		System.out.println(reviewService.findByReviewNo(1));
 		
 //		int rowCount = reviewService.addReview(Review.builder().reviewTitle("이민용구매건")

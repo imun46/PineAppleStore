@@ -23,11 +23,11 @@ public class ReviewService {
 		return reviewDao.delete(reviewNo);
 	}
 	//리뷰 리스트(마이페이지)
-	public List<Review> getMyReview(Customer customerId) throws Exception{
+	public List<Review> getMyReview(Integer customerId) throws Exception{
 		return reviewDao.findMyReview(customerId);
 	}
 	//리뷰 리스트(상품페이지)
-	public List<Review> getProductReview(Product productNo) throws Exception{
+	public List<Review> getProductReview(Integer productNo) throws Exception{
 		return reviewDao.findProductReview(productNo);
 	}
 	//리뷰 하나보기
