@@ -1,12 +1,12 @@
 <%@ page import="com.itwill.shop.cart.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+  
 <%
 	int cart_item_count=0;
-	String sCustomerId=(String)session.getAttribute("sCustomerId");
-	if(sCustomerId!=null){
+	String sCustomerNo=(String)session.getAttribute("sCustomerNo");
+	if(sCustomerNo!=null){
 		CartService cartService = new CartService();
-		cart_item_count = cartService.findByCustomerNo(Integer.parseInt(sCustomerId)).size();
+		cart_item_count = cartService.findByCustomerNo(Integer.parseInt(sCustomerNo)).size();
 	}
 	
 %>		
@@ -27,7 +27,7 @@
                   <li class="nav-item"><a class="nav-link" href="menu_earphone.jsp">EarPhone</a></li>
                   <li class="nav-item"><a class="nav-link" href="menu_accessory.jsp">Accessory</a></li>
               </ul>
-              <%if(sCustomerId == null) {%>
+              <%if(sCustomerNo== null) {%>
               <form class="d-flex">
                   <a class="btn btn-outline-dark" href="#">
                       <i class="fa-solid fa-user"></i>
