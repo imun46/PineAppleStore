@@ -35,29 +35,40 @@ public class CustomerTest {
 //				.build();
 //		/*** 쿠폰 발급 ***/
 //		System.out.println(customerService.findCoupon(1));
-		String customerId = "IDEX1"; //사용자 아이디
-		String couponId = "A123456"; //쿠폰 아이디
-		CustomerService customerService = new CustomerService();
-		
-		/*** 로그인한 사용자 찾기 ***/
-		Customer loginCustomer = customerService.findCustomerId(customerId);
-		
-		/*** 쿠폰ID에 맞는 쿠폰 찾기***/
-		Coupon coupon = customerService.getCouponId(couponId);
-		
-		System.out.println(coupon);
-		int rowCount = customerService.insertCustomerCouponById(coupon, loginCustomer);
-		System.out.println(rowCount);
-		System.out.println(customerService.countByCouponId(couponId));
-		
-	
+//		/*** 쿠폰 발급 ***/
+//		System.out.println(customerService.findCoupon(1));
+	String customerId = "IDEX2"; //사용자 아이디
+	String couponId = "C123456"; //쿠폰 아이디
+	/*** 서비스 선언 ***/
+	CustomerService customerService = new CustomerService();
+
+	/*** 로그인한 사용자 찾기 ***/
+	Customer loginCustomer = customerService.findCustomerId(customerId);
+
+	/*** 쿠폰ID에 맞는 쿠폰 찾기***/
+	Coupon coupon = customerService.getCouponId(couponId);
+	System.out.println(coupon);
+
+	/*** 쿠폰 삽입 ***/
+	int rowCount = customerService.insertCustomerCouponById(coupon, loginCustomer);
+	System.out.println(rowCount);
 
 		
-		String customerCouponNoStr = "18";
-		Integer customerCouponNo = Integer.parseInt(customerCouponNoStr);
-		/*** CustomerCoupons번호에 맞는 쿠폰 찾기***/
-		CustomerCoupons findCoupon = customerService.findCoupon(customerCouponNo);
-		System.out.println(findCoupon);
+//		List<CustomerCoupons> customerCouponsList = customerService.findCouponList(loginCustomer.getCustomerNo());
+//		System.out.println("customerCouponsList : " + customerCouponsList);
+//		System.out.println(coupon);
+//		int rowCount = customerService.insertCustomerCouponById(coupon, loginCustomer);
+//		System.out.println(rowCount);
+//		System.out.println(customerService.countByCouponId(couponId));
+//		
+//	
+//
+//		
+//		String customerCouponNoStr = "18";
+//		Integer customerCouponNo = Integer.parseInt(customerCouponNoStr);
+//		/*** CustomerCoupons번호에 맞는 쿠폰 찾기***/
+//		CustomerCoupons findCoupon = customerService.findCoupon(customerCouponNo);
+//		System.out.println(findCoupon);
 //		/*** 사용자 쿠폰 리스트 가져오기 ***/
 //		List<CustomerCoupons> findCouponList = customerService.findCouponList(loginCustomer.getCustomerNo());
 //		System.out.println("findCouponList : " + findCouponList);
@@ -68,8 +79,8 @@ public class CustomerTest {
 		/*** 번호에 맞는 쿠폰 찾기***/
 		//CustomerCoupons findCoupon = customerService.findCoupon(17);
 		/*** 사용자 쿠폰 업데이트(사용) ***/
-		int updateRowCount = customerService.updateCoupon(findCoupon);
-		System.out.println(updateRowCount);
+//		int updateRowCount = customerService.updateCoupon(findCoupon);
+//		System.out.println(updateRowCount);
 		/*** 사용자 번호로 CustomerCoupons 객체 반환 ***/
 		//List<CustomerCoupons> customerCouponsList = customerService.findCustomerCouponsByNo(loginCustomer.getCustomerNo());
 		

@@ -28,6 +28,20 @@ int result = customerService.login(customerId, customerPassword);
 if (result == 1) {
     // 로그인 성공 (세션 설정)
     session.setAttribute("sCustomerId", customerId);
+String customerPassword =request.getParameter("customerPassword");
+CustomerService customerService = new CustomerService();
+
+/*
+ * 회원로그인
+ * 1:로그인 성공(세션 생성)
+ * 0:로그인 실패(아이디 존재 및 비밀번호 불일치 포함)
+ */
+int result = customerService.login(customerId, customerPassword);
+if (result == 1) {
+    // 로그인 성공 (세션 설정)
+    Customer customer = customerService.findCustomerId(customerId);
+    session.setAttribute("sCustomerNo", Integer.toString(customer.getCustomerNo()));
+>>>>>>> refs/heads/Bteam/customer/sdh
     response.sendRedirect("customer_view.jsp");
 } else {
     // 로그인 실패 (아이디 또는 비밀번호 문제)

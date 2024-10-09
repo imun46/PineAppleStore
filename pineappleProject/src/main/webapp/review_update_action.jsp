@@ -12,34 +12,31 @@ if (request.getMethod().equals("GET")) {
 	response.sendRedirect("review_mypage_form.jsp");
 	return;
 }
-//try {
+try {
 	request.setCharacterEncoding("UTF-8");
 	
-	Integer reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-	String reviewTitle = request.getParameter("reviewTitle");
-	String reviewContent = request.getParameter("reviewContent");
-	Integer reviewRating = Integer.parseInt(request.getParameter("reviewRating"));
-	 String reviewDateStr = request.getParameter("reviewDate");
-	    Date reviewDate = null;
-
-	    
+	Integer reviewNoStr = Integer.parseInt(request.getParameter("reviewNo"));
+	String reviewTitleStr = request.getParameter("reviewTitle");
+	String reviewContentStr = request.getParameter("reviewContent");
+	Integer reviewRatingStr = Integer.parseInt(request.getParameter("reviewRating"));
+	   
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");;
-	String reviewImage = request.getParameter("reviewImage");
+	String reviewImageStr = request.getParameter("reviewImage");
 	Integer proNoStr = Integer.parseInt(request.getParameter("productNo"));
 	Integer cusNoStr = Integer.parseInt(request.getParameter("customerNo"));
 	Product product =Product.builder().productNo(proNoStr).build(); 
 	Customer customer = Customer.builder().customerNo(cusNoStr).build();
 	
 	Review review = Review.builder()
-	        .reviewNo(reviewNo) 
-	        .reviewTitle(reviewTitle)
-	        .reviewContent(reviewContent)
-	        .reviewRating(reviewRating)
-	        .reviewDate(reviewDate) 
-	        .reviewImage(reviewImage)
+	        .reviewNo(reviewNoStr) 
+	        .reviewTitle(reviewTitleStr)
+	        .reviewContent(reviewContentStr)
+	        .reviewRating(reviewRatingStr)
+	        .reviewImage(reviewImageStr)
 	        .product(product)
 	        .customer(customer)
-	        .build();    ReviewService reviewService = new ReviewService();
+	        .build();    
+	ReviewService reviewService = new ReviewService();
     int updateRowCount = reviewService.updateReview(review);
     
 
@@ -47,9 +44,9 @@ if (request.getMethod().equals("GET")) {
 	
 	
 
-	response.sendRedirect("review_detail.jsp");
-//} catch (Exception e) {
-//	e.printStackTrace();
-//	response.sendRedirect("ereer");
-//}
+	response.sendRedirect("review_detail.jsp?reviewNo="+review.getReviewNo());
+} catch (Exception e) {
+	e.printStackTrace();
+	response.sendRedirect("ereer");
+}
 %>

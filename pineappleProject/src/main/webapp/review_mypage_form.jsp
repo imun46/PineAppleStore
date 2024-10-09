@@ -8,10 +8,11 @@
     pageEncoding="UTF-8"%>
  <%
  ReviewService reviewService = new ReviewService();
- CustomerService customerService = new CustomerService();
-	 int customerNo = 1;
-	 Customer customer = customerService.findCustomerNoListAll(customerNo);
-	 List<Review> reviewList = customer.getReviewList();
+	 
+	 //Integer customerNo = Integer.parseInt(request.getParameter("customerNo"));
+	 //병합 시 주석 제거
+	 List<Review> reviewList = reviewService.getMyReview(1);
+	
  %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -59,7 +60,7 @@
 
     <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
-    <a href="review_detail.jsp" class="review-container">
+    <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo() %>" class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         
         <%

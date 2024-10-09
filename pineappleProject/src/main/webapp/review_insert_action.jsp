@@ -12,9 +12,8 @@ if (request.getMethod().equals("GET")) {
 	response.sendRedirect("review_mypage_form.jsp");
 	return;
 }
-//try {
+try {
 	request.setCharacterEncoding("UTF-8");
-	Integer reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 	String reviewTitle = request.getParameter("reviewTitle");
 	String reviewContent = request.getParameter("reviewContent");
 	Integer reviewRating = Integer.parseInt(request.getParameter("reviewRating"));
@@ -25,7 +24,6 @@ if (request.getMethod().equals("GET")) {
 	Customer customer = Customer.builder().customerNo(cusNoStr).build();
 	
 	Review review = Review.builder()
-	        .reviewNo(reviewNo) 
 	        .reviewTitle(reviewTitle)
 	        .reviewContent(reviewContent)
 	        .reviewRating(reviewRating)
@@ -34,16 +32,16 @@ if (request.getMethod().equals("GET")) {
 	        .customer(customer)
 	        .build();    
 	ReviewService reviewService = new ReviewService();
-    int updateRowCount = reviewService.updateReview(review);
+    int insertCount = reviewService.addReview(review);
     
 
 
 	
 	
 
-	response.sendRedirect("review_detail.jsp");
-//} catch (Exception e) {
-//	e.printStackTrace();
-//	response.sendRedirect("ereer");
-//}
+	response.sendRedirect("review_detail.jsp?reviewNo="+review.getReviewNo());
+} catch (Exception e) {
+	e.printStackTrace();
+	response.sendRedirect("ereer");
+}
 %>

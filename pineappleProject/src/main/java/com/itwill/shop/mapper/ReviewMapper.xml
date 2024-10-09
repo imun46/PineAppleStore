@@ -14,7 +14,8 @@
 		
 		<association property="product" javaType="Product"
 					 resultMap="com.itwill.shop.mapper.ProductMapper.productMapBasic"></association>
-		
+		<association property="customer" javaType="Customer"
+					 resultMap="com.itwill.shop.mapper.CustomerMapper.customerMapBasic"></association>
 	</resultMap>
 
 	<!--Review 맵 Customer 포함-->
@@ -35,10 +36,10 @@
 
 	
 	<!-- 리뷰 작성 -->
-	<insert id="insert"
-		parameterType="Review">
-		<selectKey order="BEFORE" resultType="int"
-			keyProperty="reviewNo"> select review_review_no_seq.nextval from dual</selectKey>
+	<insert id="insert" parameterType="Review">
+		<selectKey order="BEFORE" resultType="int" keyProperty="reviewNo"> 
+		select review_review_no_seq.nextval from dual
+		</selectKey>
 		INSERT INTO review (review_no, product_no, review_title,
 		review_content, review_image, review_rating, customer_no)
 		VALUES(
@@ -60,7 +61,6 @@
 		review_rating=#{reviewRating},
 		review_date=SYSDATE,
 		product_no=#{product.productNo},
-		review_date=sysdate,
 		customer_no=#{customer.customerNo}
 		where review_no=#{reviewNo}
 		
@@ -73,18 +73,33 @@
 	</delete>
 	
 	<!-- 리뷰리스트(회원) -->
-	<select id="findMyReview" parameterType ="int" resultType="Review">
-		select * from review where product_no=#{productNo}
+	<select id="findMyReview" parameterType ="int" resultMap="reviewMapProduct">
+		select * from review r
+join customer c
+on r.customer_no=c.customer_no
+join product p
+on r.product_no=p.product_no
+where r.customer_no=#{customerNo}
 	</select>
 	
 	<!-- 리뷰리스트(상품) -->
-	<select id="findProductReview" parameterType ="int" resultType="Review">
-		select * from review where customer_no=#{customerNo}
+	<select id="findProductReview" parameterType ="int" resultMap="reviewMapProduct">
+		select * from review r
+join customer c
+on r.customer_no=c.customer_no
+join product p
+on r.product_no=p.product_no
+where r.product_no=#{productNo}
 	
 	</select>
 	
 	<!-- 리뷰 한개 보기 -->
 	<select id="findByReview" parameterType="int" resultMap="reviewMapProduct">
-		select * from review r join product p on r.product_no = p.product_no where review_no =#{reviewNo}
+		select * from review r 
+		join product p 
+		on r.product_no = p.product_no 
+		join customer c
+		on r.customer_no = c.customer_no
+ 		where r.review_no =#{reviewNo}
 	</select>
 </mapper>

@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page import="com.itwill.shop.review.Review" %>
 <%@ page import="com.itwill.shop.review.ReviewService" %>
 <%@ page import="com.itwill.shop.product.Product" %>
@@ -8,10 +10,12 @@
     pageEncoding="UTF-8"%>
  <%
  ReviewService reviewService = new ReviewService();
- ProductService productService = new ProductService();
- int productNo=1;
- Product product = productService.productDetail(productNo);
- List<Review> reviewList = product.getProductReviewList();
+ 
+ //Integer productNo=Integer.parseInt(request.getParameter("productNo"));
+ //병합 시 주석 제거
+ List<Review> reviewList = reviewService.getProductReview(2);
+ 
+ 
  %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -59,7 +63,7 @@
 
     <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
-   <a href="review_detail.jsp" class="review-container">
+   <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo() %>" class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         
         <%
@@ -75,9 +79,17 @@
             <%=review.getReviewContent() %>
         </div>
         <div class="review-author">
-        	작성자
+        	<%=review.getCustomer().getCustomerName() %>
         </div>
-    </div>
+        <div class="review-time">
+        <%
+        Date reviewDate = review.getReviewDate();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(reviewDate);
+        %>
+        	<%=formattedDate %>
+        </div>
+    </a>
 <%} %>
     
 

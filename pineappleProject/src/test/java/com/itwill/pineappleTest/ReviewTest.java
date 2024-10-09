@@ -1,18 +1,13 @@
 package com.itwill.pineappleTest;
 
-
-import java.util.Date;
-
-import com.itwill.shop.customer.Customer;
-import com.itwill.shop.product.Product;
-import com.itwill.shop.review.Review;
 import com.itwill.shop.review.ReviewService;
 
-public class testReview {
+public class ReviewTest {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		ReviewService reviewService = new ReviewService();
+		System.out.println(reviewService.findByReviewNo(1));
 //		System.out.println(reviewService.findByReviewNo(1));
 		
 //		int rowCount = reviewService.addReview(Review.builder().reviewTitle("이민용구매건")

@@ -170,11 +170,13 @@ public class CustomerDaoImpl implements CustomerDao {
 		sqlSession.close();	
 		return getCount;
 	}
-	
+	/***** 입력한 일련번호가 중복인지 체크 *****/
 	@Override
-	public List<Customer> findCustomerCouponsByCustomerNo(Integer customerNo) throws Exception {
+	public int duplicationCouponCheck(CustomerCoupons customerCoupons) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		List<Customer> customer = sqlSession.getMapper(CustomerCouponsMapper.class).findCustomerCouponsByCustomerNo(customerNo);
-		return customer;
+		int duplicationCoupon = sqlSession.getMapper(CustomerCouponsMapper.class).duplicationCouponCheck(customerCoupons);
+		sqlSession.close();	
+		return duplicationCoupon;
 	}
+	
 }

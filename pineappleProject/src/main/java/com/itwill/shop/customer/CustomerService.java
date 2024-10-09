@@ -41,6 +41,13 @@ public class CustomerService {
 
 		return 0;
 	}
+	
+	// customer 서비스 수정한곳
+	// (어드민용) 사용자 전체 리스트
+	public List<Customer> findCustomerAll()throws Exception {
+		return customerDao.customerList();
+	}
+		
 
 	// 사용자 정보 아이디로 찾기
 	
@@ -72,7 +79,7 @@ public class CustomerService {
 	
 	
 	
-	/********** CustomerCoupon 메소드 **********/
+/********** CustomerCoupon 메소드 **********/
 	
 	/*** (어드민) 사용자 쿠폰 발급 ***/
 	public int insertCustomerCoupon(CustomerCoupons customerCoupons) throws Exception {
@@ -137,15 +144,33 @@ public class CustomerService {
 	
 	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) *****/
 	public int insertCustomerCouponById(Coupon coupon, Customer customer) throws Exception {
+		final int COUNTCOUPON = 2;//입력한 쿠폰 번호가 존재하지 않음
+		final int DUPLICATIONCOUPON = 3;//이미 등록된 쿠폰 번호
+		final int NULLCOUPON = 4;
+		
+		// coupon 객체가 null인지 확인
+	    if (coupon == null || coupon.getCouponId() == null) {
+	        System.out.println("쿠폰 번호가 유효하지 않습니다.");
+	        return NULLCOUPON;
+	    }
+	    
+		//입력한 쿠폰 번호가 존재하는지 체크
 		if(customerDao.countByCouponId(coupon.getCouponId()) == 0) {
 			 System.out.println("올바르지 않은 쿠폰 번호입니다.");
-			 return 0;
+			 return COUNTCOUPON;
 		}
 		
 		CustomerCoupons customerCoupons = CustomerCoupons.builder()
 		        .coupon(coupon)
 		        .customer(customer)
 		        .build();
+		
+		//입력한 쿠폰 번호가 중복인지 체크
+		if(customerDao.duplicationCouponCheck(customerCoupons) > 0) {
+			System.out.println("이미 등록된 쿠폰입니다.");
+			return DUPLICATIONCOUPON;
+		}
+				
 		return customerDao.insertCustomerCouponById(customerCoupons);
 	}
 }

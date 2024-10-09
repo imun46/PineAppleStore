@@ -12,6 +12,7 @@
 	Customer loginCustomer = customerService.findCustomerId(customerId);
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 	List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -51,11 +52,7 @@
 <body>
 <form name="f" method="post">
 		<%for (CustomerCoupons customerCoupon : customerCoupons) { %>
-	<table border="0" cellpadding="0" cellspacing="1" width="590" bgcolor="BBBBBB"
-	 <% if ("사용불가".equals(customerCoupon.getCustomerCouponsStatus())) { %> 
-	 style="border: 2px solid gray;" 
-	 <% } %>
-            >
+	<table border="0" cellpadding="0" cellspacing="1" width="590" bgcolor="BBBBBB" style="border: 2px solid gray;">
 		<!-- 사용자 쿠폰 리스트 -->
 		<!-- 쿠폰 이름 -->
 		<tr>
@@ -74,19 +71,14 @@
             <td bgcolor="ffffff" colspan="3" align="left">
             	<!-- 쿠폰 설명 -->
                 쿠폰 설명 : <%=customerCoupon.getCoupon().getCouponDesc()%><br>
-               
-                <!-- 쿠폰 상태, 사용불가면 빨간 글씨-->
-                <% if ("사용불가".equals(customerCoupon.getCustomerCouponsStatus())) { %> 
-                <span style="color: red;">쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br></span>
-                <% } else { %>
                 <!-- 쿠폰 상태 -->
                 쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br>
-                <% } %>
                 <!-- 쿠폰 만료일   -->
                 쿠폰 만료일 : <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate())%>
             </td>
+          </tr>
 		<!-- 쿠폰 사용하기  -->
-	</table>
+	</table><br>
 		<% } %>
 </form>
 	<table width=590 border=0 cellpadding=0 cellspacing=0>
