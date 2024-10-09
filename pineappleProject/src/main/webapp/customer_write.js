@@ -57,9 +57,4 @@ function customerCreate() {
 	f.action = "customer_write_action.jsp";
 	f.method='POST';
 	f.submit();
-	
-<<<<<<< Upstream, based on origin/mj
-	
-=======
->>>>>>> c25e15a customer_view
 }
