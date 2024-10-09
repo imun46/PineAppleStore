@@ -95,15 +95,11 @@ where r.product_no=#{productNo}
 	
 	<!-- 리뷰 한개 보기 -->
 	<select id="findByReview" parameterType="int" resultMap="reviewMapProduct">
-<<<<<<< Upstream, based on origin/mj
 		select * from review r 
 		join product p 
 		on r.product_no = p.product_no 
 		join customer c
 		on r.customer_no = c.customer_no
  		where r.review_no =#{reviewNo}
-=======
-		select * from review r join product p on r.product_no = p.product_no where review_no =#{reviewNo}
->>>>>>> b54d38e 씨ㅡㅡ발
 	</select>
 </mapper>
