@@ -1,17 +1,4 @@
-<<<<<<< Upstream, based on origin/mj
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
-=======
+<%@page import="com.itwill.shop.review.Review"%>
 <%@page import="com.itwill.shop.product.Product"%>
 <%@page import="com.itwill.shop.orders.OrdersItems"%>
 <%@page import="com.itwill.shop.orders.Orders"%>
@@ -27,7 +14,7 @@ response.setContentType("text/html; charset=UTF-8");
 CustomerService customerService = new CustomerService();
 
 		
-		Customer customer =  customerService.findCustomerNoListAll(2);
+		Customer customer =  customerService.findCustomerNoListAll(1);
 
 %>	
 	
@@ -71,21 +58,21 @@ CustomerService customerService = new CustomerService();
             <p>이메일: <%=customer.getCustomerEmail() %>
             <p>전화번호: <%=customer.getCustomerPhone() %></p>
             <p>닉네임: <%=customer.getCustomerNickname() %></p>
-            
+            <button>수정</button> <button>계정 삭제</button>
         </div>
     </div>
 
     <div class="section">
-        <h2>쿠폰 정보</h2>
+        <h2>쿠폰 정보 </h2>
         <div class="scroll-section">
         <% List<CustomerCoupons> customerCouponList = customer.getCustomerCouponList(); %>
         	<%if(customerCouponList !=null){ %>
         	<%for(CustomerCoupons customerCoupons: customerCouponList){ %>
             <% Coupon couponList = customerCoupons.getCoupon();%>
             <div class="list-item">
-            쿠폰 일련번호:<%=couponList.getCouponId() %>
-            <br>
             쿠폰 번호:<%=customerCoupons.getCustomerCouponsNo() %>
+            <br>
+            쿠폰 일련번호:<%=couponList.getCouponId() %>
             <br>
             쿠폰 사용여부:<%=customerCoupons.getCustomerCouponsStatus() %>
              <br>
@@ -96,11 +83,12 @@ CustomerService customerService = new CustomerService();
             <%} %>
             <%} %>
             
+            
         </div>
     </div>
 
     <div class="section">
-        <h2>주문 정보</h2>
+        <h2>주문 정보 <button class="btn-style">더보기</button> </h2>
         <div class="scroll-section">
         <% List<Orders> orderList = customer.getOrdersList(); %>
         
@@ -108,17 +96,7 @@ CustomerService customerService = new CustomerService();
         <% for(Orders orders:orderList){ %>
       <% List<OrdersItems> ordersItems = orders.getOrdersItemsList(); %>
         <% for(OrdersItems orderItem : ordersItems){ %>
-         		<% Product products = orderItem.getProduct(); %>
-         		   <br>
-         		주문 번호: <%= orderItem.getOrdersItemsNo() %>
-         		   <br>
-         		제품 이름:<%= products.getProductName() %>
-         		   <br>
-         		제품 설명:<%= products.getProductDesc() %>
-        			
-         
-        	
-            <br>
+         		
             <%} %>
         
             <div class="list-item">
@@ -136,20 +114,33 @@ CustomerService customerService = new CustomerService();
             <br>
             주문한 날짜 :<%=orders.getOrdersDate() %>
             <br>
-            
-           
-            
             </div>
-            
+            <%} %>
             <div class="list-item">주문 4 - 2024.09.15 - 상품 D</div>
             <div class="list-item">주문 5 - 2024.09.05 - 상품 E</div>
         </div>
     </div>
-<%} %>
+
 	<div class="section">
-        <h2>리뷰 정보</h2>
+        <h2>리뷰 정보 <button class="btn-style">더보기</button> </h2>	           
         <div class="scroll-section">
-            <div class="list-item">리뷰</div>
+        <%List<Review> customerReviewList = customer.getReviewList(); %>
+        <%for(Review review:customerReviewList) { %>
+        
+            <div class="list-item">
+            
+            리뷰 번호 :<%=review.getReviewNo() %>
+            <br>
+            리뷰 제목 :<%=review.getReviewTitle() %>
+            <br>
+            리뷰 설명 :<%=review.getReviewContent() %>
+            <br>
+            리뷰 별점 :<%=review.getReviewRating() %>
+            
+            <br>
+            </div>
+            <br>
+            <%} %>
             <div class="list-item">주문 3 - 2024.09.20 - 상품 C</div>
             <div class="list-item">주문 4 - 2024.09.15 - 상품 D</div>
             <div class="list-item">주문 5 - 2024.09.05 - 상품 E</div>
