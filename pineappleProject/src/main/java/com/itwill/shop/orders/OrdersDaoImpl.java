@@ -43,9 +43,9 @@ public class OrdersDaoImpl implements OrdersDao {
 	}
 	
 	@Override
-	public int updateOrderConfirm(Orders orders) throws Exception{
+	public int updateOrderConfirm(Integer orderNo) throws Exception{
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int rowCount = sqlSession.getMapper(OrdersMapper.class).updateOrderConfirm(orders);
+		int rowCount = sqlSession.getMapper(OrdersMapper.class).updateOrderConfirm(orderNo);
 		sqlSession.close();
 		return rowCount;
 	}
@@ -56,6 +56,14 @@ public class OrdersDaoImpl implements OrdersDao {
 		OrdersMapper ordersMapper = sqlSession.getMapper(OrdersMapper.class);
 		List<Orders> orderList = ordersMapper.selectAll();
 		sqlSession.close();
+		return orderList;
+	}
+
+	@Override
+	public List<Orders> findByOrderNoCustomerNo(int customerNo) throws Exception{
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		OrdersMapper ordersMapper = sqlSession.getMapper(OrdersMapper.class);
+		List<Orders> orderList = ordersMapper.selectByOrderCustomerNo(customerNo);
 		return orderList;
 	}
 	

@@ -26,7 +26,7 @@
                   <li class="nav-item"><a class="nav-link" href="menu_earphone.jsp">EarPhone</a></li>
                   <li class="nav-item"><a class="nav-link" href="menu_accessory.jsp">Accessory</a></li>
               </ul>
-              <%if(sCustomerId== null) {%>
+              <%if(sCustomerId == null) {%>
               <form class="d-flex">
                   <a class="btn btn-outline-dark" href="#">
                       <i class="fa-solid fa-user"></i>

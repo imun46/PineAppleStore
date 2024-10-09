@@ -10,12 +10,15 @@ public interface OrdersDao {
 	int updateOrderStatus(Orders orders) throws Exception; 
 
 	//[회원]구매확정 
-	int updateOrderConfirm(Orders orders) throws Exception; 
+	int updateOrderConfirm(Integer orderNo) throws Exception; 
  
 	//[어드민] 주문 전체 리스트(전체)
 	List<Orders> findAll() throws Exception;
 	
 	//주문 + 주문 아이템 전체 리스트(특정 사용자)
+	List<Orders> findByOrderNoCustomerNo(int customerNo) throws Exception;
+	
+	//주문 1개
 	List<Orders> findByOrderNo(int orderNo) throws Exception;
 	
 	// 주문 1건 삭제(특정 주문)
