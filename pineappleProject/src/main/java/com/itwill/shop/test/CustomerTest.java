@@ -50,6 +50,12 @@ public class CustomerTest {
 		System.out.println(rowCount);
 		System.out.println(customerService.countByCouponId(couponId));
 		
+		/*** 번호에 맞는 쿠폰 찾기***/
+		CustomerCoupons findCoupon = customerService.findCoupon(17);
+		
+		/*** 사용자 쿠폰 업데이트(사용) ***/
+		int updateRowCount = customerService.updateCoupon(findCoupon);
+		System.out.println(updateRowCount);
 		/*** 사용자 번호로 CustomerCoupons 객체 반환 ***/
 		//List<CustomerCoupons> customerCouponsList = customerService.findCustomerCouponsByNo(loginCustomer.getCustomerNo());
 		

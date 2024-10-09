@@ -46,7 +46,7 @@ public interface CustomerDao {
 	Coupon getCouponId(String couponId) throws Exception;
 	
 	/***** 쿠폰 사용완료 업데이트 *****/
-	int updateCoupon(Integer customerCouponsNo) throws Exception;
+	int updateCoupon(CustomerCoupons customerCoupons) throws Exception;
 	
 	/***** 쿠폰 개수 가져오기 *****/
 	int getCouponCount(Integer customerNo) throws Exception;

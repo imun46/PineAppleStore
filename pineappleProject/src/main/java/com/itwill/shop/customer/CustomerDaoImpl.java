@@ -154,10 +154,10 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	/********* CustomerCoupon 쿠폰 사용완료(Update) **********/
 	@Override
-	public int updateCoupon(Integer customerCouponsNo) throws Exception {
+	public int updateCoupon(CustomerCoupons customerCoupons) throws Exception {
 		System.out.println("CustomerDaoImpl : updateCoupon");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).updateCoupon(customerCouponsNo);
+		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).updateCoupon(customerCoupons);
 		sqlSession.close();
 		return rowCount;
 	}
