@@ -14,9 +14,9 @@ public interface ReviewMapper {
 	
 	int delete(int reviewNo) throws Exception;
 	
-	List<Review> findMyReview(Customer customerNo)throws Exception;
+	List<Review> findMyReview(Integer customerNo)throws Exception;
 	
-	List<Review> findProductReview(Product productNo)throws Exception;
+	List<Review> findProductReview(Integer productNo)throws Exception;
 	
 	Review findByReview(Integer reviewNo) throws Exception;
 } 

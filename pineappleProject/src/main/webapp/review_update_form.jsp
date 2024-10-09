@@ -6,12 +6,11 @@
 <%@page import="com.itwill.shop.review.Review" %> 
 <%@page import="com.itwill.shop.review.ReviewService" %> 
 <%@page import="java.util.Date" %>
-<%@include file="login_check.jspf"%>
 
 <%
 	ReviewService reviewService = new ReviewService();
-    //String reviewNo = request.getParameter("reviewNo");
-    String reviewNo = "1";
+    String reviewNo = request.getParameter("reviewNo");
+    //String productNo = request.getParameter("productNo");
     Review review = reviewService.findByReviewNo(Integer.parseInt(reviewNo));
     Product product = review.getProduct();
 %>
@@ -35,16 +34,20 @@
 
 <h1>리뷰 수정</h1>
 
-<form id="reviewForm" action="review_update_action.jsp" method="post">
+<form id="reviewForm" action="review_update_action.jsp?reviewNo=<%=review.getReviewNo() %>" method="post">
     <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
+    <input type="hidden" name="productNo" value="<%= review.getProduct().getProductNo() %>">
+    <input type="hidden" name="customerNo" value="<%= review.getCustomer().getCustomerNo() %>">
     
     <div>
         <label for="reviewTitle">리뷰 제목:</label>
         <input type="text" id="reviewTitle" name="reviewTitle" value="<%= review.getReviewTitle() %>" required>
     </div>
+      
     <div>
     	<label for="reviewProductOption"><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)</label>
     </div>
+    
 <div id="star-rating">
 
     <span class="star" data-value="1">★</span>
@@ -92,11 +95,11 @@
     </div>
  <div>
             <label for="reviewImage">이미지 첨부:</label>
-            <input type="file" id="reviewImage" name="reviewImage" accept="*" >
+            <input type="file" id="reviewImage" name="reviewImage" accept="image/*" >
         </div>
     <div>
         <input type="submit" value="수정">
-        <a href="review_detail.jsp">취소</a>
+        <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>">취소</a>
     </div>
 </form>
 

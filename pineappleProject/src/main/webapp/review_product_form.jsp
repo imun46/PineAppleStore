@@ -59,8 +59,12 @@
 
     <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
+<<<<<<< Upstream, based on origin/mj
    <a href="review_detail.jsp" class="review-container">
     <div class="review-container">
+=======
+   <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo() %>" class="review-container">
+>>>>>>> cdbba4c ,.,.,.
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         
         <%
@@ -78,7 +82,7 @@
         <div class="review-author">
         	<%= review.getProduct().getProductNo()%>
         </div>
-    </div>
+    </a>
 <%} %>
     
 

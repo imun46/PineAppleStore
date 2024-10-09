@@ -48,7 +48,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<Review> findMyReview(Customer customerNo) throws Exception {
+	public List<Review> findMyReview(Integer customerNo) throws Exception {
 		List<Review> reviewList= new ArrayList<Review>();
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		ReviewMapper reviewMapper =sqlSession.getMapper(ReviewMapper.class);
@@ -58,7 +58,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public List<Review> findProductReview(Product productNo) throws Exception {
+	public List<Review> findProductReview(Integer productNo) throws Exception {
 		List<Review> reviewList= new ArrayList<Review>();
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		ReviewMapper reviewMapper =sqlSession.getMapper(ReviewMapper.class);

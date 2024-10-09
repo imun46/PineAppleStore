@@ -11,9 +11,11 @@
     <%
     CustomerService customerService = new CustomerService();
     ReviewService reviewService = new ReviewService();
-    //String reivewNo=request.getParameter("reviewNo");
-    String reviewNo="1";
+    String reviewNo=request.getParameter("reviewNo");
+    String productNo= request.getParameter("productNo");
+    String customerNo = request.getParameter("customerNo");
     Review review =  reviewService.findByReviewNo(Integer.parseInt(reviewNo));
+    
     Date reviewDate = review.getReviewDate(); // 리뷰 날짜를 가져옵니다.
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 원하는 형식으로 포맷을 설정합니다.
     String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
@@ -84,6 +86,7 @@
         <div class="review-author"></div>
         </div>
         
+<<<<<<< Upstream, based on origin/mj
     </div>
 	<a href="review_update_form.jsp" class="review_update_form">수정</a>
 <<<<<<< Upstream, based on origin/mj
@@ -103,6 +106,11 @@
 =======
 	<form action="review_delete_action.jsp" method="post" style="display:inline;">
 >>>>>>> d3829bb ....
+=======
+    
+	<a href="review_update_form.jsp?reviewNo=<%=review.getReviewNo() %>" class="review_update_form">수정</a>
+	<form action="review_delete_action.jsp?reviewNo=<%=review.getReviewNo() %>" method="post" style="display:inline;">
+>>>>>>> cdbba4c ,.,.,.
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
         <input type="submit" value="삭제" class="review_delete" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
