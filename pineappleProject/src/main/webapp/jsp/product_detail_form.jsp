@@ -179,7 +179,7 @@ Product product = productService.productDetail(productNo);
 						int rating = review.getReviewRating();
 						for (int i = 0; i < 5; i++) {
 						%>
-						<span class="review-rating" style="color: #df6438; font-size: 25px;"> <%=(i < rating) ? "★" : "☆"%>
+						<span class="review-rating" style="color: gold; font-size: 25px;"> <%=(i < rating) ? "★" : "☆"%>
 						</span>
 						<%
 						}

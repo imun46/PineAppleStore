@@ -378,13 +378,21 @@ values(orders_items_orders_items_no_seq.nextval, 30000, 20000, 1, 'description',
 --CART insert
 INSERT INTO Cart(cart_no, cart_qty, customer_no)
 VALUES (cart_cart_no_seq.nextval , 3, 1);
-INSERT INTO Cart(cart_no, cart_qty, customer_no)
-VALUES (cart_cart_no_seq.nextval , 4, 2);
-INSERT INTO Cart(cart_no, cart_qty, customer_no)
-VALUES (cart_cart_no_seq.nextval , 5, 3);
-INSERT INTO Cart(cart_no, cart_qty, customer_no)
-VALUES (cart_cart_no_seq.nextval , 6, 4);
+INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
+VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,1,cart_cart_no_seq.currval);
+INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
+VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,5,cart_cart_no_seq.currval);
+INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
+VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,8,cart_cart_no_seq.currval);
 
+INSERT INTO Cart(cart_no, cart_qty, customer_no)
+VALUES (cart_cart_no_seq.nextval , 5, 1);
+INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
+VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,3,19,cart_cart_no_seq.currval);
+INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
+VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,3,22,cart_cart_no_seq.currval);
+INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
+VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,3,25,cart_cart_no_seq.currval);
 
 
 

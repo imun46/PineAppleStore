@@ -9,7 +9,7 @@
 %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
         <title>PineApple</title>
         <!-- Favicon
