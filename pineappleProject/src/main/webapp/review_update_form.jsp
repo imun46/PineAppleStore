@@ -44,9 +44,10 @@
         <label for="reviewTitle">리뷰 제목:</label>
         <input type="text" id="reviewTitle" name="reviewTitle" value="<%= review.getReviewTitle() %>" required>
     </div>
+    
       
     <div>
-    	<label for="reviewProductOption"><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)</label>
+    	<label for="reviewProductOption"><%=review.getProduct().getProductImageList() %><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)</label>
     </div>
     
 <div id="star-rating">
