@@ -73,7 +73,7 @@
                 쿠폰 설명 : <%=customerCoupon.getCoupon().getCouponDesc()%><br>
                 <!-- 쿠폰 상태 -->
                 쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br>
-                <!-- 쿠폰 만료일   -->
+                <!-- 쿠폰 만료일   --> 
                 쿠폰 만료일 : <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate())%>
             </td>
           </tr>
