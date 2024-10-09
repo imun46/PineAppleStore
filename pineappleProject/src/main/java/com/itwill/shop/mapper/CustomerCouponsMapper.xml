@@ -7,7 +7,6 @@
 		<id column="CUSTOMER_COUPONS_NO" property="customerCouponsNo"/>
 		<result column="CUSTOMER_COUPONS_ENDDATE" property="customerCouponsEnddate"/>
 		<result column="CUSTOMER_COUPONS_STATUS" property="customerCouponsStatus"/>
-		
 		<association property="coupon" javaType="Coupon"
 					 resultMap="com.itwill.shop.mapper.CouponMapper.couponMapBasic"></association>
 	</resultMap>
@@ -21,13 +20,13 @@
 	from coupon c
 	join customer_coupons cu
 	on c.coupon_no = cu.coupon_no
-	where cu.customer_no = #{customerNo}
+	where cu.customer_no = #{customerNo} and customer_coupons_status='사용가능'
 	</select>
 	
 	<!-- 쿠폰 조회 -->
  	<select id="findCoupon" parameterType="Integer" resultMap="customerCouponsMapCoupon">
 	select
-  	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate,
+  	c.coupon_name, c.coupon_desc, cu.customer_coupons_enddate, c.coupon_id,
   	cu.customer_coupons_status, cu.customer_coupons_no, c.coupon_no
 	from coupon c
 	join customer_coupons cu
@@ -36,12 +35,11 @@
 	</select>
 	
 	<!-- 쿠폰 사용(사용완료 상태로 변경) -->
-	<update id="updateCoupon" parameterType="Integer">
+	<update id="updateCoupon" parameterType="CustomerCoupons">
 	update customer_coupons
-	set customer_coupons_status ='사용완료'
+	set customer_coupons_status ='사용불가'
 	where customer_coupons_no=#{customerCouponsNo}
 	</update>
-	
 	
 	<!-- (어드민) 쿠폰 발급 -->
 	<insert id="insertCustomerCoupon" parameterType="CustomerCoupons">
@@ -55,11 +53,17 @@
 	select count(*) from coupon where coupon_id=#{couponId}
 	</select>
 	
+	<!-- 사용자가 입력한 쿠폰이 이미 발급되어 있는지 체크  -->
+	<select id="duplicationCouponCheck" parameterType="CustomerCoupons" resultType="int">
+	 select count(customer_coupons_no) from customer_coupons
+	 where customer_no=#{customer.customerNo} and coupon_no = #{coupon.couponNo}
+	</select>
+	
 	<!-- 일련 번호 입력 시 사용자 쿠폰 발급 -->
 	<insert id="insertCustomerCouponById" parameterType="CustomerCoupons">
-	insert into customer_coupons
-	values(customer_coupons_customer_coupons_no_seq.nextval, sysdate+30,
-	'사용가능', #{coupon.couponNo}, #{customer.customerNo})
+    insert into customer_coupons
+    values(customer_coupons_customer_coupons_no_seq.nextval, sysdate+30,
+    '사용가능', #{coupon.couponNo}, #{customer.customerNo})
 	</insert>
 	
 	<!-- 일련 번호 입력 시 쿠폰 아이디 조회 후 정보 반환 -->
@@ -67,8 +71,15 @@
 	select * from coupon where coupon_id=#{couponId}
 	</select>
 	
+	<!-- 사용자의 보유 쿠폰 갯수 반환 -->
+	<select id="getCouponCount" parameterType="Integer"  resultType="int">
+	select count(*) from customer_coupons 
+	where customer_no =#{customer.customerNo} and customer_coupons_status='사용가능'
+	</select>
+	
+	<!-- 사용자 번호로 Customer 객체 반환 -->
+	<select id="findCustomerCouponsByCustomerNo" parameterType="Integer" resultMap="customerCouponsMapCoupon">
+	select * from customer where customer_no = #{customer.customerNo}
+	</select>
+	
 </mapper>
-
-
-
-   

@@ -1,5 +1,8 @@
 package com.itwill.shop.customer;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.itwill.shop.coupon.Coupon;
@@ -47,7 +50,7 @@ public class CustomerService {
 		
 
 	// 사용자 정보 아이디로 찾기
-
+	
 	public Customer findCustomerId(String customerNo) throws Exception {
 		return customerDao.findCustomerId(customerNo);
 	}
@@ -76,7 +79,7 @@ public class CustomerService {
 	
 	
 	
-	/********** CustomerCoupon 메소드 **********/
+/********** CustomerCoupon 메소드 **********/
 	
 	/*** (어드민) 사용자 쿠폰 발급 ***/
 	public int insertCustomerCoupon(CustomerCoupons customerCoupons) throws Exception {
@@ -85,11 +88,32 @@ public class CustomerService {
 	}
 	
 	/*** 쿠폰 사용완료 업데이트 ***/
-	public int updateCoupon(Integer customerCouponsNo) throws Exception {
+	public int updateCoupon(CustomerCoupons customerCoupons) throws Exception {
 		System.out.println("CustomerService : updateCoupon");
-		return customerDao.updateCoupon(customerCouponsNo);
+		if(customerCoupons.getCustomerCouponsStatus().equals("사용불가")) {
+			System.out.println("사용이 불가능한 쿠폰입니다.");
+			return 0;
+		}
+		//날짜 포맷 설정
+		SimpleDateFormat newDtFormat = new SimpleDateFormat("yyyy-MM-dd");
+		//포맷으로 EndDate 변경
+		String enddate = newDtFormat.format(customerCoupons.getCustomerCouponsEnddate());
+		
+		//포맷으로 today 선언 및 변경
+		String today = newDtFormat.format(new Date(System.currentTimeMillis()));
+		
+		//시간 가져와서 Date객체에 저장
+		Date newEnddate = new Date(newDtFormat.parse(enddate).getTime());
+		Date newToday = new Date(newDtFormat.parse(today).getTime());
+		//시간 비교
+		int compare = newEnddate.compareTo(newToday);
+		
+		if(compare < 0) {
+			System.out.println("사용 가능한 날짜가 지났습니다.");
+			return 0;
+		}
+		return customerDao.updateCoupon(customerCoupons);
 	}
-	//종료날짜 이후에 사용시 사용불가 출력해야함
 	
 	/*** 사용자 쿠폰 리스트 조회 ***/
 	public List<CustomerCoupons> findCouponList(Integer customerNo) throws Exception {
@@ -97,21 +121,56 @@ public class CustomerService {
 		return customerDao.findCouponList(customerNo);
 	}
 	
+	/*** CustomerCouponNO로 CustomerCoupon객체 찾기 ***/
 	public CustomerCoupons findCoupon(Integer customerCouponsNo) throws Exception {
 		System.out.println("CustomerService : findCoupon");
 		return customerDao.findCoupon(customerCouponsNo);
 	}
 	
-	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
-	public int insertCustomerCouponById(String couponId, CustomerCoupons customerCoupons) throws Exception {
-		System.out.println("CustomerService : insertCouponById");
-		if(customerDao.countByCouponId(couponId) == 1) {
-			Coupon coupon = customerDao.getCouponId(couponId);
-			customerCoupons.setCoupon(coupon);
-			return customerDao.insertCustomerCouponById(customerCoupons);
-		} else {
-			System.out.println("존재하지 않는 쿠폰번호입니다.");
-		};
-		return 0;
+	/*** 사용자의 보유 쿠폰 갯수 반환 ***/
+	public int getCouponCount(Integer customerNo) throws Exception {
+		return customerDao.getCouponCount(customerNo);
+	}
+	
+	/*** 일련번호 입력 시 맞는 쿠폰이 있는지 확인 ***/
+	public int countByCouponId(String couponId) throws Exception {
+		return customerDao.countByCouponId(couponId);
+	}
+	
+	/*** 쿠폰ID 입력 시 ID와 일치하는 쿠폰 객체 반환 ***/
+	public Coupon getCouponId(String couponId) throws Exception {
+		return customerDao.getCouponId(couponId);
+	}
+	
+	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) *****/
+	public int insertCustomerCouponById(Coupon coupon, Customer customer) throws Exception {
+		final int COUNTCOUPON = 2;//입력한 쿠폰 번호가 존재하지 않음
+		final int DUPLICATIONCOUPON = 3;//이미 등록된 쿠폰 번호
+		final int NULLCOUPON = 4;
+		
+		// coupon 객체가 null인지 확인
+	    if (coupon == null || coupon.getCouponId() == null) {
+	        System.out.println("쿠폰 번호가 유효하지 않습니다.");
+	        return NULLCOUPON;
+	    }
+	    
+		//입력한 쿠폰 번호가 존재하는지 체크
+		if(customerDao.countByCouponId(coupon.getCouponId()) == 0) {
+			 System.out.println("올바르지 않은 쿠폰 번호입니다.");
+			 return COUNTCOUPON;
+		}
+		
+		CustomerCoupons customerCoupons = CustomerCoupons.builder()
+		        .coupon(coupon)
+		        .customer(customer)
+		        .build();
+		
+		//입력한 쿠폰 번호가 중복인지 체크
+		if(customerDao.duplicationCouponCheck(customerCoupons) > 0) {
+			System.out.println("이미 등록된 쿠폰입니다.");
+			return DUPLICATIONCOUPON;
+		}
+				
+		return customerDao.insertCustomerCouponById(customerCoupons);
 	}
 }

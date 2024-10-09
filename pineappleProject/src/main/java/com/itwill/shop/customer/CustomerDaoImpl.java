@@ -127,10 +127,8 @@ public class CustomerDaoImpl implements CustomerDao {
 	/********* 일련번호 입력 시 CustomerCoupon 쿠폰발급(Insert) **********/
 	@Override
 	public int insertCustomerCouponById(CustomerCoupons customerCoupons) throws Exception {
-		System.out.println("CustomerDaoImpl : insertCustomerCouponById");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).insertCustomerCouponById(customerCoupons);
-		sqlSession.close();
 		return rowCount;
 	}
 	
@@ -156,14 +154,29 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	/********* CustomerCoupon 쿠폰 사용완료(Update) **********/
 	@Override
-	public int updateCoupon(Integer customerCouponsNo) throws Exception {
+	public int updateCoupon(CustomerCoupons customerCoupons) throws Exception {
 		System.out.println("CustomerDaoImpl : updateCoupon");
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).updateCoupon(customerCouponsNo);
+		int rowCount = sqlSession.getMapper(CustomerCouponsMapper.class).updateCoupon(customerCoupons);
 		sqlSession.close();
 		return rowCount;
 	}
 	
+	/********** CustomerCoupon 쿠폰 보유 개수 조회(Select) **********/
+	@Override
+	public int getCouponCount(Integer customerNo) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int getCount = sqlSession.getMapper(CustomerCouponsMapper.class).getCouponCount(customerNo);
+		sqlSession.close();	
+		return getCount;
+	}
+	/***** 입력한 일련번호가 중복인지 체크 *****/
+	@Override
+	public int duplicationCouponCheck(CustomerCoupons customerCoupons) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int duplicationCoupon = sqlSession.getMapper(CustomerCouponsMapper.class).duplicationCouponCheck(customerCoupons);
+		sqlSession.close();	
+		return duplicationCoupon;
+	}
 	
-
 }
