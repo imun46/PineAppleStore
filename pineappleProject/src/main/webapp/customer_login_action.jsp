@@ -16,8 +16,9 @@ if (request.getMethod().equalsIgnoreCase("GET")) {
 }
 
 String customerId = request.getParameter("customerId");
-String customerPassword =request.getParameter("customerPassword");
+String customerPassword = request.getParameter("customerPassword");
 CustomerService customerService = new CustomerService();
+
 
 /*
  * 회원로그인

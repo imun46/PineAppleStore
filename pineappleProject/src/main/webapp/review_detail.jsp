@@ -88,17 +88,32 @@
         <div class="review-author"><%=review.getCustomer().getCustomerName() %></div>
         </div>
         
-    
-	<a href="review_update_form.jsp?reviewNo=<%=review.getReviewNo() %>" class="review_update_form">수정</a>
+  
+	<form action="review_update_form.jsp?reviewNo=<%=review.getReviewNo() %>" method="post" style="display:inline;">
+        <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
+        <input type="submit" value="수정" class="review_form">
+	</form>
 	<form action="review_delete_action.jsp?reviewNo=<%=review.getReviewNo() %>" method="post" style="display:inline;">
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
         <input type="submit" value="삭제" class="review_delete" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
+<<<<<<< Upstream, based on origin/mj
 <<<<<<< Upstream, based on origin/mj
 >>>>>>> b54d38e 씨ㅡㅡ발
 =======
     <a href="review_mypage_form.jsp?customer=<%=review.getCustomer().getCustomerNo() %>">이전</a>
         
 >>>>>>> 577f155 ....
+=======
+	<form action="customer_view.jsp" style="display:inline;">
+        <input type="submit" value="마이페이지" class="review_join_mypage">
+    </form>
+	<form action="review_mypage_form.jsp" style="display:inline;">
+        <input type="submit" value="목록" class="review_join_mypage_form">
+    </form>
+    
+    
+    
+>>>>>>> c55d300 리뷰 마이페이지 연결작업
 </body>
 </html>

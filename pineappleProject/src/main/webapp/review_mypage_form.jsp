@@ -6,20 +6,35 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@include file="jsp/includes/login_check.jspf" %>
  <%
  ReviewService reviewService = new ReviewService();
 	 
-	 //Integer customerNo = Integer.parseInt(request.getParameter("customerNo"));
-	 //병합 시 주석 제거
-	 List<Review> reviewList = reviewService.getMyReview(1);
+	 Integer customerNo = Integer.parseInt(sCustomerNo); 
+	
+	 List<Review> reviewList = reviewService.getMyReview(customerNo);
 	
  %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<jsp:include page="jsp/includes/include_top_menu.jsp" />
+<!-- 파인애플 상단의 메뉴 -->
+
+
+<!-- 해당 메뉴 이름-->
+	<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">내가 쓴 리뷰</h1>
+        </div>
+    </div>
+</header>
+		
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>제품 리뷰</title>
+    <title>내가 쓴 리뷰</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,7 +73,6 @@
 </head>
 <body>
 
-    <h1>제품 리뷰</h1>
 <%for(Review review: reviewList) {%>
 <<<<<<< Upstream, based on origin/mj
 <<<<<<< Upstream, based on origin/mj

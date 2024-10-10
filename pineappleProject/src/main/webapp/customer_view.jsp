@@ -113,7 +113,8 @@ int customerNo = Integer.parseInt(sCustomerNo);
         
         <% for(Orders orders:orderList){ %>
       <% List<OrdersItems> ordersItems = orders.getOrdersItemsList(); %>
-        <% for(OrdersItems orderItem : ordersItems){ %>
+        <% for(OrdersItems orderItem : ordersItems){
+        	%>
          		
             <%} %>
         
@@ -143,10 +144,16 @@ int customerNo = Integer.parseInt(sCustomerNo);
         <h2>리뷰 정보 <a class="a-style" href="review_mypage_form.jsp" >더보기</a> </h2>	           
         <div class="scroll-section">
         <%List<Review> customerReviewList = customer.getReviewList(); %>
-        <%for(Review review:customerReviewList) { %>
         
-            <div class="list-item">
+        <div class="list-item">
+        <%
+        int maxReviews = 3; // 최대 리뷰 수
+        int reviewCount = 0;
+        for(Review review:customerReviewList) { 
+        if (reviewCount >= maxReviews) break;%>
+        
             
+<<<<<<< Upstream, based on origin/mj
             리뷰 번호 :<%=review.getReviewNo() %>
             <br>
             리뷰 제목 :<%=review.getReviewTitle() %>
@@ -162,9 +169,29 @@ int customerNo = Integer.parseInt(sCustomerNo);
             <div class="list-item">주문 3 - 2024.09.20 - 상품 C</div>
             <div class="list-item">주문 4 - 2024.09.15 - 상품 D</div>
             <div class="list-item">주문 5 - 2024.09.05 - 상품 E</div>
+=======
+        <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo() %>" class="review-container">
+        <h2 class="review-title"><%=review.getReviewTitle() %></h2>        
+        <%
+        int rating= review.getReviewRating(); 
+        for(int i=0;i<5;i++){
+        %>
+        <span class="review-rating">
+        <%= (i < rating) ? "★" : "☆" %>        
+        </span>
+        <%} %>
+        <div class="review-body">
+            <%=review.getReviewContent() %>
+        </div>
+                <div class="review-author"></div>    
+            <%
+        reviewCount++;    
+        } %>           
+            </div>                       
+>>>>>>> c55d300 리뷰 마이페이지 연결작업
         </div>
     </div>
-</div>
+
 </body>
 </html>
 >>>>>>> c25e15a customer_view

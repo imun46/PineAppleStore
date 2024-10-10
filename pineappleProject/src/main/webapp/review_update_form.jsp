@@ -9,6 +9,10 @@
 <%@include file="login_check.jspf"%>
 
 <%
+if (request.getMethod().equals("GET")) {
+	response.sendRedirect("review_mypage_form.jsp");
+	return;
+}
 	ReviewService reviewService = new ReviewService();
     String reviewNo = request.getParameter("reviewNo");
     String productNo = request.getParameter("productNo");
@@ -19,6 +23,19 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+<jsp:include page="jsp/includes/include_top_menu.jsp" />
+<!-- 파인애플 상단의 메뉴 -->
+
+
+<!-- 해당 메뉴 이름-->
+	<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">리뷰 수정</h1>
+            <p class="lead fw-normal text-white-50 mb-0">어세오세욤 :)</p>
+        </div>
+    </div>
+</header>
 <head>
     <meta charset="UTF-8">
     <title>리뷰 수정</title>
@@ -34,9 +51,8 @@
 </head>
 <body>
 
-<h1>리뷰 수정</h1>
 
-<form id="reviewForm" action="review_update_action.jsp?reviewNo=<%=review.getReviewNo() %>" method="post">
+<form id="reviewForm" action="review_update_action.jsp?reviewNo=<%=review.getReviewNo() %>" method="POST">
     <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
     <input type="hidden" name="productNo" value="<%= review.getProduct().getProductNo() %>">
     <input type="hidden" name="customerNo" value="<%= review.getCustomer().getCustomerNo() %>">
@@ -66,7 +82,7 @@
     <span class="star" data-value="4">★</span>
     <span class="star" data-value="5">★</span>
 </div>
-<input type="hidden" id="reviewRating" name="reviewRating" value="<%=review.getReviewRating()%>">
+<input type="hidden" id="reviewRating" name="reviewRating" value="<%=review.getReviewRating()%>" required>
 
 <script>
     const stars = document.querySelectorAll('.star');
