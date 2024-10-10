@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <title>장바구니</title>
-    <link href="styles.css" rel="stylesheet" type="text/css" />
+   
     <script src="https://kit.fontawesome.com/2452117347.js" crossorigin="anonymous"></script>
     <style>
         .cart-container {
@@ -81,7 +81,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="includes/include_top_menu.jsp" />
+<jsp:include page="../includes/include_top_menu.jsp" />
 
 <form name="cart_view_form" style="margin:0">
     <input type="hidden" name="buyType">
@@ -114,7 +114,7 @@
                 <div class="item-info">
                     <input type="hidden" name="cart_no" value="<%=carts.getCartNo() %>">
                     <input class='product_select' type="checkbox" name="selectItem" onchange="updatePrice()">
-                    <img src="img/macBookAir.jpg" alt="<%= carts.getProductSelectedList().get(0).getProduct().getProductName() %>">
+                    <img src="../img/macBookAir.jpg" alt="<%= carts.getProductSelectedList().get(0).getProduct().getProductName() %>">
                     
                     <div class="item-details">
                         <span>상품명: <%= carts.getProductSelectedList().get(0).getProduct().getProductName() %></span>
