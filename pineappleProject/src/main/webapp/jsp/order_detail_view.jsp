@@ -7,8 +7,12 @@
 <%@ page import="java.util.Date" %>
 
 <%
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	String orderNo = request.getParameter("orders_no");
+	if(orderNo == null || orderNo.equals("")){
+		response.sendRedirect("index.jsp");
+		return;
+	}
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	OrdersService orderService = new OrdersService();
 	List<Orders> order = orderService.findByOrderNo(Integer.parseInt(orderNo));
 
@@ -98,7 +102,7 @@
                 <p><%= productOption %></p>
                 <p><%= productPrice %>원</p>
             </div>
-            <div>
+            <div class="product-info">
                  <% 
                      if(orders.getOrdersStatus() != null && orders.getOrdersStatus().equals("구매확정")) { %>
                          <button type="button" class="btn btn-3rd" onclick="submitForm('review')">리뷰쓰기</button>
