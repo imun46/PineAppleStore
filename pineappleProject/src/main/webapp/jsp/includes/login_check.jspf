@@ -2,16 +2,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-<<<<<<< HEAD
-String sCustomerId=(String)session.getAttribute("sCustomerId");
-Customer sCustomer = (Customer)session.getAttribute("sCustomer");
-if(sCustomerId==null){
-=======
+
+
+
+
 String sCustomerNo=(String)session.getAttribute("sCustomerNo");
 if(sCustomerNo==null){
->>>>>>> refs/heads/Bteam/customer/sdh
 	/* 세션이 없을때 login 페이지로 이동 */
-	response.sendRedirect("login_form.jsp");
+	response.sendRedirect("customer_login_form.jsp");
 	return;
 }
 

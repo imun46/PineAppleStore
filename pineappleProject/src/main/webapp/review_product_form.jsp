@@ -12,6 +12,7 @@
  ReviewService reviewService = new ReviewService();
  
  //Integer productNo=Integer.parseInt(request.getParameter("productNo"));
+ //List<Review> reviewList = reviewService.getProductReview(productNo);
  //병합 시 주석 제거
  List<Review> reviewList = reviewService.getProductReview(2);
  
