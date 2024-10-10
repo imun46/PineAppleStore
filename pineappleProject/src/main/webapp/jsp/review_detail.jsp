@@ -8,7 +8,7 @@
     <%@ page import="java.text.SimpleDateFormat" %>
     <%@ page import="java.util.List" %>
     <%@ page import="java.util.Date" %>
-    <%@include file="jsp/includes/login_check.jspf"%>
+    <%@include file="../includes/login_check.jspf"%>
     <%
     CustomerService customerService = new CustomerService();
     ReviewService reviewService = new ReviewService();
@@ -23,6 +23,19 @@
     %>
 <!DOCTYPE html>
 <html lang="ko">
+<jsp:include page="../includes/include_top_menu.jsp" />
+<!-- 파인애플 상단의 메뉴 -->
+
+
+<!-- 해당 메뉴 이름-->
+	<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">리뷰 수정</h1>
+            <p class="lead fw-normal text-white-50 mb-0">어세오세욤 :)</p>
+        </div>
+    </div>
+</header>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

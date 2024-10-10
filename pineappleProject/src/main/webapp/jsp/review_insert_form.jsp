@@ -21,6 +21,19 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+<jsp:include page="../includes/include_top_menu.jsp" />
+<!-- 파인애플 상단의 메뉴 -->
+
+
+<!-- 해당 메뉴 이름-->
+	<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">리뷰 수정</h1>
+            <p class="lead fw-normal text-white-50 mb-0">어세오세욤 :)</p>
+        </div>
+    </div>
+</header>
 <head>
     <meta charset="UTF-8">
     <title>리뷰 등록</title>

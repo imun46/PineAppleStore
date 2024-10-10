@@ -22,7 +22,7 @@ if (request.getMethod().equals("GET")) {
 
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="jsp/includes/include_top_menu.jsp" />
+<jsp:include page="../includes/include_top_menu.jsp" />
 <!-- 파인애플 상단의 메뉴 -->
 
 
