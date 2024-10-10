@@ -29,8 +29,7 @@ Customer customer = customerService.findCustomerNoListAll(customerNo);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="customer_view.css">
-    <link rel="stylesheet" href="jsp/styles.css">
+    <link rel="stylesheet" href="../css/customer_view.css">
     <title>회원 마이페이지</title>
     <script type="text/javascript">
         function customerModifyForm() {
