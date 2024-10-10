@@ -7,7 +7,6 @@
 <html lang="ko">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link type="stylesheet" href="jsp/styles.css">
     <script type="text/javascript">
         function customerCreateForm() {
             location.href = "customer_write_form.jsp";
@@ -35,7 +34,7 @@
 <body>
     <!-- 상단의 메뉴를 고정 -->
     <div id="top-menu">
-        <jsp:include page="jsp/includes/include_top_menu.jsp" />
+        <jsp:include page="../includes/include_top_menu.jsp" />
     </div>
 	<div id="content">
 		<h2>로그인</h2>

@@ -8,7 +8,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="jsp/includes/login_check.jspf"%>
+<%@include file="../includes/login_check.jspf"%>
 <%
 ReviewService reviewService = new ReviewService();
 
@@ -20,7 +20,7 @@ List<Review> reviewList = reviewService.getMyReview(customerNo);
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<jsp:include page="jsp/includes/include_top_menu.jsp" />
+<jsp:include page="../includes/include_top_menu.jsp" />
 <!-- 파인애플 상단의 메뉴 -->
 
 

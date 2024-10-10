@@ -3,7 +3,7 @@
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="jsp/includes/login_check.jspf"  %>
+<%@ include file="../includes/login_check.jspf"  %>
 <%	
 	/*** GET방식으로 접근 시 리다이렉션 ***/
 	if(request.getMethod().equals("GET")){
