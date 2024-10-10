@@ -7,7 +7,7 @@
 <%	
 	/*** GET방식으로 접근 시 리다이렉션 ***/
 	if(request.getMethod().equals("GET")){
-		response.sendRedirect("/jsp/index.jsp");
+		response.sendRedirect("index.jsp");
 		return;
 	}
 	try{
