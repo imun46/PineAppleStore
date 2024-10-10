@@ -71,6 +71,7 @@
             <td bgcolor="ffffff" colspan="3" align="left">
             	<!-- 쿠폰 설명 -->
                 쿠폰 설명 : <%=customerCoupon.getCoupon().getCouponDesc()%><br>
+<<<<<<< HEAD
 <<<<<<< Upstream, based on origin/mj
                
                 <!-- 쿠폰 상태, 사용불가면 빨간 글씨-->
@@ -90,6 +91,11 @@
 =======
                 <!-- 쿠폰 만료일   --> 
 >>>>>>> 2da8191 insert문 유효성 체크
+=======
+                <!-- 쿠폰 상태 -->
+                쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br>
+                <!-- 쿠폰 만료일   --> 
+>>>>>>> branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
                 쿠폰 만료일 : <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate())%>
             </td>
           </tr>

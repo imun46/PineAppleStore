@@ -151,6 +151,7 @@
 			<input type="button" value="로그인" onClick="login();">
 			<input type="button" value="회원가입" class="signup-btn" onClick="customerCreateForm()">
 		</form>
+<<<<<<< HEAD
 <<<<<<< Upstream, based on origin/mj
 <<<<<<< Upstream, based on origin/mj
 =======
@@ -531,5 +532,9 @@
 =======
 	</div>
 >>>>>>> 530051f ㅎㅎ
+=======
+	</div>
+	<!--container end-->
+>>>>>>> branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 </body>
 </html>

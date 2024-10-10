@@ -59,9 +59,13 @@ try{
 	}
 	
 
+<<<<<<< HEAD
 <<<<<<< Upstream, based on origin/mj
 >>>>>>> 00b3a1b AcademyCommit
 =======
 	
 >>>>>>> 21ac57d 내정보 : 쿠폰 리스트 작업 진행 중
+=======
+	
+>>>>>>> branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 %>  

@@ -97,6 +97,7 @@
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
         <input type="submit" value="삭제" class="review_delete" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
+<<<<<<< HEAD
 <<<<<<< Upstream, based on origin/mj
 <<<<<<< Upstream, based on origin/mj
 >>>>>>> b54d38e 씨ㅡㅡ발
@@ -115,5 +116,16 @@
     
     
 >>>>>>> c55d300 리뷰 마이페이지 연결작업
+=======
+	<form action="customer_view.jsp" style="display:inline;">
+        <input type="submit" value="마이페이지" class="review_join_mypage">
+    </form>
+	<form action="review_mypage_form.jsp" style="display:inline;">
+        <input type="submit" value="목록" class="review_join_mypage_form">
+    </form>
+    
+    
+    
+>>>>>>> branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 </body>
 </html>

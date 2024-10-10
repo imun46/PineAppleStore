@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page import="com.itwill.shop.review.Review"%>
 <%@page import="com.itwill.shop.product.Product"%>
 <%@page import="com.itwill.shop.orders.OrdersItems"%>
@@ -153,23 +154,6 @@ int customerNo = Integer.parseInt(sCustomerNo);
         if (reviewCount >= maxReviews) break;%>
         
             
-<<<<<<< Upstream, based on origin/mj
-            리뷰 번호 :<%=review.getReviewNo() %>
-            <br>
-            리뷰 제목 :<%=review.getReviewTitle() %>
-            <br>
-            리뷰 설명 :<%=review.getReviewContent() %>
-            <br>
-            리뷰 별점 :<%=review.getReviewRating() %>
-            
-            <br>
-            </div>
-            <br>
-            <%} %>
-            <div class="list-item">주문 3 - 2024.09.20 - 상품 C</div>
-            <div class="list-item">주문 4 - 2024.09.15 - 상품 D</div>
-            <div class="list-item">주문 5 - 2024.09.05 - 상품 E</div>
-=======
         <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo() %>" class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>        
         <%
@@ -188,10 +172,9 @@ int customerNo = Integer.parseInt(sCustomerNo);
         reviewCount++;    
         } %>           
             </div>                       
->>>>>>> c55d300 리뷰 마이페이지 연결작업
         </div>
     </div>
 
 </body>
 </html>
->>>>>>> c25e15a customer_view
+

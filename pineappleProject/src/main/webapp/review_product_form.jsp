@@ -90,12 +90,16 @@
         %>
         	<%=formattedDate %>
         </div>
+<<<<<<< HEAD
 <<<<<<< Upstream, based on origin/mj
     </div>
 >>>>>>> 10fb1a8 Merge branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 =======
     </a>
 >>>>>>> 7cd09ce ,.,.,.
+=======
+    </a>
+>>>>>>> branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 <%} %>
     
 
