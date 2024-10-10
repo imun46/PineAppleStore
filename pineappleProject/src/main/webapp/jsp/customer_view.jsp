@@ -35,15 +35,15 @@ Customer customer = customerService.findCustomerNoListAll(customerNo);
         function customerModifyForm() {
             location.href = 'customer_modify_form.jsp';
         }
-		
+      
         function customerCouponInsert() {
-    		popuWindow = window.open("customer_coupon_insert_form.jsp", "popupWindow", "width=600,height=400,scrollbars=yes");
-    		
-    	}
-   	 	// 부모 창 새로 고침
+          popuWindow = window.open("customer_coupon_insert_form.jsp", "popupWindow", "width=600,height=400,scrollbars=yes");
+          
+       }
+          // 부모 창 새로 고침
         function refreshParent() {
            window.location.reload();
-       	}
+          }
         function customerDelete() {
             if (window.confirm("정말 탈퇴하시겠습니까?")) {
                 document.f.action = "customer_delete_action.jsp";
@@ -80,7 +80,7 @@ Customer customer = customerService.findCustomerNoListAll(customerNo);
             <p>닉네임: <%=customer.getCustomerNickname() %></p>
             <form name="f" method="POST" action="customer_delete_action.jsp">
                 <button class="btn-style" type="button" onClick="customerModifyForm()">수정</button>
-                <button class="btn-style" type="submit" onClick="customerDelete()">계정 삭제</button>
+                <button class="btn-style" type="button" onClick="customerDelete()">계정 삭제</button>
             </form>
         </div>
     </div>
@@ -150,7 +150,7 @@ Customer customer = customerService.findCustomerNoListAll(customerNo);
 
     <!-- 리뷰 정보 섹션 -->
     <div class="section">
-        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>	           
+        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>              
         
             <div class="list-item">
                 <% List<Review> reviewList = reviewService.getMyReview(customerNo); %>
