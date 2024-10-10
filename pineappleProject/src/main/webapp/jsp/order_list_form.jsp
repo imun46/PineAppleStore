@@ -62,7 +62,7 @@
     </style>
 </head>
 <body>
-    <jsp:include page="includes/include_top_menu.jsp" />
+    <jsp:include page="../includes/include_top_menu.jsp" />
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center">

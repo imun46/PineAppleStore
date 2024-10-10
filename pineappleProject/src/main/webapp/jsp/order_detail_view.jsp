@@ -32,7 +32,6 @@
 <head>
     <meta charset="UTF-8">
     <title>주문 내역</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -77,7 +76,7 @@
     </style>
 </head>
 <body>
-	<jsp:include page="includes/include_top_menu.jsp" />
+	<jsp:include page="../includes/include_top_menu.jsp" />
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center">

@@ -12,19 +12,9 @@
 <html lang="en">
     <head>
         <title>PineApple</title>
-        <!-- Favicon
-        <link rel="png" type="image/x-icon" href="assets/logo.png" />-->
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- fontawesome icon-->
-        <script src="https://kit.fontawesome.com/2452117347.js" crossorigin="anonymous"></script>
-        <!-- font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     </head>
 <body>
-	<jsp:include page="includes/include_top_menu.jsp" />
+	<jsp:include page="../includes/include_top_menu.jsp" />
 	<header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
@@ -47,7 +37,7 @@
                  <div class="col mb-5">
                      <div class="card h-100">
                          <!-- Product image-->
-                         <img class="card-img-top" src="img/macBookAir.jpg" alt="상품이미지" />
+                         <img class="card-img-top" src="../img/macBookAir.jpg" alt="상품이미지" />
                          <!-- Product details-->
                          <div class="card-body p-4">
                              <div class="text-center">
@@ -63,7 +53,7 @@
                          </div>
                          <!-- Product actions-->
                          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="product_detail_form.jsp?product_no=<%=product.getProductNo() %>">상세보기</a></div>
                          </div>
                      </div>
                  </div>
