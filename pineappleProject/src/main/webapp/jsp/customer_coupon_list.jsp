@@ -36,17 +36,17 @@
 		document.f.submit();
 		
 	}
-	
+	// 부모 창 새로 고침
+   function refreshParent() {
+       window.location.reload();
+   }
+	 
 	function customerMain() {
 		document.f.action = "jsp/index.jsp"
 		document.f.method = 'POST';
 		document.f.submit();
 	}
 	
-	 // 부모 창 새로 고침
-    function refreshParent() {
-        window.location.reload();
-    }
 	 
 	function customerCouponUpdate() {
 		let selectedCoupon =  document.querySelector('input[name="selectedCoupon"]:checked');

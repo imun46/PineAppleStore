@@ -55,7 +55,7 @@ try{
 	if(rowCount == 0) {
 		throw new Exception("0");
 	}
-	response.sendRedirect("customer_modify_view.jsp");
+	response.sendRedirect("customer_view.jsp");
 	
 	} catch(Exception e) {
 		e.printStackTrace();

@@ -8,14 +8,26 @@
 <%@page import="com.itwill.shop.customer.Customer"%>
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!-- 로그인 체크 (세션 값 들어와 있는지 확인) -->
-<%@ include file="../includes/login_check.jspf" %>  
-<%
+  	<!-- 로그인 체크 (세션 값 들어와 있는지 확인) -->
+  	<%@ include file="../includes/login_check.jspf" %>  
+<%	
+
+
+
+
 response.setContentType("text/html; charset=UTF-8");
+
 CustomerService customerService = new CustomerService();
+
+/*customer서비스에서 findcustomerNoListAll(매개변수 int)값이 때문에   */
+// String을 int로 바꿔서 출력
 int customerNo = Integer.parseInt(sCustomerNo); 
-Customer customer = customerService.findCustomerNoListAll(customerNo);
-%>
+		
+		Customer customer =  customerService.findCustomerNoListAll(customerNo);
+
+%>	
+	
+	
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -25,52 +37,61 @@ Customer customer = customerService.findCustomerNoListAll(customerNo);
     <link rel="stylesheet" href="customer_view.css">
     <link rel="stylesheet" href="jsp/styles.css">
     <title>회원 마이페이지</title>
-    <script type="text/javascript">
-        function customerModifyForm() {
-            location.href = 'modify_form.jsp';
-        }
+	<script type="text/javascript">
+    function customerModifyForm() {
+        location.href = 'modify_form.jsp';
+    }
 
-        function customerDelete() {
-            if (window.confirm("정말 탈퇴하시겠습니까?")) {
-                document.f.action = "customer_delete_action.jsp";
-                document.f.method = 'POST';
-                document.f.submit();
-            } else {
-                return false; // 취소를 눌렀을 때 페이지에 머무름
-            }
+    function customerDelete() {
+        // confirm 창에서 확인을 누르면 true, 취소를 누르면 false 반환
+        if (window.confirm("정말 탈퇴하시겠습니까?")) {
+            // 확인을 눌렀을 때만 폼을 제출하도록 한다
+            document.f.action = "customer_delete_action.jsp";
+            document.f.method = 'POST';
+            document.f.submit();
+        } else {
+            // 취소를 누르면 아무 동작도 하지 않고 페이지에 머무름
+            return false;
         }
-    </script>
+    }
+</script>
 </head>
 <body>
-    <jsp:include page="../includes/include_top_menu.jsp" />
 
-    <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">회원가입</h1>
-                <p class="lead fw-normal text-white-50 mb-0">어세오세욤 :)</p>
-            </div>
+
+<jsp:include page="../includes/include_top_menu.jsp" />
+<!-- 파인애플 상단의 메뉴 -->
+
+
+<!-- 해당 메뉴 이름-->
+	<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">회원가입</h1>
+            <p class="lead fw-normal text-white-50 mb-0">어세오세욤 :)</p>
         </div>
-    </header>
+    </div>
+</header>
+		
 
     <div class="container">
-        <div class="section">
-            <h2>고객 정보</h2>
-            <div class="info">
-                <p>이름: <%=customer.getCustomerName() %></p>
-                <p>생년월일: <%=customer.getCustomerDob() %></p>
-                <p>성별: <%=customer.getCustomerGender() %></p>
-                <p>주소: <%=customer.getCustomerAddress() %></p>
-                <p>이메일: <%=customer.getCustomerEmail() %></p>
-                <p>전화번호: <%=customer.getCustomerPhone() %></p>
-                <p>닉네임: <%=customer.getCustomerNickname() %></p>
+    <div class="section">
+        <h2>고객 정보</h2>
+        <div class="info">
+            <p>이름: <%=customer.getCustomerName() %></p>
+            <p>생년월일: <%=customer.getCustomerDob() %></p>
+            <p>성별: <%=customer.getCustomerGender() %></p>
+            <p>주소: <%=customer.getCustomerAddress() %></p>
+            <p>이메일: <%=customer.getCustomerEmail() %>
+            <p>전화번호: <%=customer.getCustomerPhone() %></p>
+            <p>닉네임: <%=customer.getCustomerNickname() %></p>
+          <form name="f" method="POST" action="customer_delete_action.jsp">
+         <button type="button" onClick="customerModifyForm()">수정</button>
+   		<button type="button" onClick="customerDelete()">계정 삭제</button>
+    </form>
 
-                <form name="f" method="POST">
-                    <button type="button" onClick="customerModifyForm()">수정</button>
-                    <button type="button" onClick="customerDelete()">계정 삭제</button>
-                </form>
-            </div>
         </div>
+    </div>
 
     <div class="section">
         <h2>쿠폰 정보 </h2>
