@@ -10,9 +10,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="customer_write_style.css" />
-<link rel="stylesheet" href="jsp/styles.css">
-<script type="text/javascript" src="customer_write.js"></script>
+<link rel="stylesheet" href="../css/customer_write_style.css" />
+<script type="text/javascript" src="../js/customer_write.js"></script>
 
 
 <title>회원가입</title>
@@ -26,7 +25,7 @@
 
 
 	<!-- 파인애플 상단의 메뉴 -->
-	<jsp:include page="jsp/includes/include_top_menu.jsp" />
+	<jsp:include page="../includes/include_top_menu.jsp" />
 	
 	
 <!-- 해당 메뉴 이름-->

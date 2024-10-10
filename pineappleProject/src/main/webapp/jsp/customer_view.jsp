@@ -12,7 +12,7 @@
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="jsp/includes/login_check.jspf" %>
+<%@ include file="../includes/login_check.jspf" %>
 
 <%
 ReviewService reviewService = new ReviewService();
@@ -48,7 +48,7 @@ Customer customer = customerService.findCustomerNoListAll(customerNo);
 </head>
 <body>
 
-<jsp:include page="jsp/includes/include_top_menu.jsp" />
+<jsp:include page="../includes/include_top_menu.jsp" />
 
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
