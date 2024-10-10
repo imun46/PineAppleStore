@@ -142,7 +142,7 @@ Customer customer = customerService.findCustomerNoListAll(customerNo);
 
     <!-- 리뷰 정보 섹션 -->
     <div class="section">
-        <h2>리뷰 정보 <button class="btn-style" href="review_mypage_form.jsp" >더보기</button> </h2>	           
+        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>	           
         
             <div class="list-item">
                 <% List<Review> reviewList = reviewService.getMyReview(customerNo); %>
