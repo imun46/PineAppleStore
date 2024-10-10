@@ -151,11 +151,7 @@ ReviewService reviewService = new ReviewService();
 					<!-- Add to Cart and Purchase Buttons -->
 					<div class="mt-4">
 						<button type="button" class="btn btn-primary btn-lg"
-							onclick="submitForm('cart')"
-							style="background-color:#4cae4c;
-								border: none;
-							"
-							>장바구니</button>
+							onclick="submitForm('cart')">장바구니</button>
 						<button type="button" class="btn btn-primary btn-lg"
 							onclick="submitForm('order')">구매하기</button>
 					</div>
@@ -164,7 +160,7 @@ ReviewService reviewService = new ReviewService();
 
 			<!-- Product Detail -->
 			<div style="display: flex; justify-content: center;">
-			    <img alt="" src="img/product_datail_page.png" style="max-width: 100%; height: auto;">
+			    <img alt="" src="../img/product_datail_page.png" style="max-width: 100%; height: auto;">
 			</div>
 			
 			<!-- Customer Reviews Section -->
