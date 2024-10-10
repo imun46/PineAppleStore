@@ -30,7 +30,7 @@
 		
 		function customerMain() {
 			
-			document.f.action = "jsp/index.jsp";
+			document.f.action = "index.jsp";
 			document.f.method='POST';
 			document.f.submit();
 		}
