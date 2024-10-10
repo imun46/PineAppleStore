@@ -16,8 +16,6 @@
         <link rel="png" type="image/x-icon" href="assets/logo.png" />-->
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="styles.css" rel="stylesheet" type="text/css" />
         <!-- fontawesome icon-->
         <script src="https://kit.fontawesome.com/2452117347.js" crossorigin="anonymous"></script>
         <!-- font -->
