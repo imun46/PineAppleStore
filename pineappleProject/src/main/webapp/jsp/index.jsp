@@ -12,6 +12,8 @@
 <html lang="ko">
     <head>
         <title>PineApple</title>
+        <!-- favicon -->
+		<link rel="icon" href="../img/favicon.png">
     </head>
 <body>
 	<jsp:include page="../includes/include_top_menu.jsp" />

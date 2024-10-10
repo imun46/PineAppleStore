@@ -7,6 +7,10 @@
 <html lang="ko">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <script type="text/javascript">
         function customerCreateForm() {
             location.href = "customer_write_form.jsp";
@@ -31,7 +35,7 @@
     </script>
    
 </head>
-<body>
+<body style="font-family:Noto Sans KR">
     <!-- 상단의 메뉴를 고정 -->
     <div id="top-menu">
         <jsp:include page="../includes/include_top_menu.jsp" />
@@ -86,7 +90,7 @@
         /* 로그인 폼을 감싸는 요소 */
         #content {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             padding: 40px;
             background-color: white;
             border-radius: 8px;
@@ -99,7 +103,7 @@
         h2 {
             color: #333;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 27px;
         }
 
         /* 입력 필드 스타일 */
@@ -125,8 +129,7 @@
             width: 100%;
             padding: 12px;
             background-color: #5cb85c;
-            border: none;
-            border-radius: 4px;
+            border: none;            border-radius: 4px;
             color: white;
             font-size: 16px;
             cursor: pointer;

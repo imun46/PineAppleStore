@@ -48,10 +48,6 @@ ReviewService reviewService = new ReviewService();
 	<link rel="stylesheet"
 		href="<%=request.getContextPath()%>/css/styles.css" />
 	<link rel="stylesheet" href="../css/customer_view.css"> <!-- 리뷰 css 대현추가 -->
-	<!-- Bootstrap CSS -->
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-		rel="stylesheet" />
 	<style type="text/css">
 		.review-container {        
             display: block; 
@@ -155,7 +151,11 @@ ReviewService reviewService = new ReviewService();
 					<!-- Add to Cart and Purchase Buttons -->
 					<div class="mt-4">
 						<button type="button" class="btn btn-primary btn-lg"
-							onclick="submitForm('cart')">장바구니</button>
+							onclick="submitForm('cart')"
+							style="background-color:#4cae4c;
+								border: none;
+							"
+							>장바구니</button>
 						<button type="button" class="btn btn-primary btn-lg"
 							onclick="submitForm('order')">구매하기</button>
 					</div>

@@ -10,17 +10,20 @@
 	}
 	
 %>		
-
+<!-- favicon -->
+<link rel="icon" href="../img/favicon.png">
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../css/top_menu_styles.css" rel="stylesheet" type="text/css" />
 <!-- fontawesome icon-->
 <script src="https://kit.fontawesome.com/2452117347.js" crossorigin="anonymous"></script>
 <!-- Bootstrap icons-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
 <!-- font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">
