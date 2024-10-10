@@ -134,15 +134,13 @@
         </div>
         
         <h3>주문상품</h3>
-        <%for (Cart cart : cartList) { %>
         <div class="order-details">
             <div class="product-info">
-                <p><strong>상품명:</strong> <%= cart.getProductSelectedList().get %></p>
+                <p><strong>상품명:</strong> 아이폰15</p>
                 <p><strong>수량:</strong> 1개</p>
                 <p><strong>가격:</strong> <span id="product-amount"><%= String.format("%,d", 1_000_000) %></span>원</p>
             </div>
             <hr>
-        <% } %>    
             
             <form id="payment-form" action="paymentProcess.jsp" method="post">
                 <label for="coupon-code">보유 쿠폰</label>
