@@ -22,6 +22,11 @@ CustomerService customerService = new CustomerService();
 
 int customerNo = Integer.parseInt(sCustomerNo);
 Customer customer = customerService.findCustomerNoListAll(customerNo);
+
+/*** 날짜 포맷 설정 ***/
+SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+
+
 %>
 
 <!DOCTYPE html>
@@ -72,7 +77,7 @@ Customer customer = customerService.findCustomerNoListAll(customerNo);
         <h2>고객 정보</h2>
         <div class="info">
             <p>이름: <%=customer.getCustomerName() %></p>
-            <p>생년월일: <%=customer.getCustomerDob() %></p>
+            <p>생년월일: <%=simpleDateFormat.format(customer.getCustomerDob()) %></p>
             <p>성별: <%=customer.getCustomerGender() %></p>
             <p>주소: <%=customer.getCustomerAddress() %></p>
             <p>이메일: <%=customer.getCustomerEmail() %></p>
@@ -100,7 +105,7 @@ Customer customer = customerService.findCustomerNoListAll(customerNo);
                         <p><strong>쿠폰 일련번호:</strong> <%=couponList.getCouponId() %></p>
                         <p><strong>사용 여부:</strong> <%=customerCoupons.getCustomerCouponsStatus() %></p>
                         
-                        <p><strong>종료 날짜:</strong> <%=customerCoupons.getCustomerCouponsEnddate() %></p>
+                        <p><strong>종료 날짜:</strong> <%=simpleDateFormat.format(customerCoupons.getCustomerCouponsEnddate()) %></p>
                     </div>
             <% 
                 }
