@@ -71,7 +71,7 @@
 <body>
 <form name="f" method="post">
     <div class="top-menu">
-        <jsp:include page="jsp/includes/include_top_menu.jsp" />
+        <jsp:include page="../includes/include_top_menu.jsp" />
     </div>
     <div class="image-container">
         <img class="coupon-img" src="첫가입쿠폰.png" alt="쿠폰 이미지">

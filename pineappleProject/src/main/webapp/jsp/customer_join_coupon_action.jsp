@@ -3,7 +3,7 @@
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="jsp/includes/login_check.jspf"  %>    
+<%@ include file="../includes/login_check.jspf"  %>    
  <%
  	/*** 서비스 객체 생성***/
 	CustomerService customerService = new CustomerService();
