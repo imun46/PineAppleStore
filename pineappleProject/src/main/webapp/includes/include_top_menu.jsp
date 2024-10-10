@@ -58,7 +58,7 @@
                       <i class="fa-solid fa-user"></i>
                       logout
                   </a>
-                  <a class="btn btn-outline-dark" href="../jsp/customer_modify_form.jsp">
+                  <a class="btn btn-outline-dark" href="../jsp/customer_modify_view.jsp">
                       <i class="fa-solid fa-user"></i>
                       mypage
                   </a>
