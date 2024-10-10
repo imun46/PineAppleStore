@@ -54,7 +54,7 @@
               </form>
               <%} else { %>
               <form class="d-flex">
-                  <a class="btn btn-outline-dark" href="#">
+                  <a class="btn btn-outline-dark" href="../jsp/customer_logout_action.jsp">
                       <i class="fa-solid fa-user"></i>
                       logout
                   </a>
