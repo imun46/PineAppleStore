@@ -5,12 +5,20 @@
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ include file="jsp/includes/login_check.jspf"  %>
     
 <%
-	String customerId = "IDEX1";
+	/*** 서비스 객체 생성***/
 	CustomerService customerService = new CustomerService();
-	Customer loginCustomer = customerService.findCustomerId(customerId);
+	
+	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
+	int customerNo = Integer.parseInt(sCustomerNo);
+	Customer loginCustomer = customerService.findCustomerNo(customerNo);
+	
+	/*** 날짜 포맷 설정 ***/
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+	
+	/*** 쿠폰 리스트 객체 생성 ***/
 	List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());
 	
 %>
@@ -47,6 +55,11 @@
 		document.f.submit();
 	}
 	
+	function customerModifyView() {
+		document.f.action="customer_modify_view.jsp"
+		document.f.method='POST';
+		document.f.submit();
+	}
 </script>
 </head>
 <body>
@@ -71,31 +84,9 @@
             <td bgcolor="ffffff" colspan="3" align="left">
             	<!-- 쿠폰 설명 -->
                 쿠폰 설명 : <%=customerCoupon.getCoupon().getCouponDesc()%><br>
-<<<<<<< HEAD
-<<<<<<< Upstream, based on origin/mj
-               
-                <!-- 쿠폰 상태, 사용불가면 빨간 글씨-->
-                <% if ("사용불가".equals(customerCoupon.getCustomerCouponsStatus())) { %> 
-                <span style="color: red;">쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br></span>
-                <% } else { %>
-=======
->>>>>>> f728de3 리스트 수정
-                <!-- 쿠폰 상태 -->
-                쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br>
-<<<<<<< Upstream, based on origin/mj
-<<<<<<< Upstream, based on origin/mj
-                <% } %>
-=======
->>>>>>> f728de3 리스트 수정
-                <!-- 쿠폰 만료일   -->
-=======
-                <!-- 쿠폰 만료일   --> 
->>>>>>> 2da8191 insert문 유효성 체크
-=======
                 <!-- 쿠폰 상태 -->
                 쿠폰 상태 : <%=customerCoupon.getCustomerCouponsStatus()%><br>
                 <!-- 쿠폰 만료일   --> 
->>>>>>> branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
                 쿠폰 만료일 : <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate())%>
             </td>
           </tr>
@@ -109,6 +100,7 @@
 				<input type="button" value="쿠폰 사용"	onClick="customerCouponUpdate()"> &nbsp;
 				<input type="button" value="쿠폰 등록"	onClick="customerCouponInsert()"> &nbsp;
 				<input type="button" value="메인" onClick="customerMain()"> &nbsp;
+				<input type="button" value="내정보" onClick="customerModifyView()">
 				</td>
 			</tr>
 		</table>

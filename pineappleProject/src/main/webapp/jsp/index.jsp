@@ -16,8 +16,6 @@
         <link rel="png" type="image/x-icon" href="assets/logo.png" />-->
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="styles.css" rel="stylesheet" type="text/css" />
         <!-- fontawesome icon-->
         <script src="https://kit.fontawesome.com/2452117347.js" crossorigin="anonymous"></script>
         <!-- font -->
@@ -26,12 +24,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     </head>
 <body>
-	<jsp:include page="includes/include_top_menu.jsp" />
+	<jsp:include page="../includes/include_top_menu.jsp" />
 	
 	<video autoplay muted style="width:100%; height: 600px;">
-	 <source src="banner_video.mp4" type="video/mp4">
+	 <source src="../img/banner_video.mp4" type="video/mp4">
 	</video>
-	<img alt="line image" src="img/line.png" style="display:block; margin:0 auto;">
+	<img alt="line image" src="../img/line.png" style="display:block; margin:0 auto;">
 	 <!-- Section 상품 시작-->
 	 <h1 style="margin-top: 5px; font-weight: 600; text-align: center; font-size: 50px;" >
 	 STORE
@@ -49,7 +47,7 @@
                  <div class="col mb-5">
                      <div class="card h-100">
                          <!-- Product image-->
-                         <img class="card-img-top" src="img/macBookAir.jpg" alt="상품이미지" />
+                         <img class="card-img-top" src="../img/macBookAir.jpg" alt="상품이미지" />
                          <!-- Product details-->
                          <div class="card-body p-4">
                              <div class="text-center">

@@ -54,10 +54,9 @@
 				<form name="f" method="POST" action="customer_write_action.jsp">
 				<div class="content">
 					<div class="input-label">아이디</div>
-					<div class="inline">
-						<input class="input-style" type="text" name="id"
-						 />
-						
+					<div class="inline"> 
+						<input class="input-style" type="text" name="id" value=""
+						 /> <button class="duplicate-style">중복검사</button>
 					</div>
 				</div>
 				<br />
@@ -153,7 +152,7 @@
 			<br />
 		</div>
 	</div>
-<	
+	
 	
 	
 </body>

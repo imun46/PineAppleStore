@@ -57,4 +57,6 @@ function customerCreate() {
 	f.action = "customer_write_action.jsp";
 	f.method='POST';
 	f.submit();
+	
+	
 }

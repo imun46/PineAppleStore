@@ -11,7 +11,8 @@
 	
 %>		
 
-<link rel="stylesheet" href="styles.css" >
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../css/top_menu_styles.css" rel="stylesheet" type="text/css" />
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">

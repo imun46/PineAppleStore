@@ -25,6 +25,12 @@
 
 	// 생년월일 파싱 코드 추가 (생략 가능)
 	// ...
+	try {
+		// 생년월일 파싱
+		if (customerDobStr != null && !customerDobStr.isEmpty()) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 생년월일 형식 지정
+			customerDob = dateFormat.parse(customerDobStr);
+		}
 
 	Customer newCustomer = null;
 
@@ -43,14 +49,5 @@
 		CustomerService customerService = new CustomerService();
 		int rowCount = customerService.create(newCustomer);
 		response.sendRedirect("customer_login_form.jsp");
-	} catch (ExistedCustomerException e) {
-		// 중복 고객 예외 발생
-		request.setAttribute("msg", e.getMessage());
-		request.setAttribute("fcustomer", newCustomer);
-		RequestDispatcher rd = request.getRequestDispatcher("customer_write_form.jsp");
-		rd.forward(request, response);
-	} catch (Exception e) {
-		e.printStackTrace();
-		response.sendRedirect("customer_error.jsp");		
-	}
+	
 %>

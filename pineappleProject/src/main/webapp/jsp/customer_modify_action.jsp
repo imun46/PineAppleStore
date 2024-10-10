@@ -4,6 +4,7 @@
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="jsp/includes/login_check.jspf"  %>        
 <!-- 로그인 여부 체크   -->
 <!-- include file="login_check.jspf" -->
 <%	
@@ -17,9 +18,13 @@
 	  실패:customer_error.jsp 
 	 */
 	 
-	String customerId = "IDEX1";
+	
 	CustomerService customerService = new CustomerService();
-	Customer loginCustomer = customerService.findCustomerId(customerId);
+	
+	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
+	int customerNo = Integer.parseInt(sCustomerNo);
+	Customer loginCustomer = customerService.findCustomerNo(customerNo);
+	
 try{	 
 	 /*** 1. GET방식이면 customer_main.jsp redirection ***/
 	 if(request.getMethod().equalsIgnoreCase("GET")) {
@@ -50,7 +55,7 @@ try{
 	if(rowCount == 0) {
 		throw new Exception("0");
 	}
-	response.sendRedirect("modify_view.jsp");
+	response.sendRedirect("customer_modify_view.jsp");
 	
 	} catch(Exception e) {
 		e.printStackTrace();
@@ -59,13 +64,5 @@ try{
 	}
 	
 
-<<<<<<< HEAD
-<<<<<<< Upstream, based on origin/mj
->>>>>>> 00b3a1b AcademyCommit
-=======
 	
->>>>>>> 21ac57d 내정보 : 쿠폰 리스트 작업 진행 중
-=======
-	
->>>>>>> branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 %>  

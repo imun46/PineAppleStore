@@ -3,7 +3,7 @@
 <%
 	String customerNo = (String)session.getAttribute("customerId");
 	if(customerNo == null) {
-		response.sendRedirect("login_form.jsp");
+		response.sendRedirect("customer_login_form.jsp");
 		return;
 	}
 	

@@ -6,7 +6,6 @@
 <%@page import="com.itwill.shop.review.Review" %> 
 <%@page import="com.itwill.shop.review.ReviewService" %> 
 <%@page import="java.util.Date" %>
-<%@include file="login_check.jspf"%>
 
 <%
 if (request.getMethod().equals("GET")) {
@@ -61,6 +60,7 @@ if (request.getMethod().equals("GET")) {
         <label for="reviewTitle">리뷰 제목:</label>
         <input type="text" id="reviewTitle" name="reviewTitle" value="<%= review.getReviewTitle() %>" required>
     </div>
+    
       
     <div>
     	<label for="reviewProductOption"><%=review.getProduct().getProductImageList() %><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)</label>

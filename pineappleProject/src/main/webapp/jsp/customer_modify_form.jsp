@@ -4,19 +4,28 @@
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	/*** 서비스 선언 ***/
+<%@ include file="jsp/includes/login_check.jspf"  %>    
+<%	
+
 	CustomerService customerService = new CustomerService();
 
-	/*** 로그인 아이디 부여 ***/
-	String customerId = "IDEX1";
-	Customer loginCustomer = customerService.findCustomerId(customerId);
+	int customerNo = Integer.parseInt(sCustomerNo);
+	Customer loginCustomer = customerService.findCustomerNo(customerNo);
 	
-	/*** 날짜 포멧 ***/
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
 	
+	/*** 서비스 선언 ***/
+	//CustomerService customerService = new CustomerService();
+
+	/*** 로그인 아이디 부여 ***/
+	//Customer loginCustomer = customerService.findCustomerId(sCustomerNo);
+
+	
+	/*** 날짜 포멧 ***/
+	//SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
+	
 	/*** 사용자 보유 쿠폰 리스트 조회 ***/
-	customerService.findCouponList(loginCustomer.getCustomerNo());
+	//customerService.findCouponList(loginCustomer.getCustomerNo());
 %>
 <!DOCTYPE html>
 <html>
@@ -67,7 +76,7 @@
 				return false;
 			}
 			
-			document.f.action = "modify_action.jsp";
+			document.f.action = "customer_modify_action.jsp";
 			document.f.method='POST';
 			document.f.submit();
 		}

@@ -35,7 +35,7 @@ a {
 }
 
 .inline{
-    display: inline;
+    display: flex;
 }
 
 .flex{
@@ -54,12 +54,25 @@ a {
 }
 
 .input-style {
+	
     width: 460px;
     padding-left: 14px;
     padding-right: 14px;
     padding-top: 10px;
     padding-bottom: 10px;
     border: 1px solid #dadada;
+    margin-right: 30px;
+}
+
+.duplicate-style {
+	width: 460px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #dadada;
+    margin-right: 30px;
+	
 }
 
 .input-middle-style{

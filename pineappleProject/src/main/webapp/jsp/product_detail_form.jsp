@@ -62,7 +62,7 @@ Product product = productService.productDetail(productNo);
 	</style>
 </head>
 <body>
-	<jsp:include page="includes/include_top_menu.jsp" />
+	<jsp:include page="../includes/include_top_menu.jsp" />
 
 	<%
 	product = productService.productDetail(productNo);
@@ -88,7 +88,7 @@ Product product = productService.productDetail(productNo);
 				<div class="col-md-6">
 					<!-- Product Image -->
 					<div id="product-image">
-						<img src="img/macBookAir.jpg" alt="Product Image"
+						<img src="../img/macBookAir.jpg" alt="Product Image"
 							class="img-fluid" />
 					</div>
 				</div>

@@ -4,15 +4,15 @@
 <%@page import="com.itwill.shop.customer.CustomerCoupons"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="jsp/includes/login_check.jspf"  %>    
 <%	
 try{ 	
 	/*** Customer서비스 객체 생성 ***/
 	CustomerService customerService = new CustomerService();
-
-	/*** 로그인 아이디 부여 ***/
-	String customerId = "IDEX1";
-	Customer loginCustomer = customerService.findCustomerId(customerId);
 	
+	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
+	int customerNo = Integer.parseInt(sCustomerNo);
+	Customer loginCustomer = customerService.findCustomerNo(customerNo);
 	
 	/*** 선택한 사용자 쿠폰 번호 가져오기 ***/
 	String customerCouponNoStr = request.getParameter("selectedCoupon");

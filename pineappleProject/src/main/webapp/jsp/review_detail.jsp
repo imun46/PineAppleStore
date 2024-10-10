@@ -8,6 +8,7 @@
     <%@ page import="java.text.SimpleDateFormat" %>
     <%@ page import="java.util.List" %>
     <%@ page import="java.util.Date" %>
+    <%@include file="jsp/includes/login_check.jspf"%>
     <%
     CustomerService customerService = new CustomerService();
     ReviewService reviewService = new ReviewService();
@@ -15,7 +16,7 @@
     String productNo= request.getParameter("productNo");
     String customerNo = request.getParameter("customerNo");
     Review review =  reviewService.findByReviewNo(Integer.parseInt(reviewNo));
-    
+    Integer customerNo1 = Integer.parseInt(sCustomerNo);
     Date reviewDate = review.getReviewDate(); // 리뷰 날짜를 가져옵니다.
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 원하는 형식으로 포맷을 설정합니다.
     String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
@@ -34,29 +35,44 @@
             background-color: #f9f9f9;
         }
         .review-container {
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-        .review-title {
-            font-size: 1.5em;
-            margin: 0 0 10px;
-        }
-        .review-rating {
-            color: gold;
-        }
-        .review-body {
-            margin: 10px 0;
-        }
-        .review-author {
-            font-size: 0.9em;
-            color: #555;
-        }
+	display: block;
+	text-decoration: none;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	padding: 30px;
+	margin: 20px 0;
+	color: inherit;
+}
+
+.review-title {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.review-rating {
+	color: #ffcc00;
+	margin-bottom: 10px;
+}
+
+.review-body {
+	font-size: 16px;
+	line-height: 1.5;
+}
+.review-date{
+	font-size: 14px;
+	color: #666;
+	margin-top: 10px;
+}
+.review-product-option{
+	font-size: 10px;
+	color: #666;
+}
+.review-author {
+	font-size: 14px;
+	color: #666;
+	margin-top: 10px;
+}
     </style>
 </head>
 <body>
@@ -66,7 +82,7 @@
     <div class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         <div class="review-product-option">
-            <%=review.getProduct().getProductImageList() %><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
+            <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
         </div>
         <%
         int rating= review.getReviewRating(); 
@@ -83,12 +99,13 @@
         <img src="<%=review.getReviewImage() %>" alt="My Image">
         	
         <div class = "review-date">
-        	 <%= formattedDate %>
+        	작성일 : <%= formattedDate %>
         </div>
-        <div class="review-author"><%=review.getCustomer().getCustomerName() %></div>
+        <div class="review-author">
+         작성자 : <%=review.getCustomer().getCustomerName() %></div>
         </div>
         
-  
+  <%if(customerNo1==review.getCustomer().getCustomerNo()){ %>
 	<form action="review_update_form.jsp?reviewNo=<%=review.getReviewNo() %>" method="post" style="display:inline;">
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
         <input type="submit" value="수정" class="review_form">
@@ -97,15 +114,7 @@
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
         <input type="submit" value="삭제" class="review_delete" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
-<<<<<<< HEAD
-<<<<<<< Upstream, based on origin/mj
-<<<<<<< Upstream, based on origin/mj
->>>>>>> b54d38e 씨ㅡㅡ발
-=======
-    <a href="review_mypage_form.jsp?customer=<%=review.getCustomer().getCustomerNo() %>">이전</a>
-        
->>>>>>> 577f155 ....
-=======
+    <%} %>
 	<form action="customer_view.jsp" style="display:inline;">
         <input type="submit" value="마이페이지" class="review_join_mypage">
     </form>
@@ -115,17 +124,5 @@
     
     
     
->>>>>>> c55d300 리뷰 마이페이지 연결작업
-=======
-	<form action="customer_view.jsp" style="display:inline;">
-        <input type="submit" value="마이페이지" class="review_join_mypage">
-    </form>
-	<form action="review_mypage_form.jsp" style="display:inline;">
-        <input type="submit" value="목록" class="review_join_mypage_form">
-    </form>
-    
-    
-    
->>>>>>> branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 </body>
 </html>

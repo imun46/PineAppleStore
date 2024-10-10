@@ -3,6 +3,7 @@
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="jsp/includes/login_check.jspf"  %>
 <%	
 	/*** GET방식으로 접근 시 리다이렉션 ***/
 	if(request.getMethod().equals("GET")){
@@ -10,15 +11,16 @@
 		return;
 	}
 	try{
-		/*** 아이디 임시 설정 ***/
-		String customerId = "IDEX1";
+		
 		/*** 입력한 쿠폰ID 읽어옴 ***/
 		String couponId = request.getParameter("couponId");
 		
+		/*** 서비스 객체 생성 ***/
 		CustomerService customerService = new CustomerService();
 	
-		/*** 로그인한 사용자 찾기 ***/
-		Customer loginCustomer = customerService.findCustomerId(customerId);
+		/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
+		int customerNo = Integer.parseInt(sCustomerNo);
+		Customer loginCustomer = customerService.findCustomerNo(customerNo);
 		
 		/*** 쿠폰ID에 맞는 쿠폰 찾기***/
 		Coupon coupon = customerService.getCouponId(couponId);

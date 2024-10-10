@@ -5,10 +5,11 @@
 <%@page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="jsp/includes/login_check.jspf"  %>    
 <%
-	String customerId = "IDEX1";
 	CustomerService customerService = new CustomerService();
-	Customer loginCustomer = customerService.findCustomerId(customerId);
+	int customerNo = Integer.parseInt(sCustomerNo);
+	Customer loginCustomer = customerService.findCustomerNo(customerNo);
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
     //변환 작업
 	//simpleDateFormat.format(loginCustomer.getCustomerDob()); 
@@ -22,7 +23,7 @@
 <script type="text/javascript">
 		function customerModifyForm() {
 			
-			document.f.action = "modify_form.jsp";
+			document.f.action = "customer_modify_form.jsp";
 			document.f.method='POST';
 			document.f.submit();
 		}
@@ -39,6 +40,7 @@
 			document.f.method='POST';
 			document.f.submit();
 		}
+		
 		
 		
 </script>
@@ -133,7 +135,7 @@
 				<td align=center>
 				<input type="button" value="내정보수정"	onClick="customerModifyForm()"> &nbsp; 
 				<input type="button" value="메인" onClick="customerMain()"> &nbsp;
-				<input type="button" value="쿠폰함" onClick="customerCoupon()">
+				<input type="button" value="쿠폰함" onClick="customerCoupon()"> &nbsp;
 				</td>
 			</tr>
 		</table>

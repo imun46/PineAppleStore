@@ -39,11 +39,8 @@
 <h1>리뷰 등록</h1>
 
 <form id="reviewForm" action="review_insert_action.jsp" method="post">
-<<<<<<< HEAD
-=======
    <input type="hidden" name="productNo" value="<%= product.getProductNo() %>">
 <input type="hidden" name="customerNo" value="<%= customer.getCustomerNo() %>">
->>>>>>> branch 'master' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
     <div>
         <label for="reviewTitle">리뷰 제목:</label>
         <input type="text" id="reviewTitle" name="reviewTitle" value="" required>
