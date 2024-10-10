@@ -105,7 +105,7 @@
     </div>
      <div>
             <label for="reviewImage">이미지 첨부:</label>
-            <input type="file" id="reviewImage" name="reviewImage" accept="image/*" >
+            <input type="file" id="reviewImage" name="reviewImage" accept="../img/*" >
         </div>
 
     <div>

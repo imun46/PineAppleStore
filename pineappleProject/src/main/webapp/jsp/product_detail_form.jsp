@@ -1,3 +1,6 @@
+<%@page import="com.itwill.shop.review.ReviewService"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.itwill.shop.product.Product"%>
@@ -31,6 +34,7 @@ if (productNoStr != null) {
 // Use ProductService to fetch product details
 ProductService productService = new ProductService();
 Product product = productService.productDetail(productNo);
+ReviewService reviewService = new ReviewService();
 %>
 
 <!DOCTYPE html>
@@ -43,7 +47,7 @@ Product product = productService.productDetail(productNo);
 	<!-- External CSS -->
 	<link rel="stylesheet"
 		href="<%=request.getContextPath()%>/css/styles.css" />
-	
+	<link rel="stylesheet" href="../css/customer_view.css"> <!-- 리뷰 css 대현추가 -->
 	<!-- Bootstrap CSS -->
 	<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -164,37 +168,53 @@ Product product = productService.productDetail(productNo);
 			</div>
 			
 			<!-- Customer Reviews Section -->
-			<div class="row mt-5">
-				<div class="col-12">
-					<h3 class="fw-bold">리뷰</h3>
-					<%
-					List<Review> reviews = product.getProductReviewList();
-					if (reviews != null && !reviews.isEmpty()) {
-						for (Review review : reviews) {
-					%>
-
-					<div class="review-item mb-4 review-container">
-						<h5 class="review-title"><%=review.getReviewTitle()%></h5>
-						<%
-						int rating = review.getReviewRating();
-						for (int i = 0; i < 5; i++) {
-						%>
-						<span class="review-rating" style="color: gold; font-size: 25px;"> <%=(i < rating) ? "★" : "☆"%>
-						</span>
-						<%
-						}
-						%>
-						<p><%=review.getReviewContent()%></p>
-						<span><%=review.getReviewDate()%></span>
-					</div>
-					<%
-					}		
-						} else {
-						out.println("<p>No reviews available.</p>");
-						}
-					%>
-				</div>
-			</div>
+			<div class="section">
+        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>	           
+        
+            <div class="list-item">
+                <% List<Review> reviewList = reviewService.getProductReview(productNo); %>
+                <%
+                int maxReviews = 3; // 최대 리뷰 수
+                int reviewCount = 0;
+                for(Review review:reviewList) {
+                    if (reviewCount >= maxReviews) break;
+                    Date reviewDate = review.getReviewDate(); // 리뷰 날짜를 가져옵니다.
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 원하는 형식으로 포맷을 설정합니다.
+                    String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
+                %>      
+                
+                <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>" class="review-container a">
+                    <h2 class="review-title"><%=review.getReviewTitle() %></h2> 
+                    <div class="review-product-option">
+                        <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
+                    </div>       
+                    <%
+                    int rating= review.getReviewRating(); 
+                    for(int i=0;i<5;i++){
+                    %>
+                    <span class="review-rating">
+                        <%= (i < rating) ? "★" : "☆" %>        
+                    </span>
+                    <% } %>
+                    <div class="review-body">
+                        <%=review.getReviewContent() %>
+                    </div>
+                    <% if(review.getReviewImage() != null) { %>
+                        <img src="<%=review.getReviewImage() %>" alt="My Image">
+                    <% } %>
+                    <div class="review-date">
+                        작성일 : <%= formattedDate %>
+                    </div>
+                    <div class="review-author">
+                        작성자 : <%=review.getCustomer().getCustomerName() %>
+                    </div>
+                </a>    
+                <%
+                    reviewCount++;    
+                } %>           
+                </div>                       
+            
+        </div>
 		</div>
 	</form>
 
