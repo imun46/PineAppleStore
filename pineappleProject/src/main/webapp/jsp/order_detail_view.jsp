@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.orders.OrdersService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -5,7 +8,10 @@
 
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    int orderNo = 1;
+	String orderNo = request.getParameter("orders_no");
+	OrdersService orderService = new OrdersService();
+	List<Orders> order = orderService.findByOrderNo(Integer.parseInt(orderNo));
+
     String orderDate = dateFormat.format(new Date());
     String productName = "상품명";
     String productOption = "옵션: ~~~~~";
@@ -86,13 +92,22 @@
         <div class="section">
             <h2>주문상품</h2>
             <img src="img/macBookAir.jpg" class="product-image" alt="상품 이미지">
+            <% for(Orders orders: order ) {%>
             <div class="product-info">
                 <p><strong><%= productName %></strong></p>
                 <p><%= productOption %></p>
                 <p><%= productPrice %>원</p>
             </div>
+            <div>
+                 <% 
+                     if(orders.getOrdersStatus() != null && orders.getOrdersStatus().equals("구매확정")) { %>
+                         <button type="button" class="btn btn-3rd" onclick="submitForm('review')">리뷰쓰기</button>
+                 <% } else { %>
+                         <button type="button" class="btn btn-3rd" disabled>리뷰쓰기</button>
+                 <% } %>
+             </div>
         </div>
-
+		<%} %>
         <div class="section">
             <h2>배송지</h2>
             <div class="shipping-info">

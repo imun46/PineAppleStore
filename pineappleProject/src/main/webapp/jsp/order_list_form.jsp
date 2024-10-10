@@ -85,7 +85,6 @@
                         <th>수량</th>
                         <th>합계</th>
                         <th>구매확정</th>
-                        <th>리뷰</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,14 +105,7 @@
                         <td><%=itemQty %></td>
                         <td><%=decimalFormat.format(itemTotal) %> 원</td>
                         <td><button type="button" class="btn btn-3rd" onclick="submitForm('purchaseConfirmed')">구매확정</button></td>
-                        <td>
-                            <% 
-                                if(orders.getOrdersStatus() != null && orders.getOrdersStatus().equals("구매확정")) { %>
-                                    <button type="button" class="btn btn-3rd" onclick="submitForm('review')">리뷰쓰기</button>
-                            <% } else { %>
-                                    <button type="button" class="btn btn-3rd" disabled>리뷰쓰기</button>
-                            <% } %>
-                        </td>
+
                     </tr>
                     <% } else { %>
                     <tr>
@@ -133,10 +125,6 @@
         	var form = document.getElementById('orderForm');
         	if(action === 'detail'){
         		form.action = 'order_detail_view.jsp';
-                form.method = 'POST';
-                form.submit();
-        	}else if(action === 'review'){
-        		form.action = 'review_insert_form.jsp';
                 form.method = 'POST';
                 form.submit();
         	}else if(action === 'purchaseConfirmed'){
