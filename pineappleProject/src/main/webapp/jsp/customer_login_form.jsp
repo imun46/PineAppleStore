@@ -7,7 +7,6 @@
 <html lang="ko">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link type="stylesheet" href="jsp/styles.css">
     <script type="text/javascript">
         function customerCreateForm() {
             location.href = "customer_write_form.jsp";
