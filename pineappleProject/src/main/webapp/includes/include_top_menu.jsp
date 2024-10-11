@@ -1,4 +1,4 @@
-<%@ page import="com.itwill.shop.cart.CartService" %>
+<%@page import="com.itwill.shop.service.CartService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   
 <%

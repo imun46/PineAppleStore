@@ -21,18 +21,27 @@ public class CustomerService {
 		this.customerDao = new CustomerDaoImpl();
 	}
 
+	
+	/********************* 회원가입 서비스 수정 *****************************/
 	// 회원가입
 	public int createId(Customer customer) throws Exception {
-		// 아이디, 닉네임, 핸드폰 번호 중복체크
-		if (customerDao.countCustomerId(customer.getCustomerId())==1 ||
-			customerDao.countCustomerNickName(customer.getCustomerNickname())==1 ||
-			customerDao.countCustomerPhone(customer.getCustomerPhone())==1) {
-			// 중복 시 -1 반환
-			return -1;
-		}
-		// 회원가입 완료
-		return customerDao.insertCustomer(customer);
+	    // 아이디 중복 체크
+	    if (customerDao.countCustomerId(customer.getCustomerId()) == 1) {
+	        return -1; // 아이디 중복
+	    }
+	    // 닉네임 중복 체크
+	    if (customerDao.countCustomerNickName(customer.getCustomerNickname()) == 1) {
+	        return -1; // 닉네임 중복
+	    }
+	    // 핸드폰 번호 중복 체크
+	    if (customerDao.countCustomerPhone(customer.getCustomerPhone()) == 1) {
+	        return -1; // 핸드폰 번호 중복
+	    }
+	    // 회원가입 완료
+	    return customerDao.insertCustomer(customer); // 성공 시 0 또는 삽입된 행 수 반환
 	}
+	
+	/********************************************************************/
 	
 	// 아이디 유효성 체크
 	public boolean checkIdDupl(String customerId) throws Exception {
