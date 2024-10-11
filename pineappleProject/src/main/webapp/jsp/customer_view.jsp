@@ -195,7 +195,7 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
                         작성일 : <%= formattedDate %>
                     </div>
                     <div class="review-author">
-                        작성자 : <%=customerNo %>
+                        작성자 : <%=customer.getCustomerName() %>
                     </div>
                 </a>    
                 <%

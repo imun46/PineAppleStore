@@ -40,6 +40,7 @@ public class FileUploadServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		try {
 		/**********************파일아닌파라메타*************************/
 		Integer reviewNoStr = Integer.parseInt(request.getParameter("reviewNo"));
 		String reviewTitleStr = request.getParameter("reviewTitle");
@@ -68,10 +69,8 @@ public class FileUploadServlet extends HttpServlet {
 		Collection<Part> fileParts = request.getParts(); //파일아닌 파라메타도 들어옴
 		
 		for (Part filePart : fileParts) {
-			System.out.println(">>>>>>>> filePart.getName(): "+filePart.getName());
-			System.out.println(">>>>>>>> filePart.getSize(): "+filePart.getSize());
 			//파일파츠의 이름이 업로드파일이고 파일이 들어올 경우 continue
-			if(!filePart.getName().equals("uploadfile") || filePart.getSize()==0) continue; 
+			if(!filePart.getName().equals("reviewImage") || filePart.getSize()==0) continue; 
 			//파일 원본 이름, 확장자, 저장 이름 추출
 			String originalName = filePart.getSubmittedFileName();
 			//String extension = FilenameUtils.getExtension(originalName); //확장자를 꺼냄
@@ -85,9 +84,8 @@ public class FileUploadServlet extends HttpServlet {
 			inputStream.transferTo(outputStream);
 			if (uploadFile != null) {
 				// 파일 정보를 DB에 저장
-				ReviewService reviewService;
-				try {
-					reviewService = new ReviewService();
+				
+				ReviewService reviewService = new ReviewService();
 				Review review = Review.builder()
 				        .reviewNo(reviewNoStr) 
 				        .reviewTitle(reviewTitleStr)
@@ -97,14 +95,15 @@ public class FileUploadServlet extends HttpServlet {
 				        .product(product)
 				        .customer(customer)
 				        .build();    
+				
 				reviewService.updateReview(review);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
-			}
+			response.sendRedirect("jsp/review_detail.jsp?reviewNo="+reviewNoStr);
 		}
-		response.sendRedirect("jsp/review_detail.jsp?reviewNo="+reviewNoStr);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

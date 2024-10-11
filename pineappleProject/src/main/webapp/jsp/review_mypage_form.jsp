@@ -16,7 +16,6 @@ CustomerService customerService = new CustomerService();
 Integer customerNo = Integer.parseInt(sCustomerNo);
 Customer customer = customerService.findCustomerByNo(customerNo);
 List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
-
 %>
 <!DOCTYPE html>
 <html lang="ko">

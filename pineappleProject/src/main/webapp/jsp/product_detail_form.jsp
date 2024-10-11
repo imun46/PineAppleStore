@@ -164,11 +164,13 @@ ReviewService reviewService = new ReviewService();
 			</div>
 			
 			<!-- Customer Reviews Section -->
+			
 			<div class="section">
         <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>	           
         
             <div class="list-item">
                 <% List<Review> reviewList = reviewService.findReviewByProductNo(productNo); %>
+
                 <%
                 int maxReviews = 3; // 최대 리뷰 수
                 int reviewCount = 0;
@@ -182,7 +184,7 @@ ReviewService reviewService = new ReviewService();
                 <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>" class="review-container a">
                     <h2 class="review-title"><%=review.getReviewTitle() %></h2> 
                     <div class="review-product-option">
-                        <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
+                        <%=product.getProductName() %>(<%=product.getProductDesc() %>)
                     </div>       
                     <%
                     int rating= review.getReviewRating(); 
@@ -213,7 +215,7 @@ ReviewService reviewService = new ReviewService();
         </div>
 		</div>
 	</form>
-
+ 
 	<!-- JavaScript to handle form submission -->
 	<script>
 		function updatePrice() {
