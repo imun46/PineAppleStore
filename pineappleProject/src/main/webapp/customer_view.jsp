@@ -89,9 +89,15 @@ int customerNo = Integer.parseInt(sCustomerNo);
     <div class="section">
         <h2>쿠폰 정보 </h2>
         <div class="scroll-section">
-        <% List<CustomerCoupons> customerCouponList = customer.getCustomerCouponList(); %>
-        	<%if(customerCouponList !=null){ %>
-        	<%for(CustomerCoupons customerCoupons: customerCouponList){ %>
+        <%
+        List<CustomerCouponsDao> customerCouponList = customer.getCustomerCouponList();
+        %>
+        	<%
+        	if(customerCouponList !=null){
+        	%>
+        	<%
+        	for(CustomerCouponsDao customerCoupons: customerCouponList){
+        	%>
             <% Coupon couponList = customerCoupons.getCoupon();%>
             <div class="list-item">
             쿠폰 번호:<%=customerCoupons.getCustomerCouponsNo() %>
