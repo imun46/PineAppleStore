@@ -75,14 +75,19 @@ ReviewService reviewService = new ReviewService();
 
 	List<ProductImage> images = product.getProductImageList();
 	List<ProductOption> options = product.getProductOptionList();
+	
+	int optionCount = options.size();
+	
 	%>
 
 	<!-- Form to handle options and submit -->
 	<form id="productForm" method="POST">
 		<input type="hidden" name="productNo" value="<%=productNo%>" />
 		<input type="hidden" name="itemsQty" value=1 />
-		<input type="hidden" name="ordersTotprice" value=<%= %> />
+		<input type="hidden" name="itemsPrice"/>
+		<input type="hidden" name="ordersTotprice" />
 		<input type="hidden" name="ordersTotqty" value=1 />
+		<input type="hidden" id="itemsOptions" name="itemsOptions" value="" />
 
 		<div class="container mt-5">
 			<!-- Product Information -->
@@ -121,17 +126,20 @@ ReviewService reviewService = new ReviewService();
 							<!-- Dropdown for each option type 모델, 색상, 사이즈-->
 							<h6 style="margin: 7px 0;"><%=option.getProductOptionType()%></h6>
 							
-							<select name="productOptionDetailNo" value="<%=option.getProductOptionNo()%>"
+							<select onchange="optionSeleted('productOptionDetailNo<%=option.getProductOptionNo()%>')" 
+							id="productOptionDetailNo<%=option.getProductOptionNo()%>" name="productOptionDetailNo" value="<%=option.getProductOptionNo()%>"
 								class="form-select option-select"
 								data-price="<%=product.getProductPrice()%>"
 								onchange="updatePrice()" required>
+								
 								<option value="0" data-price="0">옵션 선택</option>
 								<%
 								for (ProductOptionDetail detail : option.getProductOptionDetailList()) {
 								%>
 								
 								<option value="<%=detail.getProductOptionDetailNo()%>"
-									data-price="<%=detail.getProductOptionDetailPrice()%>">
+								        optionDetail="<%=detail.getProductOptionDetailName()%>"
+									    data-price="<%=detail.getProductOptionDetailPrice()%>">
 									<%=detail.getProductOptionDetailName()%> (+
 									<%=decimalFormat.format(detail.getProductOptionDetailPrice())%>원)
 								</option>
@@ -139,6 +147,7 @@ ReviewService reviewService = new ReviewService();
 								}
 								%>
 							</select>
+							
 						</div>
 						<%
 						}
@@ -147,7 +156,6 @@ ReviewService reviewService = new ReviewService();
 
 					<div class="mt-3">
 						<h3 class="fw-bold">
-							<input type="hidden" name="ordersTotprice" value="<%=product.getProductPrice() %>"></input>
 							총 가격: <span id="total-price"><%=decimalFormat.format(product.getProductPrice())%></span>원
 						</h3>
 					</div>
@@ -228,9 +236,7 @@ ReviewService reviewService = new ReviewService();
 	<!-- JavaScript to handle form submission -->
 	<script>
 		function updatePrice() {
-			var basePrice = parseInt(
-	<%=product.getProductPrice()%>
-		);
+			var basePrice = parseInt(<%=product.getProductPrice()%>);
 			var totalPrice = basePrice;
 
 			var selects = document.querySelectorAll('.option-select');
@@ -243,7 +249,11 @@ ReviewService reviewService = new ReviewService();
 
 			document.getElementById('total-price').innerText = totalPrice
 					.toLocaleString();
+			
+			document.querySelector('input[name="itemsPrice"]').value = totalPrice;
+			document.querySelector('input[name="ordersTotprice"]').value = totalPrice;
 		}
+		
 		function submitForm(action) {
 			var form = document.getElementById('productForm');
 			// 장바구니 또는 구매 여부를 서버에 전송
@@ -258,6 +268,14 @@ ReviewService reviewService = new ReviewService();
 			}
 			form.submit();
 		}
+		
+		function optionSeleted(id){
+			let selectedOption = document.getElementById(id);
+			console.log(selectedOption.options[selectedOption.selectedIndex].getAttribute('optionDetail'));
+			document.querySelector('input[name="ordersTotprice"]').value = totalPrice;
+		}
+		
+		
 	</script>
 
 	<!-- External JS -->
