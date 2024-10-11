@@ -79,8 +79,10 @@ ReviewService reviewService = new ReviewService();
 
 	<!-- Form to handle options and submit -->
 	<form id="productForm" method="POST">
-		<input type="hidden" name="product_no" value="<%=productNo%>" />
-		<input type="hidden" name="cart_qty" value=1 />
+		<input type="hidden" name="productNo" value="<%=productNo%>" />
+		<input type="hidden" name="itemsQty" value=1 />
+		<input type="hidden" name="ordersTotprice" value=<%= %> />
+		<input type="hidden" name="ordersTotqty" value=1 />
 
 		<div class="container mt-5">
 			<!-- Product Information -->
@@ -119,7 +121,7 @@ ReviewService reviewService = new ReviewService();
 							<!-- Dropdown for each option type 모델, 색상, 사이즈-->
 							<h6 style="margin: 7px 0;"><%=option.getProductOptionType()%></h6>
 							
-							<select name="product_option_datail_no" value="<%=option.getProductOptionNo()%>"
+							<select name="productOptionDetailNo" value="<%=option.getProductOptionNo()%>"
 								class="form-select option-select"
 								data-price="<%=product.getProductPrice()%>"
 								onchange="updatePrice()" required>
@@ -127,6 +129,7 @@ ReviewService reviewService = new ReviewService();
 								<%
 								for (ProductOptionDetail detail : option.getProductOptionDetailList()) {
 								%>
+								
 								<option value="<%=detail.getProductOptionDetailNo()%>"
 									data-price="<%=detail.getProductOptionDetailPrice()%>">
 									<%=detail.getProductOptionDetailName()%> (+
@@ -144,6 +147,7 @@ ReviewService reviewService = new ReviewService();
 
 					<div class="mt-3">
 						<h3 class="fw-bold">
+							<input type="hidden" name="ordersTotprice" value="<%=product.getProductPrice() %>"></input>
 							총 가격: <span id="total-price"><%=decimalFormat.format(product.getProductPrice())%></span>원
 						</h3>
 					</div>
@@ -160,15 +164,19 @@ ReviewService reviewService = new ReviewService();
 
 			<!-- Product Detail -->
 			<div style="display: flex; justify-content: center;">
-			    <img alt="" src="../img/product_datail_page.png" style="max-width: 100%; height: auto;">
+			    <img alt="" src="../img/product_detail_page.png" style="max-width: 100%; height: auto;">
 			</div>
 			
+			
+			<!-- Review -->
 			<!-- Customer Reviews Section -->
-			<div class="section">
-        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>	           
+         
+         <div class="section">
+        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>              
         
             <div class="list-item">
                 <% List<Review> reviewList = reviewService.findReviewByProductNo(productNo); %>
+
                 <%
                 int maxReviews = 3; // 최대 리뷰 수
                 int reviewCount = 0;
@@ -182,7 +190,7 @@ ReviewService reviewService = new ReviewService();
                 <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>" class="review-container a">
                     <h2 class="review-title"><%=review.getReviewTitle() %></h2> 
                     <div class="review-product-option">
-                        <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
+                        <%=product.getProductName() %>(<%=product.getProductDesc() %>)
                     </div>       
                     <%
                     int rating= review.getReviewRating(); 
@@ -211,6 +219,9 @@ ReviewService reviewService = new ReviewService();
                 </div>                       
             
         </div>
+      </div>
+   </form>
+			
 		</div>
 	</form>
 
