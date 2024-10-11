@@ -1,7 +1,7 @@
 <%@page import="ch.qos.logback.core.recovery.ResilientSyslogOutputStream"%>
 <%@page import="java.util.Date"%>
-<%@page import="com.itwill.shop.customer.Customer"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../includes/login_check.jspf"  %>        
@@ -23,7 +23,7 @@
 	
 	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
 	int customerNo = Integer.parseInt(sCustomerNo);
-	Customer loginCustomer = customerService.findCustomerNo(customerNo);
+	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
 try{	 
 	 /*** 1. GET방식이면 customer_main.jsp redirection ***/
@@ -41,7 +41,7 @@ try{
 	String email = request.getParameter("email");
 	String nickname = request.getParameter("nickname");
 	
-	int rowCount = customerService.updateCustomerId(Customer.builder()
+	int rowCount = customerService.updateCustomer(Customer.builder()
 			.customerNo(loginCustomer.getCustomerNo())
 			.customerPassword(password)
 			.customerName(name)

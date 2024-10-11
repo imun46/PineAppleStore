@@ -1,10 +1,11 @@
-<%@page import="com.itwill.shop.cart.Cart"%>
-<%@page import="com.itwill.shop.cart.CartService"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.domain.Cart"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CartService"%>
+<%@page import="com.itwill.shop.domain.Orders"%>
 <%@page import="java.util.List"%>
-<%@page import="com.itwill.shop.orders.OrdersService"%>
+<%@page import="com.itwill.shop.service.OrdersService"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../includes/login_check.jspf"  %>    
@@ -17,7 +18,7 @@
 	
 	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
 	int customerNo = Integer.parseInt(sCustomerNo);
-	Customer loginCustomer = customerService.findCustomerNo(customerNo);
+	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
 	/*** 날짜 포맷 설정 ***/
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -29,7 +30,7 @@
 	CartService cartService = new CartService();
 	
 	/*주문 + 주문 아이템 전체 리스트(특정 사용자)*/
-	List<Orders> ordersList = ordersService.findByOrderNoCustomerNo(customerNo);
+	List<Orders> ordersList = ordersService.findByCustomerNo(customerNo);
 	
 	/*카트 리스트 (회원)*/
 	List<Cart> cartList = cartService.findByCustomerNo(customerNo);

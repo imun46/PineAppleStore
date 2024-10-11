@@ -1,6 +1,7 @@
-<%@page import="com.itwill.shop.coupon.Coupon"%>
-<%@page import="com.itwill.shop.customer.Customer"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.domain.Coupon"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
+<%@page import="com.itwill.shop.service.CustomerCouponsService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../includes/login_check.jspf"  %>
@@ -17,16 +18,14 @@
 		
 		/*** 서비스 객체 생성 ***/
 		CustomerService customerService = new CustomerService();
+		CustomerCouponsService customerCouponsService = new CustomerCouponsService();
 	
 		/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
 		int customerNo = Integer.parseInt(sCustomerNo);
-		Customer loginCustomer = customerService.findCustomerNo(customerNo);
-		
-		/*** 쿠폰ID에 맞는 쿠폰 찾기***/
-		Coupon coupon = customerService.getCouponId(couponId);
+		Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 		
 		/*** 쿠폰 삽입 ***/
-		int rowCount = customerService.insertCustomerCouponById(coupon, loginCustomer);
+		int rowCount = customerCouponsService.insertCustomerCoupons(couponId, customerNo);
 		
 		if(rowCount == 1) {
 			String msg = "쿠폰이 등록되었습니다.";

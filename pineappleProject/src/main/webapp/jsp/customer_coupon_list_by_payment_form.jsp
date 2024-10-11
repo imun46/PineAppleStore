@@ -1,6 +1,6 @@
-<%@page import="com.itwill.shop.customer.CustomerCoupons"%>
+<%@page import="com.itwill.shop.domain.CustomerCoupons"%>
 <%@page import="java.util.List"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,7 +11,7 @@
 	
 	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
 	int customerNo = Integer.parseInt(sCustomerNo);
-	Customer loginCustomer = customerService.findCustomerNo(customerNo);
+	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
 	/*** 날짜 포맷 설정 ***/
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");

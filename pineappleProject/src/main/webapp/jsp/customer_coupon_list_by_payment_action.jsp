@@ -1,5 +1,6 @@
-<%@page import="com.itwill.shop.customer.CustomerCoupons"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.domain.CustomerCoupons"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
+<%@page import="com.itwill.shop.service.CustomerCouponsService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../includes/login_check.jspf"  %>
@@ -12,10 +13,11 @@
 
 	/*** 서비스 객체 생성 ***/
 	CustomerService customerService = new CustomerService();
+	CustomerCouponsService customerCouponsService = new CustomerCouponsService();
 	
 	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
 	int customerNo = Integer.parseInt(sCustomerNo);
-	Customer loginCustomer = customerService.findCustomerNo(customerNo);
+	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
 	String customerCouponNoStr = request.getParameter("selectedCoupon");	
 	request.getSession().setAttribute("selectedCoupon", customerCouponNoStr);
@@ -33,10 +35,10 @@
     }
 	
     /*** 문자열을 정수형으로 바꾸기 ***/
-	Integer customerCouponNo = Integer.parseInt(customerCouponNoStr);
+	Integer customerCouponsNo = Integer.parseInt(customerCouponNoStr);
 	
 	/*** CustomerCoupons번호에 맞는 쿠폰 찾기***/
-	CustomerCoupons findCoupon = customerService.findCoupon(customerCouponNo);
+	CustomerCoupons findCoupon = customerCouponsService.findCustomerCouponsDetailByNo(customerCouponsNo);
 	
 	
 	
