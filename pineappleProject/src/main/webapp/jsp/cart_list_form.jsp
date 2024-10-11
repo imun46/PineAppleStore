@@ -1,7 +1,10 @@
 <%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwill.shop.domain.Cart"%>
+<<<<<<< HEAD
 <%@page import="com.itwill.shop.domain.ProductSelected"%>
+=======
+>>>>>>> branch 'newMaster' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 <%@page import="com.itwill.shop.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
