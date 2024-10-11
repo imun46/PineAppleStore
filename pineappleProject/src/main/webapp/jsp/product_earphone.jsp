@@ -1,6 +1,6 @@
-<%@page import="com.itwill.shop.product.Product"%>
+<%@page import="com.itwill.shop.domain.Product"%>
 <%@page import="java.util.List"%>
-<%@ page import="com.itwill.shop.product.ProductService" %>
+<%@ page import="com.itwill.shop.service.ProductService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

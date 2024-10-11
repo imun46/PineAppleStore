@@ -25,34 +25,34 @@
 	int rowCount = customerCouponsService.insertCustomerCoupons(couponId, customerNo);
 	
 	try{
-	if(rowCount == 1) {
-		String msg = "가입 기념 쿠폰이 발급되었습니다.";
-		/*** script ***/
-		out.println("<script>");
-		out.println(" alert('" + msg + "');");
-		// 스크립트를 통해 리다이렉트
-		out.println(" window.location.href='customer_coupon_list.jsp';");
-		out.println("</script>");
-		/*** script ***/
-	} else if(rowCount == 3) {
-		/*** script ***/
-		out.println("<script>");
-		out.println(" alert('이미 보유한 쿠폰입니다.');");
-		// 스크립트를 통해 리다이렉트
-		out.println(" window.location.href='customer_coupon_list.jsp';");
-		out.println("</script>");
-		/*** script ***/
-	} else {
-		/*** script ***/
-		out.println("<script>");
-		out.println(" alert('쿠폰이 등록되지 않았습니다.');");
-		// 현재 창 닫기
-		out.println(" window.close();");
-		// 스크립트를 통해 리다이렉트
-		out.println(" window.location.href='customer_join_coupon_form.jsp';"); 
-		out.println("</script>");
-		/*** script ***/
-	}
+		if(rowCount == 1) {
+			String msg = "가입 기념 쿠폰이 발급되었습니다.";
+			/*** script ***/
+			out.println("<script>");
+			out.println(" alert('" + msg + "');");
+			// 스크립트를 통해 리다이렉트
+			out.println(" window.location.href='customer_coupon_list.jsp';");
+			out.println("</script>");
+			/*** script ***/
+		} else if(rowCount == 3) {
+			/*** script ***/
+			out.println("<script>");
+			out.println(" alert('이미 보유한 쿠폰입니다.');");
+			// 스크립트를 통해 리다이렉트
+			out.println(" window.location.href='customer_coupon_list.jsp';");
+			out.println("</script>");
+			/*** script ***/
+		} else {
+			/*** script ***/
+			out.println("<script>");
+			out.println(" alert('쿠폰이 등록되지 않았습니다.');");
+			// 현재 창 닫기
+			out.println(" window.close();");
+			// 스크립트를 통해 리다이렉트
+			out.println(" window.location.href='customer_join_coupon_form.jsp';"); 
+			out.println("</script>");
+			/*** script ***/
+		}
 	} catch(Exception e) {
 		e.printStackTrace();
 		out.println("<script>");
