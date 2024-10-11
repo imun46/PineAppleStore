@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 3D Model - OBJ</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <!-- Three.js 및 OBJLoader, OrbitControls 라이브러리 로드 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // 1. 씬(Scene), 카메라(Camera), 렌더러(Renderer) 설정
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+
+        // 2. 렌더러 크기 설정 및 DOM에 추가
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // 3. 조명 설정
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(1, 1, 1).normalize();
+        scene.add(light);
+
+        const ambientLight = new THREE.AmbientLight(0x404040); // 부드러운 환경광 추가
+        scene.add(ambientLight);
+
+        // 4. 텍스처 로드
+        const textureLoader = new THREE.TextureLoader();
+        const diffuseTexture = textureLoader.load('iPhone_DefaultMaterial_Diffuse.png');
+        const normalTexture = textureLoader.load('iPhone_DefaultMaterial_Normal.png');
+        const glossinessTexture = textureLoader.load('iPhone_DefaultMaterial_Glossiness.png');
+        const heightTexture = textureLoader.load('iPhone_DefaultMaterial_Height.png');
+        const opacityTexture = textureLoader.load('DefaultMaterial_Opacity.png');
+
+        // 5. OBJ 파일 로드
+        const objLoader = new THREE.OBJLoader();
+        objLoader.load('iphone_11_pro_max.obj', function (object) {
+            // 모델의 모든 메쉬에 텍스처 적용
+            object.traverse(function (child) {
+                if (child.isMesh) {
+                    child.material = new THREE.MeshStandardMaterial({
+                        map: diffuseTexture,
+                        normalMap: normalTexture,
+                        roughnessMap: glossinessTexture,
+                        displacementMap: heightTexture,
+                        alphaMap: opacityTexture,
+                        transparent: true // 투명도 적용
+                    });
+                }
+            });
+
+            scene.add(object);
+            object.scale.set(1, 1, 1); // 모델 크기 조정 (필요시 조정 가능)
+        });
+
+        // 6. 카메라 위치 설정
+        camera.position.set(0, 0, 10); // 카메라 위치 설정
+
+        // 7. OrbitControls 추가
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true; // 부드러운 회전을 위해 댐핑 설정
+        controls.dampingFactor = 0.25;
+
+        // 8. 애니메이션 루프 설정
+        function animate() {
+            requestAnimationFrame(animate); // 다음 애니메이션 프레임 요청
+            controls.update(); // OrbitControls 업데이트
+            renderer.render(scene, camera); // 씬과 카메라로 렌더링
+        }
+
+        animate(); // 애니메이션 시작
+    </script>
+</body>
+</html>
