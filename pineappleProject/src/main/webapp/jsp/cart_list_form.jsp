@@ -1,7 +1,7 @@
-<%@page import="com.itwill.shop.customer.Customer"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="java.util.List"%>
-<%@page import="com.itwill.shop.cart.Cart"%>
-<%@page import="com.itwill.shop.cart.CartService" %>
+<%@page import="com.itwill.shop.domain.Cart"%>
+<%@page import="com.itwill.shop.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
