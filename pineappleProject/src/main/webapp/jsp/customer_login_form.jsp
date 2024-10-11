@@ -37,9 +37,6 @@
 </head>
 <body style="font-family:Noto Sans KR">
     <!-- 상단의 메뉴를 고정 -->
-    <div id="top-menu">
-        <jsp:include page="../includes/include_top_menu.jsp" />
-    </div>
 	<div id="content">
 		<h2>로그인</h2>
 		<form name="f">

@@ -2,6 +2,26 @@ body {
     margin: 0;
 }
 
+ /*중복시  오류메세지  */
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.addcontent{
+	width: 460px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.addBt{
+	position: absolute;
+	top: 50%;
+	right: 0px;
+}
+
+
 a {
     /* TEXT의 기본 꾸밈 제거 */
     text-decoration: nones;
@@ -51,6 +71,18 @@ a {
 .content{
     width: 460px;
     margin: 0 auto;
+}
+
+.addBt {
+	position: absolute !important;
+	top: 50% !important;
+	right: -76px !important;
+}
+
+.addcontent{
+	width: 460px;
+    margin: 0 auto;
+    position: relative;
 }
 
 .input-style {

@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date, java.text.SimpleDateFormat" %>
-<%@page import="com.itwill.shop.orders.Orders"%>
-<%@page import="com.itwill.shop.orders.OrdersService"%>
+<%@page import="com.itwill.shop.domain.Orders"%>
+<%@page import="com.itwill.shop.service.OrdersService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -10,7 +10,7 @@
 	java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
 	int customerNo = 1;
 	OrdersService ordersService = new OrdersService();
-	List<Orders> orderList = ordersService.findByOrderNoCustomerNo(customerNo);
+	List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
 	int totalAmount = 0;
 %>
 <html>

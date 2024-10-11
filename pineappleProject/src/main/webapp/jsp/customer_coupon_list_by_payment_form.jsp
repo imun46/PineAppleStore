@@ -1,3 +1,5 @@
+<%@page import="com.itwill.shop.service.CustomerCouponsService"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="com.itwill.shop.domain.CustomerCoupons"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwill.shop.service.CustomerService"%>
@@ -8,6 +10,7 @@
 <%
 	/*** 서비스 객체 생성***/
 	CustomerService customerService = new CustomerService();
+	CustomerCouponsService customerCouponsService = new CustomerCouponsService();
 	
 	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
 	int customerNo = Integer.parseInt(sCustomerNo);
@@ -17,7 +20,7 @@
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 	
 	/*** 쿠폰 리스트 객체 생성 ***/
-	List<CustomerCoupons> customerCoupons = customerService.findCouponList(loginCustomer.getCustomerNo());
+	List<CustomerCoupons> customerCoupons = customerCouponsService.findCustomerCouponsListUsable(customerNo);
 	
 	
 	
