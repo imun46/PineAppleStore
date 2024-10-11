@@ -56,45 +56,46 @@ public class FileUploadServletReviewInsert extends HttpServlet {
 //		properties.load(input);
 //		String directoryPath = properties.getProperty("UPLOAD_DIRECTORY");
 		//String directoryPath = "C:/file/upload"; //파일업로드시 저장경로
-		String directoryPath = getServletContext().getRealPath("img"); //파일업로드시 저장경로
-		/**파일을 upload 할 directory 생성*/
-		File uploadDirectory = new File(directoryPath);
-		if (!uploadDirectory.exists()) {//폴더없을경우 생성
-			uploadDirectory.mkdirs();
-		}
-		/**파일 업로드 및 파일 정보 반환*/
-		Collection<Part> fileParts = request.getParts(); //파일아닌 파라메타도 들어옴
+			// 파일 업로드 경로 설정
+	        String directoryPath = getServletContext().getRealPath("img");
+	        File uploadDirectory = new File(directoryPath);
+	        if (!uploadDirectory.exists()) {
+	            uploadDirectory.mkdirs();
+	        }
+
+	        // 파일 업로드 및 파일 정보 반환
+	        Collection<Part> fileParts = request.getParts();
+	        String reviewImage = null; // 이미지 파일 이름을 저장할 변수 초기화
+
+	        for (Part filePart : fileParts) {
+	            if (!filePart.getName().equals("reviewImage") || filePart.getSize() == 0) continue;
+
+	            // 파일 원본 이름 저장
+	            reviewImage = filePart.getSubmittedFileName();
+	            File uploadFile = new File(uploadDirectory, reviewImage);
+
+	            // 파일 저장
+	            try (InputStream inputStream = filePart.getInputStream();
+	                 OutputStream outputStream = Files.newOutputStream(uploadFile.toPath())) {
+	                inputStream.transferTo(outputStream);
+	            }
+	        }
+
+	        // 리뷰 객체 생성, reviewImage가 null일 수 있음
+	        Review review = Review.builder()
+	                .reviewTitle(reviewTitle)
+	                .reviewContent(reviewContent)
+	                .reviewRating(reviewRating)
+	                .reviewImage(reviewImage) // 업로드된 이미지가 없으면 null
+	                .product(product)
+	                .customer(customer)
+	                .build();
+
+	        ReviewService reviewService = new ReviewService();
+	        reviewService.insertReview(review); // 항상 리뷰 정보를 DB에 저장
+
+	        response.sendRedirect("jsp/customer_view.jsp");
 		
-		for (Part filePart : fileParts) {
-			//파일파츠의 이름이 업로드파일이고 파일이 들어올 경우 continue
-			if(!filePart.getName().equals("reviewImage") || filePart.getSize()==0) continue; 
-			//파일 원본 이름, 확장자, 저장 이름 추출
-			String originalName = filePart.getSubmittedFileName();
-			//String extension = FilenameUtils.getExtension(originalName); //확장자를 꺼냄
-			//String savedName = UUID.randomUUID() + "_" + originalName;//랜덤이름_원래이름
-			File uploadFile = new File(uploadDirectory, originalName);
-			//파일 저장
-			//업로드입력파일스트림
-			InputStream inputStream = filePart.getInputStream();
-			//서버저장파일출력스트림
-			OutputStream outputStream = Files.newOutputStream(uploadFile.toPath());
-			inputStream.transferTo(outputStream);
-			
-			if (uploadFile != null) {
-				// 파일 정보를 DB에 저장
-				Review review = Review.builder()
-				        .reviewTitle(reviewTitle)
-				        .reviewContent(reviewContent)
-				        .reviewRating(reviewRating)
-				        .reviewImage(originalName)
-				        .product(product)
-				        .customer(customer)
-				        .build();   
-				ReviewService reviewService = new ReviewService();
-			    reviewService.insertReview(review);
-				}
-			response.sendRedirect("jsp/customer_view.jsp");
-		}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
