@@ -1,7 +1,8 @@
-<%@page import="com.itwill.shop.customer.Customer"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="java.util.List"%>
-<%@page import="com.itwill.shop.cart.Cart"%>
-<%@page import="com.itwill.shop.cart.CartService" %>
+<%@page import="com.itwill.shop.domain.Cart"%>
+<%@page import="com.itwill.shop.domain.ProductSelected"%>
+<%@page import="com.itwill.shop.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -74,6 +75,8 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
         }
         .select-all-container label {
             margin-left: 10px;
@@ -95,7 +98,7 @@
 </header>
 
 <section>
-    <form name="cart_delete_form" style="margin: 0;"> <!-- 삭제를 위한 폼 추가 -->
+    <form name="cart_form" style="margin: 0;"> <!-- 삭제를 위한 폼 추가 -->
         <input type="hidden" name="customer_no" value="<%= customerNo %>"> <!-- customer_no 추가 -->
         <div class="cart-container">
             <div class="select-all-container">
@@ -106,31 +109,46 @@
                     onclick="cart_delete_action()"
                     style="margin-left: auto; padding: 5px 8px; font-size: 12px" type="button">삭제</button>
             </div>
-            
             <%
                 for(Cart carts : cart) {
             %>
             <div class="cart-item">
                 <div class="item-info">
                     <input type="hidden" name="cart_no" value="<%=carts.getCartNo() %>">
+                    <input type="hidden" name="cart_qty" value="<%= carts.getCartQty() %>"></input>
+                    <input type="hidden" name="product_price" value="carts.getProduct().getProductPrice()"></input>
+                    
                     <input class='product_select' type="checkbox" name="selectItem" onchange="updatePrice()">
-                    <img src="../img/macBookAir.jpg" alt="<%= carts.getProductSelectedList().get(0).getProduct().getProductName() %>">
+                    <img src="../img/macBookAir.jpg" alt="<%= carts.getProductSelectedList() %>">
                     
                     <div class="item-details">
-                        <span>상품명: <%= carts.getProductSelectedList().get(0).getProduct().getProductName() %></span>
-                        <span>옵션: </span>
-                        <span>수량: <input type="number" name="cart_qty" value="<%= carts.getCartQty() %>" min="1"></span>
+                        <span>상품명: <%= carts.getProduct().getProductName() %></span>
+							<%
+							    String options = "";
+								int total = 0;
+							    for (int i = 0; i < carts.getProductSelectedList().size(); i++) {
+							        for (int j = 0; j < carts.getProductSelectedList().get(i).getProductSelectedDetailList().size(); j++) {
+							            options += carts.getProductSelectedList().get(i).getProductSelectedDetailList().get(j)
+							                            .getProductOptionDetail().getProductOption().getProductOptionType() +
+							                       " - " + carts.getProductSelectedList().get(i).getProductSelectedDetailList().get(j)
+							                            .getProductOptionDetail().getProductOptionDetailName() + "(+ " + decimalFormat.format(carts.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailPrice())
+							                            		+"원)<br>"; // 줄바꿈 추가
+							                            		
+							            total = carts.getProduct().getProductPrice() + carts.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailPrice();
+							        }
+							    }
+							%>
+                        <span style="font-size: 13px;"><%=options %> </span>
+                        <span>수량: <%= carts.getCartQty() %> </span>
                     </div>
                 </div>
                 <div class="item-price">
-                   <%= decimalFormat.format(carts.getProductSelectedList().get(0).getProduct().getProductPrice()) %> 원                     
+                	가격: <%= decimalFormat.format(total) %> 원
                 </div>
             </div>
             <%
                 }
             %>
-
-
             <div class="item-price" style="display: flex; justify-content: flex-end;">
                 <span>상품 총 금액:</span>
                 <span id="total_price">0</span>
@@ -189,36 +207,24 @@
         }
 
         // hidden input을 통해 cart_no 값 전송
-        var cartDeleteForm = document.cart_delete_form;
+        var cartDeleteForm = document.cart_form;
 
         // 기존에 있는 hidden input 제거
         while (cartDeleteForm.firstChild) {
             cartDeleteForm.removeChild(cartDeleteForm.firstChild);
         }
 
-        // customer_no를 hidden input으로 추가
-        var hiddenCustomerNo = document.createElement('input');
-        hiddenCustomerNo.type = 'hidden';
-        hiddenCustomerNo.name = 'customer_no'; // 서버에서 받을 이름
-        hiddenCustomerNo.value = "<%= customerNo %>"; // customer_no 값
-        cartDeleteForm.appendChild(hiddenCustomerNo);
-
-        // cart_no를 hidden input으로 추가
+        // 선택된 cart_no를 hidden input으로 추가
         cartNos.forEach(function(cartNo) {
-            var hiddenInput = document.createElement('input');
-            hiddenInput.type = 'hidden';
-            hiddenInput.name = 'cart_no'; // 서버에서 받을 이름
-            hiddenInput.value = cartNo; // cart_no 값
-            cartDeleteForm.appendChild(hiddenInput);
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'cart_no'; // 같은 이름으로 여러 개 추가 가능
+            input.value = cartNo;
+            cartDeleteForm.appendChild(input);
         });
 
         // 삭제 요청을 보낼 action 설정
-        if (cartNos.length === 1) {
-            cartDeleteForm.action = 'cart_delete_action.jsp';
-        } else {
-            cartDeleteForm.action = 'cart_delete_all_action.jsp';
-        }
-
+        cartDeleteForm.action = 'cart_delete_action.jsp';
         cartDeleteForm.method = 'POST'; // POST 방식으로 전송
         cartDeleteForm.submit(); // 폼 제출
     }
