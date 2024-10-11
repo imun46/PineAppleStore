@@ -157,6 +157,7 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
     </div> <!-- 주문 정보 섹션 끝 -->
 
     <!-- 리뷰 정보 섹션 -->
+
 <div class="section">
     <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>
 
@@ -212,6 +213,9 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
 
     </div>
 </div> <!-- 리뷰 정보 섹션 끝 -->
+
+
+   
 
 
 </body>

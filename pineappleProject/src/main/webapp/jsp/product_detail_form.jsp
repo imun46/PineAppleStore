@@ -224,7 +224,7 @@ ReviewService reviewService = new ReviewService();
 			
 		</div>
 	</form>
-
+ 
 	<!-- JavaScript to handle form submission -->
 	<script>
 		function updatePrice() {
