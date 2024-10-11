@@ -1,3 +1,4 @@
+<%@page import="org.springframework.boot.web.servlet.server.Jsp"%>
 <%@page import="com.itwill.shop.service.ReviewService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -14,6 +15,7 @@
 <%@page import="com.itwill.shop.service.OrdersService"%>
 <%@page import="com.itwill.shop.service.CartService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="customer_login_check.jspf" %>
 
 
 <%
@@ -24,7 +26,7 @@ CustomerService customerService = new CustomerService();
 OrdersService ordersService = new OrdersService();
 CustomerCouponsService customerCouponsService = new CustomerCouponsService();
 
-int customerNo = 1;
+int customerNo = Integer.parseInt(sCustomerNo);
 Customer customer = customerService.findCustomerByNo(customerNo);
 
 /*** 날짜 포맷 설정 ***/
