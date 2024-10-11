@@ -49,7 +49,7 @@
 
 <h1>리뷰 등록</h1>
 
-<form id="reviewForm" action="review_insert_action.jsp" method="post">
+<form id="reviewForm" action="/upload2" method="POST" enctype ="multipart/form-data">
    <input type="hidden" name="productNo" value="<%= product.getProductNo() %>">
 <input type="hidden" name="customerNo" value="<%= customer.getCustomerNo() %>">
     <div>
@@ -103,7 +103,7 @@
     </div>
      <div>
             <label for="reviewImage">이미지 첨부:</label>
-            <input type="file" id="reviewImage" name="reviewImage" accept="../img/*" >
+            <input type="file" id="reviewImage" name="reviewImage" accept="image/*" >
         </div>
 
     <div>
