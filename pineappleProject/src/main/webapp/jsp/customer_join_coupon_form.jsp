@@ -75,9 +75,9 @@
       <%--   <jsp:include page="../includes/include_top_menu.jsp" /> --%>
     </div>
     <div class="image-container">
-        <img class="coupon-img" src="../imag/첫가입쿠폰.png" alt="쿠폰 이미지">
+        <img class="coupon-img" src="../img/첫가입쿠폰.png" alt="쿠폰 이미지">
         <button onclick="hideCouponImage()">
-            <img class="coupon-issue-img" src="../imag/쿠폰 발급.png" alt="쿠폰 발급 이미지">
+            <img class="coupon-issue-img" src="../img/쿠폰 발급.png" alt="쿠폰 발급 이미지">
         </button>
     </div>
 </form>
