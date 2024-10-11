@@ -1,4 +1,4 @@
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="../includes/login_check.jspf" %>    
 
@@ -11,7 +11,7 @@
 
     int customerDeleteNo = Integer.parseInt(sCustomerNo); 
     CustomerService customerService = new CustomerService();
-    int deleteCount = customerService.deleteCustomerNo(customerDeleteNo);
+    int deleteCount = customerService.deleteCustomer(customerDeleteNo);
 
     // 세션 무효화 후 로그인 페이지로 리다이렉트
     session.invalidate();
