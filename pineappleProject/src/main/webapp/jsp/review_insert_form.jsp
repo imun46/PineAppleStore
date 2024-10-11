@@ -1,12 +1,12 @@
-<%@page import="com.itwill.shop.customer.Customer"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
-<%@page import="com.itwill.shop.product.ProductService"%>
-<%@page import="com.itwill.shop.product.Product"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
+<%@page import="com.itwill.shop.service.ProductService"%>
+<%@page import="com.itwill.shop.domain.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="com.itwill.shop.review.Review" %> 
-<%@ page import="com.itwill.shop.review.ReviewService" %> 
+<%@ page import="com.itwill.shop.domain.Review" %> 
+<%@ page import="com.itwill.shop.service.ReviewService" %> 
 <%@ page import="java.util.Date" %>
 
 
@@ -16,13 +16,11 @@
     Product product = productService.productDetail(1);
     
     CustomerService customerService = new CustomerService();
-    Customer customer = customerService.findCustomerNo(1);
+    Customer customer = customerService.findCustomerByNo(1);
 %>
 
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../includes/include_top_menu.jsp" />
-<!-- 파인애플 상단의 메뉴 -->
 
 
 <!-- 해당 메뉴 이름-->

@@ -1,10 +1,10 @@
 <%@page import="ch.qos.logback.core.recovery.ResilientSyslogOutputStream"%>
-<%@page import="com.itwill.shop.product.Product"%>
+<%@page import="com.itwill.shop.domain.Product"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat" %>
-<%@page import="com.itwill.shop.review.Review" %> 
-<%@page import="com.itwill.shop.review.ReviewService" %> 
+<%@page import="com.itwill.shop.domain.Review" %> 
+<%@page import="com.itwill.shop.service.ReviewService" %> 
 <%@page import="java.util.Date" %>
 
 <%
@@ -16,14 +16,12 @@ if (request.getMethod().equals("GET")) {
     String reviewNo = request.getParameter("reviewNo");
     String productNo = request.getParameter("productNo");
     String customerNo= request.getParameter("customerNo");
-    Review review = reviewService.findByReviewNo(Integer.parseInt(reviewNo));
+    Review review = reviewService.findReviewByReviewNo(Integer.parseInt(reviewNo));
     Product product = review.getProduct();
 %>
 
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../includes/include_top_menu.jsp" />
-<!-- 파인애플 상단의 메뉴 -->
 
 
 <!-- 해당 메뉴 이름-->
@@ -51,7 +49,7 @@ if (request.getMethod().equals("GET")) {
 <body>
 
 
-<form id="reviewForm" action="review_update_action.jsp?reviewNo=<%=review.getReviewNo() %>" method="POST">
+<form id="reviewForm" action="/upload" method="POST" enctype ="multipart/form-data">
     <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
     <input type="hidden" name="productNo" value="<%= review.getProduct().getProductNo() %>">
     <input type="hidden" name="customerNo" value="<%= review.getCustomer().getCustomerNo() %>">

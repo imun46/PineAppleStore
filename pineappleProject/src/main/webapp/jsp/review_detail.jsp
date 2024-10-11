@@ -1,21 +1,21 @@
 <%@page import="org.apache.taglibs.standard.tag.common.fmt.ParseDateSupport"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="com.itwill.shop.review.Review" %>
-    <%@page import="com.itwill.shop.review.ReviewService" %>
-    <%@page import="com.itwill.shop.customer.Customer" %>
-    <%@page import="com.itwill.shop.customer.CustomerService" %>
+    <%@page import="com.itwill.shop.domain.Review" %>
+    <%@page import="com.itwill.shop.service.ReviewService" %>
+    <%@page import="com.itwill.shop.domain.Customer" %>
+    <%@page import="com.itwill.shop.service.CustomerService" %>
     <%@ page import="java.text.SimpleDateFormat" %>
     <%@ page import="java.util.List" %>
     <%@ page import="java.util.Date" %>
-    <%@include file="../includes/login_check.jspf"%>
+    <%@include file="customer_login_check.jspf"%>
     <%
     CustomerService customerService = new CustomerService();
     ReviewService reviewService = new ReviewService();
     String reviewNo=request.getParameter("reviewNo");
     String productNo= request.getParameter("productNo");
     String customerNo = request.getParameter("customerNo");
-    Review review =  reviewService.findByReviewNo(Integer.parseInt(reviewNo));
+    Review review =  reviewService.findReviewByReviewNo(Integer.parseInt(reviewNo));
     Integer customerNo1 = Integer.parseInt(sCustomerNo);
     Date reviewDate = review.getReviewDate(); // 리뷰 날짜를 가져옵니다.
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 원하는 형식으로 포맷을 설정합니다.
@@ -23,8 +23,6 @@
     %>
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../includes/include_top_menu.jsp" />
-<!-- 파인애플 상단의 메뉴 -->
 
 
 <!-- 해당 메뉴 이름-->

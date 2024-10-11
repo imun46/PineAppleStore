@@ -1,8 +1,9 @@
+<%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="jsp/includes/login_check.jspf"  %>
+<%@ include file="customer_login_check.jspf"  %>    
 
  <%
  	/*** 서비스 객체 생성***/
@@ -10,7 +11,7 @@
 	
 	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
 	int customerNo = Integer.parseInt(sCustomerNo);
-	Customer loginCustomer = customerService.findCustomerNo(customerNo);
+	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
 	/*** 날짜 포맷 설정 ***/
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");

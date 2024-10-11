@@ -1,16 +1,16 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.itwill.shop.customer.CustomerCoupons"%>
-<%@page import="com.itwill.shop.customer.Customer"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.domain.CustomerCoupons"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../includes/login_check.jspf"  %>    
+<%@ include file="customer_login_check.jspf"  %>      
 <%	
 
 	CustomerService customerService = new CustomerService();
 
 	int customerNo = Integer.parseInt(sCustomerNo);
-	Customer loginCustomer = customerService.findCustomerNo(customerNo);
+	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
 	

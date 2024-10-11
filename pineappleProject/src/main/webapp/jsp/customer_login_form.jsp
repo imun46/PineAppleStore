@@ -1,5 +1,5 @@
-<%@page import="com.itwill.shop.customer.Customer"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -37,9 +37,6 @@
 </head>
 <body style="font-family:Noto Sans KR">
     <!-- 상단의 메뉴를 고정 -->
-    <div id="top-menu">
-        <jsp:include page="../includes/include_top_menu.jsp" />
-    </div>
 	<div id="content">
 		<h2>로그인</h2>
 		<form name="f">

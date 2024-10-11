@@ -1,7 +1,7 @@
-<%@page import="com.itwill.shop.customer.Customer"%>
-<%@page import="com.itwill.shop.product.Product"%>
-<%@ page import="com.itwill.shop.review.Review"%>
-<%@ page import="com.itwill.shop.review.ReviewService"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.domain.Product"%>
+<%@ page import="com.itwill.shop.domain.Review"%>
+<%@ page import="com.itwill.shop.service.ReviewService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat"%>
@@ -32,7 +32,7 @@ try {
 	        .customer(customer)
 	        .build();    
 	ReviewService reviewService = new ReviewService();
-    int insertCount = reviewService.addReview(review);
+    int insertCount = reviewService.insertReview(review);
     
 
 

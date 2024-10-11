@@ -1,5 +1,5 @@
-<%@page import="com.itwill.shop.review.Review"%>
-<%@page import="com.itwill.shop.review.ReviewService"%>
+<%@page import="com.itwill.shop.domain.Review"%>
+<%@page import="com.itwill.shop.service.ReviewService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

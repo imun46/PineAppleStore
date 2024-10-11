@@ -1,14 +1,14 @@
-<%@page import="com.itwill.shop.review.ReviewService"%>
+<%@page import="com.itwill.shop.service.ReviewService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.itwill.shop.product.Product"%>
-<%@ page import="com.itwill.shop.product.ProductService"%>
-<%@ page import="com.itwill.shop.product.ProductOption"%>
-<%@ page import="com.itwill.shop.product.ProductOptionDetail"%>
-<%@ page import="com.itwill.shop.product.ProductImage"%>
-<%@ page import="com.itwill.shop.review.Review"%>
+<%@ page import="com.itwill.shop.domain.Product"%>
+<%@ page import="com.itwill.shop.service.ProductService"%>
+<%@ page import="com.itwill.shop.domain.ProductOption"%>
+<%@ page import="com.itwill.shop.domain.ProductOptionDetail"%>
+<%@ page import="com.itwill.shop.domain.ProductImage"%>
+<%@ page import="com.itwill.shop.domain.Review"%>
 <%@ page import="java.util.List"%>
 
 
@@ -168,7 +168,7 @@ ReviewService reviewService = new ReviewService();
         <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>	           
         
             <div class="list-item">
-                <% List<Review> reviewList = reviewService.getProductReview(productNo); %>
+                <% List<Review> reviewList = reviewService.findReviewByProductNo(productNo); %>
                 <%
                 int maxReviews = 3; // 최대 리뷰 수
                 int reviewCount = 0;
@@ -241,7 +241,7 @@ ReviewService reviewService = new ReviewService();
 				form.method = 'POST'
 				form.submit();
 			} else if (action === 'order') {
-				form.action = 'orders_insert_action.jsp';
+				form.action = 'orders_ready_action.jsp';
 				form.method = 'POST'
 				form.submit();
 			}

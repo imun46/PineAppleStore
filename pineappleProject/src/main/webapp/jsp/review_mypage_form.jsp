@@ -1,27 +1,23 @@
+<%@page import="com.itwill.shop.service.ReviewService"%>
+<%@page import="com.itwill.shop.domain.Review"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-<%@ page import="com.itwill.shop.review.Review"%>
-<%@ page import="com.itwill.shop.review.ReviewService"%>
-<%@ page import="com.itwill.shop.customer.Customer"%>
-<%@ page import="com.itwill.shop.customer.CustomerService"%>
 <%@ page import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../includes/login_check.jspf"%>
+<%@include file="customer_login_check.jspf"%>
 <%
 ReviewService reviewService = new ReviewService();
 
 Integer customerNo = Integer.parseInt(sCustomerNo);
 
-List<Review> reviewList = reviewService.getMyReview(customerNo);
+List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
 
 %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<jsp:include page="../includes/include_top_menu.jsp" />
-<!-- 파인애플 상단의 메뉴 -->
 
 
 <!-- 해당 메뉴 이름-->
