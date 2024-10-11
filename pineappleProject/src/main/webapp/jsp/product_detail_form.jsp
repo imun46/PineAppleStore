@@ -276,6 +276,9 @@ ReviewService reviewService = new ReviewService();
 			document.querySelector('input[name="itemsOptions"]').value = optionName;
 			console.log(optionName);
 			
+			itemsOptions +=optionName;
+			console.log(itemsOptions);
+			
 		}
 		
 		
