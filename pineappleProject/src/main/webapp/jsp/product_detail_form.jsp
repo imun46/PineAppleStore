@@ -87,7 +87,7 @@ ReviewService reviewService = new ReviewService();
 		<input type="hidden" name="itemsPrice"/>
 		<input type="hidden" name="ordersTotprice" />
 		<input type="hidden" name="ordersTotqty" value=1 />
-		<input type="hidden" id="itemsOptions" name="itemsOptions" value="" />
+		<input type="hidden" id="itemsOptions" name="itemsOptions"/>
 
 		<div class="container mt-5">
 			<!-- Product Information -->
@@ -178,8 +178,7 @@ ReviewService reviewService = new ReviewService();
 			
 			<!-- Review -->
 			<!-- Customer Reviews Section -->
-         
-         <div class="section">
+         	 <div class="section">
         <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>              
         
             <div class="list-item">
@@ -228,6 +227,7 @@ ReviewService reviewService = new ReviewService();
             
         </div>
       </div>
+        
    </form>
 			
 		</div>
@@ -270,9 +270,12 @@ ReviewService reviewService = new ReviewService();
 		}
 		
 		function optionSeleted(id){
+			let itemsOptions = '';
 			let selectedOption = document.getElementById(id);
-			console.log(selectedOption.options[selectedOption.selectedIndex].getAttribute('optionDetail'));
-			document.querySelector('input[name="ordersTotprice"]').value = totalPrice;
+			let optionName = selectedOption.options[selectedOption.selectedIndex].getAttribute('optionDetail');
+			document.querySelector('input[name="itemsOptions"]').value = optionName;
+			console.log(optionName);
+			
 		}
 		
 		
