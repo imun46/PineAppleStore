@@ -50,7 +50,7 @@
 
         
         if (result > 0) {
-            response.sendRedirect("asd.jsp"); // 회원가입 성공
+            response.sendRedirect("customer_login_form.jsp"); // 회원가입 성공
         } else {
             String errMsg = "회원가입 중 오류가 발생했습니다.";
 
