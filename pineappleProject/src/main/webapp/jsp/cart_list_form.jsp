@@ -84,7 +84,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="../includes/include_top_menu.jsp" />
+
 
 <form name="cart_view_form" style="margin:0">
     <input type="hidden" name="buyType">
@@ -138,6 +138,7 @@
 							        }
 							    }
 							%>
+							<p><%=carts %></p>
                         <span style="font-size: 13px;"><%=options %> </span>
                         <span>수량: <%= carts.getCartQty() %> </span>
                     </div>

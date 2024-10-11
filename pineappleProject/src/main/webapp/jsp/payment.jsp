@@ -1,7 +1,4 @@
-<%@page import="com.itwill.shop.service.CustomerCouponsService"%>
 <%@page import="com.itwill.shop.domain.Product"%>
-<%@page import="com.itwill.shop.domain.Customer"%>
-<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@page import="com.itwill.shop.service.ProductService"%>
 <%@page import="com.itwill.shop.domain.Coupon"%>
 <%@page import="com.itwill.shop.domain.CustomerCoupons"%>
