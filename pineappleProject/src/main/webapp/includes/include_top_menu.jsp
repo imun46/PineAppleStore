@@ -6,7 +6,8 @@
 	String sCustomerNo=(String)session.getAttribute("sCustomerNo");
 	if(sCustomerNo!=null){
 		CartService cartService = new CartService();
-		cart_item_count = cartService.findByCustomerNo(Integer.parseInt(sCustomerNo)).size();
+		int customerNo=Integer.parseInt(sCustomerNo);
+		cart_item_count = cartService.findByCustomerNo(customerNo).size();
 	}
 	
 %>		

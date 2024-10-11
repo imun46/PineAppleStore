@@ -1,3 +1,5 @@
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@page import="com.itwill.shop.service.ReviewService"%>
 <%@page import="com.itwill.shop.domain.Review"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -9,9 +11,10 @@
 <%@include file="customer_login_check.jspf"%>
 <%
 ReviewService reviewService = new ReviewService();
+CustomerService customerService = new CustomerService();
 
 Integer customerNo = Integer.parseInt(sCustomerNo);
-
+Customer customer = customerService.findCustomerByNo(customerNo);
 List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
 
 %>
@@ -115,7 +118,7 @@ body {
         	작성일 : <%= formattedDate %>
         </div>
 		<div class="review-author">
-		작성자 : <%=review.getCustomer().getCustomerName() %>
+		작성자 : <%=customer.getCustomerName()%>
 		</div>
 		 <%
  }

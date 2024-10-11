@@ -1,15 +1,15 @@
-<%@page import="com.itwill.shop.product.Product"%>
-<%@page import="com.itwill.shop.product.ProductService"%>
-<%@page import="com.itwill.shop.coupon.Coupon"%>
-<%@page import="com.itwill.shop.customer.CustomerCoupons"%>
-<%@page import="com.itwill.shop.cart.Cart"%>
-<%@page import="com.itwill.shop.cart.CartService"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
+<%@page import="com.itwill.shop.domain.Product"%>
+<%@page import="com.itwill.shop.service.ProductService"%>
+<%@page import="com.itwill.shop.domain.Coupon"%>
+<%@page import="com.itwill.shop.domain.CustomerCoupons"%>
+<%@page import="com.itwill.shop.domain.Cart"%>
+<%@page import="com.itwill.shop.service.CartService"%>
+<%@page import="com.itwill.shop.domain.Orders"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.itwill.shop.orders.OrdersService"%>
+<%@page import="com.itwill.shop.service.OrdersService"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../includes/login_check.jspf"  %>    

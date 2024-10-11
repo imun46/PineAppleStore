@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
-<%@page import="com.itwill.shop.orders.OrdersService"%>
+<%@page import="com.itwill.shop.domain.Orders"%>
+<%@page import="com.itwill.shop.service.OrdersService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -14,7 +14,7 @@
 	}
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	OrdersService orderService = new OrdersService();
-	List<Orders> order = orderService.findByOrderNo(Integer.parseInt(orderNo));
+	List<Orders> order = orderService.findByOrdersNo(Integer.parseInt(orderNo));
 
     String orderDate = dateFormat.format(new Date());
     String productName = "상품명";
