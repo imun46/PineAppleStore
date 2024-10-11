@@ -5,36 +5,34 @@
     pageEncoding="UTF-8"%>
 <%
 	ProductService productService = new ProductService();
-	List<Product> productList = productService.productList();
+	List<Product> productCategoryList = productService.productListByCategory("laptop");
 %>
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
     <head>
         <title>PineApple</title>
-        <!-- favicon -->
-		<link rel="icon" href="../img/favicon.png">
     </head>
 <body>
 	<jsp:include page="../includes/include_top_menu.jsp" />
-	
-	<video autoplay muted style="width:100%; height: 600px;">
-	 <source src="../img/banner_video.mp4" type="video/mp4">
-	</video>
-	<img alt="line image" src="../img/line.png" style="display:block; margin:0 auto;">
+	<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">LAPTOP</h1>
+            <p class="lead fw-normal text-white-50 mb-0"></p>
+        </div>
+    </div>
+</header>
 	 <!-- Section 상품 시작-->
-	 <h1 style="margin-top: 5px; font-weight: 600; text-align: center; font-size: 50px;" >
-	 STORE
-	 </h1>
      <section class="py-5">
          <div class="container px-4 px-lg-5 mt-5">
              <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
              <!-- 상품 전체 list 돌리기 -->
              <% 
-             	int product_size = productList.size();
+             	int product_size = productCategoryList.size();
 				
 				for(int i = 0; i<product_size;i++){
-					Product product = productList.get(i);
+					Product product = productCategoryList.get(i);
              %>
                  <div class="col mb-5">
                      <div class="card h-100">
@@ -55,7 +53,7 @@
                          </div>
                          <!-- Product actions-->
                          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="product_detail_form.jsp?product_no=<%=product.getProductNo() %>" >상세보기</a></div>
+                             <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="product_detail_form.jsp?product_no=<%=product.getProductNo() %>">상세보기</a></div>
                          </div>
                      </div>
                  </div>

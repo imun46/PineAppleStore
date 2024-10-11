@@ -47,9 +47,9 @@
 	</update>
 	
 	<!-- 구매확정(회원) -->
-	<update id="updateOrderConfirm" parameterType="Orders">
+	<update id="updateOrderConfirm" parameterType="int">
 		UPDATE orders
-		SET orders_status = #{ordersStatus}, orders_arrivaldate = sysdate
+		SET orders_status = '구매확정', orders_arrivaldate = sysdate
 		WHERE orders_no = #{ordersNo}
 	</update>
 	
@@ -59,14 +59,27 @@
 		from orders
 	</select>
 	
-	<!-- 주문+주문아이템 리스트(특정회원) -->
+	<!-- 주문 1개(특정회원) -->
 	<select id="selectByOrderNo" parameterType="int" resultMap="ordersMapOrdersItems">
 		select o.orders_no, o.orders_date,o.orders_finalprice,o.orders_status, 
 			   oi.orders_items_no,oi.orders_items_price,oi.orders_items_finalprice,oi.orders_items_qty,oi.orders_items_options,oi.product_no
 		from orders o
 		join orders_items oi
 		on o.orders_no = oi.orders_no
-		where o.orders_no = #{ordersNo}
+		where o.orders_no =  #{ordersNo}
+	</select>
+
+	<!-- 특정주문+주문아이템 리스트(특정회원) -->
+	<select id="selectByOrderCustomerNo" parameterType="int" resultMap="ordersMapOrdersItems">
+		select o.orders_no, o.orders_date,o.orders_finalprice,o.orders_status, 
+			   oi.orders_items_no,oi.orders_items_price,oi.orders_items_finalprice,oi.orders_items_qty,oi.orders_items_options,oi.product_no,
+			   p.product_name, p.product_price
+		from orders o
+		left join orders_items oi
+		on o.orders_no = oi.orders_no
+		left join product p
+		on oi.product_no = p.product_no
+		where o.customer_no = #{customerNo}
 	</select>
 
 	<!-- 주문 1건 삭제 -->

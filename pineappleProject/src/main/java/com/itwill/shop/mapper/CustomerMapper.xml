@@ -93,7 +93,6 @@
 	LEFT JOIN customer_coupons cc ON c.customer_no = cc.customer_no
 	LEFT JOIN coupon cp ON cc.coupon_no = cp.coupon_no
 	WHERE c.customer_no = #{c.customer_no}
-	
 	</select>
 	
 	

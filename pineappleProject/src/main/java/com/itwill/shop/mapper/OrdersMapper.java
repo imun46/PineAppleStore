@@ -14,12 +14,15 @@ public interface OrdersMapper {
 	int updateOrderStatus(Orders orders) throws Exception;
 	
 	//[회원]구매확정 
-	int updateOrderConfirm(Orders orders) throws Exception; 
+	int updateOrderConfirm(int orderNo) throws Exception; 
 	
 	//주문 전체 리스트(전체) 어드민
 	List<Orders> selectAll() throws Exception;
 	
-	//주문+주문리스트 전체 리스트(특정 사용자)
+	//주문 +주문 아이템 (특정 사용자)
+	List<Orders> selectByOrderCustomerNo(int customerNo) throws Exception;
+	
+	//주문 1개(특정 사용자)
 	List<Orders> selectByOrderNo(int orderNo) throws Exception;
 	
 	// 주문 1건 삭제(특정 주문)

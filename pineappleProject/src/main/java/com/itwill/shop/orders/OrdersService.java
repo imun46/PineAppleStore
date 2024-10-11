@@ -35,8 +35,8 @@ public class OrdersService {
 	}
 	
 	/*[회원]구매확정*/
-	public int updateOrderConfirm(Orders order) throws Exception{
-		return ordersDao.updateOrderStatus(order);
+	public int updateOrderConfirm(Integer orderNo) throws Exception{
+		return ordersDao.updateOrderConfirm(orderNo);
 	}
 	
 	/*카트주문 등록*/
@@ -47,6 +47,11 @@ public class OrdersService {
 	}
 	
 	/*주문 + 주문 아이템 전체 리스트(특정 사용자)*/
+	public List<Orders> findByOrderNoCustomerNo(int customerNo) throws Exception{
+		return ordersDao.findByOrderNoCustomerNo(customerNo);
+	}
+	
+	/* 주문 1개 */
 	public List<Orders> findByOrderNo(int orderNo) throws Exception{
 		return ordersDao.findByOrderNo(orderNo);
 	}

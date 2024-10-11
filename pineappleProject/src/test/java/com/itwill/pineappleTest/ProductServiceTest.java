@@ -32,7 +32,7 @@ public class ProductServiceTest {
 //		}
 		
 //		제품 상세페이지
-		Product productDetail = productService.productDetail(1);
+		Product productDetail = productService.productDetail(2);
 		System.out.println(productDetail);
 		
 		
