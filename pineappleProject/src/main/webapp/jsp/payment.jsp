@@ -66,7 +66,7 @@
 	    CustomerCoupons findCoupon = customerCouponsService.findCustomerCouponsDetailByNo(customerCouponsNo);
 	    
 	    /*** 찾은 사용자 쿠폰 번호와 일치하는 쿠폰 객체 반환 ***/
-	    Coupon coupon = customerCouponsService.getCouponId(findCoupon.getCoupon().getCouponId());
+	    Coupon coupon = findCoupon.getCoupon();
 	    
 	    /*** 쿠폰 이름 저장 ***/
 	    findCouponName = coupon.getCouponName();
