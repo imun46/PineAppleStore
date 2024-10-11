@@ -126,7 +126,7 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
 
     <!-- 주문 정보 섹션 -->
     <div class="section">
-        <h2>주문 정보 <button class="btn-style">더보기</button></h2>
+        <h2>주문 정보 <button class="btn-style" onclick="location.href='order_list_form.jsp'">더보기</button></h2>
         <% 
         if(orderList != null && !orderList.isEmpty()) {
             int maxOrders = 3;

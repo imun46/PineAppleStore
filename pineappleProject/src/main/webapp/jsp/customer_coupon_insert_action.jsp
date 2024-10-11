@@ -39,12 +39,12 @@
 			//out.println(" location.href='customer_coupon_list.jsp';");
 			out.println("</script>");
 			/*** script ***/
-		} else if(rowCount == 2) {
+		} else if(rowCount == 0) {
 			out.println("<script>");
 			out.println(" alert('올바르지 않은 쿠폰 번호입니다.');");
 			out.println(" window.close();"); // 현재 창 닫기
 			out.println("</script>");
-		} else if(rowCount == 3) {
+		} else if(rowCount == 2) {
 			out.println("<script>");
 			out.println(" alert('이미 보유한 쿠폰입니다.');");
 			out.println(" window.close();"); // 현재 창 닫기

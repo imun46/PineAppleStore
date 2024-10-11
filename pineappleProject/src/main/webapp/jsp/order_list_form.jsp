@@ -4,11 +4,11 @@
 <%@page import="com.itwill.shop.service.OrdersService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@include file="customer_login_check.jspf"%>
 <%  
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
-	int customerNo = 1;
+	Integer customerNo = Integer.parseInt(sCustomerNo);
 	OrdersService ordersService = new OrdersService();
 	List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
 	int totalAmount = 0;

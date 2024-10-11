@@ -138,7 +138,6 @@
 							        }
 							    }
 							%>
-							<p><%=carts %></p>
                         <span style="font-size: 13px;"><%=options %> </span>
                         <span>수량: <%= carts.getCartQty() %> </span>
                     </div>
