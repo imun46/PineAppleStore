@@ -50,7 +50,7 @@
 
         
         if (result > 0) {
-            response.sendRedirect("customer_login_form.jsp"); // 회원가입 성공
+            response.sendRedirect("index.jsp"); // 회원가입 성공
         } else {
             String errMsg = "회원가입 중 오류가 발생했습니다.";
 
@@ -67,7 +67,7 @@
                     errMsg = "해당 전화번호는 이미 등록되어 있습니다.";
                 }
             }
-			// alert 메세지와 중복되면 뒤로가기
+			// alert 메세지와 중복되었습니다.
             out.println("<script>alert('" + errMsg + "'); history.back();</script>");
         }
     } catch (Exception e) {
