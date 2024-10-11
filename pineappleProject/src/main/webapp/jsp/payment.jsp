@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
+
 <%@page import="com.itwill.shop.domain.Customer"%>
->>>>>>> branch 'newMaster' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 <%@page import="com.itwill.shop.service.CustomerCouponsService"%>
 <%@page import="com.itwill.shop.domain.Product"%>
 <%@page import="com.itwill.shop.service.ProductService"%>

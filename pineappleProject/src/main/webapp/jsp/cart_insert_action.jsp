@@ -21,6 +21,7 @@
 	String productNo = request.getParameter("productNo");
 	String[] productOptionDetailNo = request.getParameterValues("productOptionDetailNo");
 	
+	
 	CartService cartService = new CartService();
 	
 	/*cartService insert*/
@@ -45,7 +46,7 @@
 	
 	
 	Cart cart = Cart.builder()
-				
+				.cartNo(0)
 				.cartQty(Integer.parseInt(itemsQty))
 				.customer(Customer.builder().customerNo(Integer.parseInt(customerNo)).build())
 				.product(Product.builder().productNo(Integer.parseInt(productNo)).build())

@@ -126,8 +126,8 @@ ReviewService reviewService = new ReviewService();
 							<!-- Dropdown for each option type 모델, 색상, 사이즈-->
 							<h6 style="margin: 7px 0;"><%=option.getProductOptionType()%></h6>
 							
-							<select onchange="optionSeleted('productOptionDetailNo<%=option.getProductOptionNo()%>')" 
-							id="productOptionDetailNo<%=option.getProductOptionNo()%>" name="productOptionDetailNo" value="<%=option.getProductOptionNo()%>"
+							<select 
+								name="productOptionDetailNo" value="<%=option.getProductOptionNo()%>"
 								class="form-select option-select"
 								data-price="<%=product.getProductPrice()%>"
 								onchange="updatePrice()" required>
@@ -258,9 +258,22 @@ ReviewService reviewService = new ReviewService();
 			var form = document.getElementById('productForm');
 			// 장바구니 또는 구매 여부를 서버에 전송
 			if (action === 'cart') {
+				
+				
+				let selectedOptions = document.querySelectorAll('.option-select');
+		        let productOptions = '';
+
+		        selectedOptions.forEach(function(select) {
+		            let optionName = select.options[select.selectedIndex].getAttribute('optionDetail');
+		            productOptions = productOptions + optionName + ' '; // 선택한 옵션 추가
+		        });
+		        
+			    document.querySelector('input[name="itemsOptions"]').value = productOptions;
+			    
 				form.action = 'cart_insert_action.jsp';
 				form.method = 'POST'
 				form.submit();
+				
 			} else if (action === 'order') {
 				form.action = 'orders_ready_action.jsp';
 				form.method = 'POST'
@@ -269,17 +282,24 @@ ReviewService reviewService = new ReviewService();
 			form.submit();
 		}
 		
-		function optionSeleted(id){
-			let itemsOptions = '';
-			let selectedOption = document.getElementById(id);
-			let optionName = selectedOption.options[selectedOption.selectedIndex].getAttribute('optionDetail');
-			document.querySelector('input[name="itemsOptions"]').value = optionName;
-			console.log(optionName);
-			
-			itemsOptions +=optionName;
-			console.log(itemsOptions);
-			
+		function optionSeleted(id) {
+		    let selectedOption = document.getElementById(id);
+		    let optionName = selectedOption.options[selectedOption.selectedIndex].getAttribute('optionDetail');
+		    
+		    // 현재 선택된 옵션 값을 불러오기
+		    let currentOptions = document.querySelector('input[name="itemsOptions"]').value;
+		    
+		    // 선택된 옵션 이름이 중복되지 않도록 처리
+		    if (!currentOptions.includes(optionName)) {
+		        if (currentOptions.length > 0) {
+		            currentOptions += ', ';
+		        }
+		        currentOptions += optionName;
+		    }
+
+
 		}
+
 		
 		
 	</script>
