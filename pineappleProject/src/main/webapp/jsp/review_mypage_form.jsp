@@ -1,3 +1,5 @@
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@page import="com.itwill.shop.service.ReviewService"%>
 <%@page import="com.itwill.shop.domain.Review"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -9,11 +11,11 @@
 <%@include file="customer_login_check.jspf"%>
 <%
 ReviewService reviewService = new ReviewService();
+CustomerService customerService = new CustomerService();
 
 Integer customerNo = Integer.parseInt(sCustomerNo);
-
+Customer customer = customerService.findCustomerByNo(customerNo);
 List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
-
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -109,13 +111,13 @@ body {
 			<%=review.getReviewContent()%>
 		</div>
 		<%if(review.getReviewImage()!=null) {%>
-        <img class ="review-image" src="<%=review.getReviewImage() %>" alt="My Image">
+        <img class ="review-image" src="../img/<%=review.getReviewImage() %>" alt="My Image" style="width: 100px; height: auto">
         <%} %>
         <div class = "review-date">
         	작성일 : <%= formattedDate %>
         </div>
 		<div class="review-author">
-		작성자 : <%=review.getCustomer().getCustomerName() %>
+		작성자 : <%=customer.getCustomerName()%>
 		</div>
 		 <%
  }

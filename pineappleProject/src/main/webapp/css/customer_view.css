@@ -87,7 +87,7 @@ table td {
 /* 리뷰 섹션 스타일 */
 .review-container {
     display: block; /* 블록 요소로 설정하여 각 리뷰를 한 줄에 하나씩 표시 */
-    width: 300px; /* 카드 너비 조정 */
+    width: 900x; /* 카드 너비 조정 */
     margin: 10px; /* 카드 간격 조정 */
     padding: 10px; /* 카드 내부 여백 */
     border: 1px solid #ccc; /* 카드 테두리 */
@@ -95,6 +95,7 @@ table td {
     background-color: #f9f9f9; /* 배경색 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     transition: all 0.3s ease; /* 호버 효과 부드럽게 전환 */
+    position: relative;/*자식객체들 위치조정*/
 }
 
 .review-container:hover {
@@ -112,8 +113,17 @@ table td {
     margin: 5px 0; /* 본문 상하 여백 조정 */
 }
 
-.review-date,
+.review-date{
+	position: absolute;
+    right: 10px; /* 오른쪽 끝으로 이동 */
+	bottom:10px;
+	font-size: 0.8em; /* 날짜 및 작성자 크기 조정 */
+    color: #555; /* 글자색 조정 */
+}
 .review-author {
+	position: absolute;
+    right: 135px; /* 오른쪽 끝으로 이동 */
+    bottom:10px;
     font-size: 0.8em; /* 날짜 및 작성자 크기 조정 */
     color: #555; /* 글자색 조정 */
 }

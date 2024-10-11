@@ -15,21 +15,21 @@
 		response.sendRedirect("index.jsp");
 	}
 
-	String cart_qty = request.getParameter("cart_qty");
+	String itemsQty = request.getParameter("itemsQty");
 	//String customer_no = request.getParameter("customer_no");
-	String customer_no = "1";
-	String product_no = request.getParameter("product_no");
-	String product_option_no = request.getParameter("product_option_no");
-	String[] product_option_detail_no = request.getParameterValues("product_option_detail_no");
+	String customerNo = "1";
+	String productNo = request.getParameter("productNo");
+	String[] productOptionDetailNo = request.getParameterValues("productOptionDetailNo");
 	
 	CartService cartService = new CartService();
+	
 	/*cartService insert*/
 	ProductSelected productSelected = new ProductSelected();
 	List<ProductSelectedDetail> productSelectedDetailList = new ArrayList<>();
 	
-	for(int i = 0 ; i < product_option_detail_no.length ; i++){
+	for(int i = 0 ; i < productOptionDetailNo.length ; i++){
 		ProductSelectedDetail productSelectedDetail = ProductSelectedDetail.builder()
-				.productOptionDetail(ProductOptionDetail.builder().productOptionDetailNo(Integer.parseInt(product_option_detail_no[i])).build())
+				.productOptionDetail(ProductOptionDetail.builder().productOptionDetailNo(Integer.parseInt(productOptionDetailNo[i])).build())
 				.productSelected(productSelected)
 				.build();
 		
@@ -39,15 +39,16 @@
 	ProductSelected productSelected2 = ProductSelected.builder()
 									.productSelectedDetailList(productSelectedDetailList)
 									.build();
+	
 	List<ProductSelected> productSelectedList = new ArrayList<>();
 	productSelectedList.add(productSelected2);
 	
 	
 	Cart cart = Cart.builder()
 				.cartNo(0)
-				.cartQty(Integer.parseInt(cart_qty))
-				.customer(Customer.builder().customerNo(Integer.parseInt(customer_no)).build())
-				.product(Product.builder().productNo(Integer.parseInt(product_no)).build())
+				.cartQty(Integer.parseInt(itemsQty))
+				.customer(Customer.builder().customerNo(Integer.parseInt(customerNo)).build())
+				.product(Product.builder().productNo(Integer.parseInt(productNo)).build())
 				.productSelectedList(productSelectedList)
 				.build();
 	

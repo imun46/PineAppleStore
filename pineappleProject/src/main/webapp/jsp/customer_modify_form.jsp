@@ -6,26 +6,19 @@
     pageEncoding="UTF-8"%>
 <%@ include file="customer_login_check.jspf"  %>      
 <%	
-
+/*** 서비스 선언 ***/
 	CustomerService customerService = new CustomerService();
 
+	/*** 로그인 아이디 부여 ***/
 	int customerNo = Integer.parseInt(sCustomerNo);
 	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
-	
-	/*** 서비스 선언 ***/
-	//CustomerService customerService = new CustomerService();
-
-	/*** 로그인 아이디 부여 ***/
-	//Customer loginCustomer = customerService.findCustomerId(sCustomerNo);
-
-	
 	/*** 날짜 포멧 ***/
-	//SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일"); 
 	
 	/*** 사용자 보유 쿠폰 리스트 조회 ***/
 	//customerService.findCouponList(loginCustomer.getCustomerNo());
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -81,9 +74,9 @@
 			document.f.submit();
 		}
 		
-		function customerMain() {
+		function customerView() {
 			
-			document.f.action = "jsp/index.jsp";
+			document.f.action = "customer_view.jsp";
 			document.f.method='POST';
 			document.f.submit();
 		}
@@ -185,7 +178,7 @@
 			<tr>
 				<td align=center><input type="button" value="내정보수정"
 				onClick="customerModifyAction()"> &nbsp; <input type="button"
-				value="메인" onClick="customerMain()"></td>
+				value="내정보" onClick="customerView()"></td>
 			</tr>
 		</table>
 	

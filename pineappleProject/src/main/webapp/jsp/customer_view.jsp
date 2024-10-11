@@ -66,7 +66,7 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
     </script>
 </head>
 <body>
-
+<jsp:include page="../includes/include_top_menu.jsp"></jsp:include> 
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
@@ -126,7 +126,7 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
 
     <!-- 주문 정보 섹션 -->
     <div class="section">
-        <h2>주문 정보 <button class="btn-style">더보기</button></h2>
+        <h2>주문 정보 <button class="btn-style" onclick="location.href='order_list_form.jsp'">더보기</button></h2>
         <% 
         if(orderList != null && !orderList.isEmpty()) {
             int maxOrders = 3;
@@ -157,55 +157,66 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
     </div> <!-- 주문 정보 섹션 끝 -->
 
     <!-- 리뷰 정보 섹션 -->
-    <div class="section">
-        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>              
-        
-            <div class="list-item">
-                <% List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo); %>
-                <%
-                int maxReviews = 3; // 최대 리뷰 수
-                int reviewCount = 0;
-                for(Review review:reviewList) {
-                    if (reviewCount >= maxReviews) break;
-                    Date reviewDate = review.getReviewDate(); // 리뷰 날짜를 가져옵니다.
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 원하는 형식으로 포맷을 설정합니다.
-                    String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
-                %>      
-                
-                <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>" class="review-container a">
-                    <h2 class="review-title"><%=review.getReviewTitle() %></h2> 
-                    <div class="review-product-option">
-                        <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
-                    </div>       
-                    <%
-                    int rating= review.getReviewRating(); 
-                    for(int i=0;i<5;i++){
-                    %>
-                    <span class="review-rating">
-                        <%= (i < rating) ? "★" : "☆" %>        
-                    </span>
-                    <% } %>
-                    <div class="review-body">
-                        <%=review.getReviewContent() %>
-                    </div>
-                    <% if(review.getReviewImage() != null) { %>
-                        <img src="<%=review.getReviewImage() %>" alt="My Image">
-                    <% } %>
-                    <div class="review-date">
-                        작성일 : <%= formattedDate %>
-                    </div>
-                    <div class="review-author">
-                        작성자 : <%=customerNo %>
-                    </div>
-                </a>    
-                <%
-                    reviewCount++;    
-                } %>           
-                </div>                       
-            
-        </div>
-    </div> <!-- 리뷰 정보 섹션 끝 -->
-</div> <!-- 컨테이너 끝 -->
+
+<div class="section">
+    <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>
+
+    <div class="list-item">
+        <% 
+        List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo); 
+        int maxReviews = 3; // 최대 리뷰 수
+        int reviewCount = 0;
+
+        for (Review review : reviewList) {
+            if (reviewCount >= maxReviews) break;
+            Date reviewDate = review.getReviewDate(); // 리뷰 날짜를 가져옵니다.
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 원하는 형식으로 포맷을 설정합니다.
+            String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
+        %>
+
+        <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>" class="review-container a">
+            <h2 class="review-title"><%=review.getReviewTitle() %></h2>
+            <div class="review-product-option">
+                <%=review.getProduct().getProductName() %>
+            <%
+            int rating = review.getReviewRating();
+            for (int i = 0; i < 5; i++) {
+            %>
+            <span class="review-rating">
+                <%= (i < rating) ? "★" : "☆" %>
+            </span>
+            <% } %>
+            </div>
+            <div class="review-body">
+                <%=review.getReviewContent() %>
+            </div>
+            <% if (review.getReviewImage() != null) { %>
+                <img class ="review-image" src="../img/<%=review.getReviewImage() %>" alt="My Image" style="width: 100px; height: auto">
+            <% } %>
+            <div class="review-date">
+                작성일 : <%= formattedDate %>
+            </div>
+            <div class="review-author">
+                작성자 : <%= customer.getCustomerName() %>
+            </div>
+        </a>
+        <%
+            reviewCount++;
+        }
+        %>
+
+        <% if (reviewCount == 0) { %> <!-- 리뷰가 없는 경우 -->
+            <div class="card empty">
+                <p>주문 정보가 없습니다.</p>
+            </div>
+        <% } %>
+
+    </div>
+</div> <!-- 리뷰 정보 섹션 끝 -->
+
+
+   
+
 
 </body>
 </html>

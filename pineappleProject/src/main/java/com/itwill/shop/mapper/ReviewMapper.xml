@@ -75,7 +75,7 @@
 			   review_content=#{reviewContent},
 			   review_image=#{reviewImage},
 			   review_rating=#{reviewRating},
-			   review_date=sysdate
+			   review_date=SYSDATE
 		 WHERE review_no=#{reviewNo}
 		
 	</update>
@@ -99,11 +99,13 @@
 	<!-- 제품 번호로 리뷰 리스트 반환 -->
 	<select id="findReviewByProductNo" parameterType ="int" resultMap="reviewMap">
 		SELECT r.review_no, r.review_title, r.review_content, r.review_image, r.review_rating, r.review_date,
-			   c.customer_no, c.customer_name, c.customer_nickname
+			   p.product_no, p.product_name,c.customer_no,c.customer_name,c.customer_nickname
 		  FROM review r
 		  JOIN customer c
 		    ON c.customer_no=r.customer_no
-	     WHERE product_no=#{productNo}
+		  JOIN product p
+		    ON p.product_no = r.product_no
+	     WHERE r.product_no=#{productNo}
 	</select>
 	
 	<!-- 리뷰 번호로 리뷰 한개 반환 -->

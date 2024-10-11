@@ -28,7 +28,7 @@
 try{	 
 	 /*** 1. GET방식이면 customer_main.jsp redirection ***/
 	 if(request.getMethod().equalsIgnoreCase("GET")) {
-		 	response.sendRedirect("modify_view.jsp");
+		 	response.sendRedirect("customer_view.jsp");
 			return;
 	 }
 

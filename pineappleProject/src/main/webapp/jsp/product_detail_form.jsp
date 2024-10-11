@@ -75,12 +75,19 @@ ReviewService reviewService = new ReviewService();
 
 	List<ProductImage> images = product.getProductImageList();
 	List<ProductOption> options = product.getProductOptionList();
+	
+	int optionCount = options.size();
+	
 	%>
 
 	<!-- Form to handle options and submit -->
 	<form id="productForm" method="POST">
-		<input type="hidden" name="product_no" value="<%=productNo%>" />
-		<input type="hidden" name="cart_qty" value=1 />
+		<input type="hidden" name="productNo" value="<%=productNo%>" />
+		<input type="hidden" name="itemsQty" value=1 />
+		<input type="hidden" name="itemsPrice"/>
+		<input type="hidden" name="ordersTotprice" />
+		<input type="hidden" name="ordersTotqty" value=1 />
+		<input type="hidden" id="itemsOptions" name="itemsOptions"/>
 
 		<div class="container mt-5">
 			<!-- Product Information -->
@@ -119,16 +126,20 @@ ReviewService reviewService = new ReviewService();
 							<!-- Dropdown for each option type 모델, 색상, 사이즈-->
 							<h6 style="margin: 7px 0;"><%=option.getProductOptionType()%></h6>
 							
-							<select name="product_option_datail_no" value="<%=option.getProductOptionNo()%>"
+							<select 
+								name="productOptionDetailNo" value="<%=option.getProductOptionNo()%>"
 								class="form-select option-select"
 								data-price="<%=product.getProductPrice()%>"
 								onchange="updatePrice()" required>
+								
 								<option value="0" data-price="0">옵션 선택</option>
 								<%
 								for (ProductOptionDetail detail : option.getProductOptionDetailList()) {
 								%>
+								
 								<option value="<%=detail.getProductOptionDetailNo()%>"
-									data-price="<%=detail.getProductOptionDetailPrice()%>">
+								        optionDetail="<%=detail.getProductOptionDetailName()%>"
+									    data-price="<%=detail.getProductOptionDetailPrice()%>">
 									<%=detail.getProductOptionDetailName()%> (+
 									<%=decimalFormat.format(detail.getProductOptionDetailPrice())%>원)
 								</option>
@@ -136,6 +147,7 @@ ReviewService reviewService = new ReviewService();
 								}
 								%>
 							</select>
+							
 						</div>
 						<%
 						}
@@ -160,15 +172,18 @@ ReviewService reviewService = new ReviewService();
 
 			<!-- Product Detail -->
 			<div style="display: flex; justify-content: center;">
-			    <img alt="" src="../img/product_datail_page.png" style="max-width: 100%; height: auto;">
+			    <img alt="" src="../img/product_detail_page.png" style="max-width: 100%; height: auto;">
 			</div>
 			
+			
+			<!-- Review -->
 			<!-- Customer Reviews Section -->
-			<div class="section">
-        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>	           
+         	 <div class="section">
+        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>              
         
             <div class="list-item">
                 <% List<Review> reviewList = reviewService.findReviewByProductNo(productNo); %>
+
                 <%
                 int maxReviews = 3; // 최대 리뷰 수
                 int reviewCount = 0;
@@ -182,7 +197,7 @@ ReviewService reviewService = new ReviewService();
                 <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>" class="review-container a">
                     <h2 class="review-title"><%=review.getReviewTitle() %></h2> 
                     <div class="review-product-option">
-                        <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
+                        <%=product.getProductName() %>(<%=product.getProductDesc() %>)
                     </div>       
                     <%
                     int rating= review.getReviewRating(); 
@@ -211,15 +226,17 @@ ReviewService reviewService = new ReviewService();
                 </div>                       
             
         </div>
+      </div>
+        
+   </form>
+			
 		</div>
 	</form>
-
+ 
 	<!-- JavaScript to handle form submission -->
 	<script>
 		function updatePrice() {
-			var basePrice = parseInt(
-	<%=product.getProductPrice()%>
-		);
+			var basePrice = parseInt(<%=product.getProductPrice()%>);
 			var totalPrice = basePrice;
 
 			var selects = document.querySelectorAll('.option-select');
@@ -232,14 +249,31 @@ ReviewService reviewService = new ReviewService();
 
 			document.getElementById('total-price').innerText = totalPrice
 					.toLocaleString();
+			
+			document.querySelector('input[name="itemsPrice"]').value = totalPrice;
+			document.querySelector('input[name="ordersTotprice"]').value = totalPrice;
 		}
+		
 		function submitForm(action) {
 			var form = document.getElementById('productForm');
 			// 장바구니 또는 구매 여부를 서버에 전송
 			if (action === 'cart') {
+				
+				
+				let selectedOptions = document.querySelectorAll('.option-select');
+		        let productOptions = '';
+
+		        selectedOptions.forEach(function(select) {
+		            let optionName = select.options[select.selectedIndex].getAttribute('optionDetail');
+		            productOptions = productOptions + optionName + ' '; // 선택한 옵션 추가
+		        });
+		        
+			    document.querySelector('input[name="itemsOptions"]').value = productOptions;
+			    
 				form.action = 'cart_insert_action.jsp';
 				form.method = 'POST'
 				form.submit();
+				
 			} else if (action === 'order') {
 				form.action = 'orders_ready_action.jsp';
 				form.method = 'POST'
@@ -247,6 +281,27 @@ ReviewService reviewService = new ReviewService();
 			}
 			form.submit();
 		}
+		
+		function optionSeleted(id) {
+		    let selectedOption = document.getElementById(id);
+		    let optionName = selectedOption.options[selectedOption.selectedIndex].getAttribute('optionDetail');
+		    
+		    // 현재 선택된 옵션 값을 불러오기
+		    let currentOptions = document.querySelector('input[name="itemsOptions"]').value;
+		    
+		    // 선택된 옵션 이름이 중복되지 않도록 처리
+		    if (!currentOptions.includes(optionName)) {
+		        if (currentOptions.length > 0) {
+		            currentOptions += ', ';
+		        }
+		        currentOptions += optionName;
+		    }
+
+
+		}
+
+		
+		
 	</script>
 
 	<!-- External JS -->

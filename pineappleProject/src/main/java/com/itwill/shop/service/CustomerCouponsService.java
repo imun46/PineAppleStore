@@ -30,7 +30,7 @@ public class CustomerCouponsService {
 		
 		// 쿠폰 일련 번호 사용 여부 체크
 		if(customerCouponsDao.checkCouponIdIfUsedByCouponId(paramMapCheck)==1) {
-			return 0;
+			return 2;
 		}
 		
 		// 쿠폰 일련 번호로 쿠폰 번호 반환
