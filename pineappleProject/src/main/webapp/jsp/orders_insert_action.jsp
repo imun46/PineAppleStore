@@ -14,8 +14,8 @@ if(request.getMethod().equalsIgnoreCase("GET")){
 	response.sendRedirect("index.jsp");
 }
 
-// 카트 여부 세션에서 확인
-String checkCart = (String)session.getAttribute("cartCheck");
+// 카트 번호 리스트 세션에서 확인
+String cartNo[] = session.getAttribute("cartNo");
 
 // 주문 서비스 객체 생성
 OrdersService ordersService = new OrdersService();
@@ -46,7 +46,7 @@ orders.setCustomer(Customer.builder().customerNo(customerNo).build());
 
 // 주문 입력
 // 카트에서 주문하는지 체크
-if(checkCart!=null) {
+if(cartNo==null) {
 	// 카트가 아닌 경우 바로 구매
 	ordersService.insertOrders(orders);
 } else {
@@ -56,6 +56,7 @@ if(checkCart!=null) {
 
 // Orders 객체 세션에서 삭제
 session.removeAttribute("sOrders");
+session.removeAttribute("cartNo");
 
 // 주문 내역으로  페이지 이동
 response.sendRedirect("orders_list_form");
