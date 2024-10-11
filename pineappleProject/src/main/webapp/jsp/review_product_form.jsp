@@ -18,8 +18,6 @@
  %>
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../includes/include_top_menu.jsp" />
-<!-- 파인애플 상단의 메뉴 -->
 
 
 <!-- 해당 메뉴 이름-->

@@ -8,7 +8,7 @@
     <%@ page import="java.text.SimpleDateFormat" %>
     <%@ page import="java.util.List" %>
     <%@ page import="java.util.Date" %>
-    <%@include file="../includes/login_check.jspf"%>
+    <%@include file="customer_login_check.jspf"%>
     <%
     CustomerService customerService = new CustomerService();
     ReviewService reviewService = new ReviewService();
@@ -23,8 +23,6 @@
     %>
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../includes/include_top_menu.jsp" />
-<!-- 파인애플 상단의 메뉴 -->
 
 
 <!-- 해당 메뉴 이름-->

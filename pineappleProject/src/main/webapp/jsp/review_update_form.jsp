@@ -22,8 +22,6 @@ if (request.getMethod().equals("GET")) {
 
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../includes/include_top_menu.jsp" />
-<!-- 파인애플 상단의 메뉴 -->
 
 
 <!-- 해당 메뉴 이름-->
@@ -51,7 +49,7 @@ if (request.getMethod().equals("GET")) {
 <body>
 
 
-<form id="reviewForm" action="review_update_action.jsp?reviewNo=<%=review.getReviewNo() %>" method="POST">
+<form id="reviewForm" action="/upload" method="POST" enctype ="multipart/form-data">
     <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
     <input type="hidden" name="productNo" value="<%= review.getProduct().getProductNo() %>">
     <input type="hidden" name="customerNo" value="<%= review.getCustomer().getCustomerNo() %>">
