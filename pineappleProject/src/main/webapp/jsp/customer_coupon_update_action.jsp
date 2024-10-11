@@ -5,7 +5,7 @@
 <%@page import="com.itwill.shop.domain.CustomerCoupons"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../includes/login_check.jspf"  %>    
+<%@ include file="customer_login_check.jspf"  %>
 <%	
 try{ 	
 	/*** Customer서비스 객체 생성 ***/

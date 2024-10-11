@@ -4,7 +4,7 @@
 <%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../includes/login_check.jspf"  %>    
+<%@ include file="customer_login_check.jspf"  %>      
 <%	
 
 	CustomerService customerService = new CustomerService();
