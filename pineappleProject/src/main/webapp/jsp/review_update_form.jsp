@@ -61,7 +61,7 @@ if (request.getMethod().equals("GET")) {
     
       
     <div>
-    	<label for="reviewProductOption"><%=review.getProduct().getProductImageList() %><%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)</label>
+    	<label for="reviewProductOption"><%=review.getProduct().getProductImageList() %><%=review.getProduct().getProductName() %></label>
     </div>
     
 <div id="star-rating">

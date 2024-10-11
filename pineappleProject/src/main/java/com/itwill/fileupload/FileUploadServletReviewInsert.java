@@ -29,8 +29,8 @@ import jakarta.servlet.http.Part;
  * @maxRequestSize request 시에 최대 크기를 지정한다. [자료형 : long]
  */
 @MultipartConfig( fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 100, maxRequestSize = 1024 * 1024 * 100)//MB
-@WebServlet("/upload")
-public class FileUploadServlet extends HttpServlet {
+@WebServlet("/upload2")
+public class FileUploadServletReviewInsert extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -42,17 +42,14 @@ public class FileUploadServlet extends HttpServlet {
 		
 		try {
 		/**********************파일아닌파라메타*************************/
-		Integer reviewNoStr = Integer.parseInt(request.getParameter("reviewNo"));
-		String reviewTitleStr = request.getParameter("reviewTitle");
-		String reviewContentStr = request.getParameter("reviewContent");
-		Integer reviewRatingStr = Integer.parseInt(request.getParameter("reviewRating"));
-		   
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");;
-		String reviewImageStr = request.getParameter("reviewImage");
-		Integer proNoStr = Integer.parseInt(request.getParameter("productNo"));
-		Integer cusNoStr = Integer.parseInt(request.getParameter("customerNo"));
-		Product product =Product.builder().productNo(proNoStr).build(); 
-		Customer customer = Customer.builder().customerNo(cusNoStr).build();
+			String reviewTitle = request.getParameter("reviewTitle");
+			String reviewContent = request.getParameter("reviewContent");
+			Integer reviewRating = Integer.parseInt(request.getParameter("reviewRating"));
+			//String reviewImage = request.getParameter("reviewImage");
+			Integer proNoStr = Integer.parseInt(request.getParameter("productNo"));
+			Integer cusNoStr = Integer.parseInt(request.getParameter("customerNo"));
+			Product product =Product.builder().productNo(proNoStr).build(); 
+			Customer customer = Customer.builder().customerNo(cusNoStr).build();
 		/**설정 파일에서 업로드 디렉토리 경로를 로드*/
 //		Properties properties = new Properties();
 //		InputStream input = FileVO.class.getClassLoader().getResourceAsStream("upload.properties");
@@ -82,23 +79,21 @@ public class FileUploadServlet extends HttpServlet {
 			//서버저장파일출력스트림
 			OutputStream outputStream = Files.newOutputStream(uploadFile.toPath());
 			inputStream.transferTo(outputStream);
+			
 			if (uploadFile != null) {
 				// 파일 정보를 DB에 저장
-				
-				ReviewService reviewService = new ReviewService();
 				Review review = Review.builder()
-				        .reviewNo(reviewNoStr) 
-				        .reviewTitle(reviewTitleStr)
-				        .reviewContent(reviewContentStr)
-				        .reviewRating(reviewRatingStr)
+				        .reviewTitle(reviewTitle)
+				        .reviewContent(reviewContent)
+				        .reviewRating(reviewRating)
 				        .reviewImage(originalName)
 				        .product(product)
 				        .customer(customer)
-				        .build();    
-				
-				reviewService.updateReview(review);
+				        .build();   
+				ReviewService reviewService = new ReviewService();
+			    reviewService.insertReview(review);
 				}
-			response.sendRedirect("jsp/review_detail.jsp?reviewNo="+reviewNoStr);
+			response.sendRedirect("jsp/customer_view.jsp");
 		}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

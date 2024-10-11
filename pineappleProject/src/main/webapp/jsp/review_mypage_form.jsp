@@ -111,7 +111,7 @@ body {
 			<%=review.getReviewContent()%>
 		</div>
 		<%if(review.getReviewImage()!=null) {%>
-        <img class ="review-image" src="<%=review.getReviewImage() %>" alt="My Image">
+        <img class ="review-image" src="../img/<%=review.getReviewImage() %>" alt="My Image" style="width: 100px; height: auto">
         <%} %>
         <div class = "review-date">
         	작성일 : <%= formattedDate %>

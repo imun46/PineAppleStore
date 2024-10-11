@@ -177,7 +177,7 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
         <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>" class="review-container a">
             <h2 class="review-title"><%=review.getReviewTitle() %></h2>
             <div class="review-product-option">
-                <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
+                <%=review.getProduct().getProductName() %>
             </div>
             <%
             int rating = review.getReviewRating();
@@ -191,13 +191,13 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
                 <%=review.getReviewContent() %>
             </div>
             <% if (review.getReviewImage() != null) { %>
-                <img src="<%=review.getReviewImage() %>" alt="My Image">
+                <img class ="review-image" src="../img/<%=review.getReviewImage() %>" alt="My Image" style="width: 100px; height: auto">
             <% } %>
             <div class="review-date">
                 작성일 : <%= formattedDate %>
             </div>
             <div class="review-author">
-                작성자 : <%= customerNo %>
+                작성자 : <%= customer.getCustomerName() %>
             </div>
         </a>
         <%

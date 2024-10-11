@@ -93,7 +93,7 @@
     <div class="review-container">
         <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         <div class="review-product-option">
-            <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
+            <%=review.getProduct().getProductName() %>
         </div>
         <%
         int rating= review.getReviewRating(); 
@@ -107,7 +107,7 @@
         <div class="review-body">
             <%=review.getReviewContent() %>
         </div>
-        <img src="<%=review.getReviewImage() %>" alt="My Image">
+        <img src="../img/<%=review.getReviewImage() %>" alt="My Image" style="width: 300px; height: auto">
         	
         <div class = "review-date">
         	작성일 : <%= formattedDate %>
