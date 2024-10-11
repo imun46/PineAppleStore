@@ -1,31 +1,36 @@
-<%@page import="com.itwill.shop.review.ReviewService"%>
+<%@page import="com.itwill.shop.service.ReviewService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-<%@page import="com.itwill.shop.review.Review"%>
-<%@page import="com.itwill.shop.product.Product"%>
-<%@page import="com.itwill.shop.orders.OrdersItems"%>
-<%@page import="com.itwill.shop.orders.Orders"%>
-<%@page import="com.itwill.shop.coupon.Coupon"%>
+<%@page import="com.itwill.shop.domain.Review"%>
+<%@page import="com.itwill.shop.domain.Product"%>
+<%@page import="com.itwill.shop.domain.OrdersItems"%>
+<%@page import="com.itwill.shop.domain.Orders"%>
+<%@page import="com.itwill.shop.domain.Coupon"%>
 <%@page import="java.util.List"%>
-<%@page import="com.itwill.shop.customer.CustomerCoupons"%>
-<%@page import="com.itwill.shop.customer.Customer"%>
-<%@page import="com.itwill.shop.customer.CustomerService"%>
+<%@page import="com.itwill.shop.domain.CustomerCoupons"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
+<%@page import="com.itwill.shop.service.CustomerCouponsService"%>
+<%@page import="com.itwill.shop.service.OrdersService"%>
+<%@page import="com.itwill.shop.service.CartService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="../includes/login_check.jspf" %>
 
 <%
 ReviewService reviewService = new ReviewService();
 response.setContentType("text/html; charset=UTF-8");
 
 CustomerService customerService = new CustomerService();
+OrdersService ordersService = new OrdersService();
+CustomerCouponsService customerCouponsService = new CustomerCouponsService();
 
-int customerNo = Integer.parseInt(sCustomerNo);
-Customer customer = customerService.findCustomerNoListAll(customerNo);
+int customerNo = 1;
+Customer customer = customerService.findCustomerByNo(customerNo);
 
 /*** 날짜 포맷 설정 ***/
 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-
+List<CustomerCoupons> customerCouponList = customerCouponsService.findCustomerCouponsListALL(customerNo);
+List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
 
 %>
 
@@ -60,8 +65,6 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 </head>
 <body>
 
-<jsp:include page="../includes/include_top_menu.jsp" />
-
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
@@ -95,7 +98,6 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
         <h2>쿠폰 정보 <button class="btn-style" onClick="customerCouponInsert()">쿠폰 등록 </button></h2>
         <div class="card-container">
             <% 
-            List<CustomerCoupons> customerCouponList = customer.getCustomerCouponList();
             if(customerCouponList != null && !customerCouponList.isEmpty()) {
                 for(CustomerCoupons customerCoupons : customerCouponList) {
                     Coupon couponList = customerCoupons.getCoupon();
@@ -124,7 +126,6 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
     <div class="section">
         <h2>주문 정보 <button class="btn-style">더보기</button></h2>
         <% 
-        List<Orders> orderList = customer.getOrdersList();
         if(orderList != null && !orderList.isEmpty()) {
             int maxOrders = 3;
             int orderCount = 0;
@@ -158,7 +159,7 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
         <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>              
         
             <div class="list-item">
-                <% List<Review> reviewList = reviewService.getMyReview(customerNo); %>
+                <% List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo); %>
                 <%
                 int maxReviews = 3; // 최대 리뷰 수
                 int reviewCount = 0;
@@ -192,7 +193,7 @@ SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
                         작성일 : <%= formattedDate %>
                     </div>
                     <div class="review-author">
-                        작성자 : <%=review.getCustomer().getCustomerName() %>
+                        작성자 : <%=customerNo %>
                     </div>
                 </a>    
                 <%

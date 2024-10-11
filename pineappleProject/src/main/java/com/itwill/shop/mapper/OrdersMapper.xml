@@ -18,72 +18,88 @@
 	</resultMap>
 	
 	
-	
-	
 	<!-- 주문 등록 -->
-	<insert id="insertOrder" parameterType="Orders">
+	<insert id="insertOrders" parameterType="Orders">
 		<selectKey order="BEFORE" resultType="int" keyProperty="ordersNo">
-			select orders_orders_no_seq.nextval from dual
+			SELECT orders_orders_no_seq.nextval FROM DUAL
 		</selectKey>
-		insert into orders(Orders_No, Orders_Date, Orders_Arrivaldate, Orders_Totprice, Orders_Finalprice, Orders_Totqty, Orders_Address, Orders_Status, Customer_No, Customer_Coupons_No) 
-		values (#{ordersNo}, sysdate, sysdate+3, #{ordersTotprice}, #{ordersFinalprice}, #{ordersTotqty}, #{ordersAddress}, #{ordersStatus}, #{customer.customerNo}, 
+			INSERT INTO orders(Orders_No, Orders_Date, Orders_Arrivaldate, Orders_Totprice, Orders_Finalprice, Orders_Totqty, Orders_Address, Orders_Status, Customer_No, Customer_Coupons_No) 
+			     VALUES (#{ordersNo}, sysdate, sysdate+3, #{ordersTotprice}, #{ordersFinalprice}, #{ordersTotqty}, #{ordersAddress}, #{ordersStatus}, #{customer.customerNo}, 
             #{customerCoupons.customerCouponsNo})
 	</insert>
 	
-	<!-- 주문아이템 등록 -->
-	<insert id="insertOrderItem" parameterType="OrdersItems">
+	<!-- 주문 아이템 등록 -->
+	<insert id="insertOrdersItems" parameterType="OrdersItems">
 		<selectKey order="BEFORE" resultType="int" keyProperty="ordersItemsNo">
-			select orders_items_orders_items_no_seq.nextval from dual 
+			SELECT orders_items_orders_items_no_seq.nextval FROM DUAL
 		</selectKey>
-		 insert into orders_items (orders_items_no, orders_items_price,orders_items_finalprice, orders_items_qty, orders_items_options, orders_no, product_no) 
-		 values (#{ordersItemsNo}, #{ordersItemsprice}, #{ordersItemsFinalprice}, #{ordersItemsQty}, #{ordersItemsOptions},orders_orders_no_seq.currval, #{product.productNo})
+			 INSERT INTO orders_items (orders_items_no, orders_items_price,orders_items_finalprice, orders_items_qty, orders_items_options, orders_no, product_no) 
+		    	  VALUES (#{ordersItemsNo}, #{ordersItemsPrice}, #{ordersItemsFinalprice}, #{ordersItemsQty}, #{ordersItemsOptions},orders_orders_no_seq.currval, #{product.productNo})
 	</insert>
 	
-	<!-- 배송상태 변경(어드민) -->
-	<update id="updateOrderStatus" parameterType="Orders">
+	<!-- 배송 상태 변경 (어드민) -->
+	<update id="updateOrdersStatus" parameterType="map">
 		UPDATE orders
-		SET orders_status = #{ordersStatus}
-		WHERE orders_no = #{ordersNo}
+		   SET orders_status=#{ordersStatus}
+		 WHERE orders_no=#{ordersNo}
+	</update>
+		
+	<!-- 구매 확정 (회원) -->
+	<update id="updateOrdersConfirm" parameterType="int">
+		UPDATE orders
+		   SET orders_status = '구매 확정', orders_arrivaldate = sysdate
+		 WHERE orders_no=#{ordersNo}
 	</update>
 	
-	<!-- 구매확정(회원) -->
-	<update id="updateOrderConfirm" parameterType="int">
+	<!-- 배송 시작 여부 확인 -->
+	<select id="checkOrdersStatusNotArrived" parameterType="int">
+		SELECT count(*)
+  		  FROM orders
+ 		 WHERE orders_status='배송전'
+       		   AND orders_no=#{ordersNo}
+	</select>
+	
+	<!-- 주문 취소 (회원) -->
+	<update id="cancelOrdersByOrdersNo" parameterType="int">
 		UPDATE orders
-		SET orders_status = '구매확정', orders_arrivaldate = sysdate
-		WHERE orders_no = #{ordersNo}
+		   SET orders_status = '주문 취소', orders_arrivaldate = sysdate
+		 WHERE orders_no=#{ordersNo}
 	</update>
 	
-	<!-- 주문 전체 리스트(어드민) -->
-	<select id="selectAll" resultMap="ordersMapOrdersItems">
-		select orders_no, orders_date, orders_arrivaldate,orders_totprice, orders_finalprice,orders_totqty, orders_address,orders_status,customer_no, customer_coupons_no
-		from orders
+	
+	<!-- 주문 전체 리스트 반환 (어드민) -->
+	<select id="findAll" resultMap="ordersMapOrdersItems">
+
 	</select>
 	
-	<!-- 주문 1개(특정회원) -->
-	<select id="selectByOrderNo" parameterType="int" resultMap="ordersMapOrdersItems">
-		select o.orders_no, o.orders_date,o.orders_finalprice,o.orders_status, 
-			   oi.orders_items_no,oi.orders_items_price,oi.orders_items_finalprice,oi.orders_items_qty,oi.orders_items_options,oi.product_no
-		from orders o
-		join orders_items oi
-		on o.orders_no = oi.orders_no
-		where o.orders_no =  #{ordersNo}
+	<!-- 주문 번호로 주문 + 주문 아이템 리스트 반환 -->
+	<select id="findByOrdersNo" parameterType="int" resultMap="ordersMapOrdersItems">
+		SELECT o.orders_no, o.orders_date, o.orders_arrivaldate, o.orders_totprice, o.orders_finalprice, o.orders_totqty, o.orders_address, o.orders_status,
+      		   oi.orders_items_no, oi.orders_items_price, oi.orders_items_finalprice, oi.orders_items_qty, oi.orders_items_options
+  		  FROM orders o
+		  JOIN orders_items oi
+    		ON o.orders_no=oi.orders_no
+    	 WHERE o.orders_no=#{ordersNo}
 	</select>
 
-	<!-- 특정주문+주문아이템 리스트(특정회원) -->
-	<select id="selectByOrderCustomerNo" parameterType="int" resultMap="ordersMapOrdersItems">
-		select o.orders_no, o.orders_date,o.orders_finalprice,o.orders_status, 
-			   oi.orders_items_no,oi.orders_items_price,oi.orders_items_finalprice,oi.orders_items_qty,oi.orders_items_options,oi.product_no,
-			   p.product_name, p.product_price
-		from orders o
-		left join orders_items oi
-		on o.orders_no = oi.orders_no
-		left join product p
-		on oi.product_no = p.product_no
-		where o.customer_no = #{customerNo}
+	<!-- 회원 번호로 주문 + 주문 아이템 리스트 반환 -->
+	<select id="findByCustomerNo" parameterType="int" resultMap="ordersMapOrdersItems">
+		SELECT o.orders_no, o.orders_date, o.orders_arrivaldate, o.orders_totprice, o.orders_finalprice, o.orders_totqty, o.orders_address, o.orders_status,
+      		   oi.orders_items_no, oi.orders_items_price, oi.orders_items_finalprice, oi.orders_items_qty, oi.orders_items_options
+  		  FROM orders o
+		  JOIN orders_items oi
+    		ON o.orders_no=oi.orders_no
+    	 WHERE o.customer_no=#{customerNo}
 	</select>
-
-	<!-- 주문 1건 삭제 -->
-	<delete id="delete" parameterType="int">
-		delete from orders where orders_no = #{ordersNo}
+		
+		
+	<!-- 주문 번호로 주문 삭제 -->
+	<delete id="deleteByOrdersNo" parameterType="int">
+		DELETE FROM orders
+		 WHERE orders_no=#{ordersNo}
 	</delete>
+		
+		
+		
+		
 </mapper>

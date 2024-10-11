@@ -1,4 +1,4 @@
-<%@page import="com.itwill.shop.customer.Customer"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
 	request.setCharacterEncoding("UTF-8");

@@ -3,14 +3,14 @@
 <mapper namespace="com.itwill.shop.mapper.ProductOptionMapper">
 	
 	<!--Product_Option 기본 맵-->
-	<resultMap id="productOptionMapBasic" type="ProductOption" autoMapping="true">
+	<resultMap id="productOptionMapBasic" type="ProductOption" autoMapping="false">
 		<id column="PRODUCT_OPTION_NO" property="productOptionNo"/>
 		<result column="PRODUCT_OPTION_TYPE" property="productOptionType"/>
 		
 	</resultMap>
 	
 	<!--Product_Option 맵 Product_Option_Detail 맵 포함-->
-	<resultMap id="productOptionMapDetail" type="ProductOption" autoMapping="true">
+	<resultMap id="productOptionMapDetail" type="ProductOption" autoMapping="false">
 		<id column="PRODUCT_OPTION_NO" property="productOptionNo"/>
 		<result column="PRODUCT_OPTION_TYPE" property="productOptionType"/>
 		
@@ -19,4 +19,25 @@
 		</collection>
 		
 	</resultMap>
+	
+	<!-- 전체 옵션 리스트 반환 -->
+	<select id="findAll" resultMap="productOptionMapDetail">
+		SELECT po.product_option_no, po.product_option_type, po.product_no,
+			   pod.product_option_detail_no, pod.product_option_detail_name, pod.product_option_detail_price
+		  FROM product_option po
+	 LEFT JOIN product_option_detail pod
+	     	ON po.product_option_no=pod.product_option_no
+	</select>
+	
+	<!-- 제품 번호 검색 옵션 리스트 반환 -->
+	<select id="findByProductNo" parameterType="int" resultMap="productOptionMapDetail">
+		SELECT po.product_option_no, po.product_option_type, po.product_no,
+			   pod.product_option_detail_no, pod.product_option_detail_name, pod.product_option_detail_price
+		  FROM product_option po
+	 LEFT JOIN product_option_detail pod
+	     	ON po.product_option_no=pod.product_option_no
+	     WHERE po.product_no=#{productNo}
+	</select>
+	
+	
 </mapper>

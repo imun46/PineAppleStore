@@ -1,8 +1,8 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.net.URLEncoder"%>
 
-<%@page import="com.itwill.shop.customer.CustomerService"%>
-<%@page import="com.itwill.shop.customer.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
 
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

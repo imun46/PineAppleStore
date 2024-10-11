@@ -3,14 +3,14 @@
 <mapper namespace="com.itwill.shop.mapper.ProductOptionDetailMapper">
 
 	<!--Product_Option_Detail 기본 맵-->
-	<resultMap id="productOptionDetailMapBasic" type="ProductOptionDetail" autoMapping="true">
+	<resultMap id="productOptionDetailMapBasic" type="ProductOptionDetail" autoMapping="false">
 		<id column="PRODUCT_OPTION_DETAIL_NO" property="productOptionDetailNo"/>
 		<result column="PRODUCT_OPTION_DETAIL_NAME" property="productOptionDetailName"/>
 		<result column="PRODUCT_OPTION_DETAIL_PRICE" property="productOptionDetailPrice"/>
 	</resultMap>
 	
 	<!--Product_Option_Detail 맵 ProductOption 포함-->
-	<resultMap id="productOptionDetailMapProductOption" type="ProductOptionDetail" autoMapping="true">
+	<resultMap id="productOptionDetailMapProductOption" type="ProductOptionDetail" autoMapping="false">
 		<id column="PRODUCT_OPTION_DETAIL_NO" property="productOptionDetailNo"/>
 		<result column="PRODUCT_OPTION_DETAIL_NAME" property="productOptionDetailName"/>
 		<result column="PRODUCT_OPTION_DETAIL_PRICE" property="productOptionDetailPrice"/>

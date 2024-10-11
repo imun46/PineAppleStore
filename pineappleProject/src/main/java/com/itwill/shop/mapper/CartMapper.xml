@@ -2,10 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shop.mapper.CartMapper">
 	
-	<!--Cart 맵 ProductSelected 포함-->
-	<resultMap id="cartMapProductSelected" type="Cart" autoMapping="true">
+	<!--Cart 맵 -->
+	<resultMap id="cartMap" type="Cart" autoMapping="false">
 		<id column="CART_NO" property="cartNo"/>
 		<result column="CART_QTY" property="cartQty"/>
+		
+		<association property="product" javaType="Product"
+					 resultMap="com.itwill.shop.mapper.ProductMapper.productMapImage">
+		</association>
 		
 		<collection property="productSelectedList" ofType="ProductSelected"
 					resultMap="com.itwill.shop.mapper.ProductSelectedMapper.productSelectedMap"></collection>
@@ -18,7 +22,7 @@
 			SELECT cart_cart_no_seq.nextval FROM DUAL
 		</selectKey>
 			INSERT INTO cart 
-			VALUES (#{cartNo}, #{cartQty}, #{customer.customerNo})
+				 VALUES (#{cartNo}, #{cartQty}, #{customer.customerNo}, #{product.productNo})
 	</insert>
 
 	<!-- ProductSelected 등록 -->
@@ -27,23 +31,48 @@
 			SELECT product_selected_product_selected_no_seq.nextval FROM DUAL
 		</selectKey>
 			INSERT INTO product_selected 
-			VALUES (#{productSelectedNo},#{product.productNo},#{productOptionDetail.productOptionDetailNo},cart_cart_no_seq.currval)
+				 VALUES (#{productSelectedNo},cart_cart_no_seq.currval)
 	</insert>
 
+	<!-- ProductSelectedDetail 등록 -->
+		<insert id="insertProductSelectedDetail" parameterType="ProductSelectedDetail">
+			<selectKey order="BEFORE" resultType="int" keyProperty="productSelectedDetailNo">
+			SELECT product_selected_detail_product_selected_detail_no_seq.nextval FROM DUAL
+			</selectKey>
+				INSERT INTO product_selected_detail
+					 VALUES (#{productSelectedDetailNo},#{productSelected.productSelectedNo},#{productOptionDetail.productOptionDetailNo})
+		</insert>
+
 	<!-- 카트 중복 체크(옵션) -->
-	<select id="countByProductNo" parameterType="int" resultType="int">
-		SELECT COUNT(*) as count
-	 	  FROM product_selected ps
-		  JOIN product_option_detail pod 
-			ON ps.product_option_detail_no = pod.product_option_detail_no
-		  JOIN product_option po 
-			ON pod.product_option_no = po.product_option_no
-		 WHERE ps.product_no =#{productNo} AND po.product_option_no = #{productOptionNo} AND pod.product_option_detail_no = #{productOptionDetailNo} AND ps.cart_no = #{cartNo}; 
+	<select id="checkProductSelected" parameterType="map" resultType="Integer">
+	    SELECT product_option_detail_no
+      	  FROM cart c
+      	  JOIN product_selected ps
+        	ON c.cart_no = ps.cart_no
+          JOIN product_selected_detail psd
+            ON ps.product_selected_no=psd.product_selected_no
+     	 WHERE c.customer_no = #{customerNo}
+       		   AND c.product_no = #{productNo}
+       		   AND ps.product_selected_no = #{productSelectedNo}
 	</select>
-
-
-	<!-- 카트 옵션수정 -->
-	<update id="updateByproductSelected">
+	
+	<!-- 선택된 제품 번호 출력 (회원 번호, 제품 번호 기준) -->
+	<select id="findProductSelectedNoByCustomerNoProductNo"
+		   	parameterType="map" resultType="Integer">
+		SELECT ps.product_selected_no
+ 		  FROM cart c
+ 		  JOIN product_selected ps
+   			ON c.cart_no = ps.cart_no
+		  JOIN product_selected_detail psd
+		    ON ps.product_selected_no=psd.product_selected_no
+		 WHERE c.customer_no = #{customerNo}
+	     	   AND c.product_no = #{productNo}
+ 		 GROUP BY ps.product_selected_no
+	</select>
+	
+	
+	<!-- 선택된 제품 옵션 수정 (추후 추가 예정)-->
+	<update id="updateByProductSelected">
 		UPDATE product_selected ps
 		   SET ps.product_option_detail_no = #{productOptionDetailNo}
 		 WHERE ps.product_option_detail_no IN (
@@ -59,64 +88,85 @@
 	</update>
 
 	<!-- 카트 수량 수정 -->
-	<update id="update" parameterType="Cart">
+	<update id="updateCartQty" parameterType="map">
 		UPDATE cart
 		   SET cart_qty = #{cartQty}
 		 WHERE cart_no = #{cartNo}
 	</update>
-
+	
+	<!-- 카트 수량 1개 증가 -->
+	<update id="increaseCartQtyByOne" parameterType="int">
+		UPDATE cart
+		   SET cart_qty = cart_qty+1
+		 WHERE cart_no = #{cartNo}
+	</update>
+	
+	<!-- 카트 수량 1개 감소 -->
+	<update id="decreaseCartQtyByOne" parameterType="int">
+		UPDATE cart
+		   SET cart_qty = cart_qty-1
+		 WHERE cart_no = #{cartNo}
+	</update>
+	
+	
+	
 	<!-- 카트 1개 삭제 -->
 	<delete id="deleteByCartNo" parameterType="int">
 		DELETE FROM cart
 		 WHERE cart_no = #{cartNo}
 	</delete>
-
+	
 	<!-- 카트 전체 삭제 -->
 	<delete id="deleteByCustomerNo" parameterType="int">
 		DELETE FROM cart
-		WHERE customer_no = #{customerNo}
+		 WHERE customer_no = #{customerNo}
 	</delete>
 
-	<!-- 카트 전체 리스트(어드민) -->
+
+
+	<!-- 카트 전체 리스트 반환 (어드민) -->
 	<select id="findAll">
 		SELECT * FROM cart
 	</select>
 
-	<!-- 카트 리스트(회원) -->
-	<select id="findByCustomerNo" parameterType="int" resultMap="cartMapProductSelected">
-		SELECT c.cart_no, c.cart_qty,
-			   ps.product_selected_no,
-			   pod.product_option_detail_no, pod.product_option_detail_name, pod.product_option_detail_no, pod.product_option_detail_price,
-			   po.product_option_no, po.product_option_type,
-			   p.product_no, p.product_name, p.product_price
+	<!-- 회원 번호 기준 카트 리스트 반환 -->
+	<select id="findByCustomerNo" parameterType="int" resultMap="cartMap">
+		SELECT c.cart_no, c.product_no, p.product_name, c.cart_qty, p.product_price, pi.product_image_no, pi.product_image_file,
+     		   ps.product_selected_no, psd.product_selected_detail_no, po.product_option_no, po.product_option_type, pod.product_option_detail_no, pod.product_option_detail_name, pod.product_option_detail_price
 		  FROM cart c
-		  LEFT JOIN product_selected ps
-		    ON c.cart_no = ps.cart_no
-		  LEFT JOIN product_option_detail pod
-			ON ps.product_option_detail_no = pod.product_option_detail_no
-		  LEFT JOIN product_option po
-			ON pod.product_option_no = po.product_option_no
-		  LEFT JOIN product p
-			ON po.product_no = p.product_no
-		 WHERE c.customer_no = #{customerNo}
+		  JOIN product p
+		    ON p.product_no=c.product_no
+		  JOIN product_image pi
+		    ON p.product_no=pi.product_no
+		  JOIN product_selected ps
+		    ON c.cart_no=ps.cart_no
+		  JOIN product_selected_detail psd
+		    ON ps.product_selected_no=psd.product_selected_no
+		  JOIN product_option_detail pod
+		    ON psd.product_option_detail_no=pod.product_option_detail_no
+		  JOIN product_option po
+		    ON pod.product_option_no=po.product_option_no
+		 WHERE c.customer_no=#{customerNo}
 	</select>
 
-	<!-- 카트 한개 선택(회원) -->
-	<select id="findByCartNo" parameterType="int" resultMap="cartMapProductSelected">
-		SELECT c.cart_no, c.cart_qty,
-			   ps.product_selected_no, 
-			   ps.product_selected_name,
-			   ps.product_selected_price,
-			   pod.product_option_detail_no, pod.product_option_detail_name, pod.product_option_detail_no, pod.product_option_detail_price,
-			   po.product_no, po.product_option_type
+	<!-- 카트 번호 기준 카트 정보 반환 -->
+	<select id="findByCartNo" parameterType="int" resultMap="cartMap">
+		SELECT c.cart_no, c.product_no, p.product_name, c.cart_qty, p.product_price, pi.product_image_no, pi.product_image_file,
+     		   ps.product_selected_no, psd.product_selected_detail_no, po.product_option_no, po.product_option_type, pod.product_option_detail_no, pod.product_option_detail_name, pod.product_option_detail_price
 		  FROM cart c
-		  LEFT JOIN product_selected ps
-			ON c.cart_no = ps.cart_no
-		  LEFT JOIN product_option_detail pod
-			ON ps.product_option_detail_no = pod.product_option_detail_no
-		  LEFT JOIN product_option po
-			ON pod.product_option_no = po.product_option_no
-		 WHERE c.cart_no= #{cartNo}
+		  JOIN product p
+		    ON p.product_no=c.product_no
+		  JOIN product_image pi
+		    ON p.product_no=pi.product_no
+		  JOIN product_selected ps
+		    ON c.cart_no=ps.cart_no
+		  JOIN product_selected_detail psd
+		    ON ps.product_selected_no=psd.product_selected_no
+		  JOIN product_option_detail pod
+		    ON psd.product_option_detail_no=pod.product_option_detail_no
+		  JOIN product_option po
+		    ON pod.product_option_no=po.product_option_no
+		 WHERE c.cart_no=#{cartNo}
 	</select>
 
 

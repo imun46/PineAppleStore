@@ -3,7 +3,7 @@
 <mapper namespace="com.itwill.shop.mapper.ProductMapper">
 
 	<!--Product 기본 맵-->
-	<resultMap id="productMapBasic" type="Product" autoMapping="true">
+	<resultMap id="productMapBasic" type="Product" autoMapping="false">
 		<id column="PRODUCT_NO" property="productNo"/>
 		<result column="PRODUCT_NAME" property="productName"/>
 		<result column="PRODUCT_PRICE" property="productPrice"/>
@@ -13,8 +13,7 @@
 		<result column="PRODUCT_STATUS" property="productStatus"/>
 	</resultMap>
 	
-	<!--Product 맵 Product_Image 맵 포함-->
-	<resultMap id="productMapImage" type="Product" autoMapping="true">
+	<resultMap id="productMapImage" type="Product" autoMapping="false">
 		<id column="PRODUCT_NO" property="productNo"/>
 		<result column="PRODUCT_NAME" property="productName"/>
 		<result column="PRODUCT_PRICE" property="productPrice"/>
@@ -29,36 +28,8 @@
 		
 	</resultMap>
 	
-	<!--Product 맵 Product_Image, Product_Option, Product_Review 맵 포함-->
-	<resultMap id="productMapDetail" type="Product" autoMapping="true">
-		<id column="PRODUCT_NO" property="productNo"/>
-		<result column="PRODUCT_NAME" property="productName"/>
-		<result column="PRODUCT_PRICE" property="productPrice"/>
-		<result column="PRODUCT_CATEGORY" property="productCategory"/>
-		<result column="PRODUCT_DETAILPAGE" property="productDetailpage"/>
-		<result column="PRODUCT_DESC" property="productDesc"/>
-		<result column="PRODUCT_STATUS" property="productStatus"/>
-
-		<collection property="productImageList" ofType="ProductImage"
-					resultMap="com.itwill.shop.mapper.ProductImageMapper.productImageMapBasic">
-		</collection>
-		
-		<collection property="productOptionList" ofType="ProductOption"
-					resultMap="com.itwill.shop.mapper.ProductOptionMapper.productOptionMapDetail">
-		</collection>
-		
-		<collection property="productReviewList" ofType="Review"
-					resultMap="com.itwill.shop.mapper.ReviewMapper.reviewMapCustomer">
-		</collection>
-		
-	</resultMap>
-	
-
-
-	
-	
-	<!--전체 제품 리스트 뽑기-->
-	<select id="selectAll" resultMap="productMapImage">
+	<!--전체 제품 리스트 반환-->
+	<select id="findAll" resultMap="productMapImage">
 		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
        		   pi.product_image_no, pi.product_image_file
   		  FROM product p
@@ -67,7 +38,7 @@
 	</select>
 	
 	<!--판매 중인 제품 리스트 뽑기 (품절 제품 포함)-->
-	<select id="selectAllOnSale" resultMap="productMapImage">
+	<select id="findAllOnSale" resultMap="productMapImage">
 		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
       		   pi.product_image_no, pi.product_image_file
   		  FROM product p
@@ -77,7 +48,7 @@
 	</select>
 	
 	<!--판매 중인 제품 리스트 뽑기 (품절 제품 제외)-->
-	<select id="selectAllOnSaleExclOOS" resultMap="productMapImage">
+	<select id="findAllOnSaleExclOOS" resultMap="productMapImage">
 		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
       		   pi.product_image_no, pi.product_image_file
   		  FROM product p
@@ -87,18 +58,18 @@
 	</select>
 	
 	<!--판매 중인 제품 리스트 카테고리 검색 (품절 제품 포함)-->
-	<select id="selectByCategoryOnSale" parameterType="String" resultMap="productMapImage">
+	<select id="findByCategoryOnSale" parameterType="String" resultMap="productMapImage">
 		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
        		   pi.product_image_no, pi.product_image_file
   		  FROM product p
  		  JOIN product_image pi
  		    ON p.product_no=pi.product_no
 		 WHERE p.product_status!='inactive'
- 		   AND p.product_category like '${productCategory}'
+ 		   AND p.product_category='${productCategory}'
 	</select>
 	
 	<!--판매 중인 제품 리스트 이름으로 검색 (품절 제품 포함)-->
-	<select id="selectByNameOnSale" parameterType="String" resultMap="productMapImage">
+	<select id="findByNameOnSale" parameterType="String" resultMap="productMapImage">
 		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_desc, p.product_status,
        		   pi.product_image_no, pi.product_image_file
   		  FROM product p
@@ -109,26 +80,15 @@
 	</select>
 	
 	<!--제품 상세 내용-->
-	<select id="selectByNo" parameterType="int" resultMap="productMapDetail">
+	<select id="findByNo" parameterType="int" resultMap="productMapImage">
 		SELECT p.product_no, p.product_name, p.product_price, p.product_category, p.product_detailpage, p.product_desc, p.product_status,
-       		   pi.product_image_no, pi.product_image_file,
-      		   po.product_option_no, po.product_option_type,
-    		   pod.product_option_detail_no, pod.product_option_detail_name, pod.product_option_detail_price,
-    		   r.review_no, r.review_title, r.review_content, r.review_image, r.review_rating,
-    		   c.customer_no, c.customer_id, c.customer_nickname
+       		   pi.product_image_no, pi.product_image_file
  		  FROM product p
 		  LEFT JOIN product_image pi
   		    ON p.product_no=pi.product_no
-  		  LEFT JOIN product_option po
-   		    ON p.product_no=po.product_no
-  		  LEFT JOIN product_option_detail pod
-  		    ON po.product_option_no=pod.product_option_no
- 		  LEFT JOIN review r
- 		    ON p.product_no=r.product_no
- 		  LEFT JOIN customer c
- 		    ON r.customer_no=c.customer_no
 		 WHERE p.product_no=${productNo}
 	</select>
+	
 	
 	
 	

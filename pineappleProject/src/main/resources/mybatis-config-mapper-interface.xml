@@ -13,18 +13,8 @@
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.itwill.shop.cart.Cart" alias="Cart" />
-		<typeAlias type="com.itwill.shop.cart.ProductSelected" alias="ProductSelected" />
-		<typeAlias type="com.itwill.shop.coupon.Coupon" alias="Coupon" />
-		<typeAlias type="com.itwill.shop.customer.Customer" alias="Customer" />
-		<typeAlias type="com.itwill.shop.customer.CustomerCoupons" alias="CustomerCoupons" />
-		<typeAlias type="com.itwill.shop.orders.Orders" alias="Orders" />
-		<typeAlias type="com.itwill.shop.orders.OrdersItems" alias="OrdersItems" />
-		<typeAlias type="com.itwill.shop.product.Product" alias="Product" />
-		<typeAlias type="com.itwill.shop.product.ProductImage" alias="ProductImage" />
-		<typeAlias type="com.itwill.shop.product.ProductOption" alias="ProductOption" />
-		<typeAlias type="com.itwill.shop.product.ProductOptionDetail" alias="ProductOptionDetail" />
-		<typeAlias type="com.itwill.shop.review.Review" alias="Review" />
+		<!-- domain파일 alias -->
+        <package name="com.itwill.shop.domain" />
 	</typeAliases>
 		<environments default="development">
 		<environment id="development">
@@ -44,38 +34,20 @@
 		</environment>
 	</environments>
 	<mappers>
-		   <!-- <mapper class="com.itwill.shop.mapper.CartMapper" />
-      <mapper class="com.itwill.shop.mapper.CouponMapper" />
-      <mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
-      <mapper class="com.itwill.shop.mapper.CustomerMapper" />
-      <mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
-      <mapper class="com.itwill.shop.mapper.OrdersMapper" />
-      <mapper class="com.itwill.shop.mapper.ProductImageMapper" />
-      <mapper class="com.itwill.shop.mapper.ProductMapper" />
-      <mapper class="com.itwill.shop.mapper.ProductOptionDetailMapper" />
-      <mapper class="com.itwill.shop.mapper.ProductOptionMapper" />
-      <mapper class="com.itwill.shop.mapper.ProductSelectedMapper" />
-      -->
-
-
-		<mapper class="com.itwill.shop.mapper.CartMapper" />
-		<mapper class="com.itwill.shop.mapper.CouponMapper" />
-		<mapper class="com.itwill.shop.mapper.CustomerCouponsMapper" />
-		<mapper class="com.itwill.shop.mapper.CustomerMapper" />
-		<mapper class="com.itwill.shop.mapper.OrdersMapper" />
-		<mapper class="com.itwill.shop.mapper.ProductMapper" />
-      	<mapper class="com.itwill.shop.mapper.ReviewMapper" />
-      	
-		<mapper resource="com/itwill/shop/mapper/OrdersItemsMapper.xml" />
-		<mapper resource="com/itwill/shop/mapper/ProductSelectedMapper.xml" />
+		<!-- XML 파일 매핑 -->
 		<mapper resource="com/itwill/shop/mapper/ProductImageMapper.xml" />
-		<mapper resource="com/itwill/shop/mapper/ProductOptionMapper.xml" />
 		<mapper resource="com/itwill/shop/mapper/ProductOptionDetailMapper.xml" />
 		<mapper resource="com/itwill/shop/mapper/ProductSelectedMapper.xml" />
+		<mapper resource="com/itwill/shop/mapper/ProductSelectedDetailMapper.xml" />
+		<mapper resource="com/itwill/shop/mapper/OrdersItemsMapper.xml" />
 
+		<!-- 자바 파일 매핑 -->
+		<package name="com.itwill.shop.mapper" />
 	</mappers>
 </configuration>
 <!-- 
+		<mapper resource="com/itwill/shop/mapper/ProductOptionMapper.xml" />
+		<mapper resource="com/itwill/shop/mapper/OrdersItemsMapper.xml" />
 		<mapper class="com.itwill.shop.mapper.OrdersItemsMapper" />
 		<mapper resource="com/itwill/shop/mapper/ReviewMapper.xml" />
 		<mapper class="com.itwill.shop.mapper.ProductSelectedMapper" />

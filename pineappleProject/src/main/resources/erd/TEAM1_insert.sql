@@ -1,82 +1,82 @@
 --CUSTOMER insert
 INSERT INTO CUSTOMER (CUSTOMER_NO,CUSTOMER_ID,CUSTOMER_PASSWORD,CUSTOMER_NAME,CUSTOMER_DOB,CUSTOMER_ADDRESS,CUSTOMER_GENDER,CUSTOMER_PHONE,CUSTOMER_EMAIL,CUSTOMER_NICKNAME,CUSTOMER_JOINDATE) 
-VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX1','123456','ê¹€ì¼ì¼','2001-01-01','ì„œìš¸ì‹œ ê°•ë‚¨êµ¬','M','010-1111-1111','1111@naver.com','ì¼ë“±ì‚¬ëŒ',sysdate);
+VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX1','123456','±èÀÏÀÏ','2001-01-01','¼­¿ï½Ã °­³²±¸','M','010-1111-1111','1111@naver.com','ÀÏµî»ç¶÷',sysdate);
 INSERT INTO CUSTOMER (CUSTOMER_NO,CUSTOMER_ID,CUSTOMER_PASSWORD,CUSTOMER_NAME,CUSTOMER_DOB,CUSTOMER_ADDRESS,CUSTOMER_GENDER,CUSTOMER_PHONE,CUSTOMER_EMAIL,CUSTOMER_NICKNAME,CUSTOMER_JOINDATE) 
-VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX2','123456','ê¹€íˆ¬íˆ¬','2001-02-02','ì„œìš¸ì‹œ ê°•ì´êµ¬','W','010-2222-2222','2222@naver.com','ì´ë“±ì‚¬ëŒ',sysdate);
+VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX2','123456','±èÅõÅõ','2001-02-02','¼­¿ï½Ã °­ÀÌ±¸','W','010-2222-2222','2222@naver.com','ÀÌµî»ç¶÷',sysdate);
 INSERT INTO CUSTOMER (CUSTOMER_NO,CUSTOMER_ID,CUSTOMER_PASSWORD,CUSTOMER_NAME,CUSTOMER_DOB,CUSTOMER_ADDRESS,CUSTOMER_GENDER,CUSTOMER_PHONE,CUSTOMER_EMAIL,CUSTOMER_NICKNAME,CUSTOMER_JOINDATE) 
-VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX3','123456','ê¹€ì‚¼ì‚¼','2001-03-03','ì„œìš¸ì‹œ ê°•ì‚¼êµ¬','W','010-3333-3333','3333@naver.com','ì‚¼ì‚¬ëŒì‚¬ëŒ',sysdate);
+VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX3','123456','±è»ï»ï','2001-03-03','¼­¿ï½Ã °­»ï±¸','W','010-3333-3333','3333@naver.com','»ï»ç¶÷»ç¶÷',sysdate);
 INSERT INTO CUSTOMER (CUSTOMER_NO,CUSTOMER_ID,CUSTOMER_PASSWORD,CUSTOMER_NAME,CUSTOMER_DOB,CUSTOMER_ADDRESS,CUSTOMER_GENDER,CUSTOMER_PHONE,CUSTOMER_EMAIL,CUSTOMER_NICKNAME,CUSTOMER_JOINDATE) 
-VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX4','123456','ê¹€í¬í¬','2001-04-04','ì„œìš¸ì‹œ ê°•í¬êµ¬','M','010-4444-4444','4444@naver.com','ë„¤ëª…ë“±ì‚¬ëŒ',sysdate);
+VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX4','123456','±èÆ÷Æ÷','2001-04-04','¼­¿ï½Ã °­Æ÷±¸','M','010-4444-4444','4444@naver.com','³×¸íµî»ç¶÷',sysdate);
 INSERT INTO CUSTOMER (CUSTOMER_NO,CUSTOMER_ID,CUSTOMER_PASSWORD,CUSTOMER_NAME,CUSTOMER_DOB,CUSTOMER_ADDRESS,CUSTOMER_GENDER,CUSTOMER_PHONE,CUSTOMER_EMAIL,CUSTOMER_NICKNAME,CUSTOMER_JOINDATE) 
-VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX5','123456','ê¹€ì˜¤ì˜¤','2001-04-04','ì„œìš¸ì‹œ ê°•ì˜¤êµ¬','M','010-5555-5555','5555@naver.com','ì˜¤ì‹ì´ë“±ì‚¬ëŒ',sysdate);
+VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX5','123456','±è¿À¿À','2001-04-04','¼­¿ï½Ã °­¿À±¸','M','010-5555-5555','5555@naver.com','¿À½ÄÀÌµî»ç¶÷',sysdate);
 
 
 --COUPON insert
 INSERT INTO COUPON (COUPON_NO,COUPON_NAME,COUPON_ID,COUPON_DISCOUNT,COUPON_DESC) 
-VALUES (COUPON_COUPON_NO_SEQ.nextval,'30% í• ì¸ì¿ í°','A123456','30','ì „ìì œí’ˆ ì „ í’ˆëª© 30% í• ì¸ ì¿ í°ì…ë‹ˆë‹¤');
+VALUES (COUPON_COUPON_NO_SEQ.nextval,'30% ÇÒÀÎÄíÆù','A123456','30','ÀüÀÚÁ¦Ç° Àü Ç°¸ñ 30% ÇÒÀÎ ÄíÆùÀÔ´Ï´Ù');
 INSERT INTO COUPON (COUPON_NO,COUPON_NAME,COUPON_ID,COUPON_DISCOUNT,COUPON_DESC) 
-VALUES (COUPON_COUPON_NO_SEQ.nextval,'25% í• ì¸ì¿ í°','B123456','25','ì „ìì œí’ˆ ì „ í’ˆëª© 25% í• ì¸ ì¿ í°ì…ë‹ˆë‹¤');
+VALUES (COUPON_COUPON_NO_SEQ.nextval,'25% ÇÒÀÎÄíÆù','B123456','25','ÀüÀÚÁ¦Ç° Àü Ç°¸ñ 25% ÇÒÀÎ ÄíÆùÀÔ´Ï´Ù');
 INSERT INTO COUPON (COUPON_NO,COUPON_NAME,COUPON_ID,COUPON_DISCOUNT,COUPON_DESC) 
-VALUES (COUPON_COUPON_NO_SEQ.nextval,'20% í• ì¸ì¿ í°','C123456','20','ì „ìì œí’ˆ ì „ í’ˆëª© 20% í• ì¸ ì¿ í°ì…ë‹ˆë‹¤');
+VALUES (COUPON_COUPON_NO_SEQ.nextval,'20% ÇÒÀÎÄíÆù','C123456','20','ÀüÀÚÁ¦Ç° Àü Ç°¸ñ 20% ÇÒÀÎ ÄíÆùÀÔ´Ï´Ù');
 INSERT INTO COUPON (COUPON_NO,COUPON_NAME,COUPON_ID,COUPON_DISCOUNT,COUPON_DESC) 
-VALUES (COUPON_COUPON_NO_SEQ.nextval,'15% í• ì¸ì¿ í°','D123456','15','ì „ìì œí’ˆ ì „ í’ˆëª© 15% í• ì¸ ì¿ í°ì…ë‹ˆë‹¤');
+VALUES (COUPON_COUPON_NO_SEQ.nextval,'15% ÇÒÀÎÄíÆù','D123456','15','ÀüÀÚÁ¦Ç° Àü Ç°¸ñ 15% ÇÒÀÎ ÄíÆùÀÔ´Ï´Ù');
 INSERT INTO COUPON (COUPON_NO,COUPON_NAME,COUPON_ID,COUPON_DISCOUNT,COUPON_DESC) 
-VALUES (COUPON_COUPON_NO_SEQ.nextval,'10% í• ì¸ì¿ í°','E123456','10','ì „ìì œí’ˆ ì „ í’ˆëª© 10% í• ì¸ ì¿ í°ì…ë‹ˆë‹¤');
+VALUES (COUPON_COUPON_NO_SEQ.nextval,'10% ÇÒÀÎÄíÆù','E123456','10','ÀüÀÚÁ¦Ç° Àü Ç°¸ñ 10% ÇÒÀÎ ÄíÆùÀÔ´Ï´Ù');
 INSERT INTO COUPON (COUPON_NO,COUPON_NAME,COUPON_ID,COUPON_DISCOUNT,COUPON_DESC)
-VALUES (COUPON_COUPON_NO_SEQ.nextval,'5% í• ì¸ì¿ í°','F123456','5','ì „ìì œí’ˆ ì „ í’ˆëª© 5% í• ì¸ ì¿ í°ì…ë‹ˆë‹¤');
+VALUES (COUPON_COUPON_NO_SEQ.nextval,'5% ÇÒÀÎÄíÆù','F123456','5','ÀüÀÚÁ¦Ç° Àü Ç°¸ñ 5% ÇÒÀÎ ÄíÆùÀÔ´Ï´Ù');
 
 
 --CUSTOMER_COUPONS insert
-insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/09/30', 'ì‚¬ìš©ë¶ˆê°€',1,1);
-insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/09/30', 'ì‚¬ìš©ë¶ˆê°€',2,2);
-insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/10/31', 'ì‚¬ìš©ê°€ëŠ¥',3,3);
-insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/10/31', 'ì‚¬ìš©ê°€ëŠ¥',4,4);
+insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/09/30', '»ç¿ëºÒ°¡',1,1);
+insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/09/30', '»ç¿ëºÒ°¡',2,2);
+insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/10/31', '»ç¿ë°¡´É',3,3);
+insert into customer_coupons VALUES(CUSTOMER_COUPONS_CUSTOMER_COUPONS_NO_SEQ.nextval,'2024/10/31', '»ç¿ë°¡´É',4,4);
 
 
 
 
 
 --PRODUCT insert
---íŒë§¤ ì¤‘(ì¬ê³  ìˆìŒ) : íŒë§¤ì¤‘
---íŒë§¤ ì¤‘(ì¬ê³  ì—†ìŒ) : OOS
---íŒë§¤ ì¤‘ì§€		: íŒë§¤ì¤‘ì§€
+--ÆÇ¸Å Áß(Àç°í ÀÖÀ½) : ÆÇ¸ÅÁß
+--ÆÇ¸Å Áß(Àç°í ¾øÀ½) : OOS
+--ÆÇ¸Å ÁßÁö      : ÆÇ¸ÅÁßÁö
 
---í•¸ë“œí°, ë…¸íŠ¸ë¶, íŒ¨ë“œ, ì›Œì¹˜, ì´ì–´í°, ì•…ì„¸ì„œë¦¬
+--ÇÚµåÆù, ³ëÆ®ºÏ, ÆĞµå, ¿öÄ¡, ÀÌ¾îÆù, ¾Ç¼¼¼­¸®
 
---í•¸ë“œí°
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì•„ì´í°14','950000','phone','dp_iphone_14','phone14 description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì•„ì´í°15','1090000','phone','dp_iphone_15','phone15 description','OOS');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì•„ì´í°16','1250000','phone','dp_iphone_16','phone16 description','íŒë§¤ì¤‘');
+--ÇÚµåÆù
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¾ÆÀÌÆù14','950000','phone','dp_iphone_14','phone14 description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¾ÆÀÌÆù15','1090000','phone','dp_iphone_15','phone15 description','OOS');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¾ÆÀÌÆù16','1250000','phone','dp_iphone_16','phone16 description','active');
 
---ë…¸íŠ¸ë¶
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ë§¥ë¶ ì—ì–´','12500000','laptop','dp_laptop_air','air description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ë§¥ë¶ í”„ë¡œ','22500000','laptop','dp_laptop_pro','pro description','íŒë§¤ì¤‘');
+--³ëÆ®ºÏ
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¸ÆºÏ ¿¡¾î','12500000','laptop','dp_laptop_air','air description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¸ÆºÏ ÇÁ·Î','22500000','laptop','dp_laptop_pro','pro description','active');
 
---íŒ¨ë“œ
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì•„ì´íŒ¨ë“œ','1250000','pad','dp_pad_basic','basic pad description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì•„ì´íŒ¨ë“œ ì—ì–´','1250000','pad','dp_pad_air','air pad description','OOS');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì•„ì´íŒ¨ë“œ í”„ë¡œ','1250000','pad','dp_pad_pro','pro pad description','íŒë§¤ì¤‘');
+--ÆĞµå
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¾ÆÀÌÆĞµå','1250000','pad','dp_pad_basic','basic pad description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¾ÆÀÌÆĞµå ¿¡¾î','1250000','pad','dp_pad_air','air pad description','OOS');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¾ÆÀÌÆĞµå ÇÁ·Î','1250000','pad','dp_pad_pro','pro pad description','active');
 
---ì›Œì¹˜
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì•„ì´ì›Œì¹˜','1250000','watch','dp_watch_basic','iwatch description','OOS');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì•„ì´ì›Œì¹˜ SE','1250000','watch','dp_watch_SE','iwatch SE description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì•„ì´ì›Œì¹˜ Ultra','1250000','watch','dp_watch_Ultra','iwatch Ultra description','íŒë§¤ì¤‘');
+--¿öÄ¡
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¾ÆÀÌ¿öÄ¡','1250000','watch','dp_watch_basic','iwatch description','OOS');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¾ÆÀÌ¿öÄ¡ SE','1250000','watch','dp_watch_SE','iwatch SE description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¾ÆÀÌ¿öÄ¡ Ultra','1250000','watch','dp_watch_Ultra','iwatch Ultra description','active');
 
---ì´ì–´í°
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì—ì–´íŒŸ','1250000','earphone','dp_airpod_basic','airpod description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì—ì–´íŒŸ í”„ë¡œ','1250000','earphone','dp_airpod_pro','airpod pro description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì—ì–´íŒŸ ë§¥ìŠ¤','1250000','earphone','dp_airpod_max','airpod max description','íŒë§¤ì¤‘');
+--ÀÌ¾îÆù
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¿¡¾îÆÌ','1250000','earphone','dp_airpod_basic','airpod description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¿¡¾îÆÌ ÇÁ·Î','1250000','earphone','dp_airpod_pro','airpod pro description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¿¡¾îÆÌ ¸Æ½º','1250000','earphone','dp_airpod_max','airpod max description','active');
 
---ì•…ì„¸ì„œë¦¬
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'USB C-type','1250000','accessories','dp_USB_C-type','USB C-type description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ë§¤ì§ í‚¤ë³´ë“œ','1250000','accessories','dp_magickeyboard','magickeyboard description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'í•¸ë“œí° ì¼€ì´ìŠ¤','1250000','accessories','dp_phone_case','phone case description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ì›Œì¹˜ ë°´ë“œ','1250000','accessories','dp_watch_band_case','watch band description','íŒë§¤ì¤‘');
-INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'í•¸ë“œí° ê°•í™”í•„ë¦„','1250000','accessories','dp_phone_sp_case','phone screen protector description','íŒë§¤ì¤‘');
+--¾Ç¼¼¼­¸®
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'USB C-type','1250000','accessories','dp_USB_C-type','USB C-type description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¸ÅÁ÷ Å°º¸µå','1250000','accessories','dp_magickeyboard','magickeyboard description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ÇÚµåÆù ÄÉÀÌ½º','1250000','accessories','dp_phone_case','phone case description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'¿öÄ¡ ¹êµå','1250000','accessories','dp_watch_band_case','watch band description','active');
+INSERT INTO product VALUES (PRODUCT_PRODUCT_NO_SEQ.NEXTVAL,'ÇÚµåÆù °­È­ÇÊ¸§','1250000','accessories','dp_phone_sp_case','phone screen protector description','active');
 
 
 --PRODUCT_IMAGE insert
---í•¸ë“œí° ì‚¬ì§„
+--ÇÚµåÆù »çÁø
 INSERT INTO product_image values (product_image_product_image_no_seq.nextval, 'product_1_image_1', 1);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_1_image_2', 1);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_1_image_3', 1);
@@ -86,14 +86,14 @@ insert into product_image values (product_image_product_image_no_seq.nextval, 'p
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_3_image_2', 3);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_3_image_3', 3);
 
---ë…¸íŠ¸ë¶ ì‚¬ì§„
+--³ëÆ®ºÏ »çÁø
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_4_image_1', 4);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_4_image_2', 4);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_5_image_1', 5);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_5_image_2', 5);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_5_image_3', 5);
 
---íŒ¨ë“œ ì‚¬ì§„
+--ÆĞµå »çÁø
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_6_image_1', 6);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_6_image_2', 6);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_6_image_3', 6);
@@ -103,7 +103,7 @@ insert into product_image values (product_image_product_image_no_seq.nextval, 'p
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_8_image_2', 8);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_8_image_3', 8);
 
---ì›Œì¹˜ ì‚¬ì§„
+--¿öÄ¡ »çÁø
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_9_image_1', 9);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_9_image_2', 9);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_10_image_1', 10);
@@ -112,7 +112,7 @@ insert into product_image values (product_image_product_image_no_seq.nextval, 'p
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_11_image_2', 11);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_11_image_3', 11);
 
---ì´ì–´í° ì‚¬ì§„
+--ÀÌ¾îÆù »çÁø
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_12_image_1', 12);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_13_image_1', 13);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_13_image_2', 13);
@@ -120,7 +120,7 @@ insert into product_image values (product_image_product_image_no_seq.nextval, 'p
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_14_image_2', 14);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_14_image_3', 14);
 
---ì•…ì„¸ì„œë¦¬ ì‚¬ì§„
+--¾Ç¼¼¼­¸® »çÁø
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_15_image_1', 15);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_15_image_2', 15);
 insert into product_image values (product_image_product_image_no_seq.nextval, 'product_16_image_1', 16);
@@ -135,66 +135,66 @@ insert into product_image values (product_image_product_image_no_seq.nextval, 'p
 
 
 --PRODUCT_OPTION insert
---í•¸ë“œí°
-insert into product_option values(product_option_product_option_no_seq.nextval,'ëª¨ë¸',1);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',1);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìš©ëŸ‰',1);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ëª¨ë¸',2);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',2);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìš©ëŸ‰',2);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ëª¨ë¸',3);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',3);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìš©ëŸ‰',3);
+--ÇÚµåÆù
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸ğµ¨',1);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',1);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¿ë·®',1);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸ğµ¨',2);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',2);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¿ë·®',2);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸ğµ¨',3);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',3);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¿ë·®',3);
 
---ë…¸íŠ¸ë¶
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì¹©',4);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',4);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë©”ëª¨ë¦¬',4);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë¨',4);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì‚¬ì´ì¦ˆ',4);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì¹©',5);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',5);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë©”ëª¨ë¦¬',5);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë¨',5);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì‚¬ì´ì¦ˆ',5);
+--³ëÆ®ºÏ
+insert into product_option values(product_option_product_option_no_seq.nextval,'Ä¨',4);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',4);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸Ş¸ğ¸®',4);
+insert into product_option values(product_option_product_option_no_seq.nextval,'·¥',4);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»çÀÌÁî',4);
+insert into product_option values(product_option_product_option_no_seq.nextval,'Ä¨',5);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',5);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸Ş¸ğ¸®',5);
+insert into product_option values(product_option_product_option_no_seq.nextval,'·¥',5);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»çÀÌÁî',5);
 
---íŒ¨ë“œ
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',6);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë©”ëª¨ë¦¬',6);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë¨',6);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',7);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë©”ëª¨ë¦¬',7);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë¨',7);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',8);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë©”ëª¨ë¦¬',8);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ë¨',8);
+--ÆĞµå
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',6);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸Ş¸ğ¸®',6);
+insert into product_option values(product_option_product_option_no_seq.nextval,'·¥',6);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',7);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸Ş¸ğ¸®',7);
+insert into product_option values(product_option_product_option_no_seq.nextval,'·¥',7);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',8);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸Ş¸ğ¸®',8);
+insert into product_option values(product_option_product_option_no_seq.nextval,'·¥',8);
 
---ì›Œì¹˜
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',9);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì‚¬ì´ì¦ˆ',9);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì¼€ì´ìŠ¤',9);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',10);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì‚¬ì´ì¦ˆ',10);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì¼€ì´ìŠ¤',10);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',11);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì‚¬ì´ì¦ˆ',11);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì¼€ì´ìŠ¤',11);
+--¿öÄ¡
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',9);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»çÀÌÁî',9);
+insert into product_option values(product_option_product_option_no_seq.nextval,'ÄÉÀÌ½º',9);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',10);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»çÀÌÁî',10);
+insert into product_option values(product_option_product_option_no_seq.nextval,'ÄÉÀÌ½º',10);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',11);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»çÀÌÁî',11);
+insert into product_option values(product_option_product_option_no_seq.nextval,'ÄÉÀÌ½º',11);
 
---ì´ì–´í°
+--ÀÌ¾îÆù
 
---ì•…ì„¸ì„œë¦¬
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì‹œë¦¬ì¦ˆ',17);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ëª¨ë¸',17);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',17);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ëª¨ë¸',18);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì‚¬ì´ì¦ˆ',18);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ìƒ‰ìƒ',18);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ì‹œë¦¬ì¦ˆ',19);
-insert into product_option values(product_option_product_option_no_seq.nextval,'ëª¨ë¸',19);
+--¾Ç¼¼¼­¸®
+insert into product_option values(product_option_product_option_no_seq.nextval,'½Ã¸®Áî',17);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸ğµ¨',17);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',17);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸ğµ¨',18);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»çÀÌÁî',18);
+insert into product_option values(product_option_product_option_no_seq.nextval,'»ö»ó',18);
+insert into product_option values(product_option_product_option_no_seq.nextval,'½Ã¸®Áî',19);
+insert into product_option values(product_option_product_option_no_seq.nextval,'¸ğµ¨',19);
 
 --PRODUCT_OPTION_DETAIL insert
---í•¸ë“œí°
---í•¸ë“œí°: ì•„ì´í°14
+--ÇÚµåÆù
+--ÇÚµåÆù: ¾ÆÀÌÆù14
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Basic',0,1);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Pro',200000,1);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Pro Max',300000,1);
@@ -204,7 +204,7 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'256GB',0,3);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'512GB',300000,3);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'1T',500000,3);
---í•¸ë“œí°: ì•„ì´í°15
+--ÇÚµåÆù: ¾ÆÀÌÆù15
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Basic',0,4);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Pro',200000,4);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Pro Max',300000,4);
@@ -214,7 +214,7 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'256GB',0,6);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'512GB',300000,6);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'1T',500000,6);
---í•¸ë“œí°: ì•„ì´í°16
+--ÇÚµåÆù: ¾ÆÀÌÆù16
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Basic',0,7);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Pro',200000,7);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Pro Max',300000,7);
@@ -225,8 +225,8 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'512GB',300000,9);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'1T',500000,9);
 
---ë…¸íŠ¸ë¶
---ë…¸íŠ¸ë¶: 
+--³ëÆ®ºÏ
+--³ëÆ®ºÏ: 
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'M2',0,10);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'M3',500000,10);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Space Gray',0,11);
@@ -252,8 +252,8 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'13inch',0,19);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'15inch',600000,19);
 
---íŒ¨ë“œ
---íŒ¨ë“œ: ê¸°ë³¸
+--ÆĞµå
+--ÆĞµå: ±âº»
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Space Gray',0,20);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Silver',0,20);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'64GB',0,21);
@@ -261,7 +261,7 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'16GB',0,22);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'32GB',200000,22);
 
---íŒ¨ë“œ: ì—ì–´
+--ÆĞµå: ¿¡¾î
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Space Gray',0,23);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Silver',0,23);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'64GB',0,24);
@@ -269,7 +269,7 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'16GB',0,25);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'32GB',300000,25);
 
---íŒ¨ë“œ: í”„ë¡œ
+--ÆĞµå: ÇÁ·Î
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Space Gray',0,26);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Silver',0,26);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'64GB',0,27);
@@ -278,8 +278,8 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'32GB',400000,28);
 
 
---ì›Œì¹˜
---ì›Œì¹˜: ê¸°ë³¸
+--¿öÄ¡
+--¿öÄ¡: ±âº»
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Space Gray',0,29);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Silver',0,29);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'S',0,30);
@@ -288,7 +288,7 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Aluminum',200000,31);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Titanium',300000,31);
 
---ì›Œì¹˜: í”„ë¡œ
+--¿öÄ¡: ÇÁ·Î
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Space Gray',0,32);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Silver',0,32);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'S',0,33);
@@ -297,7 +297,7 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Aluminum',300000,34);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Titanium',400000,34);
 
---ì›Œì¹˜: ë§¥ìŠ¤
+--¿öÄ¡: ¸Æ½º
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Space Gray',0,35);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Silver',0,35);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'S',0,36);
@@ -307,12 +307,12 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Titanium',700000,37);
 
 
---ì´ì–´í°
---ì—†ìŒ
+--ÀÌ¾îÆù
+--¾øÀ½
 
 
---ì•…ì„¸ì„œë¦¬
---í•¸ë“œí° ì¼€ì´ìŠ¤
+--¾Ç¼¼¼­¸®
+--ÇÚµåÆù ÄÉÀÌ½º
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'14',0,38);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'15',100000,38);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'16',200000,38);
@@ -323,7 +323,7 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Green',0,40);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Pink',0,40);
 
---ì›Œì¹˜ ë°´ë“œ
+--¿öÄ¡ ¹êµå
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Basic',0,41);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'SE',100000,41);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Ultra',200000,41);
@@ -335,7 +335,7 @@ insert into product_option_detail values (product_option_detail_product_option_d
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Pink',0,43);
 
 
---í•¸ë“œí° ê°•í™”í•„ë¦„
+--ÇÚµåÆù °­È­ÇÊ¸§
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'14',0,44);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'15',100000,44);
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'16',200000,44);
@@ -348,12 +348,12 @@ insert into product_option_detail values (product_option_detail_product_option_d
 
 
 --ORDERS + OrderItems insert
---ë°°ì†¡ ì „ : ë°°ì†¡ì „
---ë°°ì†¡ ì¤‘ : ë°°ì†¡ì¤‘
---ë°°ì†¡ ì™„ë£Œ: ë°°ì†¡ì™„
---ì·¨ì†Œ 	: ì·¨ì†Œ
+--¹è¼Û Àü : ¹è¼ÛÀü
+--¹è¼Û Áß : ¹è¼ÛÁß
+--¹è¼Û ¿Ï·á: ¹è¼Û¿Ï
+--Ãë¼Ò    : Ãë¼Ò
 INSERT INTO ORDERS (ORDERS_NO,ORDERS_DATE,ORDERS_ARRIVALDATE,ORDERS_TOTPRICE,ORDERS_FINALPRICE,ORDERS_TOTQTY,ORDERS_ADDRESS,ORDERS_STATUS,CUSTOMER_NO,CUSTOMER_COUPONS_NO) 
-VALUES (ORDERS_ORDERS_NO_SEQ.nextval,sysdate,sysdate+3,150000,125000,4,'ì„œìš¸ì‹œ ì–´ë””ì–´ë””','ë°°ì†¡ì „',1,1);
+VALUES (ORDERS_ORDERS_NO_SEQ.nextval,sysdate,sysdate+3,150000,125000,4,'¼­¿ï½Ã ¾îµğ¾îµğ','¹è¼ÛÀü',1,1);
 
 INSERT INTO orders_items (ORDERS_ITEMS_NO,ORDERS_ITEMS_PRICE,ORDERS_ITEMS_FINALPRICE,ORDERS_ITEMS_QTY,ORDERS_ITEMS_OPTIONS,ORDERS_NO,PRODUCT_NO)
 values(orders_items_orders_items_no_seq.nextval, 30000, 20000, 1, 'description', ORDERS_ORDERS_NO_SEQ.currval, 1);
@@ -364,7 +364,7 @@ values(orders_items_orders_items_no_seq.nextval, 30000, 50000, 1, 'description',
 
 
 INSERT INTO ORDERS (ORDERS_NO,ORDERS_DATE,ORDERS_ARRIVALDATE,ORDERS_TOTPRICE,ORDERS_FINALPRICE,ORDERS_TOTQTY,ORDERS_ADDRESS,ORDERS_STATUS,CUSTOMER_NO,CUSTOMER_COUPONS_NO) 
-VALUES (ORDERS_ORDERS_NO_SEQ.nextval,sysdate,sysdate+3,150000,125000,4,'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬','ë°°ì†¡ì™„',2,1);
+VALUES (ORDERS_ORDERS_NO_SEQ.nextval,sysdate,sysdate+3,150000,125000,4,'¼­¿ï½Ã °­³²±¸','¹è¼Û¿Ï',2,1);
 
 INSERT INTO orders_items (ORDERS_ITEMS_NO,ORDERS_ITEMS_PRICE,ORDERS_ITEMS_FINALPRICE,ORDERS_ITEMS_QTY,ORDERS_ITEMS_OPTIONS,ORDERS_NO,PRODUCT_NO)
 values(orders_items_orders_items_no_seq.nextval, 30000, 20000, 1, 'description', ORDERS_ORDERS_NO_SEQ.currval, 1);
@@ -375,49 +375,44 @@ values(orders_items_orders_items_no_seq.nextval, 30000, 20000, 1, 'description',
 
 
 
---CART insert
-INSERT INTO Cart(cart_no, cart_qty, customer_no)
-VALUES (cart_cart_no_seq.nextval , 3, 1);
-
-INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
-VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,1,cart_cart_no_seq.currval);
-INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
-VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,5,cart_cart_no_seq.currval);
-INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
-VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,8,cart_cart_no_seq.currval);
-
-INSERT INTO Cart(cart_no, cart_qty, customer_no)
-VALUES (cart_cart_no_seq.nextval , 5, 1);
-INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
-VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,3,19,cart_cart_no_seq.currval);
-INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
-VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,3,22,cart_cart_no_seq.currval);
-INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
-VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,3,25,cart_cart_no_seq.currval);
+--cart  qty = 2, customer_no = 1, product_no = 1
+INSERT INTO cart(cart_no, cart_qty, customer_no, product_no)
+VALUES (cart_cart_no_seq.nextval ,2, 1, 1);
+--product_selected 
+INSERT INTO product_selected
+VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,cart_cart_no_seq.currval);
+--product_selected_detail product_option_detail_no = 1, 5, 8
+INSERT INTO product_selected_detail(product_selected_detail_no, product_selected_no, product_option_detail_no)
+VALUES (product_selected_detail_product_selected_detail_no_SEQ.nextval,PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.currval,1);
+INSERT INTO product_selected_detail(product_selected_detail_no, product_selected_no, product_option_detail_no)
+VALUES (product_selected_detail_product_selected_detail_no_SEQ.nextval,PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.currval,5);
+INSERT INTO product_selected_detail(product_selected_detail_no, product_selected_no, product_option_detail_no)
+VALUES (product_selected_detail_product_selected_detail_no_SEQ.nextval,PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.currval,8);
 
 
+--cart  qty = 1, customer_no = 2, product_no = 1
+INSERT INTO cart(cart_no, cart_qty, customer_no, product_no)
+VALUES (cart_cart_no_seq.nextval , 1, 2, 1);
+--product_selected 
+INSERT INTO product_selected
+VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,cart_cart_no_seq.currval);
+--product_selected_detail product_option_detail_no = 1, 4, 7
+INSERT INTO product_selected_detail(product_selected_detail_no, product_selected_no, product_option_detail_no)
+VALUES (product_selected_detail_product_selected_detail_no_SEQ.nextval,PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.currval,1);
+INSERT INTO product_selected_detail(product_selected_detail_no, product_selected_no, product_option_detail_no)
+VALUES (product_selected_detail_product_selected_detail_no_SEQ.nextval,PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.currval,4);
+INSERT INTO product_selected_detail(product_selected_detail_no, product_selected_no, product_option_detail_no)
+VALUES (product_selected_detail_product_selected_detail_no_SEQ.nextval,PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.currval,7);
 
 
---PRODUCT_SELECTED insert
---1ë²ˆ íšŒì› ì¹´íŠ¸
---CART insert
---1ë²ˆ íšŒì› ì¹´íŠ¸
-INSERT INTO Cart(cart_no, cart_qty, customer_no)
-VALUES (cart_cart_no_seq.nextval , 2, 1);
-INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
-VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,1,cart_cart_no_seq.currval);
-INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
-VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,5,cart_cart_no_seq.currval);
-INSERT INTO PRODUCT_SELECTED(PRODUCT_SELECTED_NO,PRODUCT_NO,PRODUCT_OPTION_DETAIL_NO,CART_NO)
-VALUES (PRODUCT_SELECTED_PRODUCT_SELECTED_NO_SEQ.nextval,1,8,cart_cart_no_seq.currval);
 
 
 
 
 --review insert
 INSERT INTO Review (review_no, review_title, review_content, review_image, review_rating, product_no, customer_no) 
-VALUES (Review_review_no_SEQ.nextval, 'ë¦¬ë·°1', 'ë¦¬ë·°ê°€ ë„ˆë¬´ ì¬ë°Œì–´ìš”', '/image/review1', 5, 1, 1);
+VALUES (Review_review_no_SEQ.nextval, '¸®ºä1', '¸®ºä°¡ ³Ê¹« Àç¹Õ¾î¿ä', '/image/review1', 5, 1, 1);
 INSERT INTO Review (review_no, review_title, review_content, review_image, review_rating, product_no, customer_no) 
-VALUES (Review_review_no_SEQ.nextval, 'ë¦¬ë·°2', 'ì“¸ëª¨ê°€ì—†ì–´ìš”', '/image/review2', 1, 1, 2);
+VALUES (Review_review_no_SEQ.nextval, '¸®ºä2', '¾µ¸ğ°¡¾ø¾î¿ä', '/image/review2', 1, 1, 2);
 INSERT INTO Review (review_no, review_title, review_content, review_image, review_rating, product_no, customer_no) 
-VALUES (Review_review_no_SEQ.nextval, 'ë¦¬ë·°3', 'ë³´í†µì´ì—ìš”', '/image/review3', 3, 1, 3);
+VALUES (Review_review_no_SEQ.nextval, '¸®ºä3', 'º¸ÅëÀÌ¿¡¿ä', '/image/review3', 3, 1, 3);

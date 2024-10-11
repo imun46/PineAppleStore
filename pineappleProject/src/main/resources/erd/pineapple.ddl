@@ -1,3 +1,4 @@
+DROP TABLE product_selected_detail CASCADE CONSTRAINTS;
 DROP TABLE product_selected CASCADE CONSTRAINTS;
 DROP TABLE product_option_detail CASCADE CONSTRAINTS;
 DROP TABLE product_option CASCADE CONSTRAINTS;
@@ -43,7 +44,6 @@ CREATE TABLE coupon(
 DROP SEQUENCE coupon_coupon_no_SEQ;
 
 CREATE SEQUENCE coupon_coupon_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
-
 
 
 
@@ -150,7 +150,8 @@ CREATE SEQUENCE orders_items_orders_items_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCY
 CREATE TABLE cart(
 		cart_no                       		NUMBER(10)		 NULL ,
 		cart_qty                      		NUMBER(10)		 NOT NULL,
-		customer_no                   		NUMBER(10)		 NOT NULL
+		customer_no                   		NUMBER(10)		 NOT NULL,
+		product_no                    		NUMBER(10)		 NOT NULL
 );
 
 DROP SEQUENCE cart_cart_no_SEQ;
@@ -189,14 +190,25 @@ CREATE SEQUENCE product_option_detail_product_option_detail_no_SEQ NOMAXVALUE NO
 
 CREATE TABLE product_selected(
 		product_selected_no           		NUMBER(10)		 NULL ,
-		product_no                    		NUMBER(10)		 NULL ,
-		product_option_detail_no      		NUMBER(10)		 NULL ,
 		cart_no                       		NUMBER(10)		 NOT NULL
 );
 
 DROP SEQUENCE product_selected_product_selected_no_SEQ;
 
 CREATE SEQUENCE product_selected_product_selected_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+
+
+
+CREATE TABLE product_selected_detail(
+		product_selected_detail_no    		NUMBER(10)		 NULL ,
+		product_selected_no           		NUMBER(10)		 NOT NULL,
+		product_option_detail_no      		NUMBER(10)		 NOT NULL
+);
+
+DROP SEQUENCE product_selected_detail_product_selected_detail_no_SEQ;
+
+CREATE SEQUENCE product_selected_detail_product_selected_detail_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 
@@ -237,6 +249,7 @@ ALTER TABLE orders_items ADD CONSTRAINT IDX_orders_items_FK1 FOREIGN KEY (produc
 
 ALTER TABLE cart ADD CONSTRAINT IDX_cart_PK PRIMARY KEY (cart_no);
 ALTER TABLE cart ADD CONSTRAINT IDX_cart_FK0 FOREIGN KEY (customer_no) REFERENCES customer (customer_no) ON DELETE CASCADE;
+ALTER TABLE cart ADD CONSTRAINT IDX_cart_FK1 FOREIGN KEY (product_no) REFERENCES product (product_no) ON DELETE CASCADE;
 
 ALTER TABLE product_option ADD CONSTRAINT IDX_product_option_PK PRIMARY KEY (product_option_no);
 ALTER TABLE product_option ADD CONSTRAINT IDX_product_option_FK0 FOREIGN KEY (product_no) REFERENCES product (product_no) ON DELETE CASCADE;
@@ -245,6 +258,9 @@ ALTER TABLE product_option_detail ADD CONSTRAINT IDX_product_option_detail_PK PR
 ALTER TABLE product_option_detail ADD CONSTRAINT IDX_product_option_detail_FK0 FOREIGN KEY (product_option_no) REFERENCES product_option (product_option_no) ON DELETE CASCADE;
 
 ALTER TABLE product_selected ADD CONSTRAINT IDX_product_selected_PK PRIMARY KEY (product_selected_no);
-ALTER TABLE product_selected ADD CONSTRAINT IDX_product_selected_FK0 FOREIGN KEY (product_no) REFERENCES product (product_no) ON DELETE CASCADE;
-ALTER TABLE product_selected ADD CONSTRAINT IDX_product_selected_FK1 FOREIGN KEY (product_option_detail_no) REFERENCES product_option_detail (product_option_detail_no) ON DELETE CASCADE;
-ALTER TABLE product_selected ADD CONSTRAINT IDX_product_selected_FK2 FOREIGN KEY (cart_no) REFERENCES cart (cart_no) ON DELETE CASCADE;
+ALTER TABLE product_selected ADD CONSTRAINT IDX_product_selected_FK0 FOREIGN KEY (cart_no) REFERENCES cart (cart_no) ON DELETE CASCADE;
+
+ALTER TABLE product_selected_detail ADD CONSTRAINT IDX_product_selected_detail_PK PRIMARY KEY (product_selected_detail_no);
+ALTER TABLE product_selected_detail ADD CONSTRAINT IDX_product_selected_detail_FK0 FOREIGN KEY (product_selected_no) REFERENCES product_selected (product_selected_no) ON DELETE CASCADE;
+ALTER TABLE product_selected_detail ADD CONSTRAINT IDX_product_selected_detail_FK1 FOREIGN KEY (product_option_detail_no) REFERENCES product_option_detail (product_option_detail_no) ON DELETE CASCADE;
+

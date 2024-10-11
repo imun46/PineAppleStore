@@ -5,13 +5,13 @@
 	<!--OrdersItems 맵 Product 포함-->
 	<resultMap id="ordersItemsMapProduct" type="OrdersItems" autoMapping="true">
 		<id column="ORDERS_ITEMS_NO" property="ordersItemsNo"/>
-		<result column="ORDERS_ITEMS_PRICE" property="ordersItemsprice"/>
+		<result column="ORDERS_ITEMS_PRICE" property="ordersItemsPrice"/>
 		<result column="ORDERS_ITEMS_FINALPRICE" property="ordersItemsFinalprice"/>
 		<result column="ORDERS_ITEMS_QTY" property="ordersItemsQty"/>
 		<result column="ORDERS_ITEMS_OPTIONS" property="ordersItemsOptions"/>
 		
 		<association property="product" javaType="Product"
-					 resultMap="com.itwill.shop.mapper.ProductMapper.productMapBasic"></association>
+					 resultMap="com.itwill.shop.mapper.ProductMapper.productMapImage"></association>
 	</resultMap>
 	
 </mapper>

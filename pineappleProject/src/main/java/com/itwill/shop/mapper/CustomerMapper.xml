@@ -16,127 +16,96 @@
 		<result column="CUSTOMER_NICKNAME" property="customerNickname"/>
 		<result column="CUSTOMER_JOINDATE" property="customerJoindate"/>
 	</resultMap>
-	
-	<!--Customer 맵 Review, Orders, CustomrCoupons 맵 포함-->
-	<resultMap id="customerMapDetail" type="Customer" autoMapping="true">
-		<id column="CUSTOMER_NO" property="customerNo"/>
-		<result column="CUSTOMER_ID" property="customerId"/>
-		<result column="CUSTOMER_PASSWORD" property="customerPassword"/>
-		<result column="CUSTOMER_NAME" property="customerName"/>
-		<result column="CUSTOMER_DOB" property="customerDob"/>
-		<result column="CUSTOMER_ADDRESS" property="customerAddress"/>
-		<result column="CUSTOMER_GENDER" property="customerGender"/>
-		<result column="CUSTOMER_PHONE" property="customerPhone"/>
-		<result column="CUSTOMER_EMAIL" property="customerEmail"/>
-		<result column="CUSTOMER_NICKNAME" property="customerNickname"/>
-		<result column="CUSTOMER_JOINDATE" property="customerJoindate"/>
-		
-		<collection property="ordersList" ofType="Orders"
-					resultMap="com.itwill.shop.mapper.OrdersMapper.ordersMapOrdersItems">
-		</collection>
-		
-		<collection property="reviewList" ofType="Review"
-					resultMap="com.itwill.shop.mapper.ReviewMapper.reviewMapProduct">
-		</collection>
-		
-		<collection property="customerCouponList" ofType="CustomerCoupons"
-					resultMap="com.itwill.shop.mapper.CustomerCouponsMapper.customerCouponsMapCoupon">
-		</collection>
-		
-	</resultMap>
 
-	<!-- 사용자 등록 -->
+	<!-- 회원 등록 -->
 	<insert id="insertCustomer" parameterType="Customer">
-		<selectKey order="BEFORE" resultType="int"
-			keyProperty="customerNo">
-			select customer_customer_no_seq.nextval from dual
+		<selectKey order="BEFORE" resultType="int" keyProperty="customerNo">
+			SELECT customer_customer_no_seq.nextval FROM DUAL
 		</selectKey>
-
-		insert into customer values 
-		(#{customerNo},#{customerId},#{customerPassword},#{customerName},#{customerDob},#{customerAddress},
-		#{customerGender},#{customerPhone},#{customerEmail},#{customerNickname},#{customerJoindate})
+		INSERT INTO customer(customer_no, customer_id, customer_password, customer_name, customer_dob, customer_address, customer_gender, customer_phone, customer_email, customer_nickname, customer_joindate)
+		VALUES (#{customerNo},
+				#{customerId},
+				#{customerPassword},
+				#{customerName},
+				#{customerDob},
+				#{customerAddress},
+				#{customerGender},
+				#{customerPhone},
+				#{customerEmail},
+				#{customerNickname},
+				sysdate)
 	</insert>
-	
-	<!--  사용자 정보 리스트  -->
-	<select id="findCustomerNoListAll" parameterType="int" resultMap="customerMapDetail">
-	  					SELECT  
-    c.customer_no, c.customer_id, c.customer_password, c.customer_name,
-    c.customer_dob, c.customer_address, c.customer_gender, c.customer_phone,
-    c.customer_email, c.customer_nickname, c.customer_joindate,
-    
-    -- Review details
-    r.review_no, r.review_title, r.review_content, r.review_image, r.review_rating, r.product_no,
-    
-    -- Orders details
-    o.orders_no, o.orders_date, o.orders_arrivaldate, o.orders_totprice, o.orders_finalprice,
-    o.orders_totqty, o.orders_address, o.orders_status, o.customer_coupons_no as order_custom_coupon_no,
-    
-    -- Order Items details
-    oi.orders_items_no, oi.orders_items_price, oi.orders_items_finalprice, oi.orders_items_qty,
-    oi.orders_items_options, oi.product_no,
-    
-    -- Product details
-    p.product_no, p.product_name, p.product_price, p.product_category, p.product_detailpage,
-    p.product_desc, p.product_status,
-    
-    -- Customer Coupons details
-    cc.customer_coupons_no , cc.customer_coupons_enddate, cc.customer_coupons_status, cc.coupon_no ,
-    
-    -- Coupon details
-    cp.coupon_no , cp.coupon_name, cp.coupon_id, cp.coupon_discount, cp.coupon_desc
-    
-	FROM customer c
-	LEFT JOIN review r ON c.customer_no = r.customer_no
-	LEFT JOIN orders o ON c.customer_no = o.customer_no
-	LEFT JOIN orders_items oi ON o.orders_no = oi.orders_no
-	LEFT JOIN product p ON oi.product_no = p.product_no
-	LEFT JOIN customer_coupons cc ON c.customer_no = cc.customer_no
-	LEFT JOIN coupon cp ON cc.coupon_no = cp.coupon_no
-	WHERE c.customer_no = #{c.customer_no}
+
+	<!-- 회원 아이디 중복체크 -->
+	<select id="countCustomerId" parameterType="String">
+		SELECT count(*)
+		  FROM customer
+		 WHERE customer_id=#{customer_id}
+	</select>
+
+	<!-- 회원 닉네임 중복 체크 -->
+	<select id="countCustomerNickname" parameterType="String">
+		SELECT count(*)
+		  FROM customer
+		 WHERE customer_nickname=#{customer_nickname}
+	</select>
+
+	<!-- 회원 핸드폰 번호 중복 체크 -->
+	<select id="countCustomerPhone" parameterType="String">
+		SELECT count(*)
+		  FROM customer
+		 WHERE customer_phone=#{customer_phone}
 	</select>
 	
-	
-	
+	<!-- 회원 아이디/비밀번호 일치 여부 체크 후 회원 번호 반환 -->
+	<select id="getCustomerNoIfValidLogin" parameterType="map" resultType="Integer">
+		SELECT customer_no
+  		  FROM customer
+ 		 WHERE customer_id=#{customerId}
+       		   AND customer_password=#{customerPassword}
+	</select>
 
-	<!-- 사용자 아이디로 찾기 -->
-	<select id="findCustomerId" parameterType="String"
-		resultType="Customer">
-		select * from customer where customer_id = #{customer_Id}
+	<!-- 회원 아이디로 회원 정보 반환 -->
+	<select id="findCustomerById" parameterType="String" resultType="Customer">
+		SELECT customer_no, customer_id, customer_name, customer_dob, customer_address, customer_gender,
+		       customer_phone, customer_email, customer_nickname, customer_joindate
+		  FROM customer
+		 WHERE customer_id=#{customerId}
 	</select>
 
 
-
-	<!-- 사용자 번호로 찾기 -->
-	<select id="findCustomerNo" parameterType="int"
-		resultType="Customer">
-		select * from customer where customer_no = #{customer_no}
+	<!-- 회원 번호로 회원 정보 반환 -->
+	<select id="findCustomerByNo" parameterType="int" resultType="Customer">
+		SELECT customer_no, customer_id, customer_name, customer_dob, customer_address, customer_gender,
+		       customer_phone, customer_email, customer_nickname, customer_joindate
+		  FROM customer
+		 WHERE customer_no=#{customerNo}
 	</select>
 
-	<!-- 사용자 정보 수정 -->
+	<!-- 회원 정보 수정 -->
 	<update id="updateCustomer" parameterType="Customer">
-		update customer set
-		customer_password = #{customerPassword},
-		customer_address = #{customerAddress} ,
-		customer_gender = #{customerGender},
-		customer_phone = #{customerPhone} ,
-		customer_email = #{customerEmail},
-		customer_nickname = #{customerNickname}
-		where customer_no = #{customerNo}
+		UPDATE customer
+		   SET customer_password = #{customerPassword},
+			   customer_address = #{customerAddress},
+			   customer_gender = #{customerGender},
+			   customer_phone = #{customerPhone},
+			   customer_email = #{customerEmail},
+			   customer_nickname = #{customerNickname}
+		 WHERE customer_no = #{customerNo}
 	</update>
 
-	<!-- 사용자 회원 탈퇴 -->
+	<!-- 회원 삭제 -->
 	<delete id="deleteCustomer" parameterType="int">
-		delete from customer where customer_no = #{customer_no}
+		DELETE FROM customer
+		 WHERE customer_no=#{customer_no}
 	</delete>
 
-	<!-- 사용자 중복체크 -->
-	<select id="countByCustomerId" parameterType="String">
-		select count(*) from customer where customer_id = #{customer_id}
-	</select>
 
-	<!--(어드민전용) 전체 사용자 리스트 -->
+	<!--전체 회원 리스트 반환 (어드민) -->
 	<select id="customerList" resultType="Customer">
-		select * from customer
+		SELECT customer_no, customer_id, customer_name, customer_dob, customer_address, customer_gender,
+		       customer_phone, customer_email, customer_nickname, customer_joindate
+		  FROM customer
 	</select>
 
 
