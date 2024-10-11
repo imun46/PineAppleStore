@@ -63,7 +63,7 @@
     function hideCouponImage() {
         var couponImage = document.querySelector('.image-container');
         couponImage.style.display = 'none'; // 이미지와 버튼을 감싼 컨테이너 숨기기
-        document.f.action="customer_join_coupon_action.jsp"
+        document.f.action="customer_join_coupon_action.jsp";
 		document.f.method='POST';
 		document.f.submit();
     }
@@ -72,12 +72,12 @@
 <body>
 <form name="f" method="post">
     <div class="top-menu">
-        <jsp:include page="../includes/include_top_menu.jsp" />
+      <%--   <jsp:include page="../includes/include_top_menu.jsp" /> --%>
     </div>
     <div class="image-container">
-        <img class="coupon-img" src="첫가입쿠폰.png" alt="쿠폰 이미지">
+        <img class="coupon-img" src="../imag/첫가입쿠폰.png" alt="쿠폰 이미지">
         <button onclick="hideCouponImage()">
-            <img class="coupon-issue-img" src="쿠폰 발급.png" alt="쿠폰 발급 이미지">
+            <img class="coupon-issue-img" src="../imag/쿠폰 발급.png" alt="쿠폰 발급 이미지">
         </button>
     </div>
 </form>
