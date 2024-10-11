@@ -168,7 +168,7 @@ ReviewService reviewService = new ReviewService();
         <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>	           
         
             <div class="list-item">
-                <% List<Review> reviewList = reviewService.getProductReview(productNo); %>
+                <% List<Review> reviewList = reviewService.findReviewByProductNo(productNo); %>
                 <%
                 int maxReviews = 3; // 최대 리뷰 수
                 int reviewCount = 0;
@@ -241,7 +241,7 @@ ReviewService reviewService = new ReviewService();
 				form.method = 'POST'
 				form.submit();
 			} else if (action === 'order') {
-				form.action = 'orders_insert_action.jsp';
+				form.action = 'orders_ready_action.jsp';
 				form.method = 'POST'
 				form.submit();
 			}
