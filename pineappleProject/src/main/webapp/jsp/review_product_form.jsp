@@ -1,9 +1,9 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-<%@ page import="com.itwill.shop.review.Review" %>
-<%@ page import="com.itwill.shop.review.ReviewService" %>
-<%@ page import="com.itwill.shop.product.Product" %>
-<%@ page import="com.itwill.shop.product.ProductService" %>
+<%@ page import="com.itwill.shop.domain.Review" %>
+<%@ page import="com.itwill.shop.service.ReviewService" %>
+<%@ page import="com.itwill.shop.domain.Product" %>
+<%@ page import="com.itwill.shop.service.ProductService" %>
 <%@ page import="java.util.List" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,10 +11,8 @@
  <%
  ReviewService reviewService = new ReviewService();
  
- //Integer productNo=Integer.parseInt(request.getParameter("productNo"));
- //List<Review> reviewList = reviewService.getProductReview(productNo);
- //병합 시 주석 제거
- List<Review> reviewList = reviewService.getProductReview(2);
+ Integer productNo=Integer.parseInt(request.getParameter("product_no"));
+ List<Review> reviewList = reviewService.findReviewByProductNo(productNo);
  
  
  %>

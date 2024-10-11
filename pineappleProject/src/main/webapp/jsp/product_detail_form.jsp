@@ -1,14 +1,14 @@
-<%@page import="com.itwill.shop.review.ReviewService"%>
+<%@page import="com.itwill.shop.service.ReviewService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.itwill.shop.product.Product"%>
-<%@ page import="com.itwill.shop.product.ProductService"%>
-<%@ page import="com.itwill.shop.product.ProductOption"%>
-<%@ page import="com.itwill.shop.product.ProductOptionDetail"%>
-<%@ page import="com.itwill.shop.product.ProductImage"%>
-<%@ page import="com.itwill.shop.review.Review"%>
+<%@ page import="com.itwill.shop.domain.Product"%>
+<%@ page import="com.itwill.shop.service.ProductService"%>
+<%@ page import="com.itwill.shop.domain.ProductOption"%>
+<%@ page import="com.itwill.shop.domain.ProductOptionDetail"%>
+<%@ page import="com.itwill.shop.domain.ProductImage"%>
+<%@ page import="com.itwill.shop.domain.Review"%>
 <%@ page import="java.util.List"%>
 
 

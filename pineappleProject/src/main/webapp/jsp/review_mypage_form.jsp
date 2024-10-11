@@ -1,9 +1,9 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-<%@ page import="com.itwill.shop.review.Review"%>
-<%@ page import="com.itwill.shop.review.ReviewService"%>
-<%@ page import="com.itwill.shop.customer.Customer"%>
-<%@ page import="com.itwill.shop.customer.CustomerService"%>
+<%@ page import="com.itwill.shop.domain.Review"%>
+<%@ page import="com.itwill.shop.service.ReviewService"%>
+<%@ page import="com.itwill.shop.domain.Customer"%>
+<%@ page import="com.itwill.shop.service.CustomerService"%>
 <%@ page import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,7 +14,7 @@ ReviewService reviewService = new ReviewService();
 
 Integer customerNo = Integer.parseInt(sCustomerNo);
 
-List<Review> reviewList = reviewService.getMyReview(customerNo);
+List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
 
 %>
 <!DOCTYPE html>
