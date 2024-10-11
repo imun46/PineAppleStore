@@ -178,7 +178,6 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
             <h2 class="review-title"><%=review.getReviewTitle() %></h2>
             <div class="review-product-option">
                 <%=review.getProduct().getProductName() %>
-            </div>
             <%
             int rating = review.getReviewRating();
             for (int i = 0; i < 5; i++) {
@@ -187,6 +186,7 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
                 <%= (i < rating) ? "★" : "☆" %>
             </span>
             <% } %>
+            </div>
             <div class="review-body">
                 <%=review.getReviewContent() %>
             </div>
