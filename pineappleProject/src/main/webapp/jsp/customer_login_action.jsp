@@ -30,7 +30,7 @@ int result = customerService.login(customerId, customerPassword);
 if (result != 0) {
     // 로그인 성공 (세션 설정)
     session.setAttribute("sCustomerNo", Integer.toString(result));
-    response.sendRedirect("customer_view.jsp");
+    response.sendRedirect("index.jsp");
 } else {
     // 로그인 실패 (아이디 또는 비밀번호 문제)
     String msg = "아이디 또는 비밀번호가 일치하지 않습니다.";
