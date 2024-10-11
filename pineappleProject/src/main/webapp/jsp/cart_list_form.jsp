@@ -1,10 +1,7 @@
 <%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwill.shop.domain.Cart"%>
-<<<<<<< HEAD
 <%@page import="com.itwill.shop.domain.ProductSelected"%>
-=======
->>>>>>> branch 'newMaster' of https://github.com/2024-07-JAVA-DEVELOPER-155/web-project-team1-pineapple.git
 <%@page import="com.itwill.shop.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -87,7 +84,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="../includes/include_top_menu.jsp" />
+
 
 <form name="cart_view_form" style="margin:0">
     <input type="hidden" name="buyType">
@@ -141,6 +138,7 @@
 							        }
 							    }
 							%>
+							<p><%=carts %></p>
                         <span style="font-size: 13px;"><%=options %> </span>
                         <span>수량: <%= carts.getCartQty() %> </span>
                     </div>
