@@ -25,6 +25,7 @@ CustomerService customerService = new CustomerService();
  * 1:로그인 성공(세션 생성)
  * 0:로그인 실패(아이디 존재 및 비밀번호 불일치 포함)
  */
+ try{
 int result = customerService.login(customerId, customerPassword);
 if (result != 0) {
     // 로그인 성공 (세션 설정)
@@ -38,4 +39,13 @@ if (result != 0) {
     out.println(" location.href='customer_login_form.jsp';");
     out.println("</script>");
 }
+ }catch (Exception e) {
+	 String msg = "아이디 또는 비밀번호가 일치하지 않습니다.";
+	    out.println("<script>");
+	    out.println(" alert('" + msg + "');");
+	    out.println(" location.href='customer_login_form.jsp';");
+	    out.println("</script>");
+	}
+ 
+ 
 %>
