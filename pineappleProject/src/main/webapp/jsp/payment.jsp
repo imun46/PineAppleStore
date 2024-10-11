@@ -12,7 +12,7 @@
 <%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../includes/login_check.jspf"  %>    
+<%@ include file="customer_login_check.jspf"  %>    
     
 <%
 	java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
@@ -21,9 +21,12 @@
 	/*** CustomerService 선언 ***/
 	CustomerService customerService = new CustomerService();
 	
+	/*** CustomerService 선언 ***/
+	CustomerCouponsService customerCouponsService = new CustomerCouponsService();
+	
 	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
 	int customerNo = Integer.parseInt(sCustomerNo);
-	Customer loginCustomer = customerService.findCustomerNo(customerNo);
+	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
 	/*** 날짜 포맷 설정 ***/
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -54,13 +57,13 @@
 	if (customerCouponNoStr != null) {
 	      
 		/*** 문자열을 정수형으로 바꾸기 ***/
-		Integer customerCouponNo = Integer.parseInt(customerCouponNoStr);
+		Integer customerCouponsNo = Integer.parseInt(customerCouponNoStr);
 		          
 	    /*** CustomerCoupons번호에 맞는 쿠폰 찾기***/
-	    CustomerCoupons findCoupon = customerService.findCoupon(customerCouponNo);
+	    CustomerCoupons findCoupon = customerCouponsService.findCustomerCouponsDetailByNo(customerCouponsNo);
 	    
 	    /*** 찾은 사용자 쿠폰 번호와 일치하는 쿠폰 객체 반환 ***/
-	    Coupon coupon = customerService.getCouponId(findCoupon.getCoupon().getCouponId());
+	    Coupon coupon = findCoupon.getCoupon();
 	    
 	    /*** 쿠폰 이름 저장 ***/
 	    findCouponName = coupon.getCouponName();
@@ -153,7 +156,7 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
         .payment-container h2 {
-            text-align: center;
+            text-align: Left;
             margin-bottom: 20px;
         }
         .payment-container h3 {
@@ -172,11 +175,12 @@
             padding-bottom: 15px;
             margin-bottom: 15px;
         }
+        
         .payment-container input {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
-            border-radius: 5px;ㄴ
+            border-radius: 5px;
             border: 1px solid #ccc;
         }
         .payment-container .total-amount {
@@ -203,6 +207,21 @@
             border-top: 1px solid #ccc;
             margin: 10px 0;
         }
+        .payment-method {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px;
+    text-align: left;
+}
+        .payment-method label {
+    margin-left: 0;
+    text-align: left;
+    align-self: left;
+    width: auto;
+}
     </style>
 </head>
 <body>
@@ -216,7 +235,7 @@
             <p><strong>주소:</strong> <%=loginCustomer.getCustomerAddress() %></p>
         </div>
         
-        <h3>주문상품</h3>
+       <h3>주문상품</h3>
         <div class="order-details">
             <div class="product-info">
                 <p><strong>상품명:</strong> <%=product.getProductName() %></p>
@@ -224,7 +243,6 @@
                 <p><strong>수량:</strong> <%=cartQty %>개</p>
                 <p><strong>가격:</strong> <span id="product-amount"><%=decimalFormat.format(tot) %></span>원</p>
             </div>
-            <hr>
             
             <form id="payment-form" action="paymentProcess.jsp" method="post">
                 <label for="coupon-code">보유 쿠폰</label>
