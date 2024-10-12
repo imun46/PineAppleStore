@@ -150,14 +150,17 @@
             width: 100%;
             padding: 10px;
             margin-top: 20px;
-            background-color: #000;
-            color: white;
-            border: none;
+            background-color: transparent;
+            color: #212529; 
+            border: 1px solid #212529; 
             border-radius: 5px;
             cursor: pointer;
+			transition: background-color 0.3s, color 0.3s; 
         }
         .payment-container button:hover {
-            background-color: #45a049;
+            color: #fff; 
+			background-color: #212529; 
+			border-color: #212529; 
         }
         hr {
             border: none;
@@ -182,7 +185,7 @@
     </style>
 </head>
 <body>
-
+<jsp:include page="../includes/include_top_menu.jsp" />
 <div class="payment-container">
 	<form name="f" method="post">
     <input type="hidden" id="selectedCouponField" name="selectedCoupon" value="">
