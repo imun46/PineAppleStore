@@ -23,7 +23,6 @@
 	/* 세션불러오기  */
 	Orders sOrders = (Orders)session.getAttribute("sOrders");
 	
-	
 	java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
 	response.setContentType("text/html; charset=UTF-8");
 	
@@ -94,9 +93,9 @@
 	ProductService productService = new ProductService();
 	
 	/*** 제품 번호 파라매터 ***/
-	String productNoStr = request.getParameter("productNo");	
+	String sProductNo = sOrders.getProductNo();
 	/*** 제품 수량 파라매터 ***/
-	String cartQty = request.getParameter("cart_qty");	
+	String cartQty = sOrders.getCartQty();
 	/*** 제품 총 가격(현재는 제품 가격만 나옴) 파라매터 ***/
 	String productsalePrice = request.getParameter("product_salePrice");	
 	/*** 제품 옵션 파라매터(배열로 받음) ***/
@@ -106,26 +105,22 @@
 	
 	
 	/*** 가져온 데이터가  NULL이 아니면 실행 ***/
-	if(productNoStr != null) { 
-		/*** 제품 번호 Integer로 변환 ***/
-		productNo = Integer.parseInt(productNoStr);
-		
+	if(productNoStr != null) {
 		/*** 제품 번호로 제품 상세 출력 ***/
-		product = productService.productDetail(productNo);
-	
+		product = productService.productDetail(sProductNo);
 	}
 	
-	ArrayList<Integer> optionPriceList = new ArrayList<>();
-
-	for (int i = 0; i < product.getProductOptionList().size(); i++) {
-	        optionStr += product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailName() +"(+"+ decimalFormat.format(product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailPrice())  + "원)/";
-	        
-	    for (int j = 0; j < product.getProductOptionList().get(i).getProductOptionDetailList().size(); j++) {
-	        Integer optionPrice = product.getProductOptionList().get(i).getProductOptionDetailList().get(j).getProductOptionDetailPrice();
-	        optionPriceList.add(optionPrice); // ArrayList에 가격 추가
-	        tot += optionPrice; // 총합에 가격 더하기
-	    }
-	}
+//	ArrayList<Integer> optionPriceList = new ArrayList<>();
+//
+	//for (int i = 0; i < product.getProductOptionList().size(); i++) {
+	  //      optionStr += product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailName() +"(+"+ decimalFormat.format(product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailPrice())  + "원)/";
+	    //    
+	    //for (int j = 0; j < product.getProductOptionList().get(i).getProductOptionDetailList().size(); j++) {
+	      //  Integer optionPrice = product.getProductOptionList().get(i).getProductOptionDetailList().get(j).getProductOptionDetailPrice();
+	        //optionPriceList.add(optionPrice); // ArrayList에 가격 추가
+	        //tot += optionPrice; // 총합에 가격 더하기
+	   // }
+//	}
 	
 %>   
     
