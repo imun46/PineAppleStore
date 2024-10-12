@@ -1,27 +1,30 @@
 <%@page import="java.util.List"%>
 <%@page import="com.itwill.shop.domain.Orders"%>
 <%@page import="com.itwill.shop.service.OrdersService"%>
+<%@page import="com.itwill.shop.domain.Customer"%>
+<%@page import="com.itwill.shop.service.CustomerService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.util.Date" %>
 
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	String orderNo = request.getParameter("ordersNo");
-	OrdersService orderService = new OrdersService();
-	List<Orders> order = orderService.findByOrdersNo(Integer.parseInt(orderNo));
+	DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
 
-    String orderDate = dateFormat.format(new Date());
-    String productName = "상품명";
-    String productOption = "옵션: ~~~~~";
-    int productPrice = 10500;
-    String customerName = "이름";
-    String customerPhone = "전화번호";
-    String customerAddress = "주소";
-    int productAmount = 30000;
-    int discount = 3000;
-    int totalAmount = productAmount - discount;
+	String sCustomerNo = (String)session.getAttribute("sCustomerNo");
+	String orderNo = request.getParameter("ordersNo");
+	CustomerService customerService= new CustomerService();
+	OrdersService orderService = new OrdersService();
+	
+	Customer customer = customerService.findCustomerByNo(Integer.parseInt(sCustomerNo));
+	List<Orders> orderList = orderService.findByOrdersNo(Integer.parseInt(orderNo));
+	
+	int orderitemsSize = 0;
+	if(orderList.size()>0){
+	 orderitemsSize= orderList.get(0).getOrdersItemsList().size();
+	}
 %>
 
 <html>
@@ -51,8 +54,11 @@
             padding-bottom: 50px;
             color: #000;
         }
+        p{
+        	font-size: 17px;
+        }
         .section {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             padding: 20px;
             border-radius: 10px;
             background: #f8f9fa;
@@ -84,6 +90,9 @@
         .shipping-info, .payment-info {
             font-size: 16px;
         }
+        .btn-review{
+        	border: 1px solid #ccc;
+        }
         .total {
             font-size: 20px;
             font-weight: bold;
@@ -101,7 +110,7 @@
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center">
-                <h1 class="display-4 fw-bolder">주문 상세내역</h1>
+                <h1 class="display-4 fw-bolder">주문 상세 내역</h1>
                 <hr>
             </div>
         </div>
@@ -109,40 +118,50 @@
 
     <div class="order-container">
         <div class="section">
-            <p><i class="fas fa-calendar-day icon"></i><%= orderDate %> 주문</p>
+            <p><i class="fas fa-calendar-day icon"></i>주문</p>
             <h2>주문번호: <%= orderNo %></h2>
+            <h2>주문일자: <%= dateFormat.format(orderList.get(0).getOrdersDate()) %></h2>
         </div>
         <h2>주문상품</h2>
-        <div class="section product-info">
-            <img src="img/macBookAir.jpg" class="product-image" alt="상품 이미지">
-            <% for (Orders orders : order) { %>
-                <div class="product-details">
-                    <p><strong><%= productName %></strong></p>
-                    <p><%= productOption %></p>
-                    <p><%= String.format("%,d", productPrice) %>원</p>
-                </div>
-                <div class="btn-review">
-                    <% if (orders.getOrdersStatus() != null && orders.getOrdersStatus().equals("구매확정")) { %>
-                        <button type="button" class="btn" onclick="submitForm('review')">리뷰쓰기</button>
-                    <% } else { %>
-                        <button type="button" class="btn" disabled>리뷰쓰기</button>
-                    <% } %>
-                </div>
-            <% } %>
-        </div>
+        <%if(orderList != null && !orderList.isEmpty()){ %>
+	        <% for (int i=0; i < orderitemsSize ;i++) { %>
+		        <div class="section product-info">
+		            <img src="../img/macBookAir.jpg" class="product-image" alt="상품 이미지">
+		                <div class="product-details">
+		                	<%
+		                		String productName = orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductName();
+		                		String productOptions = orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsOptions();
+		                		int orderQty = orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsQty();
+		                	%>
+		                	<p style="font-size:18px; font-weight:bold;"><%=productName %></p>
+		                	<p><%=productOptions %></p>
+		                	<p><%=orderQty %>개</p>
+		
+		                    <p><%= String.format("%,d", orderList.get(0).getOrdersFinalprice()) %>원</p>
+		                </div>
+		                <div class="btn-review">
+		                    <% if (orderList.get(0).getOrdersStatus() != null && orderList.get(0).getOrdersStatus().equals("구매확정")) { %>
+		                        <button type="button" class="btn" onclick="submitForm('review')">리뷰쓰기</button>
+		                    <% } else { %>
+		                        <button type="button" class="btn" disabled>리뷰쓰기</button>
+		                    <% } %>
+		                </div>
+		        </div>
+	        <% } %>
+        <% } %>
         <h2>배송지</h2>
         <div class="section shipping-info">
-            <p><i class="fas fa-user icon"></i><%= customerName %></p>
-            <p><i class="fas fa-phone icon"></i><%= customerPhone %></p>
-            <p><i class="fas fa-map-marker-alt icon"></i><%= customerAddress %></p>
+            <p>받는사람 : <%=customer.getCustomerName()  %></p>
+            <p>연락처   : <%=customer.getCustomerPhone()  %></p>
+            <p>주소     : <%=customer.getCustomerAddress()  %></p>
         </div>
         <h2>결제정보</h2>
         <div class="section payment-info">
-            <p>상품금액: <%= String.format("%,d", productAmount) %>원</p>
-            <p>할인: - <%= String.format("%,d", discount) %>원</p>
+            <p>상품금액: <%= String.format("%,d", 111) %>원</p>
+            <p>할인: - <%= String.format("%,d", 111) %>원</p>
         </div>
         <div class="total">
-            합계: <%= String.format("%,d", totalAmount) %>원
+            합계: <%=decimalFormat.format(orderList.get(0).getOrdersFinalprice())  %>원
         </div>
     </div>
 </body>
