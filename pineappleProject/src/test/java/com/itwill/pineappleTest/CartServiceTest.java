@@ -113,7 +113,7 @@ public class CartServiceTest {
 		
 //		List<Cart> cartList = cartService.findAll();
 		List<Cart> cartListCustomerNo = cartService.findByCustomerNo(customerNo);
-		List<Cart> cartListCartNo = cartService.findByCartNo(cartNo);
+//		List<Cart> cartListCartNo = cartService.findByCartNo(cartNo);
 		
 		// 회원 번호 기준 카트 리스트
 		for (Cart cart : cartListCustomerNo) {
@@ -136,27 +136,27 @@ public class CartServiceTest {
 			}
 			System.out.println("**********************************");
 		}
-		// 카트 번호 기준 카트 리스트
-		for (Cart cart : cartListCartNo) {
-			System.out.println("CartNo="+cart.getCartNo());
-			System.out.println("CartQty="+cart.getCartQty());
-			System.out.println("ProductNo="+cart.getProduct().getProductNo());
-			System.out.println("ProductName="+cart.getProduct().getProductName());
-			System.out.println("ProductPrice="+cart.getProduct().getProductPrice());
-			System.out.println("Product Images");
-			for (ProductImage productImage : cart.getProduct().getProductImageList()) {
-				System.out.println(productImage.getProductImageFile());
-			}
-			System.out.println("ProductOptions");
-			for (ProductSelected productSelected : cart.getProductSelectedList()) {
-				for (ProductSelectedDetail productSelectedDetail : productSelected.getProductSelectedDetailList()) {
-					System.out.println("ProductOptionType"+productSelectedDetail.getProductOptionDetail().getProductOption().getProductOptionType());
-					System.out.println("ProductOptionDetail"+productSelectedDetail.getProductOptionDetail().getProductOptionDetailName());
-					System.out.println("ProductOptionPrice"+productSelectedDetail.getProductOptionDetail().getProductOptionDetailPrice());
-				}
-			}
-			System.out.println("**********************************");
-		}
+//		// 카트 번호 기준 카트 리스트
+//		for (Cart cart : cartListCartNo) {
+//			System.out.println("CartNo="+cart.getCartNo());
+//			System.out.println("CartQty="+cart.getCartQty());
+//			System.out.println("ProductNo="+cart.getProduct().getProductNo());
+//			System.out.println("ProductName="+cart.getProduct().getProductName());
+//			System.out.println("ProductPrice="+cart.getProduct().getProductPrice());
+//			System.out.println("Product Images");
+//			for (ProductImage productImage : cart.getProduct().getProductImageList()) {
+//				System.out.println(productImage.getProductImageFile());
+//			}
+//			System.out.println("ProductOptions");
+//			for (ProductSelected productSelected : cart.getProductSelectedList()) {
+//				for (ProductSelectedDetail productSelectedDetail : productSelected.getProductSelectedDetailList()) {
+//					System.out.println("ProductOptionType"+productSelectedDetail.getProductOptionDetail().getProductOption().getProductOptionType());
+//					System.out.println("ProductOptionDetail"+productSelectedDetail.getProductOptionDetail().getProductOptionDetailName());
+//					System.out.println("ProductOptionPrice"+productSelectedDetail.getProductOptionDetail().getProductOptionDetailPrice());
+//				}
+//			}
+//			System.out.println("**********************************");
+//		}
 		
 		
 		

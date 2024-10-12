@@ -21,7 +21,7 @@ public interface CartMapper {
 	int insertProductSelectedDetail(ProductSelectedDetail productSelectedDetail) throws Exception;
 	
 	// 카트 중복 체크용 제품 옵션 상세 번호 리스트 반환
-	List<Integer> checkProductSelected(Map<String, Object> paramMap) throws Exception;
+	List<Integer> checkProductSelected(Map<String, Integer> paramMap) throws Exception;
 	
 	// 카트 중복 체크용 선택된 제품 번호 리스트 반환
 	List<Integer> findProductSelectedNoByCustomerNoProductNo(Map<String, Object> paramMap) throws Exception;
@@ -30,7 +30,7 @@ public interface CartMapper {
 	int updateByproductSelected() throws Exception;
 	
 	// 카트 수량 수정
-	int updateCartQty(Map<String, Object> paramMap) throws Exception;
+	int updateCartQty(Map<String, Integer> paramMap) throws Exception;
 	
 	// 카트 수량 1개 증가
 	int increaseCartQtyByOne(Integer cartNo) throws Exception;
@@ -57,4 +57,7 @@ public interface CartMapper {
 	// 카트 번호 검색 카트 반환 (회원)
 	List<Cart> findByCartNo(Integer cartNo) throws Exception;
 	
+	
+	// 제품 옵션 번호로 카트 번호 반환
+	Integer findCartNoByProductSelectedNo(Map<String, Integer> paramMap) throws Exception;
 }

@@ -20,12 +20,9 @@
 	java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
 	response.setContentType("text/html; charset=UTF-8");
 
-
 	// 세션 값 불러오기
 	Orders sOrders = (Orders) session.getAttribute("sOrders");
-	
 	String[] cartNo = (String[]) session.getAttribute("cartNo");
-	String[] itemsOptions = (String[]) session.getAttribute("itemsOptions");
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 	
 	// 서비스 선언

@@ -9,6 +9,8 @@
 <%@page import="com.itwill.shop.service.CartService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="customer_login_check.jspf"  %>    
+    
 
 <% 
 	if(request.getMethod().equalsIgnoreCase("GET")){
@@ -16,11 +18,15 @@
 	}
 
 	String itemsQty = request.getParameter("itemsQty");
-	//String customer_no = request.getParameter("customer_no");
-	String customerNo = "1";
+	int customerNo = Integer.parseInt(sCustomerNo);
 	String productNo = request.getParameter("productNo");
 	String[] productOptionDetailNo = request.getParameterValues("productOptionDetailNo");
 	
+    if (itemsQty == null || productNo == null || sCustomerNo == null || productOptionDetailNo == null) {
+        // Redirect to an error page or handle invalid input gracefully
+        response.sendRedirect("index.jsp");
+        return;
+    }
 	
 	CartService cartService = new CartService();
 	
@@ -48,7 +54,7 @@
 	Cart cart = Cart.builder()
 				.cartNo(0)
 				.cartQty(Integer.parseInt(itemsQty))
-				.customer(Customer.builder().customerNo(Integer.parseInt(customerNo)).build())
+				.customer(Customer.builder().customerNo(customerNo).build())
 				.product(Product.builder().productNo(Integer.parseInt(productNo)).build())
 				.productSelectedList(productSelectedList)
 				.build();

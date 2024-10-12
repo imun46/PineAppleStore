@@ -22,9 +22,6 @@
 	/*** 쿠폰 리스트 객체 생성 ***/
 	List<CustomerCoupons> customerCoupons = customerCouponsService.findCustomerCouponsListUsable(customerNo);
 	
-	
-	
-	
 %>    
     
     

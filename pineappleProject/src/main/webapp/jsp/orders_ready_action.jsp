@@ -5,8 +5,8 @@
 <%@page import="com.itwill.shop.domain.ProductOption"%>
 <%@page import="com.itwill.shop.domain.ProductOptionDetail"%>
 <%@page import="com.itwill.shop.domain.OrdersItems"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="customer_login_check.jspf"  %>    
 
 <%
 
@@ -15,20 +15,21 @@ if(request.getMethod().equalsIgnoreCase("GET")){
 	response.sendRedirect("index.jsp");
 }
 
-//
 // OrdersItems 필드 정보 리스트 받기
 String itemsPrice[] 	= request.getParameterValues("itemsPrice");
 String itemsQty[] 		= request.getParameterValues("itemsQty");
 String itemsOptions[] 	= request.getParameterValues("itemsOptions");
 String productNo[] 		= request.getParameterValues("productNo");
 String productName[] 	= request.getParameterValues("productName");
+// 상세페이지에서 바로 올 때
 String optionDetail[]	= request.getParameterValues("productOptionDetailNo");
+// 카트에서 올 때
+String optionDetails[]  = request.getParameterValues("productOptionDetailNos");
 
 String cartNo[] 		= request.getParameterValues("cartNo");
 
 // OrdersItems 개수 파악
 int ordersItemsCount = itemsPrice.length;
-
 
 
 /*
@@ -41,24 +42,42 @@ for(int i=0; i<itemsPrice.length; i++) {
 	System.out.println("optionDetail: "+optionDetail[i]);
 }
 	System.out.println("cartNo: "+cartNo);
+for(int i=0; i<optionDetails.length; i++) {
+	System.out.println("optionDetails: "+optionDetails[i]);
+}
 */
-	
+
 // Orders 멤버 필드는 Orders_Items 받고 계산
 int ordersTotprice = Integer.parseInt(request.getParameter("ordersTotprice"));
 int ordersTotqty = Integer.parseInt(request.getParameter("ordersTotqty"));
+
+
+
+
+
 
 
 // OrdersItems 객체에 내용 입력
 List<OrdersItems> ordersItemsList = new ArrayList<>();
 List<ProductOptionDetail> productOptionDetailList = new ArrayList<>();
 List<ProductOption> productOptionList = new ArrayList<>();
-
 	
-for(int i = 0 ; i<ordersItemsCount ;i++){
-	ProductOptionDetail productOptionDetail = new ProductOptionDetail();
-	productOptionDetail.setProductOptionDetailNo(Integer.parseInt(optionDetail[i]));
-	productOptionDetailList.add(productOptionDetail);
-}	
+if(optionDetail!=null) {
+	for(int i=0 ; i<ordersItemsCount; i++){
+		ProductOptionDetail productOptionDetail = new ProductOptionDetail();
+		productOptionDetail.setProductOptionDetailNo(Integer.parseInt(optionDetail[i]));
+		productOptionDetailList.add(productOptionDetail);
+	}	
+} else {
+	for(int i=0 ; i<ordersItemsCount; i++){
+		ProductOptionDetail productOptionDetail = new ProductOptionDetail();
+		
+
+		productOptionDetail.setProductOptionDetailNo(Integer.parseInt(optionDetails[i]));
+		productOptionDetailList.add(productOptionDetail);
+	}	
+	
+}
 
 	ProductOption productOption = new ProductOption();
 	productOption.setProductOptionDetailList(productOptionDetailList);
@@ -89,6 +108,6 @@ orders.setOrdersItemsList(ordersItemsList);
 session.setAttribute("sOrders", orders);
 session.setAttribute("cartNo", cartNo);
 
-response.sendRedirect("payment.jsp");
 
+response.sendRedirect("payment.jsp");
 %>
