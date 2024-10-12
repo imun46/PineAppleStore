@@ -12,20 +12,21 @@
 <%
 ReviewService reviewService = new ReviewService();
 CustomerService customerService = new CustomerService();
-
 Integer customerNo = Integer.parseInt(sCustomerNo);
 Customer customer = customerService.findCustomerByNo(customerNo);
 List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
+
 %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<jsp:include page="../includes/include_top_menu.jsp"></jsp:include> 
 
 
 <!-- 해당 메뉴 이름-->
 <header class="bg-dark py-5">
 	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-center text-white">
+		<div class="text-left text-black">
 			<h1 class="display-4 fw-bolder">내가 쓴 리뷰</h1>
 		</div>
 	</div>
@@ -52,8 +53,12 @@ body {
 	padding: 30px;
 	margin: 20px 0;
 	color: inherit;
+	position: relative;/*자식객체들 위치조정*/
 }
-
+.review-container:hover {
+    transform: scale(1.02); /* 호버 시 약간 확대 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강조 */
+}
 .review-title {
 	font-size: 24px;
 	margin-bottom: 10px;
@@ -69,24 +74,27 @@ body {
 	line-height: 1.5;
 }
 .review-date{
-	font-size: 14px;
-	color: #666;
-	margin-top: 10px;
+	position: absolute;
+    right: 10px; /* 오른쪽 끝으로 이동 */
+	bottom:10px;
+	font-size: 0.8em; /* 날짜 및 작성자 크기 조정 */
+    color: #555; /* 글자색 조정 */
 }
 .review-product-option{
-	font-size: 10px;
+	font-size: 30px;
 	color: #666;
 }
 .review-author {
-	font-size: 14px;
-	color: #666;
-	margin-top: 10px;
+	position: absolute;
+    right: 135px; /* 오른쪽 끝으로 이동 */
+    bottom:10px;
+    font-size: 0.8em; /* 날짜 및 작성자 크기 조정 */
+    color: #555; /* 글자색 조정 */
 }
 
 </style>
 </head>
 <body>
-
 	<%
 	for (Review review : reviewList) {
 		Date reviewDate = review.getReviewDate(); // 리뷰 날짜를 가져옵니다.
@@ -94,11 +102,11 @@ body {
 		String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
 	%>
 	<a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>"	class="review-container">
-	<h2 class="review-title"><%=review.getReviewTitle()%></h2>
-	
 	<div class="review-product-option">
             <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
       </div>
+	<h2 class="review-title"><%=review.getReviewTitle()%></h2>
+	
 	 <%
  int rating = review.getReviewRating();
  for (int i = 0; i < 5; i++) {

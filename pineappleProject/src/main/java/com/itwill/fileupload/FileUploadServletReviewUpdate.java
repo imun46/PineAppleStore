@@ -64,10 +64,13 @@ public class FileUploadServletReviewUpdate extends HttpServlet {
         if (!uploadDirectory.exists()) {
             uploadDirectory.mkdirs();
         }
-
+        // 기존 리뷰 정보를 가져옴 (기존 이미지 포함)
+        ReviewService reviewService = new ReviewService();
+        Review existingReview = reviewService.findReviewByReviewNo(reviewNoStr);
+        String existingImage = existingReview.getReviewImage(); // 기존 이미지 이름
         // 파일 업로드 및 파일 정보 반환
         Collection<Part> fileParts = request.getParts();
-        String reviewImage = null; // 업로드된 이미지 이름을 저장할 변수 초기화
+        String reviewImage = existingImage; // 업로드된 이미지 이름을 저장할 변수 초기화
 
         for (Part filePart : fileParts) {
             // 파일 파라미터가 아닌 경우 continue
@@ -94,9 +97,9 @@ public class FileUploadServletReviewUpdate extends HttpServlet {
                 .product(product)
                 .customer(customer)
                 .build();
+        
 
         // 리뷰 업데이트
-        ReviewService reviewService = new ReviewService();
         reviewService.updateReview(review);
 
         response.sendRedirect("jsp/review_detail.jsp?reviewNo=" + reviewNoStr);

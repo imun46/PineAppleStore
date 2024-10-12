@@ -22,6 +22,7 @@ if (request.getMethod().equals("GET")) {
 
 <!DOCTYPE html>
 <html lang="ko">
+<jsp:include page="../includes/include_top_menu.jsp"></jsp:include> 
 
 
 <!-- 해당 메뉴 이름-->
@@ -44,7 +45,47 @@ if (request.getMethod().equals("GET")) {
         }
         .star.checked {
             color: gold; /* 선택된 색상 */
-        }</style>
+        }
+        .custom-file-upload {
+        display: inline-block;
+        padding: 5px 20px;
+        cursor: pointer;
+        background-color: #007BFF; /* 버튼 색상 */
+        color: white; /* 글자 색상 */
+        border-radius: 5px; /* 모서리 둥글게 */
+        border: none; /* 테두리 없애기 */
+    }
+
+    .custom-file-upload:hover {
+        background-color: #0056b3; /* 호버 시 색상 변화 */
+    }
+
+    #reviewImage {
+        display: none; /* 원래 파일 입력 숨기기 */
+    }
+        .update-btn{
+        text-decoration: none; /* 밑줄 제거 */
+        display: inline-block;
+        padding: 5px 20px;
+        cursor: pointer;
+        background-color: #007BFF; /* 버튼 색상 */
+        color: white; /* 글자 색상 */
+        border-radius: 5px; /* 모서리 둥글게 */
+        border: none; /* 테두리 없애기 */
+            margin-left: 10px;
+        
+    }
+
+    .update-btn:hover {
+        background-color: #0056b3; /* 호버 시 색상 변화 */
+    }
+    .update-btn-container {
+            display: flex; /* 플렉스 박스 사용 */
+            justify-content: flex-end; /* 오른쪽 정렬 */
+            margin-top: 20px; /* 위쪽 여백 */
+        }
+        
+        </style>
 </head>
 <body>
 
@@ -55,16 +96,17 @@ if (request.getMethod().equals("GET")) {
     <input type="hidden" name="customerNo" value="<%= review.getCustomer().getCustomerNo() %>">
     
     <div>
-        <label for="reviewTitle">리뷰 제목:</label>
-        <input type="text" id="reviewTitle" name="reviewTitle" value="<%= review.getReviewTitle() %>" required>
+    	<label for="reviewProductOption">상품명 : <%=review.getProduct().getProductName() %></label>
     </div>
-    
-      
     <div>
-    	<label for="reviewProductOption"><%=review.getProduct().getProductImageList() %><%=review.getProduct().getProductName() %></label>
+        <label for="reviewTitle">제목</label>
     </div>
+    <div>
+        <input type="text" id="reviewTitle" name="reviewTitle" value="<%= review.getReviewTitle() %>" required style="margin-left:10px;">
+    </div>
+      
     
-<div id="star-rating">
+<div id="star-rating">별점:
 
     <span class="star" data-value="1">★</span>
     <span class="star" data-value="2">★</span>
@@ -72,7 +114,7 @@ if (request.getMethod().equals("GET")) {
     <span class="star" data-value="4">★</span>
     <span class="star" data-value="5">★</span>
 </div>
-<input type="hidden" id="reviewRating" name="reviewRating" value="<%=review.getReviewRating()%>" required>
+<input type="hidden" id="reviewRating" name="reviewRating" value="<%=review.getReviewRating()%>" required >
 
 <script>
     const stars = document.querySelectorAll('.star');
@@ -107,20 +149,21 @@ if (request.getMethod().equals("GET")) {
 </script>
     <div>
         <label for="reviewContent">리뷰 내용:</label>
-        <textarea id="reviewContent" name="reviewContent" required><%= review.getReviewContent() %></textarea>
-    </div>
-    
-    <div>
-        <label for="reviewDate">작성일:<%= new SimpleDateFormat("yyyy-MM-dd").format(review.getReviewDate()) %></label>
-    </div>
- <div>
-            <label for="reviewImage">이미지 첨부:</label>
-            <input type="file" id="reviewImage" name="reviewImage" accept="image/*" >
         </div>
-    <div>
-        <input type="submit" value="수정">
-        <a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>">취소</a>
+        <div>
+   <textarea id="reviewContent" name="reviewContent" required style="width:100%; height: 300px; resize: none;"><%=review.getReviewContent() %>
+   </textarea>
+        </div>
+    
+            <label for="reviewImage" class="custom-file-upload">사진 첨부하기</label>
+            <input type="file" id="reviewImage" name="reviewImage" accept="image/*" >
+    <div style="text-align: right;">
+        <label for="reviewDate">작성(최종수정)일 : <%= new SimpleDateFormat("yyyy-MM-dd").format(review.getReviewDate()) %></label>
     </div>
+    <div class="update-btn-container">
+        <input type="submit" class="update-btn" value="수정">
+        <a href="review_detail.jsp?reviewNo=<%= review.getReviewNo() %>" class="update-btn">취소</a>
+        </div>
 </form>
 
 </body>
