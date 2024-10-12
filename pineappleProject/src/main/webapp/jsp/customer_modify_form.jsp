@@ -42,11 +42,11 @@
 				document.f.address.focus();
 				return false;
 			}
-			if (document.f.gender.value == "") {
+			/* if (document.f.gender.value == "") {
 				alert("성별을 입력하십시요.");
 				document.f.gender.focus();
 				return false;
-			}
+			} */
 			if (document.f.phone.value == "") {
 				alert("전화번호를 입력하십시요.");
 				document.f.phone.focus();
@@ -62,7 +62,7 @@
 				document.f.nickname.focus();
 				return false;
 			}
-			if (document.f.password.value != f.password2.value) {
+			if (document.f.password.value != document.f.password2.value) {
 				alert("비밀번호와 비밀번호확인은 일치하여야합니다.");
 				document.f.password.focus();
 				document.f.password.select();
@@ -70,6 +70,7 @@
 			}
 			
 			document.f.action = "customer_modify_action.jsp";
+			console.log("customerModifyAction()");
 			document.f.method='POST';
 			document.f.submit();
 		}
@@ -81,107 +82,175 @@
 			document.f.submit();
 		}
 </script>
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .big-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 40%;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-group {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+         margin-right: 120px;
+        }
+        label {
+            width: 35%;
+            color: #555;
+            font-weight: bold;
+            text-align: right;
+            margin-right: 10px;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .buttons {
+            margin-top: 10px;
+            text-align: center;
+        }
+        button {
+         color: #212529; 
+         border: 1px solid #212529;
+         background-color: transparent;
+         padding: 10px 20px; 
+         cursor: pointer; 
+         font-size: 11px; 
+         font-weight: bold; 
+         border-radius: 5px; 
+         transition: background-color 0.3s, color 0.3s; 
+        }
+        
+        button:hover {
+                  color: #fff;
+                  background-color: #212529;
+                  border-color: #212529;
+              }
+              button:focus {
+                  outline: none;
+                  box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5);
+              }
+              button:active {
+                  color: #fff;
+                  background-color: #212529;
+                  border-color: #212529;
+              }
+        
+     
+</style>
 </head>
 <body>
 <form name="f" method="post">
-	<table border="0" cellpadding="0" cellspacing="1" width="590" bgcolor="BBBBBB">
+	<div class="big-container">
+        <div class="container">
+            <h2>회원 정보 수정</h2>
+            
 		<!-- 사용자 아이디 -->
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 아이디 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=loginCustomer.getCustomerId() %>
-			</td>
-		</tr>
+		<div class="form-group">
+        <label for="userId">사용자 아이디 :</label>
+		<input type="text" id="userId" value="<%=loginCustomer.getCustomerId() %>" readonly>
+		</div>	
+		 
 		<!-- 사용자 비밀번호 -->	
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 비밀번호 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<input type="password" style="width: 150px"	name="password" 
-			value="<%=loginCustomer.getCustomerPassword() %>">
-			</td>
-		</tr>
-		<!-- 사용자 비밀번호 확인 -->	
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 비밀번호 확인 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<input type="password" style="width: 150px"	name="password2" 
-			value="">
-			</td>
-		</tr>
-		<!-- 사용자 이름 -->	
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 이름 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
+		<div class="form-group">
+		<label for="password">비밀번호 :</label>
+		<input type="password" id="password" name="password" value="">
+		</div>
 			
-			<%=loginCustomer.getCustomerName() %>
-			</td>
-		</tr>
+		<!-- 사용자 비밀번호 확인 -->	
+		<div class="form-group">
+		<label for="passwordConfirm">비밀번호 확인:</label>
+		<input type="password" id="password2" name="password2" value="">
+		</div>
+		
+		<!-- 사용자 이름 -->
+		<div class="form-group">	
+		<label for="name">사용자 이름 :</label>
+		<input type="text" id="name" value="<%=loginCustomer.getCustomerName() %>" readonly>
+		</div>
+		
 		<!-- 사용자 생년월일 -->	
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 생년월일 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=simpleDateFormat.format(loginCustomer.getCustomerDob()) %>
-			</td>
-		</tr>
+		<div class="form-group">
+		<label for="birthdate">생년월일 :</label>
+		<input type="text" id="birthdate" value="<%=simpleDateFormat.format(loginCustomer.getCustomerDob()) %>">
+		</div>
 		
 		<!-- 사용자 주소 -->
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 주소 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<input type="text" style="width: 150px"	name="address" 
-			value="<%=loginCustomer.getCustomerAddress()%>">
-			</td>
-		</tr>
-		<!-- 사용자 성별 -->
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 성별 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<input type="text" style="width: 150px"	name="gender" 
-			value="<%=loginCustomer.getCustomerGender()%>">
-			</td>
-		</tr>
-		<!-- 사용자 전화번호 -->
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 전화번호 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<input type="text" style="width: 150px"	name="phone" 
-			value="<%=loginCustomer.getCustomerPhone()%>">
-			</td>
-		</tr>
-		<!-- 사용자 이메일 -->
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 이메일 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<input type="text" style="width: 150px"	name="email" 
-			value="<%=loginCustomer.getCustomerEmail()%>">
-			</td>
-		</tr>
-		<!-- 사용자 닉네임 -->	
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 닉네임 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<input type="text" style="width: 150px"	name="nickname" 
-			value="<%=loginCustomer.getCustomerNickname() %>">
-			</td>
-		</tr>
-		<!-- 사용자 가입날짜 -->
-		<tr>
-			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 가입날짜 : </td>
-			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=simpleDateFormat.format(loginCustomer.getCustomerJoindate())%>
-			</td>
-		</tr>
+		<div class="form-group">
+		<label for="address">사용자 주소 :</label>
+		<input type="text" id="address" name="address" value="<%=loginCustomer.getCustomerAddress()%>">
+		</div>
 		
-		</table>
-	</form>
-		<table width=590 border=0 cellpadding=0 cellspacing=0>
-			<tr>
-				<td align=center><input type="button" value="내정보수정"
-				onClick="customerModifyAction()"> &nbsp; <input type="button"
-				value="내정보" onClick="customerView()"></td>
-			</tr>
-		</table>
-	
+		<!-- 사용자 전화번호 -->
+		<div class="form-group">
+		<label for="phone">전화번호 :</label>
+		<input type="text" id="phone"name="phone" value="<%=loginCustomer.getCustomerPhone()%>">
+		</div>
+		
+		<!-- 사용자 이메일 -->
+		<div class="form-group">
+		<label for="email">이메일 :</label>
+		<input type="email" id="email" name="email" value="<%=loginCustomer.getCustomerEmail()%>">
+		</div>
+		
+		<!-- 사용자 닉네임 -->	
+		<div class="form-group">
+		<label for="nickname">닉네임 :</label>
+		<input type="text" id="nickname" name="nickname" value="<%=loginCustomer.getCustomerNickname() %>">
+		</div>
+		
+		<!-- 사용자 가입날짜 -->
+		<div class="form-group">
+		<label for="userId">가입 날짜 :</label>
+		<input type="text" id="joindate" value="<%=simpleDateFormat.format(loginCustomer.getCustomerJoindate())%>" readonly>
+	 	</div>
+	 <div class="buttons" style="margin-top: 50px;">
+				<button type="button" onClick="customerModifyAction()">내정보수정</button>
+				<button type="button" onClick="customerView()">메인</button>
+	</div>
+		
+		</div>
+	</div>
+</form>
 
 </body>
 </html>

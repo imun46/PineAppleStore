@@ -56,7 +56,7 @@
     </table>
 
     <div class="button-container">
-        <input type="button" value="로그인" class="login-btn" onclick="login();" />
+        <input type="button" value="로 그 인" class="login-btn" onclick="login();" />
         <input type="button" value="회원가입" class="signup-btn" onclick="customerCreateForm();" />
     </div>
 </form>
@@ -154,22 +154,7 @@ label {
             text-align: right;
         }
 
-        /* 버튼 스타일 */
-       /*  input[type="button"] {
-            width: 100%;
-            padding: 12px;
-            background-color: #5cb85c;
-            border: none;            border-radius: 4px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        } */
 
-     
-
-        /* 회원가입 버튼 스타일 */
-/* 버튼 간격 및 스타일 조정 */
   /* 회원가입 버튼 스타일 */
       .login-btn, .signup-btn {
     color: #212529;
@@ -185,10 +170,10 @@ label {
 
 .button-container {
     display: flex;
-    justify-content: space-around; /* 버튼 간격 균등 배치 */
-    margin-top: 20px; /* 폼과 버튼 사이 간격 */
+    justify-content: center; /* 버튼을 가운데 정렬 */
+    gap: 70px; /* 버튼 간격 조정 */
+    margin-top: 50px; /* 폼과 버튼 사이 간격 */
 }
-
 .login-btn:hover, .signup-btn:hover {
     color: #fff;
     background-color: #212529;

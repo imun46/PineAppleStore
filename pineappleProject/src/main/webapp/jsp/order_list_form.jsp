@@ -23,7 +23,7 @@
             text-align: center;
         }
         table {
-            width: 90%;
+            width: 70%;
             border-collapse: collapse;
             margin: 20px auto;
         }
@@ -31,6 +31,7 @@
             border: 1px solid #ddd;
             padding: 10px;
             text-align: center;
+            border-bottom: 1px solid #ccc;
         }
         th {
             background-color: #f2f2f2;
@@ -46,19 +47,47 @@
             text-align: center;
             font-weight: bold;
         }
-        .btn {
-            padding: 10px 20px;
-            cursor: pointer;
-            border: none;
-        }
-        .btn-3rd {
-            background-color: #f0f0f0;
-            color: #000;
-        }
-        .btn-primary {
-            background-color: #000;
-            color: #fff;
-        }
+		.orderBtn, .purchaseBtn, .purchaseConfirmedBtn{
+		    color: #212529; /* 버튼 텍스트 색상 */
+		    border: 1px solid #ccc; /* 버튼 경계 색상 */
+		    background-color: transparent; /* 배경색 투명 */
+		    padding: 8px 15px; /* 버튼의 패딩 */
+		    cursor: pointer; /* 마우스 포인터를 손가락 모양으로 변경 */
+		    font-size: 14px; /* 글자 크기 */
+		    font-weight: bold; /* 글자 두께 */
+		    border-radius: 5px; /* 모서리 둥글게 */
+		    transition: background-color 0.3s, color 0.3s; /* 호버 시 변화 애니메이션 */
+		}
+		.orderBtn:hover {
+		    color: #fff; /* 호버 시 텍스트 색상 */
+		    background-color: #212529; /* 호버 시 배경색 */
+		    border-color: #212529; /* 호버 시 경계 색상 */
+		}
+		
+		.orderBtn:focus {
+		    outline: none; /* 포커스 시 외곽선 제거 */
+		    box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
+		}
+		
+		.orderBtn:active {
+		    color: #fff; /* 클릭 시 텍스트 색상 */
+		    background-color: #212529; /* 클릭 시 배경색 */
+		    border-color: #212529; /* 클릭 시 경계 색상 */
+		}
+		.purchaseBtn{
+			 background-color: #212529;
+			 color:#fff;
+			 border: 1px solid #ccc;
+		}
+		.purchaseBtn:hover {
+			 background-color: #4d5256;
+			 color:#fff;
+			 border: 1px solid #ccc; /* 버튼 경계 색상 */
+		}
+		
+		.purchaseConfirmedBtn {
+			color: #ccc;
+		}
     </style>
 </head>
 <body>
@@ -76,7 +105,7 @@
     	<form id="orderForm" method="POST">
             <table>
                 <thead>
-                    <tr>
+                    <tr style="text-align: center;">
                         <th>상세보기</th>
                         <th>주문번호</th>
                         <th>주문일자</th>
@@ -88,24 +117,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for(Orders orders : orderList) { 
-                        if (orders.getOrdersItemsList() != null && !orders.getOrdersItemsList().isEmpty()) {
-                            int itemPrice = orders.getOrdersItemsList().get(0).getProduct().getProductPrice();
-                            int itemQty = orders.getOrdersItemsList().get(0).getOrdersItemsQty();
-                            int itemTotal = itemPrice * itemQty;
-                            totalAmount += itemTotal;
+                    <% for(int i = 0 ; i < orderList.size() ; i++) { 
+                        if (orderList != null && !orderList.isEmpty()) {
+                            int itemPrice = orderList.get(i).getOrdersFinalprice();
+                            int itemQty = orderList.get(i).getOrdersTotqty();
                     %>
-                    <tr> 
-                    	<input type="hidden" name="orders_no" value="<%=orders.getOrdersNo()%>"></input>
-                        <td><button type="button" class="btn btn-3rd" onclick="submitForm('detail')">상세보기</button></td>
-                        <td><%=orders.getOrdersNo() %></td>
-                        <td><%=dateFormat.format(orders.getOrdersDate()) %></td>
-                        <td><%=orders.getOrdersArrivaldate() != null ? dateFormat.format(orders.getOrdersArrivaldate()) : "" %></td>
-                        <td class="item-info"><%=orders.getOrdersItemsList().get(0).getProduct().getProductName() %><br></td>
-                        <td><%=itemQty %></td>
-                        <td><%=decimalFormat.format(itemTotal) %> 원</td>
-                        <td><button type="button" class="btn btn-3rd" onclick="submitForm('purchaseConfirmed')">구매확정</button></td>
-
+                    <tr style="border-bottom: 1px solid #ccc;"> 
+                    	<input type="hidden" name="ordersNo" value></input>
+                        <td><button type="button" class="orderBtn" onclick="submitForm('detail',<%=orderList.get(i).getOrdersNo()%> )">주문상세</button></td>
+                        <td><%=orderList.get(i).getOrdersNo() %></td>
+                        <td><%=dateFormat.format(orderList.get(i).getOrdersDate()) %></td>
+                        <%
+                        	if(orderList.get(i).getOrdersStatus().equals("구매확정")) { %>                        
+	                        <td style="color:tomato;"><%=dateFormat.format(orderList.get(i).getOrdersArrivaldate()) %></td>
+                        <%
+                        	}else{%>
+		                        <td><%=orderList.get(i).getOrdersStatus() %></td>
+		                <%
+                        	}
+                        %>
+                        
+                        <td class="item-info"><%=orderList.get(i).getOrdersItemsList().get(0).getProduct().getProductName() %><br></td>
+                        <td><%=orderList.get(i).getOrdersItemsList().size() %></td>
+                        <td><%=decimalFormat.format(itemPrice) %>원</td>
+                         <%
+                        	if(orderList.get(i).getOrdersStatus().equals("구매확정")) { %>                      
+                        	<td><button  type="button" class="purchaseConfirmedBtn" onclick="submitForm('purchaseConfirmed',<%=orderList.get(i).getOrdersNo()%>)" disabled >구매확정</button></td>
+                        <% }else{ %>
+                        	<td><button type="button" class="purchaseBtn" onclick="submitForm('purchaseConfirmed',<%=orderList.get(i).getOrdersNo()%>)">구매확정</button></td>
+                        <%} %>
                     </tr>
                     <% } else { %>
                     <tr>
@@ -121,14 +161,17 @@
     </div>
 
     <script>
-        function submitForm(action) {
-        	var form = document.getElementById('orderForm');
+        function submitForm(action, ordersNo) {
+        	let form = document.getElementById('orderForm');
+        	let input = document.querySelector('input[name="ordersNo"]');
         	if(action === 'detail'){
+        		input.value = ordersNo;
         		form.action = 'order_detail_view.jsp';
                 form.method = 'POST';
                 form.submit();
         	}else if(action === 'purchaseConfirmed'){
-        		form.action = 'order_confirmed_action.jsp';        
+        		input.value = ordersNo;
+        		form.action = 'orders_confirmed_action.jsp';        
                 form.method = 'POST';
                 form.submit();
         	}
