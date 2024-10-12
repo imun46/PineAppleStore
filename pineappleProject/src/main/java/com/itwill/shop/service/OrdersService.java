@@ -30,7 +30,7 @@ public class OrdersService {
 	}
 	
 	// 카트 주문 등록 (회원 번호 orders의 멤버 필드인 customer 객체에 꼭 넣어줘야함)
-	public int insertOrdersCart(Orders orders) throws Exception{
+	public int insertOrdersCart(Orders orders, List<Integer> cartNoList) throws Exception{
 		// 주문 등록
 		int rowCount = ordersDao.insertOrders(orders);
 		// 주문 아이템 리스트 등록
@@ -38,7 +38,9 @@ public class OrdersService {
 			ordersDao.insertOrdersItems(ordersItems);
 		}
 		// 회원 번호로 카트 비우기
-		cartDao.deleteByCustomerNo(orders.getCustomer().getCustomerNo());
+		for(Integer cartNo : cartNoList) {
+			cartDao.deleteByCartNo(cartNo);
+		}
 		return rowCount;
 	}
 	

@@ -1,3 +1,5 @@
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="java.util.Arrays"%>
 <%@page import="java.util.List" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import="com.itwill.shop.domain.Orders"%>
@@ -6,7 +8,11 @@
 <%@page import="com.itwill.shop.domain.CustomerCoupons"%>
 <%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="com.itwill.shop.service.OrdersService"%>
+<%@page import="com.itwill.shop.service.CustomerCouponsService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="customer_login_check.jspf"  %>    
+
+
 <%
 
 //GET 방식 접근 시 메인 페이지 이동
@@ -14,34 +20,48 @@ if(request.getMethod().equalsIgnoreCase("GET")){
 	response.sendRedirect("index.jsp");
 }
 
-// 카트 번호 리스트 세션에서 확인
-String cartNo[] = session.getAttribute("cartNo");
+// 데이터 받기
+String ordersAddress = request.getParameter("ordersAddress");
+String customerCouponsNo = request.getParameter("customerCouponsNo");
+String ordersFinalprice = request.getParameter("ordersFinalprice");
+Orders orders = (Orders)session.getAttribute("sOrders");
+String[] ordersItemsFinalprice = request.getParameterValues("ordersItemsFinalprice");
 
-// 주문 서비스 객체 생성
+// 카트 번호 리스트 세션에서 확인
+String cartNo[] = (String[])session.getAttribute("cartNo");
+
+// 가격 int cast
+//ordersFinalprice = ordersFinalprice.replaceAll(".0$", "");
+System.out.println("orderFinalprice: "+ordersFinalprice);
+for(int i=0; i<ordersItemsFinalprice.length; i++) {
+	ordersItemsFinalprice[i] = ordersItemsFinalprice[i].replaceAll("\\.0$", "");
+}
+
+
+// 서비스 객체 생성
 OrdersService ordersService = new OrdersService();
+CustomerCouponsService customerCouponsService = new CustomerCouponsService();
 
 // 회원 번호 받기
-int customerNo = Integer.parseInt(request.getParameter("sCustomerNo"));
+int customerNo = Integer.parseInt((String)session.getAttribute("sCustomerNo"));
+System.out.println(customerNo);
 
-// Orders 객체 세션으로부터 받기
-Orders orders = (Orders)session.getAttribute("sOrders");
 
-// OrdersItems 필드 정보 받기
-String[] itemsFinalprice = request.getParameterValues("itemsFinalprice");
-
-// Orders 멤버 필드 정보 받기
-int ordersFinalprice = Integer.parseInt(request.getParameter("ordersFinalprice"));
-int customerCouponsNo = Integer.parseInt(request.getParameter("customerCouponsNo"));
 
 // OrdersItems 객체에 내용 입력
 List<OrdersItems> ordersItemsList = orders.getOrdersItemsList();
-for (int i=0; i<itemsFinalprice.length; i++) {
-	ordersItemsList.get(i).setOrdersItemsFinalprice(Integer.parseInt(itemsFinalprice[i]));
+for (int i=0; i<ordersItemsFinalprice.length; i++) {
+	ordersItemsList.get(i).setOrdersItemsFinalprice((int)Double.parseDouble(ordersItemsFinalprice[i]));
 }
 
 // Orders 객체에 내용 입력
-orders.setOrdersFinalprice(ordersFinalprice);
-orders.setCustomerCoupons(CustomerCoupons.builder().customerCouponsNo(customerCouponsNo).build());
+orders.setOrdersFinalprice(Integer.parseInt(ordersFinalprice));
+orders.setOrdersAddress(ordersAddress);
+orders.setOrdersStatus("배송전");
+// 쿠폰 사용 시 쿠폰 번호 입력
+if(customerCouponsNo!=null) {
+	orders.setCustomerCoupons(CustomerCoupons.builder().customerCouponsNo(Integer.parseInt(customerCouponsNo)).build());
+}
 orders.setCustomer(Customer.builder().customerNo(customerNo).build());
 
 // 주문 입력
@@ -51,7 +71,15 @@ if(cartNo==null) {
 	ordersService.insertOrders(orders);
 } else {
 	// 카트 구매 시 카트 내용 삭제
-	ordersService.insertOrdersCart(orders);
+	List<Integer> cartNoList = Arrays.stream(cartNo)
+                                 .map(Integer::parseInt)
+                                 .collect(Collectors.toList());
+	ordersService.insertOrdersCart(orders, cartNoList);
+}
+
+// 쿠폰 사용 시 사용 완료로 상태 변경
+if(customerCouponsNo!=null) {
+	customerCouponsService.updateCouponStatusUsed(Integer.parseInt(customerCouponsNo));
 }
 
 // Orders 객체 세션에서 삭제
@@ -59,7 +87,7 @@ session.removeAttribute("sOrders");
 session.removeAttribute("cartNo");
 
 // 주문 내역으로  페이지 이동
-response.sendRedirect("orders_list_form");
+response.sendRedirect("order_list_form.jsp");
 
 %>
     

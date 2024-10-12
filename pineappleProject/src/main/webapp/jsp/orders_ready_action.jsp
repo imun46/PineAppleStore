@@ -31,7 +31,6 @@ String cartNo[] 		= request.getParameterValues("cartNo");
 // OrdersItems 개수 파악
 int ordersItemsCount = itemsPrice.length;
 
-
 /*
 // 정보 수령 여부 체크
 for(int i=0; i<itemsPrice.length; i++) {
@@ -39,42 +38,72 @@ for(int i=0; i<itemsPrice.length; i++) {
 	System.out.println("itemsQty: "+itemsQty[i]);
 	System.out.println("itemsOptions: "+itemsOptions[i]);
 	System.out.println("productNo: "+productNo[i]);
-	System.out.println("optionDetail: "+optionDetail[i]);
+	//System.out.println("optionDetail: "+optionDetail[i]);
 }
 	System.out.println("cartNo: "+cartNo);
-*/
 for(int i=0; i<optionDetails.length; i++) {
-	System.out.println("optionDetails: "+optionDetails[i]);
+	System.out.println("optionDetails["+i+"]: "+optionDetails[i]);
 }
+*/
+String otp = request.getParameter("ordersTotprice");
+String otq = request.getParameter("ordersTotqty");
+//System.out.println(otp);
+//System.out.println(otq);
 
 
 // Orders 멤버 필드는 Orders_Items 받고 계산
 int ordersTotprice = Integer.parseInt(request.getParameter("ordersTotprice"));
 int ordersTotqty = Integer.parseInt(request.getParameter("ordersTotqty"));
-
-
-
+	
+// OrdersItems 객체에 내용 입력
+List<OrdersItems> ordersItemsList = new ArrayList<>();
+List<ProductOptionDetail> productOptionDetailList = new ArrayList<>();
+List<ProductOption> productOptionList = new ArrayList<>();
+ProductOption productOption = new ProductOption();
+	
 /*
-	
-	// OrdersItems 객체에 내용 입력
-	List<OrdersItems> ordersItemsList = new ArrayList<>();
-	List<ProductOptionDetail> productOptionDetailList = new ArrayList<>();
-	List<ProductOption> productOptionList = new ArrayList<>();
-	
-		
-	for(int i = 0 ; i<ordersItemsCount ;i++){
+if(optionDetail != null) {
+	// 바로 주문 시
+	for(int i=0; i<ordersItemsCount; i++){
 		ProductOptionDetail productOptionDetail = new ProductOptionDetail();
 		productOptionDetail.setProductOptionDetailNo(Integer.parseInt(optionDetail[i]));
 		productOptionDetailList.add(productOptionDetail);
 	}	
-	
-		ProductOption productOption = new ProductOption();
 		productOption.setProductOptionDetailList(productOptionDetailList);
+}	
+} else {
+	// 카트 주문 시
+	for(int i=0; i<ordersItemsCount; i++) {
+		// optionDetails 분리
+		for(int j=0; j<optionDetails[i].length(); j++) {
+			String[] optionDetailsSplit = optionDetails[i].split(",");
+			productOptionDetail.setProductOptionDetailNo(Integer.parseInt(optionDetailsSplit[i]));
+		}
+			ProductOptionDetail productOptionDetail = new ProductOptionDetail();
+		productOption.setProductOptionDetailList(productOptionDetailList);
+	}
 	
+	
+	
+}
+	
+
+// 카트 주문 시
+List<ProductOptionDetail> productOptionDetailList = new ArrayList<>();
+List<ProductOption> productOption
+for (int i=0; i<optionDetails.length; i++) {
+	String[] optionDetailsSplit = optionDetails[i].split(",");
+}
+*/
+
+
+
+
+
 	for (int i=0; i<ordersItemsCount; i++) {
 		OrdersItems ordersItems = new OrdersItems();
 		//OrdersItems 각 총 가격 계산 및 입력 (개수*가격)
-		ordersItems.setOrdersItemsPrice(Integer.parseInt(itemsPrice[i])*Integer.parseInt(itemsQty[i]));
+		ordersItems.setOrdersItemsPrice(Integer.parseInt(itemsPrice[i]));
 		ordersItems.setOrdersItemsQty(Integer.parseInt(itemsQty[i]));
 		ordersItems.setOrdersItemsOptions(itemsOptions[i]);
 		ordersItems.setProduct(Product.builder()
@@ -98,6 +127,5 @@ int ordersTotqty = Integer.parseInt(request.getParameter("ordersTotqty"));
 	session.setAttribute("cartNo", cartNo);
 	
 	response.sendRedirect("payment.jsp");
-*/
-response.sendRedirect("payment.jsp");
+
 %>

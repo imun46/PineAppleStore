@@ -300,8 +300,22 @@ ReviewService reviewService = new ReviewService();
 			
 				let selectedOptions = document.querySelectorAll('.option-select');
 		        let productOptions = '';
+		        
+		        // 옵션 선택 여부 확인
+		        let allOptionsSelected = true;
+		        selectedOptions.forEach(function(select) {
+		            if (select.value === '0') {
+		                allOptionsSelected = false;
+		            }
+		        });
 
-		    //상품 옵션 문구 합쳐서 전송
+		        // If any option is not selected, alert the user and stop form submission
+		        if (!allOptionsSelected) {
+		            alert('모든 옵션을 선택해주세요.');
+		            return;  // Stop form submission
+		        }
+		        
+		        //상품 옵션 문구 합쳐서 전송
 		        selectedOptions.forEach(function(select) {
 		            let optionName = select.options[select.selectedIndex].getAttribute('optionDetail');
 		            productOptions = productOptions + optionName + ' '; // 선택한 옵션 추가
@@ -309,18 +323,29 @@ ReviewService reviewService = new ReviewService();
 		        
 			    document.querySelector('input[name="itemsOptions"]').value = productOptions.trim();
 			
+			    
+			
 			// 장바구니 또는 구매 여부를 서버에 전송
 			if (action === 'cart') {
 				form.action = 'cart_insert_action.jsp';
-				form.method = 'POST'
-				form.submit();
 				
 			} else if (action === 'order') {
 				form.action = 'orders_ready_action.jsp';
-				form.method = 'POST'
-				form.submit();
 			}
+			
+			form.method = 'POST'
 			form.submit();
+		}
+		
+		function submitFormAction(action, form) {
+		    if (action === 'cart') {
+		        form.action = 'cart_insert_action.jsp';
+		    } else if (action === 'order') {
+		        form.action = 'orders_ready_action.jsp';
+		    }
+
+		    form.method = 'POST';
+		    form.submit();  // Proceed with form submission
 		}
 		
 		function optionSeleted(id) {

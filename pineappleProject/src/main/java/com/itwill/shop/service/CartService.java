@@ -23,7 +23,6 @@ public class CartService {
 	
 	// 카트 및 선택된 제품 등록
 	public int insertCart(Cart cart) throws Exception {
-		
 		// 선택된 제품 중복 여부 확인용 데이터 추출
 		// 회원 번호 추출
 		int customerNo = cart.getCustomer().getCustomerNo();
@@ -37,8 +36,8 @@ public class CartService {
 		for (ProductSelectedDetail productSelectedDetail : productSelected.getProductSelectedDetailList()) {
 			productSelectedOptionNoList.add(productSelectedDetail.getProductOptionDetail().getProductOptionDetailNo());
 		}
-		
-		
+
+
 		// 중복 여부 확인
 		// 중복 시 카트 번호 반환, 미중복 시 0 반환
 		int checkDuplCartNo = checkProductSelected(customerNo, productNo, productSelectedOptionNoList);
@@ -53,12 +52,14 @@ public class CartService {
 				productSelectedDetail.getProductSelected().setProductSelectedNo(cart.getProductSelectedList().get(0).getProductSelectedNo());
 				cartDao.insertProductSelectedDetail(productSelectedDetail);
 			}
-			
+
 		} else {
 			// 중복 시 수량만 증가
 			cartDao.updateCartQty(checkDuplCartNo, cart.getCartQty());
 		}
-		
+
+
+
 		// 등록된 카트 번호 반환
 		return cart.getCartNo();
 	}

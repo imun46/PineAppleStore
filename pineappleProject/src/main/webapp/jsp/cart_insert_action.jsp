@@ -23,7 +23,7 @@ try{
 	String productNo = request.getParameter("productNo");
 	String[] productOptionDetailNo = request.getParameterValues("productOptionDetailNo");
 	
-    if (itemsQty == null || productNo == null || sCustomerNo == null || productOptionDetailNo == null) {
+    if (itemsQty == null || productNo == null || sCustomerNo == null) {
         // Redirect to an error page or handle invalid input gracefully
         response.sendRedirect("index.jsp");
         return;
@@ -34,15 +34,15 @@ try{
 	/*cartService insert*/
 	ProductSelected productSelected = new ProductSelected();
 	List<ProductSelectedDetail> productSelectedDetailList = new ArrayList<>();
-	
-	for(int i = 0 ; i < productOptionDetailNo.length ; i++){
-		ProductSelectedDetail productSelectedDetail = ProductSelectedDetail.builder()
-				.productOptionDetail(ProductOptionDetail.builder().productOptionDetailNo(Integer.parseInt(productOptionDetailNo[i])).build())
-				.productSelected(productSelected)
-				.build();
+		for(int i = 0 ; i < productOptionDetailNo.length ; i++){
+			ProductSelectedDetail productSelectedDetail = ProductSelectedDetail.builder()
+					.productOptionDetail(ProductOptionDetail.builder().productOptionDetailNo(Integer.parseInt(productOptionDetailNo[i])).build())
+					.productSelected(productSelected)
+					.build();
 		
-		productSelectedDetailList.add(productSelectedDetail);
-	}
+			productSelectedDetailList.add(productSelectedDetail);
+		}
+		
 	
 	ProductSelected productSelected2 = ProductSelected.builder()
 									.productSelectedDetailList(productSelectedDetailList)
