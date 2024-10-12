@@ -388,6 +388,7 @@ End
 				<button class="btn-style"
 					onclick="location.href='order_list_form.jsp'">더보기</button>
 			</h2>
+			<div class="card-container">
 			<%
 			if (orderList != null && !orderList.isEmpty()) {
 				int maxOrders = 4;
@@ -430,6 +431,7 @@ End
 			<%
 			}
 			%>
+		</div>
 		</div>
 		<!-- 주문 정보 섹션 끝 -->
 
