@@ -88,6 +88,7 @@
 			background-color: #212529; 
 			border-color: #212529; 
         }
+        
     </style>
 </head>
 <body>
@@ -95,8 +96,8 @@
    <div class="coupon-container">
       <%for (CustomerCoupons customerCoupon : customerCoupons) { %>
         <div class="coupon">
-           <input type="radio" name="selectedCoupon" value="<%= customerCoupon.getCustomerCouponsNo() %>">
            <label for="selectedCoupon">
+           <input type="radio" name="selectedCoupon" value="<%= customerCoupon.getCustomerCouponsNo() %>">
            <strong><%= customerCoupon.getCoupon().getCouponName() %></strong><br>
            <%=customerCoupon.getCoupon().getCouponDesc() %><br>
            <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate()) %>

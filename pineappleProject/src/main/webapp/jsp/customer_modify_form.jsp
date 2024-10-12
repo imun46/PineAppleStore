@@ -84,17 +84,19 @@
 </script>
 
 <style>
-        body {
+		
+         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            display: flex;
+            /* display: flex; */
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f8f9fa;
         }
+      
         .big-container {
             width: 100%;
             height: 100%;
@@ -102,6 +104,7 @@
             justify-content: center;
             align-items: center;
         }
+         
         .container {
             width: 40%;
             padding: 20px;
@@ -110,18 +113,21 @@
             border: 1px solid #ddd;
             margin: 0 auto;
         }
+       
         h2 {
             text-align: center;
             color: #333;
             margin-bottom: 20px;
             margin-top: 20px;
         }
+       /* 
         form {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
+        } */
+         
         .form-group {
             width: 80%;
             display: flex;
@@ -175,10 +181,11 @@
                   border-color: #212529;
               }
         
-     
+   
 </style>
 </head>
 <body>
+<jsp:include page="../includes/include_top_menu.jsp" />
 <form name="f" method="post">
 	<div class="big-container">
         <div class="container">
