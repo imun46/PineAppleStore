@@ -8,33 +8,33 @@
     pageEncoding="UTF-8"%>
 <%@ include file="customer_login_check.jspf"  %>    
 <%
-	/*** 서비스 객체 생성***/
-	CustomerService customerService = new CustomerService();
-	CustomerCouponsService customerCouponsService = new CustomerCouponsService();
-	
-	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
-	int customerNo = Integer.parseInt(sCustomerNo);
-	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
-	
-	/*** 날짜 포맷 설정 ***/
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-	
-	/*** 쿠폰 리스트 객체 생성 ***/
-	List<CustomerCoupons> customerCoupons = customerCouponsService.findCustomerCouponsListUsable(customerNo);
-	
-	
-	
-	
+   /*** 서비스 객체 생성***/
+   CustomerService customerService = new CustomerService();
+   CustomerCouponsService customerCouponsService = new CustomerCouponsService();
+   
+   /*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
+   int customerNo = Integer.parseInt(sCustomerNo);
+   Customer loginCustomer = customerService.findCustomerByNo(customerNo);
+   
+   /*** 날짜 포맷 설정 ***/
+   SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+   
+   /*** 쿠폰 리스트 객체 생성 ***/
+   List<CustomerCoupons> customerCoupons = customerCouponsService.findCustomerCouponsListUsable(customerNo);
+   
+   
+   
+   
 %>    
     
     
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>보유 쿠폰 리스트</title>
-	<link rel="stylesheet" href="styles.css">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>보유 쿠폰 리스트</title>
+   <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .payment-container {
@@ -105,19 +105,19 @@
     </style>
 </head>
 <body>
-	<div class="payment-container">
-		<h2>보유 쿠폰</h2>
-		<%for (CustomerCoupons customerCoupon : customerCoupons) { %>
+   <div class="payment-container">
+      <h2>보유 쿠폰</h2>
+      <%for (CustomerCoupons customerCoupon : customerCoupons) { %>
          <div class="order-details">
             <div class="product-info">
-           	
-	        <p><input type="radio" name="selectedCoupon" value="<%= customerCoupon.getCustomerCouponsNo() %>">
-	        <strong>쿠폰 이름:</strong> <%= customerCoupon.getCoupon().getCouponName() %></p>
+              
+           <p><input type="radio" name="selectedCoupon" value="<%= customerCoupon.getCustomerCouponsNo() %>">
+           <strong>쿠폰 이름:</strong> <%= customerCoupon.getCoupon().getCouponName() %></p>
             <p><strong>쿠폰 내용:</strong> <%=customerCoupon.getCoupon().getCouponDesc() %></p>
             <p><strong>쿠폰 상태:</strong> <%=customerCoupon.getCustomerCouponsStatus() %></p>
             <p><strong>쿠폰 만기일:</strong> <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate()) %></p>
-        	</div>
-        </div><hr>
+           </div>
+        </div>
         <% } %>
      </div>
      <div class="button-container">
@@ -134,7 +134,7 @@
 
         if (selectedCoupon) {
             var customerCouponsNo = selectedCoupon.value; // Get the coupon number
-           	window.close();
+              window.close();
 
             // Check if the parent window is available
             if (window.opener && !window.opener.closed) {
