@@ -1,3 +1,4 @@
+<%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="com.itwill.shop.domain.CustomerCoupons"%>
 <%@page import="com.itwill.shop.service.CustomerService"%>
 <%@page import="com.itwill.shop.service.CustomerCouponsService"%>

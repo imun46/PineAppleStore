@@ -83,6 +83,7 @@ ReviewService reviewService = new ReviewService();
 	<!-- Form to handle options and submit -->
 	<form id="productForm" method="POST">
 		<input type="hidden" name="productNo" value="<%=productNo%>" />
+		<input type="hidden" name="productName" value="<%=product.getProductName()%>" />
 		<input type="hidden" name="itemsQty" value=1 />
 		<input type="hidden" name="itemsPrice"/>
 		<input type="hidden" name="ordersTotprice" />
@@ -256,8 +257,6 @@ ReviewService reviewService = new ReviewService();
 		
 		function submitForm(action) {
 			var form = document.getElementById('productForm');
-			// 장바구니 또는 구매 여부를 서버에 전송
-			if (action === 'cart') {
 				
 				
 				let selectedOptions = document.querySelectorAll('.option-select');
@@ -268,8 +267,10 @@ ReviewService reviewService = new ReviewService();
 		            productOptions = productOptions + optionName + ' '; // 선택한 옵션 추가
 		        });
 		        
-			    document.querySelector('input[name="itemsOptions"]').value = productOptions;
+			    document.querySelector('input[name="itemsOptions"]').value = productOptions.trim();
 			    
+			// 장바구니 또는 구매 여부를 서버에 전송
+			if (action === 'cart') {
 				form.action = 'cart_insert_action.jsp';
 				form.method = 'POST'
 				form.submit();
