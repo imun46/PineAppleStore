@@ -24,7 +24,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 정보 수정</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/customer_view.css">
 <script type="text/javascript">
 		function customerModifyAction() {
 			if (document.f.password.value == "") {
@@ -105,30 +107,30 @@
             align-items: center;
         }
          
-        .container {
+        .container2 {
             width: 40%;
             padding: 20px;
             border-radius: 15px;
             background-color: #fff;
             border: 1px solid #ddd;
-            margin: 0 auto;
+            margin: 5px auto;
         }
        
-        h2 {
+        .h1modify {
             text-align: center;
             color: #333;
             margin-bottom: 20px;
             margin-top: 20px;
         }
-       /* 
-        form {
+       
+        .modifyForm {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-        } */
+        }
          
-        .form-group {
+        .form-group2 {
             width: 80%;
             display: flex;
             justify-content: center;
@@ -136,6 +138,7 @@
             margin-bottom: 8px;
          margin-right: 120px;
         }
+        
         label {
             width: 35%;
             color: #555;
@@ -153,6 +156,7 @@
         .buttons {
             margin-top: 10px;
             text-align: center;
+            
         }
         button {
          color: #212529; 
@@ -186,67 +190,74 @@
 </head>
 <body>
 <jsp:include page="../includes/include_top_menu.jsp" />
-<form name="f" method="post">
+<form name="f" method="post" class="modifyForm">
+           <header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-dark">
+				<h1 class="display-4 fw-bolder">유저 정보 수정</h1>
+				<p class="lead fw-normal text-dark mb-0">어세오세욤 :)</p>
+			</div>
+		</div>
+	</header>
 	<div class="big-container">
-        <div class="container">
-            <h2>회원 정보 수정</h2>
+        <div class="container2">
             
 		<!-- 사용자 아이디 -->
-		<div class="form-group">
+		<div class="form-group2">
         <label for="userId">사용자 아이디 :</label>
 		<input type="text" id="userId" value="<%=loginCustomer.getCustomerId() %>" readonly>
 		</div>	
 		 
 		<!-- 사용자 비밀번호 -->	
-		<div class="form-group">
+		<div class="form-group2">
 		<label for="password">비밀번호 :</label>
 		<input type="password" id="password" name="password" value="">
 		</div>
 			
 		<!-- 사용자 비밀번호 확인 -->	
-		<div class="form-group">
+		<div class="form-group2">
 		<label for="passwordConfirm">비밀번호 확인:</label>
 		<input type="password" id="password2" name="password2" value="">
 		</div>
 		
 		<!-- 사용자 이름 -->
-		<div class="form-group">	
+		<div class="form-group2">	
 		<label for="name">사용자 이름 :</label>
 		<input type="text" id="name" value="<%=loginCustomer.getCustomerName() %>" readonly>
 		</div>
 		
 		<!-- 사용자 생년월일 -->	
-		<div class="form-group">
+		<div class="form-group2">
 		<label for="birthdate">생년월일 :</label>
 		<input type="text" id="birthdate" value="<%=simpleDateFormat.format(loginCustomer.getCustomerDob()) %>">
 		</div>
 		
 		<!-- 사용자 주소 -->
-		<div class="form-group">
+		<div class="form-group2">
 		<label for="address">사용자 주소 :</label>
 		<input type="text" id="address" name="address" value="<%=loginCustomer.getCustomerAddress()%>">
 		</div>
 		
 		<!-- 사용자 전화번호 -->
-		<div class="form-group">
+		<div class="form-group2">
 		<label for="phone">전화번호 :</label>
 		<input type="text" id="phone"name="phone" value="<%=loginCustomer.getCustomerPhone()%>">
 		</div>
 		
 		<!-- 사용자 이메일 -->
-		<div class="form-group">
+		<div class="form-group2">
 		<label for="email">이메일 :</label>
 		<input type="email" id="email" name="email" value="<%=loginCustomer.getCustomerEmail()%>">
 		</div>
 		
 		<!-- 사용자 닉네임 -->	
-		<div class="form-group">
+		<div class="form-group2">
 		<label for="nickname">닉네임 :</label>
 		<input type="text" id="nickname" name="nickname" value="<%=loginCustomer.getCustomerNickname() %>">
 		</div>
 		
 		<!-- 사용자 가입날짜 -->
-		<div class="form-group">
+		<div class="form-group2">
 		<label for="userId">가입 날짜 :</label>
 		<input type="text" id="joindate" value="<%=simpleDateFormat.format(loginCustomer.getCustomerJoindate())%>" readonly>
 	 	</div>
