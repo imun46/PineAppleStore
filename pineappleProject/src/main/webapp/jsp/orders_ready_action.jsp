@@ -3,6 +3,7 @@
 <%@page import="com.itwill.shop.domain.Orders"%>
 <%@page import="com.itwill.shop.domain.Product"%>
 <%@page import="com.itwill.shop.domain.ProductOption"%>
+<%@page import="com.itwill.shop.domain.ProductOptionDetail"%>
 <%@page import="com.itwill.shop.domain.OrdersItems"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -20,6 +21,7 @@ String itemsPrice[] 	= request.getParameterValues("itemsPrice");
 String itemsQty[] 		= request.getParameterValues("itemsQty");
 String itemsOptions[] 	= request.getParameterValues("itemsOptions");
 String productNo[] 		= request.getParameterValues("productNo");
+String optionDetail[]	= request.getParameterValues("productOptionDetailNo");
 
 String cartNo[] 		= request.getParameterValues("cartNo");
 
@@ -30,16 +32,28 @@ int ordersTotqty = Integer.parseInt(request.getParameter("ordersTotqty"));
 
 // OrdersItems 객체에 내용 입력
 List<OrdersItems> ordersItemsList = new ArrayList<>();
+List<ProductOptionDetail> productOptionDetailList = new ArrayList<>();
 List<ProductOption> productOptionList = new ArrayList<>();
 
-OrdersItems ordersItems = new OrdersItems();
+	
+for(int i = 0 ; i< optionDetail.length ;i++){
+	ProductOptionDetail productOptionDetail = new ProductOptionDetail();
+	productOptionDetail.setProductOptionDetailNo(Integer.parseInt(optionDetail[i]));
+	productOptionDetailList.add(productOptionDetail);
+}	
+
+	ProductOption productOption = new ProductOption();
+	productOption.setProductOptionDetailList(productOptionDetailList);
+
 for (int i=0; i<itemsOptions.length; i++) {
+	OrdersItems ordersItems = new OrdersItems();
 	ordersItems.setOrdersItemsPrice(Integer.parseInt(itemsPrice[i]));
 	ordersItems.setOrdersItemsQty(Integer.parseInt(itemsQty[i]));
 	ordersItems.setOrdersItemsOptions(itemsOptions[i]);
 	ordersItems.setProduct(Product.builder()
 			.productOptionList(productOptionList)	
 			.productNo(Integer.parseInt(productNo[i])).build());
+	ordersItemsList.add(ordersItems);
 }
 
 // Orders 객체에 내용 입력

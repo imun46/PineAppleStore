@@ -19,6 +19,11 @@
 <%@ include file="customer_login_check.jspf"  %>    
     
 <%
+
+	/* 세션불러오기  */
+	Orders sOrders = (Orders)session.getAttribute("sOrders");
+	
+	
 	java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
 	response.setContentType("text/html; charset=UTF-8");
 	
@@ -89,7 +94,7 @@
 	ProductService productService = new ProductService();
 	
 	/*** 제품 번호 파라매터 ***/
-	String productNoStr = request.getParameter("product_no");	
+	String productNoStr = request.getParameter("productNo");	
 	/*** 제품 수량 파라매터 ***/
 	String cartQty = request.getParameter("cart_qty");	
 	/*** 제품 총 가격(현재는 제품 가격만 나옴) 파라매터 ***/
@@ -243,9 +248,9 @@
         <div class="order-details">
             <div class="product-info">
                 <p><strong>상품명:</strong> <%=product.getProductName() %></p>
-                <p><strong>옵션:</strong> <%=optionStr.substring(0, optionStr.length()-1)  %></p>
+                <p><strong>옵션:</strong> </p>
                 <p><strong>수량:</strong> <%=cartQty %>개</p>
-                <p><strong>가격:</strong> <span id="product-amount"><%=decimalFormat.format(tot) %></span>원</p>
+                <p><strong>가격:</strong> <span id="product-amount"></span>원</p>
             </div>
             
             <form id="payment-form" action="paymentProcess.jsp" method="post">
@@ -262,9 +267,9 @@
         <form id="payment-form" action="order_list_form.jsp" method="post">
 
             <div class="total-amount">
-                <p>상품금액: <span id="product-amount"><%=decimalFormat.format(tot) %></span>원</p>
-                <p>할인: <span id="product-amount"> - <%=decimalFormat.format(salePrice) %></span>원</p>
-                <p><strong>합계: <span id="total-amount"><%=decimalFormat.format(tot-salePrice)%></span>원</strong></p>
+                <p>상품금액: <span id="product-amount"></span>원</p>
+                <p>할인: <span id="product-amount"> - </span>원</p>
+                <p><strong>합계: <span id="total-amount"></span>원</strong></p>
             </div>
 
             <button type="submit">결제하기</button>
