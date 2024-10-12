@@ -58,7 +58,45 @@ ReviewService reviewService = new ReviewService();
             padding: 20px;
             margin: 20px 0;
             color: inherit;
-        }
+            }
+            
+        .productBtn {
+	          	color: #212529; /* 버튼 텍스트 색상 */
+			    border: 1px solid #212529; /* 버튼 경계 색상 */
+			    background-color: transparent; /* 배경색 투명 */
+			    padding: 8px 23px; /* 버튼의 패딩 */
+			    cursor: pointer; /* 마우스 포인터를 손가락 모양으로 변경 */
+			    font-size: 17px; /* 글자 크기 */
+			    font-weight: bold; /* 글자 두께 */
+			    border-radius: 5px; /* 모서리 둥글게 */
+			    transition: background-color 0.3s, color 0.3s; /* 호버 시 변화 애니메이션 */
+        	}
+		.productBtn:hover {
+			    color: #fff; /* 호버 시 텍스트 색상 */
+			    background-color: #212529; /* 호버 시 배경색 */
+			    border-color: #212529; /* 호버 시 경계 색상 */
+			}
+		
+		.productBtn:focus {
+			    outline: none; /* 포커스 시 외곽선 제거 */
+			    box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
+			}
+		
+		.productBtn:active {
+			    color: #fff; /* 클릭 시 텍스트 색상 */
+			    background-color: #212529; /* 클릭 시 배경색 */
+			    border-color: #212529; /* 클릭 시 경계 색상 */
+			}
+			
+		.review {
+			    display: flex;
+			    justify-content: center; /* 버튼을 가로 중앙 정렬 */
+			}
+		.review > .productBtn {
+				padding: 10px 30px;
+			    margin: 20px 0; /* 상하 여백을 설정 */
+				font-size: 20px;			    
+			}
 	</style>
 </head>
 <body>
@@ -83,6 +121,7 @@ ReviewService reviewService = new ReviewService();
 	<!-- Form to handle options and submit -->
 	<form id="productForm" method="POST">
 		<input type="hidden" name="productNo" value="<%=productNo%>" />
+		<input type="hidden" name="productName" value="<%=product.getProductName()%>" />
 		<input type="hidden" name="itemsQty" value=1 />
 		<input type="hidden" name="itemsPrice"/>
 		<input type="hidden" name="ordersTotprice" />
@@ -162,9 +201,9 @@ ReviewService reviewService = new ReviewService();
 
 					<!-- Add to Cart and Purchase Buttons -->
 					<div class="mt-4">
-						<button type="button" class="btn btn-primary btn-lg"
+						<button type="button" class="productBtn"
 							onclick="submitForm('cart')">장바구니</button>
-						<button type="button" class="btn btn-primary btn-lg"
+						<button type="button" class="productBtn"
 							onclick="submitForm('order')">구매하기</button>
 					</div>
 				</div>
@@ -179,7 +218,7 @@ ReviewService reviewService = new ReviewService();
 			<!-- Review -->
 			<!-- Customer Reviews Section -->
          	 <div class="section">
-        <h2>리뷰 정보 <button class="btn-style" onclick="location.href='review_mypage_form.jsp'">더보기</button></h2>              
+        <h2>리뷰 정보 </h2>              
         
             <div class="list-item">
                 <% List<Review> reviewList = reviewService.findReviewByProductNo(productNo); %>
@@ -223,8 +262,10 @@ ReviewService reviewService = new ReviewService();
                 <%
                     reviewCount++;    
                 } %>           
-                </div>                       
-            
+                </div>
+                <div class="review">
+	           		<button class="productBtn" onclick="location.href='review_mypage_form.jsp'">더보기</button>
+                </div>                      
         </div>
       </div>
         
@@ -256,8 +297,6 @@ ReviewService reviewService = new ReviewService();
 		
 		function submitForm(action) {
 			var form = document.getElementById('productForm');
-			// 장바구니 또는 구매 여부를 서버에 전송
-			if (action === 'cart') {
 				
 				
 				let selectedOptions = document.querySelectorAll('.option-select');
@@ -268,8 +307,10 @@ ReviewService reviewService = new ReviewService();
 		            productOptions = productOptions + optionName + ' '; // 선택한 옵션 추가
 		        });
 		        
-			    document.querySelector('input[name="itemsOptions"]').value = productOptions;
+			    document.querySelector('input[name="itemsOptions"]').value = productOptions.trim();
 			    
+			// 장바구니 또는 구매 여부를 서버에 전송
+			if (action === 'cart') {
 				form.action = 'cart_insert_action.jsp';
 				form.method = 'POST'
 				form.submit();

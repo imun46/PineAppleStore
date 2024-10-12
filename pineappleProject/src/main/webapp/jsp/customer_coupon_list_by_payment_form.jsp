@@ -34,15 +34,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>보유 쿠폰 리스트</title>
-<script type="text/javascript">
-	function customerCouponChoice(){
-		document.f.action = "customer_coupon_list_by_payment_action.jsp";
-		document.f.method="POST";
-		document.f.submit();
-	}
-
-</script>
-
 	<link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -131,6 +122,43 @@
      </div>
      <div class="button-container">
             <input type="button" value="쿠폰 적용" onClick="customerCouponChoice()">
+            <input type="button" value="나가기" onClick="exit()">
         </div>
+       
+       
+<!-- 자바스크립트 -->
+    <script type="text/javascript">
+    function customerCouponChoice() {
+        // Get the selected coupon value
+        var selectedCoupon = document.querySelector('input[name="selectedCoupon"]:checked');
+
+        if (selectedCoupon) {
+            var customerCouponsNo = selectedCoupon.value; // Get the coupon number
+
+            // Check if the parent window is available
+            if (window.opener && !window.opener.closed) {
+                console.log("Parent window found, sending coupon data."); // Debugging log
+
+                // Set the coupon value in the parent window
+                window.opener.document.getElementById('selectedCouponField').value = customerCouponsNo;
+                window.opener.refreshCouponDetails(); // Call a function on the parent page to update the display
+            } else {
+                console.log("Parent window not found."); // Debugging log if parent window is not accessible
+            }
+
+            // Close the popup window
+            window.close();
+            console.log("Popup window closed."); // Debugging log for window closure
+        } else {
+            alert("쿠폰을 선택해주세요."); // Show alert if no coupon is selected
+        }
+    }
+
+        function exit() {
+            window.close(); // Close the popup without doing anything
+        }
+    </script>
+
+        
 </body>
 </html>
