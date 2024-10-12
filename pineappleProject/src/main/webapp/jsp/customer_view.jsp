@@ -111,6 +111,7 @@ table td {
 	text-decoration: none; /* 링크 밑줄 없애기 */
 	cursor: pointer; /* 마우스 포인터 변경 */
 	transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+	margin-right: 10px;
 }
 
 .btn-style:hover {
@@ -138,6 +139,7 @@ table td {
 	background-color: #fff; /* 배경 색상 */
 	margin-top: 10px; /* 상단 간격 */
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+	text-align: center;
 }
 
 /* 리뷰 섹션 스타일 */
@@ -325,7 +327,7 @@ End
 					<%=customer.getCustomerNickname()%></p>
 				<form name="f" method="POST" action="customer_delete_action.jsp">
 					<button class="btn-style" type="button"
-						onClick="customerModifyForm()">수정</button>
+						onClick="customerModifyForm()">정보 수정</button>
 					<button class="btn-style" type="button" onClick="customerDelete()">계정
 						삭제</button>
 				</form>
