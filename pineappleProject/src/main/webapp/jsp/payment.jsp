@@ -24,8 +24,6 @@
 	// 세션 값 불러오기
 	Orders sOrders = (Orders) session.getAttribute("sOrders");
 	
-	System.out.println();
-	
 	String[] cartNo = (String[]) session.getAttribute("cartNo");
 	String[] itemsOptions = (String[]) session.getAttribute("itemsOptions");
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
