@@ -7,7 +7,7 @@
 <%@ page import="java.util.Date" %>
 
 <%
-	String orderNo = request.getParameter("orders_no");
+	String orderNo = request.getParameter("ordersNo");
 	if(orderNo == null || orderNo.equals("")){
 		response.sendRedirect("index.jsp");
 		return;
