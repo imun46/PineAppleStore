@@ -31,6 +31,7 @@
             border: 1px solid #ddd;
             padding: 10px;
             text-align: center;
+            border-bottom: 1px solid #ccc;
         }
         th {
             background-color: #f2f2f2;
@@ -93,8 +94,8 @@
                             int itemPrice = orderList.get(i).getOrdersFinalprice();
                             int itemQty = orderList.get(i).getOrdersTotqty();
                     %>
-                    <tr> 
-                    	<input type="hidden" name="orders_no" value="<%=orderList.get(i).getOrdersNo()%>"></input>
+                    <tr style="border-bottom: 1px solid #ccc;"> 
+                    	<input type="hidden" name="ordersNo" value="<%=orderList.get(i).getOrdersNo()%>"></input>
                         <td><button type="button" class="btn btn-3rd" onclick="submitForm('detail')">주문상세</button></td>
                         <td><%=orderList.get(i).getOrdersNo() %></td>
                         <td><%=dateFormat.format(orderList.get(i).getOrdersDate()) %></td>
