@@ -47,28 +47,29 @@
 	String findCouponName = "";
 	double couponDiscountDb = 0.0;
 	int couponDiscount = 0;
+	String couponDiscountStr = "";
 	int salePrice = 0;
 	
-	if (customerCouponNoStr != null && !customerCouponNoStr.isEmpty()) {
+	if (selectedCoupon!= null && !selectedCoupon.isEmpty()) {
     	try {
      	   selectedCustomerCoupon = customerCouponsService.findCustomerCouponsDetailByNo(Integer.parseInt(selectedCoupon));
 			System.out.println(selectedCustomerCoupon);
-        if (selectedCoupon != null) {
-            Coupon coupon = selectedCustomerCoupon.getCoupon();
-            findCouponName = coupon.getCouponName();
-            String couponDiscountStr = (String)coupon.getCouponDiscount();
-            couponDiscountDb = Double.parseDouble(couponDiscountStr) * 0.01;  // Discount in decimal
-        }
-    } catch (NumberFormatException e) {
-        // Log the error
-        out.println("Error parsing coupon number.");
-    }
-}
+        	if (selectedCoupon != null) {
+            	Coupon coupon = selectedCustomerCoupon.getCoupon();
+            	findCouponName = coupon.getCouponName();
+            	couponDiscountStr = (String)coupon.getCouponDiscount();
+            	couponDiscountDb = Double.parseDouble(couponDiscountStr) * 0.01;  // Discount in decimal
+        	}
+    	} catch (NumberFormatException e) {
+       		 // Log the error
+       		 out.println("Error parsing coupon number.");
+    	}
+	}
 
     // Assume couponDiscountDb and sOrders are already initialized
     double totalPrice = sOrders.getOrdersTotprice(); // Get the total price from sOrders
     double finalPrice = totalPrice * (1 - couponDiscountDb); // Calculate the initial final price
-
+	
 	
 //	ArrayList<Integer> optionPriceList = new ArrayList<>();
 //
@@ -191,7 +192,7 @@
                 <p><strong>상품명:</strong> <%=ordersItems.getProduct().getProductName()%></p>
                 <p><strong>옵션:</strong> <%=ordersItems.getOrdersItemsOptions()%> </p>
                 <p><strong>수량:</strong> <%=ordersItems.getOrdersItemsQty()%>개</p>
-                <p><strong>가격:</strong> <span id="product-amount"><%=ordersItems.getOrdersItemsPrice() %></span>원</p>
+                <p><strong>가격:</strong> <span id="product-amount"><%=decimalFormat.format(ordersItems.getOrdersItemsPrice()) %></span>원</p>
             </div>
             <%} %>
        </div>
@@ -200,19 +201,16 @@
                 <label for="coupon-code">보유 쿠폰: <%=usableCouponsQty%>개</label>
                 <%if(!findCouponName.equals("")) { %>
                 <p><strong>선택 쿠폰 : </strong> <%=findCouponName %></p>
+                <p><strong>선택 쿠폰 할인율 : </strong> <%=couponDiscountStr %>%</p>
                 <% } %>
                 <button type="button" id="select-coupon" onclick="customerCouponList()">보유 쿠폰 보기</button>
             </div>
             
 		<!-- Coupon details section, initially hidden -->
-		<% if (selectedCoupon != null) { %>
 			<div id="selected-coupon-details">
-  				 <p><strong>쿠폰 이름:</strong> <%= findCouponName %></p>
- 				 <p><strong>쿠폰 할인율:</strong> <%= couponDiscount %>%</p>
-			<%} %>
 			</div>
             <div class="total-amount">
-                <p>상품금액: <span id="product-amount"><%=sOrders.getOrdersTotprice() %></span>원</p>
+                <p>상품금액: <span id="product-amount"><%=decimalFormat.format(sOrders.getOrdersTotprice()) %></span>원</p>
                 <p>할인: <span id="discount-amount"> - </span>원</p>
                 <p><strong>합계: <span id="total-amount"><%=sOrders.getOrdersFinalprice() %></span>원</strong></p>
             </div>
@@ -238,12 +236,15 @@
 	 
     function customerCouponUse() {
         // Calculate the discount and final price
+        var totalPrice = <%=totalPrice%>;
+        var couponDiscount = <%=couponDiscountDb%>;
+        console.log(couponDiscount);
         const discountAmount = totalPrice * couponDiscount;
         const finalPrice = totalPrice - discountAmount;
 
         // Update the HTML to show the new prices
-        document.getElementById('discount-amount').textContent = discountAmount.toLocaleString() + '원';
-        document.getElementById('total-amount').textContent = finalPrice.toLocaleString() + '원';
+        document.getElementById('discount-amount').textContent = discountAmount.toLocaleString();
+        document.getElementById('total-amount').textContent = finalPrice.toLocaleString();
     }
 	
 	function refreshCouponDetails() {
