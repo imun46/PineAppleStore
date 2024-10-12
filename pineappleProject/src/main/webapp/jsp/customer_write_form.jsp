@@ -108,6 +108,7 @@ a {
     padding-top: 10px;
     padding-bottom: 10px;
     border: 1px solid #dadada;
+    border-radius: 4px;
     margin-right: 30px;
 }
 
