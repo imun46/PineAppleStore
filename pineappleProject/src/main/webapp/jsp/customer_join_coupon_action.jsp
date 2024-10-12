@@ -5,8 +5,10 @@
 <%@page import="com.itwill.shop.service.CustomerCouponsService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="customer_login_check.jspf"  %>      
+<%@ include file="customer_login_check.jspf"  %>    
+  
  <%
+ 	
  	/*** 서비스 객체 생성***/
 	CustomerService customerService = new CustomerService();
 	CustomerCouponsService customerCouponsService = new CustomerCouponsService();
@@ -19,7 +21,7 @@
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 	
 	/*** 가입 쿠폰 임의 생성 ***/
-	String couponId = "JOINDATE";
+	String couponId = "JOINCOUPON";
 	
 	/*** 쿠폰 삽입 ***/
 	int rowCount = customerCouponsService.insertCustomerCoupons(couponId, customerNo);
@@ -30,8 +32,8 @@
 			/*** script ***/
 			out.println("<script>");
 			out.println(" alert('" + msg + "');");
-			// 스크립트를 통해 리다이렉트
-			out.println(" window.location.href='customer_coupon_list.jsp';");
+			out.println("window.parent.closePopup();"); // 팝업 닫기
+			out.println(" console.log(\"rowCount1\");");
 			out.println("</script>");
 			/*** script ***/
 		} else if(rowCount == 3) {
@@ -39,27 +41,30 @@
 			out.println("<script>");
 			out.println(" alert('이미 보유한 쿠폰입니다.');");
 			// 스크립트를 통해 리다이렉트
-			out.println(" window.location.href='customer_coupon_list.jsp';");
+			out.println("window.parent.closePopup();"); // 팝업 닫기
+			out.println(" console.log(\"rowCount3\");");
 			out.println("</script>");
 			/*** script ***/
 		} else {
 			/*** script ***/
 			out.println("<script>");
 			out.println(" alert('쿠폰이 등록되지 않았습니다.');");
-			// 현재 창 닫기
-			out.println(" window.close();");
 			// 스크립트를 통해 리다이렉트
-			out.println(" window.location.href='customer_join_coupon_form.jsp';"); 
+			out.println("window.parent.closePopup();"); // 팝업 닫기
+			out.println(" console.log(\"else\");");
 			out.println("</script>");
 			/*** script ***/
 		}
+		
 	} catch(Exception e) {
 		e.printStackTrace();
 		out.println("<script>");
 		out.println(" alert('쿠폰이 등록되지 않았습니다.');");
-		// 스크립트를 통해 리다이렉트
-		out.println(" window.location.href='customer_join_coupon_form.jsp';"); 
+		out.println(" console.log(\"catch\");");
+		out.println("window.parent.closePopup();"); // 팝업 닫기
 		out.println("</script>");
 	}
 	
  %>
+ 
+ 
