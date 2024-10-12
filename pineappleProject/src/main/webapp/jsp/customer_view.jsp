@@ -271,9 +271,14 @@ End
 	}
 
 	function customerCouponInsert() {
-		popuWindow = window.open("customer_coupon_insert_form.jsp",
-				"popupWindow", "width=600,height=400,scrollbars=yes");
-
+		// 쿠폰 팝업창 정중앙으로 나오게 하기
+		 var width = 600;
+		    var height = 400;
+		    var left = (window.innerWidth / 2) - (width / 2);
+		    var top = (window.innerHeight / 2) - (height / 2);
+		    
+		    popupWindow = window.open("customer_coupon_insert_form.jsp",
+		        "popupWindow", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top + ",scrollbars=yes");
 	}
 	// 부모 창 새로 고침
 	function refreshParent() {
@@ -383,6 +388,7 @@ End
 				<button class="btn-style"
 					onclick="location.href='order_list_form.jsp'">더보기</button>
 			</h2>
+			<div class="card-container">
 			<%
 			if (orderList != null && !orderList.isEmpty()) {
 				int maxOrders = 4;
@@ -425,6 +431,7 @@ End
 			<%
 			}
 			%>
+		</div>
 		</div>
 		<!-- 주문 정보 섹션 끝 -->
 

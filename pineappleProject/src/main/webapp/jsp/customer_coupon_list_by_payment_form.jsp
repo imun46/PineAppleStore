@@ -134,6 +134,7 @@
 
         if (selectedCoupon) {
             var customerCouponsNo = selectedCoupon.value; // Get the coupon number
+           	window.close();
 
             // Check if the parent window is available
             if (window.opener && !window.opener.closed) {

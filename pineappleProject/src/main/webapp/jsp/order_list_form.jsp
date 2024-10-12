@@ -23,7 +23,7 @@
             text-align: center;
         }
         table {
-            width: 90%;
+            width: 70%;
             border-collapse: collapse;
             margin: 20px auto;
         }
@@ -31,6 +31,7 @@
             border: 1px solid #ddd;
             padding: 10px;
             text-align: center;
+            border-bottom: 1px solid #ccc;
         }
         th {
             background-color: #f2f2f2;
@@ -76,7 +77,7 @@
     	<form id="orderForm" method="POST">
             <table>
                 <thead>
-                    <tr>
+                    <tr style="text-align: center;">
                         <th>상세보기</th>
                         <th>주문번호</th>
                         <th>주문일자</th>
@@ -88,24 +89,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for(Orders orders : orderList) { 
-                        if (orders.getOrdersItemsList() != null && !orders.getOrdersItemsList().isEmpty()) {
-                            int itemPrice = orders.getOrdersItemsList().get(0).getProduct().getProductPrice();
-                            int itemQty = orders.getOrdersItemsList().get(0).getOrdersItemsQty();
-                            int itemTotal = itemPrice * itemQty;
-                            totalAmount += itemTotal;
+                    <% for(int i = 0 ; i < orderList.size() ; i++) { 
+                        if (orderList != null && !orderList.isEmpty()) {
+                            int itemPrice = orderList.get(i).getOrdersFinalprice();
+                            int itemQty = orderList.get(i).getOrdersTotqty();
                     %>
-                    <tr> 
-                    	<input type="hidden" name="orders_no" value="<%=orders.getOrdersNo()%>"></input>
-                        <td><button type="button" class="btn btn-3rd" onclick="submitForm('detail')">상세보기</button></td>
-                        <td><%=orders.getOrdersNo() %></td>
-                        <td><%=dateFormat.format(orders.getOrdersDate()) %></td>
-                        <td><%=orders.getOrdersArrivaldate() != null ? dateFormat.format(orders.getOrdersArrivaldate()) : "" %></td>
-                        <td class="item-info"><%=orders.getOrdersItemsList().get(0).getProduct().getProductName() %><br></td>
+                    <tr style="border-bottom: 1px solid #ccc;"> 
+                    	<input type="hidden" name="ordersNo" value="<%=orderList.get(i).getOrdersNo()%>"></input>
+                        <td><button type="button" class="btn btn-3rd" onclick="submitForm('detail')">주문상세</button></td>
+                        <td><%=orderList.get(i).getOrdersNo() %></td>
+                        <td><%=dateFormat.format(orderList.get(i).getOrdersDate()) %></td>
+                        <td><%=orderList.get(i).getOrdersArrivaldate() != null ? dateFormat.format(orderList.get(i).getOrdersArrivaldate()) : "" %></td>
+                        <td class="item-info"><%=orderList.get(i).getOrdersItemsList().get(0).getProduct().getProductName() %><br></td>
                         <td><%=itemQty %></td>
-                        <td><%=decimalFormat.format(itemTotal) %> 원</td>
+                        <td><%=decimalFormat.format(itemPrice) %>원</td>
                         <td><button type="button" class="btn btn-3rd" onclick="submitForm('purchaseConfirmed')">구매확정</button></td>
-
                     </tr>
                     <% } else { %>
                     <tr>
