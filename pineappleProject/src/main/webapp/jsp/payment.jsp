@@ -93,7 +93,8 @@
 	ProductService productService = new ProductService();
 	
 	/*** 제품 번호 파라매터 ***/
-	String sProductNo = sOrders.getProductNo();
+	String sProductNo = sOrders.getOrdersItemsList().get(0).getProduct().getProductNo();
+
 	/*** 제품 수량 파라매터 ***/
 	String cartQty = sOrders.getCartQty();
 	/*** 제품 총 가격(현재는 제품 가격만 나옴) 파라매터 ***/
