@@ -89,6 +89,46 @@
 	color: #666;
 	margin-top: 10px;
 }
+
+/* 이민용이 수정 한 부분  */
+/* 리뷰 버튼   */
+.review_btn{
+     color: #212529; /* 버튼 텍스트 색상 */
+    border: 1px solid #212529; /* 버튼 경계 색상 */
+    background-color: transparent; /* 배경색 투명 */
+    padding: 10px 20px; /* 버튼의 패딩 */
+    cursor: pointer; /* 마우스 포인터를 손가락 모양으로 변경 */
+    font-size: 11px; /* 글자 크기 */
+    font-weight: bold; /* 글자 두께 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s, color 0.3s; /* 호버 시 변화 애니메이션 */
+}
+
+.review_btn:hover {
+    color: #fff; /* 호버 시 텍스트 색상 */
+    background-color: #212529; /* 호버 시 배경색 */
+    border-color: #212529; /* 호버 시 경계 색상 */
+}
+
+.review_btn:focus {
+    outline: none; /* 포커스 시 외곽선 제거 */
+    box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
+}
+
+.review_btn:active {
+    color: #fff; /* 클릭 시 텍스트 색상 */
+    background-color: #212529; /* 클릭 시 배경색 */
+    border-color: #212529; /* 클릭 시 경계 색상 */
+}
+
+
+.review_btn_section {
+	float: right; /* 글짜 오른쪽으로 옮김  */
+}
+
+/* 이민용 수정 끝  */
+
+
     </style>
 </head>
 <body>
@@ -120,21 +160,22 @@
         <div class="review-author">
          작성자 : <%=review.getCustomer().getCustomerName() %></div>
         </div>
-        
+      
+      <div class="review_btn_section"> 
   <%if(customerNo1==review.getCustomer().getCustomerNo()){ %>
 	<form action="review_update_form.jsp?reviewNo=<%=review.getReviewNo() %>" method="post" style="display:inline;">
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
-        <input type="submit" value="수정" class="review_form">
+        <input type="submit" value="수정" class="review_btn">
 	</form>
 	<form action="review_delete_action.jsp?reviewNo=<%=review.getReviewNo() %>" method="post" style="display:inline;">
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
-        <input type="submit" value="삭제" class="review_delete" onclick="return confirm('정말 삭제하시겠습니까?');">
+        <input type="submit" value="삭제" class="review_btn" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
     <%} %>
 	<form action="review_mypage_form.jsp" style="display:inline;">
-        <input type="submit" value="목록" class="review_join_mypage">
+        <input type="submit" value="목록" class="review_btn">
     </form>
-	
+	</div> 
     
     
     

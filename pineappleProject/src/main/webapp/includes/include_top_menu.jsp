@@ -33,12 +33,12 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                   <li class="nav-item"><a class="nav-link" aria-current="page" href="../jsp/index.jsp">Home</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../jsp/product_phone.jsp">Phone</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../jsp/product_laptop.jsp">Laptop</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../jsp/product_pad.jsp">Pad</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../jsp/product_watch.jsp">Watch</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../jsp/product_earphone.jsp">EarPhone</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../jsp/product_accessory.jsp">Accessory</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../jsp/product_category_list.jsp?product_category=phone">Phone</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../jsp/product_category_list.jsp?product_category=laptop">Laptop</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../jsp/product_category_list.jsp?product_category=pad">Pad</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../jsp/product_category_list.jsp?product_category=watch">Watch</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../jsp/product_category_list.jsp?product_category=earphone">EarPhone</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../jsp/product_category_list.jsp?product_category=accessories">Accessory</a></li>
               </ul>
               <%if(sCustomerNo== null) {%>
               <form class="d-flex">

@@ -51,7 +51,7 @@
 				</tr>
 			</table>
 			<div class="error-msg"></div>
-			<input type="button" value="로그인" onClick="login();">
+			<input type="button" value="로그인" class="login-btn" onclick="login();" />
 			<input type="button" value="회원가입" class="signup-btn" onClick="customerCreateForm()">
 		</form>
 	</div>
@@ -60,7 +60,7 @@
     
 </body>
 
-<style>
+<style type="text/css">
         /* 메뉴 고정 스타일 */
         #top-menu {
             width: 100%;
@@ -122,7 +122,7 @@
         }
 
         /* 버튼 스타일 */
-        input[type="button"] {
+       /*  input[type="button"] {
             width: 100%;
             padding: 12px;
             background-color: #5cb85c;
@@ -131,27 +131,27 @@
             font-size: 16px;
             cursor: pointer;
             margin-top: 10px;
-        }
+        } */
 
-        input[type="button"]:hover {
-            background-color: #4cae4c;
-        }
+     
 
         /* 회원가입 버튼 스타일 */
-        .signup-btn {
-            background-color: #0275d8;
-        }
+      .login-btn, .signup-btn {
+    color: #212529;
+    border: 1px solid #212529;
+    background-color: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-        .signup-btn:hover {
-            background-color: #025aa5;
-        }
-
-        /* 경고 메시지 텍스트 */
-        .error-msg {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-        }
+.login-btn:hover, .signup-btn:hover {
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
 
         /* 버튼 컨테이너 */
         .button-container {
@@ -160,5 +160,16 @@
             align-items: center;
             width: 100%;
         }
+        
+          .login-btn:focus, .signup-btn :focus {
+    outline: none; /* 포커스 시 외곽선 제거 */
+    box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
+}
+
+  .login-btn:active, .signup-btn:active {
+    color: #fff; /* 클릭 시 텍스트 색상 */
+    background-color: #212529; /* 클릭 시 배경색 */
+    border-color: #212529; /* 클릭 시 경계 색상 */
+}
 </style>
 </html>
