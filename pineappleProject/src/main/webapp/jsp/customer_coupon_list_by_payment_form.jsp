@@ -37,92 +37,73 @@
    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        .payment-container {
-            max-width: 600px;
-            margin: 40px auto;
+    	 body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
             padding: 20px;
-            border: 1px solid #ccc;
+        }
+        .coupon-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .payment-container h2 {
-            text-align: center;
+        .coupon {
+            padding: 20px;
             margin-bottom: 20px;
-        }
-        .payment-container h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #343a40;
-        }
-        .payment-container .order-details, .payment-container .shipping-details {
-            background: #f8f9fa;
-            padding: 15px;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
-        .payment-container .product-info {
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
+        .coupon input {
+            margin-right: 10px;
         }
-        .payment-container input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 5px;ㄴ
-            border: 1px solid #ccc;
+        .apply-btn {
+			width: 100%;
+			padding: 10px;
+			margin-top: 20px;
+			color: #212529; 
+			border: 1px solid #212529; 
+			background-color: transparent;
+			font-size: 11px;
+			font-weight: bold; 
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s, color 0.3s; 
         }
-        .payment-container .total-amount {
-            margin-top: 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
+        .apply-btn:hover {
+			color: #fff; 
+			background-color: #212529; 
+			border-color: #212529; 
         }
-        .payment-container button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .apply-btn:focus {
+			outline: none; 
+			box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); 
         }
-        .payment-container button:hover {
-            background-color: #45a049;
-        }
-        
-         .button-container {
-            text-align: center; /* 가운데 정렬 */
-            margin-top: 20px; /* 위쪽 여백 추가 */
-        }
-        
-        hr {
-            border: none;
-            border-top: 1px solid #ccc;
-            margin: 10px 0;
+        .apply-btn:active {
+			color: #fff; 
+			background-color: #212529; 
+			border-color: #212529; 
         }
     </style>
 </head>
 <body>
-   <div class="payment-container">
-      <h2>보유 쿠폰</h2>
+   <div class="coupon-container">
       <%for (CustomerCoupons customerCoupon : customerCoupons) { %>
-         <div class="order-details">
-            <div class="product-info">
-              
-           <p><input type="radio" name="selectedCoupon" value="<%= customerCoupon.getCustomerCouponsNo() %>">
-           <strong>쿠폰 이름:</strong> <%= customerCoupon.getCoupon().getCouponName() %></p>
-            <p><strong>쿠폰 내용:</strong> <%=customerCoupon.getCoupon().getCouponDesc() %></p>
-            <p><strong>쿠폰 상태:</strong> <%=customerCoupon.getCustomerCouponsStatus() %></p>
-            <p><strong>쿠폰 만기일:</strong> <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate()) %></p>
+        <div class="coupon">
+           <input type="radio" name="selectedCoupon" value="<%= customerCoupon.getCustomerCouponsNo() %>">
+           <label for="selectedCoupon">
+           <strong><%= customerCoupon.getCoupon().getCouponName() %></strong><br>
+           <%=customerCoupon.getCoupon().getCouponDesc() %><br>
+           <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate()) %>
+           </label>
            </div>
-        </div>
         <% } %>
-     </div>
-     <div class="button-container">
-            <input type="button" value="쿠폰 적용" onClick="customerCouponChoice()">
-            <input type="button" value="나가기" onClick="exit()">
+            <button class="apply-btn"  onClick="customerCouponChoice()">쿠폰 적용</button>
+            <button class="apply-btn"  onClick="exit()">나가기</button>
         </div>
        
        
