@@ -47,7 +47,7 @@
 	<!-- 구매 확정 (회원) -->
 	<update id="updateOrdersConfirm" parameterType="int">
 		UPDATE orders
-		   SET orders_status = '구매 확정', orders_arrivaldate = sysdate
+		   SET orders_status = '구매확정', orders_arrivaldate = sysdate
 		 WHERE orders_no=#{ordersNo}
 	</update>
 	
