@@ -75,10 +75,13 @@
 	<!-- 주문 번호로 주문 + 주문 아이템 리스트 반환 -->
 	<select id="findByOrdersNo" parameterType="int" resultMap="ordersMapOrdersItems">
 		SELECT o.orders_no, o.orders_date, o.orders_arrivaldate, o.orders_totprice, o.orders_finalprice, o.orders_totqty, o.orders_address, o.orders_status,
-      		   oi.orders_items_no, oi.orders_items_price, oi.orders_items_finalprice, oi.orders_items_qty, oi.orders_items_options
+      		   oi.orders_items_no, oi.orders_items_price, oi.orders_items_finalprice, oi.orders_items_qty, oi.orders_items_options,
+      		   p.product_no, p.product_name,p.product_price,p.product_category,p.product_detailpage,p.product_desc,p.product_status
   		  FROM orders o
 		  JOIN orders_items oi
     		ON o.orders_no=oi.orders_no
+   		 JOIN  product p
+           ON  oi.product_no=p.product_no
     	 WHERE o.orders_no=#{ordersNo}
 	</select>
 
