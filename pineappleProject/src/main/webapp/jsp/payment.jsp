@@ -19,6 +19,10 @@
 <%@ include file="customer_login_check.jspf"  %>    
     
 <%
+
+	/* 세션불러오기  */
+	Orders sOrders = (Orders)session.getAttribute("sOrders");
+	
 	java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
 	response.setContentType("text/html; charset=UTF-8");
 	
@@ -89,38 +93,33 @@
 	ProductService productService = new ProductService();
 	
 	/*** 제품 번호 파라매터 ***/
-	String productNoStr = request.getParameter("product_no");	
+	Integer sProductNo = sOrders.getOrdersItemsList().get(0).getProduct().getProductNo();
+
 	/*** 제품 수량 파라매터 ***/
-	String cartQty = request.getParameter("cart_qty");	
+	Integer cartQty = sOrders.getOrdersItemsList().get(0).getOrdersItemsQty();
 	/*** 제품 총 가격(현재는 제품 가격만 나옴) 파라매터 ***/
 	String productsalePrice = request.getParameter("product_salePrice");	
 	/*** 제품 옵션 파라매터(배열로 받음) ***/
 	String[] productOptionDetailNo = request.getParameterValues("product_option_detail_no");	
 	
 	
-	
-	
 	/*** 가져온 데이터가  NULL이 아니면 실행 ***/
-	if(productNoStr != null) { 
-		/*** 제품 번호 Integer로 변환 ***/
-		productNo = Integer.parseInt(productNoStr);
-		
+	if(sProductNo != null) {
 		/*** 제품 번호로 제품 상세 출력 ***/
-		product = productService.productDetail(productNo);
-	
+		product = productService.productDetail(sProductNo);
 	}
 	
-	ArrayList<Integer> optionPriceList = new ArrayList<>();
-
-	for (int i = 0; i < product.getProductOptionList().size(); i++) {
-	        optionStr += product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailName() +"(+"+ decimalFormat.format(product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailPrice())  + "원)/";
-	        
-	    for (int j = 0; j < product.getProductOptionList().get(i).getProductOptionDetailList().size(); j++) {
-	        Integer optionPrice = product.getProductOptionList().get(i).getProductOptionDetailList().get(j).getProductOptionDetailPrice();
-	        optionPriceList.add(optionPrice); // ArrayList에 가격 추가
-	        tot += optionPrice; // 총합에 가격 더하기
-	    }
-	}
+//	ArrayList<Integer> optionPriceList = new ArrayList<>();
+//
+	//for (int i = 0; i < product.getProductOptionList().size(); i++) {
+	  //      optionStr += product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailName() +"(+"+ decimalFormat.format(product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailPrice())  + "원)/";
+	    //    
+	    //for (int j = 0; j < product.getProductOptionList().get(i).getProductOptionDetailList().size(); j++) {
+	      //  Integer optionPrice = product.getProductOptionList().get(i).getProductOptionDetailList().get(j).getProductOptionDetailPrice();
+	        //optionPriceList.add(optionPrice); // ArrayList에 가격 추가
+	        //tot += optionPrice; // 총합에 가격 더하기
+	   // }
+//	}
 	
 %>   
     
@@ -243,9 +242,9 @@
         <div class="order-details">
             <div class="product-info">
                 <p><strong>상품명:</strong> <%=product.getProductName() %></p>
-                <p><strong>옵션:</strong> <%=optionStr.substring(0, optionStr.length()-1)  %></p>
+                <p><strong>옵션:</strong> </p>
                 <p><strong>수량:</strong> <%=cartQty %>개</p>
-                <p><strong>가격:</strong> <span id="product-amount"><%=decimalFormat.format(tot) %></span>원</p>
+                <p><strong>가격:</strong> <span id="product-amount"></span>원</p>
             </div>
             
             <form id="payment-form" action="paymentProcess.jsp" method="post">
@@ -262,9 +261,9 @@
         <form id="payment-form" action="order_list_form.jsp" method="post">
 
             <div class="total-amount">
-                <p>상품금액: <span id="product-amount"><%=decimalFormat.format(tot) %></span>원</p>
-                <p>할인: <span id="product-amount"> - <%=decimalFormat.format(salePrice) %></span>원</p>
-                <p><strong>합계: <span id="total-amount"><%=decimalFormat.format(tot-salePrice)%></span>원</strong></p>
+                <p>상품금액: <span id="product-amount"></span>원</p>
+                <p>할인: <span id="product-amount"> - </span>원</p>
+                <p><strong>합계: <span id="total-amount"></span>원</strong></p>
             </div>
 
             <button type="submit">결제하기</button>
