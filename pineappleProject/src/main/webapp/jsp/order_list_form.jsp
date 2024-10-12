@@ -75,14 +75,18 @@
 		    border-color: #212529; /* 클릭 시 경계 색상 */
 		}
 		.purchaseBtn{
-			 background-color: #8dc63f;
-			 color:#1c2833;
-			 border: 1px solid #8dc63f;
-		}
-		.purchaseBtn:hover {
 			 background-color: #212529;
 			 color:#fff;
+			 border: 1px solid #ccc;
+		}
+		.purchaseBtn:hover {
+			 background-color: #4d5256;
+			 color:#fff;
 			 border: 1px solid #ccc; /* 버튼 경계 색상 */
+		}
+		
+		.purchaseConfirmedBtn {
+			color: #ccc;
 		}
     </style>
 </head>
