@@ -93,20 +93,18 @@
 	ProductService productService = new ProductService();
 	
 	/*** 제품 번호 파라매터 ***/
-	String sProductNo = sOrders.getOrdersItemsList().get(0).getProduct().getProductNo();
+	Integer sProductNo = sOrders.getOrdersItemsList().get(0).getProduct().getProductNo();
 
 	/*** 제품 수량 파라매터 ***/
-	String cartQty = sOrders.getCartQty();
+	Integer cartQty = sOrders.getOrdersItemsList().get(0).getOrdersItemsQty();
 	/*** 제품 총 가격(현재는 제품 가격만 나옴) 파라매터 ***/
 	String productsalePrice = request.getParameter("product_salePrice");	
 	/*** 제품 옵션 파라매터(배열로 받음) ***/
 	String[] productOptionDetailNo = request.getParameterValues("product_option_detail_no");	
 	
 	
-	
-	
 	/*** 가져온 데이터가  NULL이 아니면 실행 ***/
-	if(productNoStr != null) {
+	if(sProductNo != null) {
 		/*** 제품 번호로 제품 상세 출력 ***/
 		product = productService.productDetail(sProductNo);
 	}
