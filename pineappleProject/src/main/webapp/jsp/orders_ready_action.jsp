@@ -14,7 +14,7 @@ if(request.getMethod().equalsIgnoreCase("GET")){
 	response.sendRedirect("index.jsp");
 }
 
-
+//
 // OrdersItems 필드 정보 리스트 받기
 String itemsPrice[] 	= request.getParameterValues("itemsPrice");
 String itemsQty[] 		= request.getParameterValues("itemsQty");
