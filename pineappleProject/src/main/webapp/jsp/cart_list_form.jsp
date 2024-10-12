@@ -16,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <title>장바구니</title>
-   
+   	
     <script src="https://kit.fontawesome.com/2452117347.js" crossorigin="anonymous"></script>
     <style>
         .cart-container {
@@ -84,18 +84,17 @@
     </style>
 </head>
 <body>
-
-
-<form name="cart_view_form" style="margin:0">
-    <input type="hidden" name="buyType">
-</form>
+<jsp:include page="../includes/include_top_menu.jsp"></jsp:include> 
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
+        <div class="text-center text-dark">
             <h1 class="display-4 fw-bolder">장바구니</h1>
         </div>
     </div>
 </header>
+<form name="cart_view_form" style="margin:0">
+    <input type="hidden" name="buyType">
+</form>
 
 <section>
     <form name="cart_form" style="margin: 0;"> <!-- 삭제를 위한 폼 추가 -->
