@@ -5,7 +5,8 @@
     pageEncoding="UTF-8"%>
 <%
 	ProductService productService = new ProductService();
-	List<Product> productCategoryList = productService.productListByCategory("earphone");
+	String categoryStr = request.getParameter("product_category");
+	List<Product> productCategoryList = productService.productListByCategory(categoryStr);
 %>
 
 <!DOCTYPE html>
@@ -17,8 +18,8 @@
 	<jsp:include page="../includes/include_top_menu.jsp" />
 	<header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">EARPHONE</h1>
+        <div class="text-center text-dark">
+            <h1 class="display-4 fw-bolder"><%=categoryStr.toUpperCase() %></h1>
             <p class="lead fw-normal text-white-50 mb-0"></p>
         </div>
     </div>
