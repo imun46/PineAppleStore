@@ -29,7 +29,7 @@
 <link rel="stylesheet" href="../css/customer_view.css">
 <script type="text/javascript">
 		function customerModifyAction() {
-			if (document.f.password.value == "") {
+			/* if (document.f.password.value == "") {
 				alert("비밀번호를 입력하십시요.");
 				document.f.password.focus();
 				return false;
@@ -38,7 +38,7 @@
 				alert("비밀번호확인을 입력하십시요.");
 				document.f.password2.focus();
 				return false;
-			}
+			} */
 			if (document.f.address.value == "") {
 				alert("주소를 입력하십시요.");
 				document.f.address.focus();
@@ -64,12 +64,12 @@
 				document.f.nickname.focus();
 				return false;
 			}
-			if (document.f.password.value != document.f.password2.value) {
+			/* if (document.f.password.value != document.f.password2.value) {
 				alert("비밀번호와 비밀번호확인은 일치하여야합니다.");
 				document.f.password.focus();
 				document.f.password.select();
 				return false;
-			}
+			} */
 			
 			document.f.action = "customer_modify_action.jsp";
 			console.log("customerModifyAction()");
@@ -195,7 +195,7 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-dark">
 				<h1 class="display-4 fw-bolder">유저 정보 수정</h1>
-				<p class="lead fw-normal text-dark mb-0">어세오세욤 :)</p>
+				<p class="lead fw-normal text-dark mb-0">난 이제 끝이다 :)</p>
 			</div>
 		</div>
 	</header>
@@ -205,31 +205,31 @@
 		<!-- 사용자 아이디 -->
 		<div class="form-group2">
         <label for="userId">사용자 아이디 :</label>
-		<input type="text" id="userId" value="<%=loginCustomer.getCustomerId() %>" readonly>
+		<input type="text" id="userId" value="<%=loginCustomer.getCustomerId() %>" disabled>
 		</div>	
 		 
 		<!-- 사용자 비밀번호 -->	
 		<div class="form-group2">
 		<label for="password">비밀번호 :</label>
-		<input type="password" id="password" name="password" value="">
+		<input type="password" id="password" name="password" value="<%=loginCustomer.getCustomerPassword() %>"  disabled>
 		</div>
 			
 		<!-- 사용자 비밀번호 확인 -->	
-		<div class="form-group2">
+		<!-- <div class="form-group2">
 		<label for="passwordConfirm">비밀번호 확인:</label>
 		<input type="password" id="password2" name="password2" value="">
-		</div>
+		</div> -->
 		
 		<!-- 사용자 이름 -->
 		<div class="form-group2">	
 		<label for="name">사용자 이름 :</label>
-		<input type="text" id="name" value="<%=loginCustomer.getCustomerName() %>" readonly>
+		<input type="text" id="name" value="<%=loginCustomer.getCustomerName() %>" disabled>
 		</div>
 		
 		<!-- 사용자 생년월일 -->	
 		<div class="form-group2">
 		<label for="birthdate">생년월일 :</label>
-		<input type="text" id="birthdate" value="<%=simpleDateFormat.format(loginCustomer.getCustomerDob()) %>">
+		<input type="text" id="birthdate" value="<%=simpleDateFormat.format(loginCustomer.getCustomerDob()) %>" disabled>
 		</div>
 		
 		<!-- 사용자 주소 -->
@@ -259,7 +259,7 @@
 		<!-- 사용자 가입날짜 -->
 		<div class="form-group2">
 		<label for="userId">가입 날짜 :</label>
-		<input type="text" id="joindate" value="<%=simpleDateFormat.format(loginCustomer.getCustomerJoindate())%>" readonly>
+		<input type="text" id="joindate" value="<%=simpleDateFormat.format(loginCustomer.getCustomerJoindate())%>" disabled>
 	 	</div>
 	 <div class="buttons" style="margin-top: 50px;">
 				<button type="button" onClick="customerModifyAction()">내정보수정</button>
