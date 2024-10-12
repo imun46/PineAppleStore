@@ -271,9 +271,14 @@ End
 	}
 
 	function customerCouponInsert() {
-		popuWindow = window.open("customer_coupon_insert_form.jsp",
-				"popupWindow", "width=600,height=400,scrollbars=yes");
-
+		// 쿠폰 팝업창 정중앙으로 나오게 하기
+		 var width = 600;
+		    var height = 400;
+		    var left = (window.innerWidth / 2) - (width / 2);
+		    var top = (window.innerHeight / 2) - (height / 2);
+		    
+		    popupWindow = window.open("customer_coupon_insert_form.jsp",
+		        "popupWindow", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top + ",scrollbars=yes");
 	}
 	// 부모 창 새로 고침
 	function refreshParent() {

@@ -153,6 +153,7 @@ a {
     border-radius: 5px; /* 모서리 둥글게 */
     transition: background-color 0.3s, color 0.3s; /* 호버 시 변화 애니메이션 */
     width: 93%; /* 너비를 100%로 설정 */
+    margin-top: 20px;
 }
 
 .join-button:hover {
