@@ -23,6 +23,9 @@
 
 	// 세션 값 불러오기
 	Orders sOrders = (Orders) session.getAttribute("sOrders");
+	
+	System.out.println();
+	
 	String[] cartNo = (String[]) session.getAttribute("cartNo");
 	String[] itemsOptions = (String[]) session.getAttribute("itemsOptions");
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -170,8 +173,9 @@
     </style>
 </head>
 <body>
-<form name="f" method="post">
-    <div class="payment-container">
+
+<div class="payment-container">
+	<form name="f" method="post">
     <input type="hidden" id="selectedCouponField" name="selectedCoupon" value="">
     
         <h2>주문 정보</h2>
@@ -192,38 +196,33 @@
                 <p><strong>가격:</strong> <span id="product-amount"><%=ordersItems.getOrdersItemsPrice() %></span>원</p>
             </div>
             <%} %>
+       </div>
             
-            
-            <form id="payment-form" action="paymentProcess.jsp" method="post">
+            <div class="coupon-details">
                 <label for="coupon-code">보유 쿠폰: <%=usableCouponsQty%>개</label>
                 <%if(!findCouponName.equals("")) { %>
                 <p><strong>선택 쿠폰 : </strong> <%=findCouponName %></p>
                 <% } %>
                 <button type="button" id="select-coupon" onclick="customerCouponList()">보유 쿠폰 보기</button>
-            </form>
+            </div>
             
 		<!-- Coupon details section, initially hidden -->
 		<% if (selectedCoupon != null) { %>
-			<div id="couponDetails">
+			<div id="selected-coupon-details">
   				 <p><strong>쿠폰 이름:</strong> <%= findCouponName %></p>
  				 <p><strong>쿠폰 할인율:</strong> <%= couponDiscount %>%</p>
-			</div>
 			<%} %>
-            <p>할인: <span id="discount"><%=decimalFormat.format(salePrice) %>원 </span>할인적용</p>
-        </div>
-        </form>
-        <form id="payment-form" action="order_list_form.jsp" method="post">
-
-            <div class="total-amount1">
+			</div>
+            <div class="total-amount">
                 <p>상품금액: <span id="product-amount"><%=sOrders.getOrdersTotprice() %></span>원</p>
                 <p>할인: <span id="discount-amount"> - </span>원</p>
                 <p><strong>합계: <span id="total-amount"><%=sOrders.getOrdersFinalprice() %></span>원</strong></p>
             </div>
-
             <button type="submit">결제하기</button>
-        </form>
-    </div>
-    
+	</form>
+</div>
+
+
     <!-- 자바스크립트 -->
     <script type="text/javascript">
 	function customerCouponList() {
