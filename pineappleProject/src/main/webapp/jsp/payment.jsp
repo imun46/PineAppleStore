@@ -121,6 +121,16 @@
             border-bottom: 1px solid #ccc;
             padding-bottom: 15px;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+         .product-info img {
+            width: 80px; /* 이미지 너비 */
+            height: 80px; /* 이미지 높이 */
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 5px;
         }
         
         .payment-container input {
@@ -189,10 +199,13 @@
         <div class="order-details">
         	<%for(OrdersItems ordersItems : sOrders.getOrdersItemsList()) { %>
             <div class="product-info">
+             <img src="../product_image/iPhone14(1).jpg" alt="제품이미지">
+             	<div>
                 <p><strong>상품명:</strong> <%=ordersItems.getProduct().getProductName()%></p>
                 <p><strong>옵션:</strong> <%=ordersItems.getOrdersItemsOptions()%> </p>
                 <p><strong>수량:</strong> <%=ordersItems.getOrdersItemsQty()%>개</p>
                 <p><strong>가격:</strong> <span id="product-amount"><%=decimalFormat.format(ordersItems.getOrdersItemsPrice()) %></span>원</p>
+            	</div>
             </div>
             <%} %>
        </div>
