@@ -297,18 +297,18 @@ ReviewService reviewService = new ReviewService();
 		
 		function submitForm(action) {
 			var form = document.getElementById('productForm');
-				
-				
+			
 				let selectedOptions = document.querySelectorAll('.option-select');
 		        let productOptions = '';
 
+		    //상품 옵션 문구 합쳐서 전송
 		        selectedOptions.forEach(function(select) {
 		            let optionName = select.options[select.selectedIndex].getAttribute('optionDetail');
 		            productOptions = productOptions + optionName + ' '; // 선택한 옵션 추가
 		        });
 		        
 			    document.querySelector('input[name="itemsOptions"]').value = productOptions.trim();
-			    
+			
 			// 장바구니 또는 구매 여부를 서버에 전송
 			if (action === 'cart') {
 				form.action = 'cart_insert_action.jsp';

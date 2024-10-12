@@ -11,6 +11,7 @@
     pageEncoding="UTF-8"%>
 
 <% 
+try{
 	if(request.getMethod().equalsIgnoreCase("GET")){
 		response.sendRedirect("index.jsp");
 	}
@@ -56,5 +57,10 @@
 	cartService.insertCart(cart);
 	
 	response.sendRedirect("cart_list_form.jsp");
+	
+}catch(Exception e){
+	e.printStackTrace();
+	out.println("<script>alert('옵션을 선택해주세요.'); history.back();</script>");
+}
 	
 %>
