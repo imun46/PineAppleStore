@@ -48,6 +48,7 @@ List<Orders> orderList = ordersService.findByCustomerNo(customerNo);
 <!--css start  -->
 <style type="text/css">
 /* 공통 스타일 */
+/* 공통 스타일 */
 .container {
 	width: 768px;
 	margin: 0 auto;
@@ -134,7 +135,7 @@ table td {
 	border: 1px solid #ccc; /* 테두리 색상 및 두께 */
 	border-radius: 5px; /* 모서리 둥글게 */
 	padding: 15px; /* 내부 여백 */
-	background-color: #f9f9f9; /* 배경 색상 */
+	background-color: #fff; /* 배경 색상 */
 	margin-top: 10px; /* 상단 간격 */
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
@@ -142,15 +143,15 @@ table td {
 /* 리뷰 섹션 스타일 */
 .review-container {
 	display: block; /* 블록 요소로 설정하여 각 리뷰를 한 줄에 하나씩 표시 */
-	width: 900x; /* 카드 너비 조정 */
+	width: 900px; /* 카드 너비 조정 */
 	margin: 10px; /* 카드 간격 조정 */
 	padding: 10px; /* 카드 내부 여백 */
 	border: 1px solid #ccc; /* 카드 테두리 */
 	border-radius: 5px; /* 모서리 둥글게 */
-	background-color: #f9f9f9; /* 배경색 */
+	background-color: #fff; /* 배경색 */
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 	transition: all 0.3s ease; /* 호버 효과 부드럽게 전환 */
-	position: relative; /*자식객체들 위치조정*/
+	position: relative; /* 자식 객체들 위치 조정 */
 }
 
 .review-container:hover {
@@ -189,16 +190,6 @@ table td {
 	margin: 10px 0;
 }
 
-/* 스크롤 가능한 섹션 */
-.scroll-section {
-	max-height: 400px; /* 최대 높이를 설정하여 스크롤 가능 */
-	overflow-y: auto; /* 수직 스크롤 활성화 */
-	border: 1px solid #dadada;
-	border-radius: 5px;
-	background-color: #f9f9f9;
-	padding: 10px;
-}
-
 /* 카드 컨테이너 스타일 */
 .card-container {
 	display: flex;
@@ -218,11 +209,8 @@ table td {
 
 .card:hover {
 	transform: translateY(-4px); /* 호버 시 카드가 약간 올라오는 효과 */
+	background-color: #f9f9f9;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강화 */
-}
-
-.card.hidden {
-	display: none; /* 요소를 숨김 */
 }
 
 .card.empty {
@@ -239,6 +227,7 @@ table td {
 	margin: 4px 0; /* 문단 여백 조정 */
 }
 
+/* 리뷰 섹션 스크롤 설정 */
 .scroll-section {
 	max-height: 350px; /* 최대 높이를 350px로 설정 */
 	overflow-y: auto; /* 수직 스크롤 가능하게 설정 */
@@ -258,7 +247,6 @@ table td {
 	margin-bottom: 10px; /* 아래쪽 여백 추가 */
 	background-color: #fff; /* 각 리뷰 카드의 배경색 */
 	padding: 10px; /* 내부 여백 */
-	/*border: 1px solid #ccc;*/ /* 테두리 추가 */
 	border-radius: 5px; /* 모서리 둥글게 */
 }
 
@@ -266,6 +254,7 @@ table td {
 	color: black;
 	text-decoration: none;
 }
+
 <!--
 css
  
@@ -394,7 +383,7 @@ End
 			</h2>
 			<%
 			if (orderList != null && !orderList.isEmpty()) {
-				int maxOrders = 3;
+				int maxOrders = 4;
 				int orderCount = 0;
 				for (Orders orders : orderList) {
 					if (orderCount >= maxOrders)
@@ -446,10 +435,10 @@ End
 					onclick="location.href='review_mypage_form.jsp'">더보기</button>
 			</h2>
 
-			<div class="list-item">
+			<div class="card-container">
 				<%
 				List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
-				int maxReviews = 3; // 최대 리뷰 수
+				int maxReviews = 4; // 최대 리뷰 수
 				int reviewCount = 0;
 
 				for (Review review : reviewList) {
@@ -461,7 +450,7 @@ End
 				%>
 
 				<a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>"
-					class="review-container a">
+					class="card a">
 					<h2 class="review-title"><%=review.getReviewTitle()%></h2>
 					<div class="review-product-option">
 						<%=review.getProduct().getProductName()%>
