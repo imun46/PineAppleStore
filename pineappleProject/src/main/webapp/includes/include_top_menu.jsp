@@ -53,7 +53,7 @@
                   <a class="btn btn-outline-dark" href="../jsp/customer_login_form.jsp">
                       <i class="bi-cart-fill me-1"></i>
                       Cart
-                      <span class="badge bg-dark text-white ms-1 rounded-pill"><%=cart_item_count %></span>
+                      <span class="badge bg-dark text-dark ms-1 rounded-pill"><%=cart_item_count %></span>
                   </a>
               </form>
               <%} else { %>
@@ -69,7 +69,7 @@
                   <a class="btn btn-outline-dark" href="../jsp/cart_list_form.jsp">
                       <i class="bi-cart-fill me-1"></i>
                       Cart
-                      <span class="badge bg-dark text-white ms-1 rounded-pill"><%=cart_item_count %></span>
+                      <span class="badge bg-dark text-dark ms-1 rounded-pill"><%=cart_item_count %></span>
                   </a>
               </form>
               <%} %>
