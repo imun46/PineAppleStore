@@ -1,3 +1,5 @@
+<%@page import="com.itwill.shop.domain.ProductImage"%>
+<%@page import="com.itwill.shop.service.ProductService"%>
 <%@page import="org.apache.taglibs.standard.tag.common.fmt.ParseDateSupport"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,11 +22,14 @@
     Date reviewDate = review.getReviewDate(); // 리뷰 날짜를 가져옵니다.
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 원하는 형식으로 포맷을 설정합니다.
     String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
+    ProductService productService = new ProductService();
+    
     %>
 <!DOCTYPE html>
 <html lang="ko">
 
 
+<jsp:include page="../includes/include_top_menu.jsp"></jsp:include> 
 <!-- 해당 메뉴 이름-->
 	<header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
@@ -89,12 +94,11 @@
 <body>
 
 <h1>제품 리뷰</h1>
-
     <div class="review-container">
-        <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         <div class="review-product-option">
-            <%=review.getProduct().getProductName() %>
+<%=review.getProduct().getProductName() %>
         </div>
+        <h2 class="review-title"><%=review.getReviewTitle() %></h2>
         <%
         int rating= review.getReviewRating(); 
         for(int i=0;i<5;i++){
@@ -107,8 +111,9 @@
         <div class="review-body">
             <%=review.getReviewContent() %>
         </div>
+        <%if(review.getReviewImage()!=null) {%>
         <img src="../img/<%=review.getReviewImage() %>" alt="My Image" style="width: 300px; height: auto">
-        	
+        <%} %>	
         <div class = "review-date">
         	작성일 : <%= formattedDate %>
         </div>
@@ -126,12 +131,10 @@
         <input type="submit" value="삭제" class="review_delete" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
     <%} %>
-	<form action="customer_view.jsp" style="display:inline;">
-        <input type="submit" value="마이페이지" class="review_join_mypage">
-    </form>
 	<form action="review_mypage_form.jsp" style="display:inline;">
-        <input type="submit" value="목록" class="review_join_mypage_form">
+        <input type="submit" value="목록" class="review_join_mypage">
     </form>
+	
     
     
     

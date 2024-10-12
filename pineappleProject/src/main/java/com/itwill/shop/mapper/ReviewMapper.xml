@@ -89,7 +89,7 @@
 	<!-- 회원 번호로 리뷰 리스트 반환 (회원) -->
 	<select id="findReviewByCustomerNo" parameterType ="int" resultMap="reviewMap">
 		SELECT r.review_no, r.review_title, r.review_content, r.review_image, r.review_rating, r.review_date,
-			   p.product_no, p.product_name
+			   p.product_no, p.product_name ,p.product_desc
 		  FROM review r
 		  JOIN product p
 		    ON p.product_no=r.product_no
@@ -111,15 +111,15 @@
 	<!-- 리뷰 번호로 리뷰 한개 반환 -->
 	<select id="findReviewByReviewNo" parameterType="int" resultMap="reviewMap">
 		SELECT r.review_no, r.review_title, r.review_content, r.review_image, r.review_rating, r.review_date,
-			   p.product_no, p.product_name,
-			   c.customer_no, c.customer_name, c.customer_nickname
+			   p.product_no, p.product_name ,p.product_desc,
+			   c.customer_no,c.customer_name
 		  FROM review r
 		  JOIN product p
 		    ON p.product_no=r.product_no
 		  JOIN customer c
-		    ON c.customer_no=r.customer_no
-		 WHERE review_no=#{reviewNo}
-	</select>
+		    ON c.customer_no = r.customer_no
+	     WHERE review_no=#{reviewNo}
+	</select> 
 	
 	<!-- 전체 리뷰 리스트 반환 (어드민)-->
 	<select id="findAll" resultMap="reviewMap">

@@ -2798,10 +2798,12 @@ textarea.form-control-lg {
     transition: none;
   }
 }
+
+/*btn-hover- 색상 바꾸는곳 !!!!!!! */
 .btn:hover {
   color: var(--bs-btn-hover-color);
-  background-color: #5cb85c;;
-  border-color: #5cb85c;
+  background-color: #212529;
+  border-color: #212529;
 }
 .btn-check + .btn:hover {
   color: var(--bs-btn-color);

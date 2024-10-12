@@ -21,6 +21,7 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+<jsp:include page="../includes/include_top_menu.jsp"></jsp:include> 
 
 
 <!-- 해당 메뉴 이름-->
@@ -57,7 +58,8 @@
         <input type="text" id="reviewTitle" name="reviewTitle" value="" required>
     </div>
     <div>
-        <label for="reviewTitle">상품명:<%= product.getProductName()%>(<%= product.getProductDesc()%>)</label>
+        <label for="reviewTitle">상품명:</label>
+        <label for="reviewTitle"><%= product.getProductName()%>(<%= product.getProductDesc()%>)</label>
     </div>
     
 <div id="star-rating">
