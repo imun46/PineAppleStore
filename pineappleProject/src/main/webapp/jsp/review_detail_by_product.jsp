@@ -33,9 +33,8 @@
 <!-- 해당 메뉴 이름-->
 	<header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">리뷰 수정</h1>
-            <p class="lead fw-normal text-white-50 mb-0">어세오세욤 :)</p>
+        <div class="text-center text-black">
+            <h1 class="display-4 fw-bolder">리뷰 상세보기</h1>
         </div>
     </div>
 </header>
@@ -46,19 +45,17 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f9f9f9;
+           
         }
         .review-container {
-	display: block;
-	text-decoration: none;
-	background: #fff;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	padding: 30px;
-	margin: 20px 0;
-	color: inherit;
+	width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa;
+            position: relative;
 }
 
 .review-title {
@@ -75,19 +72,23 @@
 	font-size: 16px;
 	line-height: 1.5;
 }
-.review-date{
-	font-size: 14px;
-	color: #666;
-	margin-top: 10px;
-}
 .review-product-option{
 	font-size: 10px;
 	color: #666;
 }
+.review-date{
+	position: absolute;
+    right: 10px; /* 오른쪽 끝으로 이동 */
+	bottom:10px;
+	font-size: 0.8em; /* 날짜 및 작성자 크기 조정 */
+    color: #555; /* 글자색 조정 */
+}
 .review-author {
-	font-size: 14px;
-	color: #666;
-	margin-top: 10px;
+	position: absolute;
+    right: 135px; /* 오른쪽 끝으로 이동 */
+    bottom:10px;
+    font-size: 0.8em; /* 날짜 및 작성자 크기 조정 */
+    color: #555; /* 글자색 조정 */
 }
 
 /* 이민용이 수정 한 부분  */
@@ -124,6 +125,7 @@
 
 .review_btn_section {
 	float: right; /* 글짜 오른쪽으로 옮김  */
+	margin-right: 515px;
 }
 
 /* 이민용 수정 끝  */
@@ -133,7 +135,6 @@
 </head>
 <body>
 
-<h1>제품 리뷰</h1>
     <div class="review-container">
         <div class="review-product-option">
 <%=review.getProduct().getProductName() %>
@@ -152,7 +153,7 @@
             <%=review.getReviewContent() %>
         </div>
         <%if(review.getReviewImage()!=null) {%>
-        <img src="../img/<%=review.getReviewImage() %>" alt="My Image" style="width: 300px; height: auto">
+        <img src="../img/<%=review.getReviewImage() %>" alt="My Image" style="width: 300px; margin-bottom:20px; height: auto">
         <%} %>	
         <div class = "review-date">
         	작성일 : <%= formattedDate %>
@@ -172,7 +173,7 @@
         <input type="submit" value="삭제" class="review_btn" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
     <%} %>
-	<form action="review_mypage_form.jsp" style="display:inline;">
+	<form action="review_product_form.jsp?productNo=<%=review.getProduct().getProductNo() %>" style="display:inline;">
         <input type="submit" value="목록" class="review_btn">
     </form>
 	</div> 

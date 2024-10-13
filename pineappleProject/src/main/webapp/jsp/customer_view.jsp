@@ -462,7 +462,7 @@ End
 					String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
 				%>
 
-				<a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>"
+				<a href="review_detail_by_mypage.jsp?reviewNo=<%=review.getReviewNo()%>"
 					class="card a">
 					<h2 class="review-title"><%=review.getReviewTitle()%></h2>
 					<div class="review-product-option">

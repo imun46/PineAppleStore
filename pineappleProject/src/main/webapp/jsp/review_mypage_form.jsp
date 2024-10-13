@@ -26,7 +26,7 @@ List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
 <!-- 해당 메뉴 이름-->
 <header class="bg-dark py-5">
 	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-left text-dark">
+		<div class="text-center text-dark">
 			<h1 class="display-4 fw-bolder">내가 쓴 리뷰</h1>
 		</div>
 	</div>
@@ -39,20 +39,20 @@ List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
 <style>
 body {
 	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
-	margin: 0;
-	padding: 20px;
+
 }
 
 .review-container {
+	width: 800px;
 	display: block;
 	text-decoration: none;
-	background: #fff;
+	background: #f8f9fa;
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	padding: 30px;
-	margin: 20px 0;
+	margin: 0 auto;
 	color: inherit;
+	margin-bottom:10px;
 	position: relative;/*자식객체들 위치조정*/
 }
 .review-container:hover {
@@ -81,7 +81,7 @@ body {
     color: #555; /* 글자색 조정 */
 }
 .review-product-option{
-	font-size: 30px;
+	font-size: 15px;
 	color: #666;
 }
 .review-author {
@@ -101,11 +101,11 @@ body {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // 원하는 형식으로 포맷을 설정합니다.
 		String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
 	%>
-	<a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>"	class="review-container">
-	<div class="review-product-option">
-            <%=review.getProduct().getProductName() %>(<%=review.getProduct().getProductDesc() %>)
-      </div>
+	<a href="review_detail_by_mypage.jsp?reviewNo=<%=review.getReviewNo()%>"	class="review-container">
 	<h2 class="review-title"><%=review.getReviewTitle()%></h2>
+	<div class="review-product-option">
+            <%=review.getProduct().getProductName() %>
+      </div>
 	
 	 <%
  int rating = review.getReviewRating();
@@ -124,12 +124,7 @@ body {
         <div class = "review-date">
         	작성일 : <%= formattedDate %>
         </div>
-		<div class="review-author">
-		작성자 : <%=customer.getCustomerName()%>
-		</div>
 		 <%
  }
- %>
-	
-</body>
+ %></a>>
 </html>
