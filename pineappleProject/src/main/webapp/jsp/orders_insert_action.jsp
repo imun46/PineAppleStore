@@ -19,7 +19,6 @@
 if(request.getMethod().equalsIgnoreCase("GET")){
 	response.sendRedirect("index.jsp");
 }
-
 // 데이터 받기
 String ordersAddress = request.getParameter("ordersAddress");
 String customerCouponsNo = request.getParameter("customerCouponsNo");
@@ -30,12 +29,52 @@ String[] ordersItemsFinalprice = request.getParameterValues("ordersItemsFinalpri
 // 카트 번호 리스트 세션에서 확인
 String cartNo[] = (String[])session.getAttribute("cartNo");
 
-// 가격 int cast
-//ordersFinalprice = ordersFinalprice.replaceAll(".0$", "");
-System.out.println("orderFinalprice: "+ordersFinalprice);
+System.out.println("ordersAddress: "+ordersAddress);
+System.out.println("customerCouponsNo: "+customerCouponsNo);
+System.out.println("ordersFinalprice: "+ordersFinalprice);
+System.out.println("orders: "+orders);
+for(OrdersItems ordersItems : orders.getOrdersItemsList()) {
+	System.out.println("ordersItems: "+ordersItems);
+}
+
+System.out.println("cartNo: "+cartNo);
+if(cartNo!=null) {
+	for(int i=0; i<cartNo.length; i++) {
+		System.out.println("cartNo["+i+"]"+cartNo[i]);
+	}
+	
+}
+for(int i=0; i<ordersItemsFinalprice.length; i++) {
+	System.out.println("ordersItemsFinalPrice["+i+"]"+ordersItemsFinalprice[i]);
+}
+
+
+
+
+
+// 아이템 최종 가격 int cast
 for(int i=0; i<ordersItemsFinalprice.length; i++) {
 	ordersItemsFinalprice[i] = ordersItemsFinalprice[i].replaceAll("\\.0$", "");
 }
+
+for(int i=0; i<ordersItemsFinalprice.length; i++) {
+	System.out.println("ordersItemsFinalPrice["+i+"]"+ordersItemsFinalprice[i]);
+}
+
+int[] ordersItemsFinalpriceInt = new int[ordersItemsFinalprice.length];
+for(int i=0; i<ordersItemsFinalprice.length; i++) {
+	ordersItemsFinalpriceInt[i] = Integer.parseInt(ordersItemsFinalprice[i]);
+}
+
+
+System.out.println(ordersItemsFinalpriceInt);
+for(int i=0; i<ordersItemsFinalpriceInt.length; i++) {
+	System.out.println("ordersItemsFinalPriceInt["+i+"]"+ordersItemsFinalpriceInt[i]);
+}
+
+
+
+
 
 
 // 서비스 객체 생성
@@ -44,24 +83,34 @@ CustomerCouponsService customerCouponsService = new CustomerCouponsService();
 
 // 회원 번호 받기
 int customerNo = Integer.parseInt((String)session.getAttribute("sCustomerNo"));
-System.out.println(customerNo);
+System.out.println("customerNo"+customerNo);
 
 
 
 // OrdersItems 객체에 내용 입력
 List<OrdersItems> ordersItemsList = orders.getOrdersItemsList();
-for (int i=0; i<ordersItemsFinalprice.length; i++) {
-	ordersItemsList.get(i).setOrdersItemsFinalprice((int)Double.parseDouble(ordersItemsFinalprice[i]));
+for (int i=0; i<ordersItemsList.size(); i++) {
+	ordersItemsList.get(i).setOrdersItemsFinalprice(ordersItemsFinalpriceInt[i]);
 }
+
+for(OrdersItems ordersItems : ordersItemsList) {
+	System.out.println("ordersItemsFinalprice: "+ordersItems.getOrdersItemsFinalprice());
+}
+
+
 
 // Orders 객체에 내용 입력
 orders.setOrdersFinalprice(Integer.parseInt(ordersFinalprice));
 orders.setOrdersAddress(ordersAddress);
 orders.setOrdersStatus("배송전");
+
+System.out.println("orders: "+orders);
+
 // 쿠폰 사용 시 쿠폰 번호 입력
 if(customerCouponsNo!=null) {
 	orders.setCustomerCoupons(CustomerCoupons.builder().customerCouponsNo(Integer.parseInt(customerCouponsNo)).build());
 }
+
 orders.setCustomer(Customer.builder().customerNo(customerNo).build());
 
 // 주문 입력
@@ -71,9 +120,10 @@ if(cartNo==null) {
 	ordersService.insertOrders(orders);
 } else {
 	// 카트 구매 시 카트 내용 삭제
-	List<Integer> cartNoList = Arrays.stream(cartNo)
-                                 .map(Integer::parseInt)
-                                 .collect(Collectors.toList());
+	List<Integer> cartNoList = new ArrayList<>();
+	for(int i=0; i<cartNo.length; i++) {
+		cartNoList.add(Integer.parseInt(cartNo[i]));
+	}
 	ordersService.insertOrdersCart(orders, cartNoList);
 }
 
@@ -88,7 +138,8 @@ session.removeAttribute("cartNo");
 
 // 주문 내역으로  페이지 이동
 response.sendRedirect("order_list_form.jsp");
-
+/*
+*/
 %>
     
     

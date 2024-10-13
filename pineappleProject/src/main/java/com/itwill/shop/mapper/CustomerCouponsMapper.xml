@@ -104,6 +104,7 @@
 		SELECT count(*)
 		  FROM customer_coupons
 		 WHERE customer_no=#{customerNo}
+		       AND customer_coupons_status='사용가능'
 	</select>
 	
 	
