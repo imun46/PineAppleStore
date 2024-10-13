@@ -48,5 +48,11 @@ public class ReviewService {
 		return reviewDao.findAll();
 	}
 	
+	// 제품 번호로 리뷰 별점 리스트 반환
+	public List<Integer> findRatingsByProductNo(Integer productNo) throws Exception {
+		return reviewDao.findRatingsByProductNo(productNo);
+	}
+	
+	
 } 
  

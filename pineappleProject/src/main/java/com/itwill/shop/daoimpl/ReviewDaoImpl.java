@@ -94,4 +94,14 @@ public class ReviewDaoImpl implements ReviewDao {
 	      return reviewList;
    }
    
+   // 제품 번호로 리뷰 별점 리스트 반환
+   @Override
+   public List<Integer> findRatingsByProductNo(Integer productNo) throws Exception {
+	      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+	      ReviewMapper reviewMapper =sqlSession.getMapper(ReviewMapper.class);
+	      List<Integer> ratingList = reviewMapper.findRatingsByProductNo(productNo);
+	      sqlSession.close();
+	      return ratingList;
+   }
+   
 }

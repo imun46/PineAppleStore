@@ -27,4 +27,7 @@ public interface ReviewMapper {
 	// 전체 리뷰 리스트 반환 (어드민) (추후 구현 예정)
 	List<Review> findAll() throws Exception;
 	
+	// 제품 번호로 리뷰 별점 리스트 반환
+	List<Integer> findRatingsByProductNo(Integer productNo) throws Exception;
+	
 } 
