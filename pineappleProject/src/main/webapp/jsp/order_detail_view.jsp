@@ -3,6 +3,7 @@
 <%@page import="com.itwill.shop.service.OrdersService"%>
 <%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="com.itwill.shop.service.CustomerService"%>
+<%@page import="com.itwill.shop.service.ProductService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -17,6 +18,7 @@
 	String orderNo = request.getParameter("ordersNo");
 	CustomerService customerService= new CustomerService();
 	OrdersService orderService = new OrdersService();
+	ProductService productService = new ProductService();
 	
 	Customer customer = customerService.findCustomerByNo(Integer.parseInt(sCustomerNo));
 	List<Orders> orderList = orderService.findByOrdersNo(Integer.parseInt(orderNo));
@@ -170,7 +172,12 @@
         <%if(orderList != null && !orderList.isEmpty()){ %>
 	        <% for (int i=0; i < orderitemsSize ;i++) { %>
 		        <div class="section product-info">
-		            <img src="../img/macBookAir.jpg" class="product-image" alt="상품 이미지">
+		        	<%
+                		int productNo = orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductNo();
+                		String productImageFile = productService.productDetail(productNo).getProductImageList().get(0).getProductImageFile();
+		        	%>
+		        	
+		            <img src="../product_image/<%=productImageFile %>" class="product-image" alt="상품 이미지">
 		                <div class="product-details">
 		                	<%
 		                		String productName = orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductName();
@@ -201,8 +208,8 @@
         </div>
         <h2>결제정보</h2>
         <div class="section payment-info">
-            <p>상품금액: <%= String.format("%,d", 111) %>원</p>
-            <p>할인: - <%= String.format("%,d", 111) %>원</p>
+            <p>상품금액: <%=decimalFormat.format(orderList.get(0).getOrdersTotprice())  %>원</p>
+            <p>할인: - <%=decimalFormat.format(orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice()) %>원</p>
         </div>
         <div class="total">
             합계: <%=decimalFormat.format(orderList.get(0).getOrdersFinalprice())  %>원
