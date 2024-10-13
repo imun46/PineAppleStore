@@ -78,16 +78,6 @@
         text-align: center;
         z-index: 1000;
     }
-        /* 메뉴 고정 스타일 */
-        #top-menu {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            color: white;
-            text-align: center;
-            z-index: 1000;
-        }
 
         /* 로그인 폼을 중앙 정렬 및 배경 색상 */
         body, html {

@@ -90,7 +90,6 @@
     </style>
 </head>
 <body>
-   <jsp:include page="../includes/include_top_menu.jsp" />
    <div class="coupon-container">
       <%for (CustomerCoupons customerCoupon : customerCoupons) { %>
         <div class="coupon">
