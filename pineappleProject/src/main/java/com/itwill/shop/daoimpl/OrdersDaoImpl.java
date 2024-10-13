@@ -124,9 +124,9 @@ public class OrdersDaoImpl implements OrdersDao {
 	public Integer findCustomerCouponsNoByOrdersNo(Integer ordersNo) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		OrdersMapper ordersMapper = sqlSession.getMapper(OrdersMapper.class);
-		int rowCount = ordersMapper.findCustomerCouponsNoByOrdersNo(ordersNo);
+		Integer customerCouponsNo = ordersMapper.findCustomerCouponsNoByOrdersNo(ordersNo);
 		sqlSession.close();
-		return rowCount;
+		return customerCouponsNo;
 	}
 
 

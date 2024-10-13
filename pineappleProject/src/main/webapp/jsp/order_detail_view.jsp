@@ -30,13 +30,27 @@
    if(orderList.size()>0){
     orderitemsSize= orderList.get(0).getOrdersItemsList().size();
    }
+System.out.println("**************************************: "+orderNo);
+System.out.println("**************************************: "+orderNo.getClass());
    
-   Integer customerCouponsNo = orderService.findCustomerCouponsNoByOrdersNo(Integer.parseInt(orderNo));
-   String customerCouponName = null;
-   if(customerCouponsNo!=null) {
-	   CustomerCoupons customerCouponDetail = customerCouponsService.findCustomerCouponsDetailByNo(customerCouponsNo);
-	   customerCouponName = customerCouponDetail.getCoupon().getCouponName();
-   }
+
+
+// Retrieve the customerCouponsNo using the service method
+Integer customerCouponsNo = null;
+customerCouponsNo = orderService.findCustomerCouponsNoByOrdersNo(Integer.parseInt(orderNo));
+
+System.out.println("**************************************");
+// Initialize customerCouponName to null
+String customerCouponName = null;
+
+// Check if customerCouponsNo is not null before proceeding
+if (customerCouponsNo != null) {
+    // Fetch the coupon details only if customerCouponsNo is not null
+    CustomerCoupons customerCouponDetail = customerCouponsService.findCustomerCouponsDetailByNo(customerCouponsNo);
+    
+    if (customerCouponDetail != null && customerCouponDetail.getCoupon() != null) {
+        customerCouponName = customerCouponDetail.getCoupon().getCouponName();
+    }}
 %>
 
 <html>
