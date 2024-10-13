@@ -45,6 +45,31 @@
             color: gold; /* 선택된 색상 */
         }
         
+        input[type="file"] {
+    display: none; /* 기본 파일 업로드 버튼 숨기기 */
+}
+
+.reviewImage{
+    		display: inline-block;
+            width: 30%;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            background-color: transparent;
+            color: #212529;
+            text-decoration: none;
+            border: 1px solid #212529; 
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+}
+
+.reviewImage:hover {
+    color: #fff; 
+	background-color: #212529; 
+	border-color: #212529;
+}
         /* Container styling */
         .custom-form {
             width: 500px;
@@ -90,7 +115,7 @@
         
         /* Star rating styling */
         #star-rating {
-            text-align: center;
+            text-align: left;
             margin-bottom: 20px;
         }
         
@@ -157,14 +182,16 @@
    <input type="hidden" name="productNo" value="<%= product.getProductNo() %>">
    <input type="hidden" name="customerNo" value="<%= customer.getCustomerNo() %>">
     <div>
-        <label for="reviewTitle">리뷰 제목:</label>
-        <input type="text" id="reviewTitle" name="reviewTitle" required>
-    </div>
-    <div>
         <label for="reviewTitle">상품명:</label>
         <label><%= product.getProductName()%></label>
     </div>
+    <div>
+        <label for="reviewTitle">제목</label>
+        <input type="text" id="reviewTitle" name="reviewTitle" required>
+    </div>
     
+		<label>별점</label>
+		
     <div id="star-rating">
         <span class="star" data-value="1">★</span>
         <span class="star" data-value="2">★</span>
@@ -204,13 +231,13 @@
     </script>
     
     <div>
-        <label for="reviewContent">리뷰 내용:</label>
-        <textarea id="reviewContent" name="reviewContent" required></textarea>
+        <label for="reviewContent">리뷰 내용</label>
+        <textarea id="reviewContent" name="reviewContent" required style="width: 100%; height: 300px; resize: none;"></textarea>
     </div>
-    <div>
-        <label for="reviewImage">이미지 첨부:</label>
+    
+        <label for="reviewImage" class="reviewImage">사진 첨부하기</label>
         <input type="file" id="reviewImage" name="reviewImage" accept="image/*">
-    </div>
+    
 
     <div>
         <input type="submit" value="등록">

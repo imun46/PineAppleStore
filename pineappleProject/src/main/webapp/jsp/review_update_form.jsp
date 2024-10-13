@@ -31,7 +31,6 @@ Product product = review.getProduct();
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="text-center text-dark">
 			<h1 class="display-4 fw-bolder">리뷰 수정</h1>
-			<p class="lead fw-normal text-white-50 mb-0">어세오세욤 :)</p>
 		</div>
 	</div>
 </header>
@@ -39,8 +38,9 @@ Product product = review.getProduct();
 <meta charset="UTF-8">
 <title>리뷰 수정</title>
 <style>
+
 .star {
-	font-size: 15px;
+	font-size: 50px;
 	cursor: pointer;
 	color: lightgray; /* 기본 색상 */
 }
@@ -48,68 +48,131 @@ Product product = review.getProduct();
 .star.checked {
 	color: gold; /* 선택된 색상 */
 }
-
-.custom-file-upload {
-	display: inline-block;
-	padding: 5px 20px;
-	cursor: pointer;
-	background-color: #007BFF; /* 버튼 색상 */
-	color: white; /* 글자 색상 */
-	border-radius: 5px; /* 모서리 둥글게 */
-	border: none; /* 테두리 없애기 */
+input[type="file"] {
+    display: none; /* 기본 파일 업로드 버튼 숨기기 */
 }
 
-.custom-file-upload:hover {
-	background-color: #0056b3; /* 호버 시 색상 변화 */
+.reviewImage{
+    		display: inline-block;
+            width: 30%;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            background-color: transparent;
+            color: #212529;
+            text-decoration: none;
+            border: 1px solid #212529; 
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
 }
 
-#reviewImage {
-	display: none; /* 원래 파일 입력 숨기기 */
+.reviewImage:hover {
+    color: #fff; 
+	background-color: #212529; 
+	border-color: #212529;
 }
-
-.update-btn {
-	text-decoration: none; /* 밑줄 제거 */
-	display: inline-block;
-	padding: 10px 20px;
-	cursor: pointer;
-	 background-color: transparent; /* 배경색 투명 */
-	 color: #212529; /* 버튼 텍스트 색상 */
-	border-radius: 5px; /* 모서리 둥글게 */
-	border: 1px solid #212529; /* 버튼 경계 색상 */
-	transition: background-color 0.3s, color 0.3s;
-	margin-left: 10px;
-}
-
-.update-btn:hover {
-	color: #fff; /* 호버 시 텍스트 색상 */
-	background-color: #212529; /* 호버 시 배경색 */
-	border-color: #212529; /* 호버 시 경계 색상 */
-}
-
-.update-btn:focus {
-	outline: none; /* 포커스 시 외곽선 제거 */
-	box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
-}
-
-.update-btn:active {
-	color: #fff; /* 클릭 시 텍스트 색상 */
-	background-color: #212529; /* 클릭 시 배경색 */
-	border-color: #212529; /* 클릭 시 경계 색상 */
-}
-
-
-.update-btn-container {
-	display: flex; /* 플렉스 박스 사용 */
-	justify-content: flex-end; /* 오른쪽 정렬 */
-	/* 수정 했는데 바꿀꺼면 바꾸기 */
-	margin-top: -70px; /* 위쪽 여백 */
-}
+/* Container styling */
+        .custom-form {
+            width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa;
+        }
+        
+        /* Section title */
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        /* Input and label styling */
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size:19px;
+        }
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+        
+        /* Star rating styling */
+        #star-rating {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        /* File upload input */
+        .custom-form input[type="file"] {
+            margin-bottom: 20px;
+        }
+        
+        /* Buttons */
+        .custom-form input[type="submit"],
+        .custom-form a {
+            display: inline-block;
+            width: 48%;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+            background-color: transparent;
+            color: #212529;
+            text-decoration: none;
+            border: 1px solid #212529; 
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .custom-form input[type="submit"]:hover,
+        .custom-form a:hover {
+            color: #fff; 
+			background-color: #212529; 
+			border-color: #212529; 
+        }
+        
+        /* Form layout spacing */
+        .custom-form div {
+            margin-bottom: 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .custom-form {
+                width: 100%;
+                padding: 10px;
+            }
+        
+            .custom-form input[type="submit"],
+            .custom-form a {
+                width: 100%;
+            }
+        }
 </style>
 </head>
 <body>
 
 
-	<form id="reviewForm" action="/upload" method="POST"
+	<form id="reviewForm" class="custom-form" action="/upload" method="POST"
 		enctype="multipart/form-data">
 		<input type="hidden" name="reviewNo"
 			value="<%=review.getReviewNo()%>"> <input type="hidden"
@@ -129,9 +192,11 @@ Product product = review.getProduct();
 				style="margin-left: 10px;">
 		</div>
 
-
+		
+		<label>별점</label>
+		
 		<div id="star-rating">
-			별점: <span class="star" data-value="1">★</span> <span class="star"
+			<span class="star" data-value="1">★</span> <span class="star"
 				data-value="2">★</span> <span class="star" data-value="3">★</span> <span
 				class="star" data-value="4">★</span> <span class="star"
 				data-value="5">★</span>
@@ -171,18 +236,22 @@ Product product = review.getProduct();
     });
 </script>
 		<div>
-			<label for="reviewContent">리뷰 내용:</label>
+			<label for="reviewContent">리뷰 내용</label>
 		</div>
-		<div>
+		
 			<textarea id="reviewContent" name="reviewContent" required
 				style="width: 100%; height: 300px; resize: none;"><%=review.getReviewContent()%>
    </textarea>
-		</div>
-
-		<label for="reviewImage" class="update-btn">사진 첨부하기</label> <input
+		
+		
+		<label for="reviewImage" class="reviewImage">사진 첨부하기</label> <input
 			type="file" id="reviewImage" name="reviewImage" accept="image/*">
 		<div style="text-align: right;">
-			<label for="reviewDate">작성(최종수정)일 : <%=new SimpleDateFormat("yyyy-MM-dd").format(review.getReviewDate())%></label>
+			<label for="reviewDate" style = "font-weight: normal;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size:13px;">작성(최종수정)일 : <%=new SimpleDateFormat("yyyy-MM-dd").format(review.getReviewDate())%></label>
 		</div>
 		<div class="update-btn-container">
 			<input type="submit" class="update-btn" value="수정"> <a
