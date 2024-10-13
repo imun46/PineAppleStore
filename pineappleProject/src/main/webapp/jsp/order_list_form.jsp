@@ -145,13 +145,23 @@
                         <td><button type="button" class="basicBtn ordersBtn" onclick="submitForm('detail',<%=orderList.get(i).getOrdersNo()%> )">주문상세</button></td>
                         <td><%=orderList.get(i).getOrdersNo() %></td>
                         <td><%=dateFormat.format(orderList.get(i).getOrdersDate()) %></td>
+                        
                    <% if(orderList.get(i).getOrdersStatus().equals("구매확정")) { %>
                            <td style="color:tomato;"><%=dateFormat.format(orderList.get(i).getOrdersArrivaldate()) %></td>
                              <% } else { %>
                            <td><%=orderList.get(i).getOrdersStatus() %></td>
-                         <% } %>
-                            
-                        <td class="item-info"><%=itemInfo %> 외 <%=itemQty-1 %>개</td>
+                         <% } 
+                         
+                         	if(itemQty == 1){
+                         %>
+	                        <td class="item-info"><%=itemInfo %></td>
+                         <%		
+                         	}else{
+                         %>
+	                        <td class="item-info"><%=itemInfo %> 외 <%=itemQty-1 %>개</td>
+                         <%		
+                         	}
+                         %>
                         <td><%=itemQty %></td>
                         <td><%=decimalFormat.format(itemPrice) %>원</td>
                         <td>
