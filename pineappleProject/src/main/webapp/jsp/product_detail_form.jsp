@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.itwill.shop.service.ReviewService"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -10,6 +11,8 @@
 <%@ page import="com.itwill.shop.domain.ProductImage"%>
 <%@ page import="com.itwill.shop.domain.Review"%>
 <%@ page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 
 <%
@@ -35,6 +38,17 @@ if (productNoStr != null) {
 ProductService productService = new ProductService();
 Product product = productService.productDetail(productNo);
 ReviewService reviewService = new ReviewService();
+
+List<String> productImages = new ArrayList<>();
+for(ProductImage productImage : product.getProductImageList()) {
+	productImages.add("/product_image/"+productImage.getProductImageFile());
+}
+for(String imageFile : productImages) {
+	System.out.println(imageFile);
+}
+
+request.setAttribute("productImages", productImages);
+
 %>
 
 <!DOCTYPE html>
@@ -98,6 +112,54 @@ ReviewService reviewService = new ReviewService();
 			    margin: 20px 0; /* 상하 여백을 설정 */
 				font-size: 20px;			    
 			}
+		
+		.image-gallery {
+				display:flex;
+				align-items: flex-start;
+				flex-wrap: nowrap;
+			}
+		
+		.thumbnails {
+    			display: flex;
+  				flex-direction: column;
+  				margin-right: 10px;
+			}
+
+		.thumbnail {
+			    width: 50px;
+			    height: 50px;
+			    margin-bottom: 10px;
+			    cursor: pointer;
+			    border: 2px solid transparent;
+			}
+
+		.thumbnail:hover {
+  				border-color: lightgray;
+			}
+
+		.active-thumbnail {
+			    border-color: blue;
+			}
+		
+		.large-image-container {
+				flex-grow: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: 100%;
+			}
+		
+		.large-image-container img {
+       			flex-grow: 1;
+		        width: 100%;
+		        height: 100%;
+		        background-image: url('${productImages[0]}');
+		        background-size: cover; /* Fill the container */
+		        background-position: center; /* Center the image */
+		        background-repeat: no-repeat; /* Prevent repetition */
+			}
+		
 	</style>
 </head>
 <body>
@@ -133,11 +195,25 @@ ReviewService reviewService = new ReviewService();
 			<!-- Product Information -->
 			<div class="row">
 				<div class="col-md-6">
-					<!-- Product Image -->
-					<div id="product-image">
-						<img src="../img/macBookAir.jpg" alt="Product Image"
+					<!----------------------------------------------------------------- Product Image ------------------------------------------------------>
+					<div class="image-gallery">
+					<div class="thumbnails">
+						<c:forEach var="image" items="${productImages}">
+							<img src="${image}"
+           					alt="Thumbnail"
+         					class="thumbnail"
+           					onmouseover="changeImage('${image}', this)"
+       						/>
+   						 </c:forEach>
+					</div>
+
+					<div class="large-image-container" id="product-image">
+						<!-- Display the first image in the list as the default large image -->
+						<img id="largeImage" src="${productImages[0]}" alt="Product Image"
 							class="img-fluid" />
 					</div>
+					<!----------------------------------------------------------------- Product Image ------------------------------------------------------>
+				</div>
 				</div>
 
 				<div class="col-md-6">
@@ -212,10 +288,11 @@ ReviewService reviewService = new ReviewService();
 
 			<!-- Product Detail -->
 			<div style="display: flex; justify-content: center;">
-			    <img alt="" src="../img/product_detail_page.png" style="max-width: 100%; height: auto;">
+			    <img alt="" src="../product_image/<%=product.getProductDetailpage() %>" style="max-width: 100%; height: auto;">
 			</div>
 			
-			
+			<br>
+			<br>
 			<!-- Review -->
 			<!-- Customer Reviews Section -->
          	 <div class="section">
@@ -364,10 +441,22 @@ ReviewService reviewService = new ReviewService();
 		        }
 		        currentOptions += optionName;
 		    }
-
-
 		}
+		
+		
+		function changeImage(imageUrl, thumbnail) {
+		    // Change the large image source
+		    document.getElementById('largeImage').src = imageUrl;
 
+		    // Optionally, add some active thumbnail styling
+		    var thumbnails = document.getElementsByClassName('thumbnail');
+		    for (var i = 0; i < thumbnails.length; i++) {
+		        thumbnails[i].classList.remove('active-thumbnail');
+		    }
+		    thumbnail.classList.add('active-thumbnail');
+		}
+		
+		
 		
 		
 	</script>
