@@ -119,6 +119,15 @@ public class OrdersDaoImpl implements OrdersDao {
 		sqlSession.close();
 		return rowCount;
 	}
+	
+	// 주문 번호로 사용한 쿠폰 번호 찾기
+	public Integer findCustomerCouponsNoByOrdersNo(Integer ordersNo) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		OrdersMapper ordersMapper = sqlSession.getMapper(OrdersMapper.class);
+		int rowCount = ordersMapper.findCustomerCouponsNoByOrdersNo(ordersNo);
+		sqlSession.close();
+		return rowCount;
+	}
 
 
 }

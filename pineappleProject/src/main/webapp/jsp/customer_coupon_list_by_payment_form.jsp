@@ -97,7 +97,7 @@
            <input type="radio" name="selectedCoupon" value="<%= customerCoupon.getCustomerCouponsNo() %>">
            <strong><%= customerCoupon.getCoupon().getCouponName() %></strong><br>
            <%=customerCoupon.getCoupon().getCouponDesc() %><br>
-           <%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate()) %>
+           만료날짜:<%=simpleDateFormat.format(customerCoupon.getCustomerCouponsEnddate()) %>
            </label>
            </div>
         <% } %>
