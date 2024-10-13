@@ -70,6 +70,7 @@ ReviewService reviewService = new ReviewService();
 			    font-weight: bold; /* 글자 두께 */
 			    border-radius: 5px; /* 모서리 둥글게 */
 			    transition: background-color 0.3s, color 0.3s; /* 호버 시 변화 애니메이션 */
+			    text-decoration: none; /* 밑줄 제거 */
         	}
 		.productBtn:hover {
 			    color: #fff; /* 호버 시 텍스트 색상 */
@@ -250,7 +251,7 @@ ReviewService reviewService = new ReviewService();
                         <%=review.getReviewContent() %>
                     </div>
                     <% if(review.getReviewImage() != null) { %>
-                        <img src="<%=review.getReviewImage() %>" alt="My Image">
+                        <img src="../img/<%=review.getReviewImage() %>" alt="My Image" style="width: 100px; height: auto">
                     <% } %>
                     <div class="review-date">
                         작성일 : <%= formattedDate %>
@@ -260,11 +261,12 @@ ReviewService reviewService = new ReviewService();
                     </div>
                 </a>    
                 <%
-                    reviewCount++;    
+                    reviewCount++;   
                 } %>           
                 </div>
                 <div class="review">
-	           		<button class="productBtn" onclick="location.href='review_mypage_form.jsp'">더보기</button>
+                <a href="review_product_form.jsp?product_no=<%=productNoStr%>" class="productBtn">더보기</a>
+                
                 </div>                      
         </div>
       </div>
