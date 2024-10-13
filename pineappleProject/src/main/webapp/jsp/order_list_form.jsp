@@ -75,22 +75,22 @@
         }
         .ordersBtn:hover {
             color: #fff; /* 호버 시 텍스트 색상 */
-		    background-color: #212529; /* 호버 시 배경색 */
-		    border-color: #212529; /* 호버 시 경계 색상 */
+          background-color: #212529; /* 호버 시 배경색 */
+          border-color: #212529; /* 호버 시 경계 색상 */
         }
         .ordersBtn:focus {
-		    outline: none; /* 포커스 시 외곽선 제거 */
-		    box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
-		}
-		.ordersBtn:active {
-		    color: #fff; /* 클릭 시 텍스트 색상 */
-		    background-color: #212529; /* 클릭 시 배경색 */
-		    border-color: #212529; /* 클릭 시 경계 색상 */
-		}
-		.purchaseBtn:hover{
-		 	color: #fff; /* 호버 시 텍스트 색상 */
-		    background-color: #212529; /* 호버 시 배경색 */
-		}
+          outline: none; /* 포커스 시 외곽선 제거 */
+          box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
+      }
+      .ordersBtn:active {
+          color: #fff; /* 클릭 시 텍스트 색상 */
+          background-color: #212529; /* 클릭 시 배경색 */
+          border-color: #212529; /* 클릭 시 경계 색상 */
+      }
+      .purchaseBtn:hover{
+          color: #fff; /* 호버 시 텍스트 색상 */
+          background-color: #212529; /* 호버 시 배경색 */
+      }
         .purchaseConfirmedBtn {
             background-color: #989da2; /* 구매 확정 버튼 색상 */
             color: white;
@@ -111,12 +111,12 @@
 <body>
     <jsp:include page="../includes/include_top_menu.jsp" />
      <header class="bg-dark py-5">
-	     <div class="container px-4 px-lg-5 my-5">
-	         <div class="text-center">
-	             <h1 class="display-4 fw-bolder">주문내역</h1>
-	             <hr>
-	         </div>
-	     </div>
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center">
+                <h1 class="display-4 fw-bolder">주문내역</h1>
+                <hr>
+            </div>
+        </div>
     </header>
     <div id="container">
         <form id="orderForm" method="POST">
@@ -139,19 +139,30 @@
                         for(int i = 0; i < orderList.size(); i++) { 
                             int itemPrice = orderList.get(i).getOrdersFinalprice();
                             int itemQty = orderList.get(i).getOrdersTotqty();
+                            String itemInfo = orderList.get(i).getOrdersItemsList().get(0).getProduct().getProductName();
                     %>
                     <tr >
                         <td><button type="button" class="basicBtn ordersBtn" onclick="submitForm('detail',<%=orderList.get(i).getOrdersNo()%> )">주문상세</button></td>
                         <td><%=orderList.get(i).getOrdersNo() %></td>
                         <td><%=dateFormat.format(orderList.get(i).getOrdersDate()) %></td>
-						 <% if(orderList.get(i).getOrdersStatus().equals("구매확정")) { %>
-	                        <td style="color:tomato;"><%=dateFormat.format(orderList.get(i).getOrdersArrivaldate()) %></td>
-	                          <% } else { %>
-	                        <td><%=orderList.get(i).getOrdersStatus() %></td>
-                         <% } %>
-                            
-                        <td class="item-info"><%=orderList.get(i).getOrdersItemsList().get(0).getProduct().getProductName() %></td>
-                        <td><%=orderList.get(i).getOrdersItemsList().size() %></td>
+                        
+                   <% if(orderList.get(i).getOrdersStatus().equals("구매확정")) { %>
+                           <td style="color:tomato;"><%=dateFormat.format(orderList.get(i).getOrdersArrivaldate()) %></td>
+                             <% } else { %>
+                           <td><%=orderList.get(i).getOrdersStatus() %></td>
+                         <% } 
+                         
+                         	if(itemQty == 1){
+                         %>
+	                        <td class="item-info"><%=itemInfo %></td>
+                         <%		
+                         	}else{
+                         %>
+	                        <td class="item-info"><%=itemInfo %> 외 <%=itemQty-1 %>개</td>
+                         <%		
+                         	}
+                         %>
+                        <td><%=itemQty %></td>
                         <td><%=decimalFormat.format(itemPrice) %>원</td>
                         <td>
                             <% if(orderList.get(i).getOrdersStatus().equals("구매확정")) { %>

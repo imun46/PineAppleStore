@@ -150,7 +150,7 @@ label {
     color: #212529;
     border: 1px solid #212529;
     background-color: transparent;
-    padding: 15px 30px;
+    padding: 14px 50px;
     cursor: pointer;
     font-size: 15px;
     font-weight: bold;
@@ -158,26 +158,24 @@ label {
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* 버튼 컨테이너 */
 .button-container {
+    margin-top: 30px; /* 폼과 버튼 사이 간격 */
     display: flex;
     justify-content: center; /* 버튼을 가운데 정렬 */
-    gap: 70px; /* 버튼 간격 조정 */
-    margin-top: 50px; /* 폼과 버튼 사이 간격 */
+    align-items: center;
+    width: 100%;
+}
+.button-container > input {
+	margin-left: 10px;
 }
 .login-btn:hover, .signup-btn:hover {
     color: #fff;
     background-color: #212529;
     border-color: #212529;
+}
 
-        /* 버튼 컨테이너 */
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-        
-          .login-btn:focus, .signup-btn :focus {
+.login-btn:focus, .signup-btn :focus {
     outline: none; /* 포커스 시 외곽선 제거 */
     box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
 }

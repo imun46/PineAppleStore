@@ -393,16 +393,16 @@ if(reviewRatings!=null) {
                     reviewCount++;   
                 } %>           
                 </div>
+                <div class="review">
+                <a href="review_product_form.jsp?product_no=<%=productNoStr%>" class="productBtn">더보기</a>
+                
+                </div>                      
                 
                 <%} else { %>
                 	
                 	<span>리뷰가 없습니다.</span>
                 
                 <%} %>
-                <div class="review">
-                <a href="review_product_form.jsp?product_no=<%=productNoStr%>" class="productBtn">더보기</a>
-                
-                </div>                      
         </div>
       </div>
         

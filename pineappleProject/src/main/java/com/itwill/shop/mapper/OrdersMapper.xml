@@ -105,8 +105,13 @@
 		DELETE FROM orders
 		 WHERE orders_no=#{ordersNo}
 	</delete>
-		
-		
-		
+	
+	<!-- 주문 번호로 사용한 쿠폰 번호 찾기 -->
+	<select id="findCustomerCouponsNoByOrdersNo" parameterType="int" resultType="int">
+		SELECT customer_coupons_no
+		  FROM orders
+		 WHERE orders_no=#{ordersNo}
+	</select>
+	
 		
 </mapper>

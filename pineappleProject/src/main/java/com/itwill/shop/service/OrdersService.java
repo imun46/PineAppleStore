@@ -93,4 +93,10 @@ public class OrdersService {
 		return ordersDao.deleteByOrdersNo(orderNo);
 	}
 	
+	// 주문 번호로 사용한 쿠폰 번호 찾기
+	public Integer findCustomerCouponsNoByOrdersNo(Integer ordersNo) throws Exception {
+		return ordersDao.findCustomerCouponsNoByOrdersNo(ordersNo);
+	}
+	
+	
 }

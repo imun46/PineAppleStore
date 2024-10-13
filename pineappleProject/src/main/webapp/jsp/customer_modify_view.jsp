@@ -90,7 +90,7 @@
 		<tr>
 			<td width=100 align=center bgcolor="E6ECDE" heigth="22">사용자 성별 : </td>
 			<td width=300 bgcolor="ffffff" style="padding-left : 10px" align="left">
-			<%=loginCustomer.getCustomerGender()%>
+			<%=loginCustomer.getCustomerGender().equals("M") ? "남자" : "여자" %>
 			</td>
 		</tr>
 		<!-- 사용자 전화번호 -->
