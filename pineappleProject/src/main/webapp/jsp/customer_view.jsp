@@ -333,8 +333,7 @@ End
 				<form name="f" method="POST" action="customer_delete_action.jsp">
 					<button class="btn-style" type="button"
 						onClick="customerModifyForm()">정보 수정</button>
-					<button class="btn-style" type="button" onClick="customerDelete()">계정
-						삭제</button>
+					<button class="btn-style" type="button" onClick="customerDelete()">탈퇴</button>
 				</form>
 			</div>
 		</div>
