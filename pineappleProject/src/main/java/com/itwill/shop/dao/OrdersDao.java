@@ -37,4 +37,7 @@ public interface OrdersDao {
 	
 	// 주문 번호로 주문 삭제
 	int deleteByOrdersNo(Integer orderNo) throws Exception;
+	
+	// 주문 번호로 사용한 쿠폰 번호 찾기
+	Integer findCustomerCouponsNoByOrdersNo(Integer ordersNo) throws Exception;
 }
