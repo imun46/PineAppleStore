@@ -60,7 +60,7 @@ try{
 	} catch(Exception e) {
 		e.printStackTrace();
 	    request.setAttribute("errorMessage", e.getMessage());
-	    response.sendRedirect("jsp/index.jsp");
+	    response.sendRedirect("index.jsp");
 	}
 	
 

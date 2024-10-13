@@ -187,37 +187,34 @@
         </div>
         <h2>주문상품</h2>
         <%if(orderList != null && !orderList.isEmpty()){ %>
-           <% for (int i=0; i < orderitemsSize ;i++) { %>
-              <div class="section product-info">
-                 <%
-                      int productNo = orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductNo();
-                      String productImageFile = productService.productDetail(productNo).getProductImageList().get(0).getProductImageFile();
-                 %>
-                 <a href="product_detail_form.jsp?product_no=<%=productNo%>" class="bold-black-link">
-                  <img src="../product_image/<%=productImageFile %>" class="product-image" alt="상품 이미지">
-                  </a>
-                      <div class="product-details">
-                         <%
-                            String productName = orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductName();
-                            String productOptions = orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsOptions();
-                            int orderQty = orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsQty();
-                         %>
-                       <a href="product_detail_form.jsp?product_no=<%=productNo%>" class="bold-black-link">
-                         <p style="font-size:18px; font-weight:bold;"><%=productName %></p>
-                       </a>
-                         <p>옵션 : <%=productOptions %></p>
-                         <p>수량 : <%=orderQty %>개</p>
-                          <p>금액 : <%=decimalFormat.format(orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsPrice()) %>원</p>
-                      </div>
-                      <div class="btn-review">
-                          <% if (orderList.get(0).getOrdersStatus() != null && orderList.get(0).getOrdersStatus().equals("구매확정")) { %>
-                              <button type="button" class="basicBtn reviewWrite" onclick="reviewBtn(<%=orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductNo() %>)">리뷰쓰기</button>
-                          <% } else { %>
-                              <button type="button" class="basicBtn reviewWriteDisabled" disabled>리뷰쓰기</button>
-                          <% } %>
-                      </div>
-              </div>
-           <% } %>
+	        <% for (int i=0; i < orderitemsSize ;i++) { %>
+		        <div class="section product-info">
+		        	<%
+                		int productNo = orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductNo();
+                		String productImageFile = productService.productDetail(productNo).getProductImageList().get(0).getProductImageFile();
+		        	%>
+		        	
+		            <img src="../product_image/<%=productImageFile %>" class="product-image" alt="상품 이미지">
+		                <div class="product-details">
+		                	<%
+		                		String productName = orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductName();
+		                		String productOptions = orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsOptions();
+		                		int orderQty = orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsQty();
+		                	%>
+		                	<p style="font-size:18px; font-weight:bold;"><%=productName %></p>
+		                	<p>옵션 : <%=productOptions %></p>
+		                	<p>수량 : <%=orderQty %>개</p>
+		                    <p>금액 : <%=decimalFormat.format(orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsPrice()) %>원</p>
+		                </div>
+		                <div class="btn-review">
+		                    <% if (orderList.get(0).getOrdersStatus() != null && orderList.get(0).getOrdersStatus().equals("구매확정")) { %>
+		                        <button type="button" class="basicBtn reviewWrite" onclick="reviewBtn(<%=orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductNo() %>)">리뷰쓰기</button>
+		                    <% } else { %>
+		                        <button type="button" class="basicBtn reviewWriteDisabled" disabled>리뷰쓰기</button>
+		                    <% } %>
+		                </div>
+		        </div>
+	        <% } %>
         <% } %>
         <h2>배송지</h2>
         <div class="section shipping-info">
@@ -228,19 +225,14 @@
         <h2>결제정보</h2>
         <div class="section payment-info">
             <p>상품금액: <%=decimalFormat.format(orderList.get(0).getOrdersTotprice())  %>원</p>
-            <%   
-               int discountAmount = orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice();
-               if(discountAmount != 0){ 
+            <%	
+            	int discountAmount = orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice();
+            	if(discountAmount != 0){ 
             %>
-               <p>할인: - <%=decimalFormat.format(orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice()) %>원</p>
-           <%
-               }              
-           %>
-           <%if(customerCouponsNo!=null) { %>
-            <p>
-            	사용 쿠폰: <%=customerCouponName %>
-            </p>
-            <%} %>
+	            <p>할인: - <%=decimalFormat.format(orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice()) %>원</p>
+	        <%
+            	}	        	
+	        %>    
         </div>
         <div class="total">
             합계: <%=decimalFormat.format(orderList.get(0).getOrdersFinalprice())  %>원
