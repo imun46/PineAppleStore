@@ -46,15 +46,19 @@ for(int i=0; i<optionDetails.length; i++) {
 }
 */
 String otp = request.getParameter("ordersTotprice");
-String otq = request.getParameter("ordersTotqty");
+//String otq = request.getParameter("ordersTotqty");
 //System.out.println(otp);
 //System.out.println(otq);
 
 
 // Orders 멤버 필드는 Orders_Items 받고 계산
 int ordersTotprice = Integer.parseInt(request.getParameter("ordersTotprice"));
-int ordersTotqty = Integer.parseInt(request.getParameter("ordersTotqty"));
-	
+//int ordersTotqty = Integer.parseInt(request.getParameter("ordersTotqty"));
+int ordersTotqty = 0;
+for(int i=0; i<itemsQty.length; i++) {
+	ordersTotqty += Integer.parseInt(itemsQty[i]);
+}
+
 // OrdersItems 객체에 내용 입력
 List<OrdersItems> ordersItemsList = new ArrayList<>();
 List<ProductOptionDetail> productOptionDetailList = new ArrayList<>();
