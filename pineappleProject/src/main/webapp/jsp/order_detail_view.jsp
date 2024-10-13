@@ -187,8 +187,7 @@
 		                	<p style="font-size:18px; font-weight:bold;"><%=productName %></p>
 		                	<p>옵션 : <%=productOptions %></p>
 		                	<p>수량 : <%=orderQty %>개</p>
-		
-		                    <p><%= String.format("%,d", orderList.get(0).getOrdersFinalprice()) %>원</p>
+		                    <p>금액 : <%=decimalFormat.format(orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsPrice()) %>원</p>
 		                </div>
 		                <div class="btn-review">
 		                    <% if (orderList.get(0).getOrdersStatus() != null && orderList.get(0).getOrdersStatus().equals("구매확정")) { %>
@@ -209,7 +208,15 @@
         <h2>결제정보</h2>
         <div class="section payment-info">
             <p>상품금액: <%=decimalFormat.format(orderList.get(0).getOrdersTotprice())  %>원</p>
-            <p>할인: - <%=decimalFormat.format(orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice()) %>원</p>
+            <%	
+            	int discountAmount = orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice();
+            	if(discountAmount != 0){ 
+            %>
+	            <p>할인: - <%=decimalFormat.format(orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice()) %>원</p>
+	        <%
+            	}	        	
+	        %>    
+	            
         </div>
         <div class="total">
             합계: <%=decimalFormat.format(orderList.get(0).getOrdersFinalprice())  %>원

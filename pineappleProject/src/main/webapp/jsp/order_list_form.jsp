@@ -139,6 +139,7 @@
                         for(int i = 0; i < orderList.size(); i++) { 
                             int itemPrice = orderList.get(i).getOrdersFinalprice();
                             int itemQty = orderList.get(i).getOrdersTotqty();
+                            String itemInfo = orderList.get(i).getOrdersItemsList().get(0).getProduct().getProductName();
                     %>
                     <tr >
                         <td><button type="button" class="basicBtn ordersBtn" onclick="submitForm('detail',<%=orderList.get(i).getOrdersNo()%> )">주문상세</button></td>
@@ -150,8 +151,8 @@
 	                        <td><%=orderList.get(i).getOrdersStatus() %></td>
                          <% } %>
                             
-                        <td class="item-info"><%=orderList.get(i).getOrdersItemsList().get(0).getProduct().getProductName() %></td>
-                        <td><%=orderList.get(i).getOrdersItemsList().size() %></td>
+                        <td class="item-info"><%=itemInfo %> 외 <%=itemQty-1 %>개</td>
+                        <td><%=itemQty %></td>
                         <td><%=decimalFormat.format(itemPrice) %>원</td>
                         <td>
                             <% if(orderList.get(i).getOrdersStatus().equals("구매확정")) { %>
