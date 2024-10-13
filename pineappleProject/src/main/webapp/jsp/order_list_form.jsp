@@ -138,7 +138,8 @@
                     <% if(orderList != null && !orderList.isEmpty()) { 
                         for(int i = 0; i < orderList.size(); i++) { 
                             int itemPrice = orderList.get(i).getOrdersFinalprice();
-                            int itemQty = orderList.get(i).getOrdersTotqty();
+                            int itemTotQty = orderList.get(i).getOrdersTotqty();
+                            int itemQty = orderList.get(i).getOrdersItemsList().size();
                             String itemInfo = orderList.get(i).getOrdersItemsList().get(0).getProduct().getProductName();
                     %>
                     <tr >
@@ -162,7 +163,7 @@
                          <%		
                          	}
                          %>
-                        <td><%=itemQty %></td>
+                        <td><%=itemTotQty %></td>
                         <td><%=decimalFormat.format(itemPrice) %>원</td>
                         <td>
                             <% if(orderList.get(i).getOrdersStatus().equals("구매확정")) { %>
