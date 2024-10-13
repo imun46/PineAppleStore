@@ -1,9 +1,11 @@
 <%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwill.shop.domain.Cart"%>
+<%@page import="com.itwill.shop.domain.Product"%>
 <%@page import="com.itwill.shop.domain.ProductSelected"%>
 <%@page import="com.itwill.shop.domain.ProductSelectedDetail"%>
 <%@page import="com.itwill.shop.service.CartService" %>
+<%@page import="com.itwill.shop.service.ProductService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="customer_login_check.jspf"  %>    
@@ -28,6 +30,12 @@
     session.setAttribute("cartNo", cartNo);
     */
     
+    ProductService productService = new ProductService();
+    for (int i=0; i<cartList.size(); i++) {
+    	int productNo = cartList.get(i).getProduct().getProductNo();
+    	String productImageFile = productService.productDetail(productNo).getProductImageList().get(0).getProductImageFile();
+    	cartList.get(i).getProduct().getProductImageList().get(0).setProductImageFile(productImageFile);
+    }
     
     
 %>
@@ -101,6 +109,13 @@
         .select-all-container label {
             margin-left: 10px;
         }
+        
+        .bold-black-link {
+		    font-weight: bold;
+		    color: black;
+		    text-decoration: none;
+		}
+        
     </style>
 </head>
 <body>
@@ -157,10 +172,13 @@
                     <input type="hidden" name="productName" 		    value="<%=cart.getProduct().getProductName() 	%>"></input>
                     
                     <input class='product_select' type="checkbox" name="selectItem" onchange="updatePrice()">
-                    <img src="../img/macBookAir.jpg" alt="<%= cart.getProductSelectedList() %>">
-                    
+                    <a href="product_detail_form.jsp?product_no=<%= cart.getProduct().getProductNo() %>">
+                    	<img src="../product_image/<%=cart.getProduct().getProductImageList().get(0).getProductImageFile() %>" alt="<%= cart.getProductSelectedList() %>">
+                    </a>
                     <div class="item-details">
-                        <span>상품명: <%= cart.getProduct().getProductName() %></span>
+						<a href="product_detail_form.jsp?product_no=<%= cart.getProduct().getProductNo() %>" class="bold-black-link">
+    						상품명: <%= cart.getProduct().getProductName() %>
+						</a>
 							<%
 							    String options = "";
 								int total = 0;
