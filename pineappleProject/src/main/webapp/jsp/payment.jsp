@@ -20,12 +20,9 @@
 	java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
 	response.setContentType("text/html; charset=UTF-8");
 
-
 	// 세션 값 불러오기
 	Orders sOrders = (Orders) session.getAttribute("sOrders");
-	
 	String[] cartNo = (String[]) session.getAttribute("cartNo");
-	String[] itemsOptions = (String[]) session.getAttribute("itemsOptions");
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 	
 	// 서비스 선언
@@ -53,7 +50,6 @@
 	if (selectedCoupon!= null && !selectedCoupon.isEmpty()) {
     	try {
      	   selectedCustomerCoupon = customerCouponsService.findCustomerCouponsDetailByNo(Integer.parseInt(selectedCoupon));
-			System.out.println(selectedCustomerCoupon);
         	if (selectedCoupon != null) {
             	Coupon coupon = selectedCustomerCoupon.getCoupon();
             	findCouponName = coupon.getCouponName();
@@ -187,7 +183,7 @@
 <body>
 <jsp:include page="../includes/include_top_menu.jsp" />
 <div class="payment-container">
-	<form name="f" method="post">
+	<form name="paymentForm" id="paymentForm" method="post">
     <input type="hidden" id="selectedCouponField" name="selectedCoupon" value="">
     
         <h2>주문 정보</h2>
@@ -196,6 +192,8 @@
             <p><strong>이름:</strong> <%=loginCustomer.getCustomerName() %></p>
             <p><strong>전화번호:</strong> <%=loginCustomer.getCustomerPhone() %></p>
             <p><strong>주소:</strong> <%=loginCustomer.getCustomerAddress() %></p>
+            <input type="hidden" name="ordersAddress" value="<%=loginCustomer.getCustomerAddress() %>">
+            
         </div>
         
        <h3>주문상품</h3>
@@ -208,6 +206,7 @@
                 <p><strong>옵션:</strong> <%=ordersItems.getOrdersItemsOptions()%> </p>
                 <p><strong>수량:</strong> <%=ordersItems.getOrdersItemsQty()%>개</p>
                 <p><strong>가격:</strong> <span id="product-amount"><%=decimalFormat.format(ordersItems.getOrdersItemsPrice()) %></span>원</p>
+            	<input type="hidden" name="ordersItemsFinalprice" value="<%=ordersItems.getOrdersItemsPrice()*(1-couponDiscountDb) %>">
             	</div>
             </div>
             <%} %>
@@ -216,8 +215,10 @@
             <div class="coupon-details">
                 <label for="coupon-code">보유 쿠폰: <%=usableCouponsQty%>개</label>
                 <%if(!findCouponName.equals("")) { %>
+           		<input type="hidden" name="customerCouponsNo" value="<%=Integer.parseInt(selectedCoupon)%>">
                 <p><strong>선택 쿠폰 : </strong> <%=findCouponName %></p>
                 <p><strong>선택 쿠폰 할인율 : </strong> <%=couponDiscountStr %>%</p>
+                
                 <% } %>
                 <button type="button" id="select-coupon" onclick="customerCouponList()">보유 쿠폰 보기</button>
             </div>
@@ -228,9 +229,10 @@
             <div class="total-amount">
                 <p>상품금액: <span id="product-amount"><%=decimalFormat.format(sOrders.getOrdersTotprice()) %></span>원</p>
                 <p>할인: <span id="discount-amount"> - </span>원</p>
-                <p><strong>합계: <span id="total-amount"><%=sOrders.getOrdersFinalprice() %></span>원</strong></p>
+                <p><strong>합계: <span id="total-amount"><%=decimalFormat.format(sOrders.getOrdersFinalprice()) %></span>원</strong></p>
+                <input type="hidden" name="ordersFinalprice" value=""></input>
             </div>
-            <button type="submit">결제하기</button>
+            <button class="purchaseBtn" type="button" onclick="submitForm()">결제하기</button>
 	</form>
 </div>
 
@@ -241,7 +243,6 @@
 		popuWindow = window.open("customer_coupon_list_by_payment_form.jsp", "popupWindow", "width=600,height=400,scrollbars=yes");
 		
 	}
-	
 	
 	window.onload = function() {
 		// 선택된 쿠폰에 따라 특정 함수 호출
@@ -259,7 +260,14 @@
         const finalPrice = totalPrice - discountAmount;
 
         // Update the HTML to show the new prices
+        if(discountAmount==0) {
         document.getElementById('discount-amount').textContent = discountAmount.toLocaleString();
+
+        } else {
+        	document.getElementById('discount-amount').textContent = "-"+discountAmount.toLocaleString();
+
+		}
+    	document.querySelector('input[name="ordersFinalprice"]').value = finalPrice;
         document.getElementById('total-amount').textContent = finalPrice.toLocaleString();
     }
 	
@@ -274,6 +282,17 @@
 	    window.close(); // Close the popup window
 	    
 	}
+	
+	function submitForm() {
+		var form = document.getElementById('paymentForm');
+		
+		
+
+		form.action = 'orders_insert_action.jsp';
+		form.method = 'POST'
+		form.submit();
+	}
+	
 	
 </script>
     

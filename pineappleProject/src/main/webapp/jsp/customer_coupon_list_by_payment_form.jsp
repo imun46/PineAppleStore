@@ -8,23 +8,21 @@
     pageEncoding="UTF-8"%>
 <%@ include file="customer_login_check.jspf"  %>    
 <%
-   /*** 서비스 객체 생성***/
-   CustomerService customerService = new CustomerService();
-   CustomerCouponsService customerCouponsService = new CustomerCouponsService();
-   
-   /*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
-   int customerNo = Integer.parseInt(sCustomerNo);
-   Customer loginCustomer = customerService.findCustomerByNo(customerNo);
-   
-   /*** 날짜 포맷 설정 ***/
-   SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-   
-   /*** 쿠폰 리스트 객체 생성 ***/
-   List<CustomerCoupons> customerCoupons = customerCouponsService.findCustomerCouponsListUsable(customerNo);
-   
-   
-   
-   
+
+	/*** 서비스 객체 생성***/
+	CustomerService customerService = new CustomerService();
+	CustomerCouponsService customerCouponsService = new CustomerCouponsService();
+	
+	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
+	int customerNo = Integer.parseInt(sCustomerNo);
+	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
+	
+	/*** 날짜 포맷 설정 ***/
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+	
+	/*** 쿠폰 리스트 객체 생성 ***/
+	List<CustomerCoupons> customerCoupons = customerCouponsService.findCustomerCouponsListUsable(customerNo);
+
 %>    
     
     

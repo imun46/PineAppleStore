@@ -90,7 +90,7 @@
 	<!-- 카트 수량 수정 -->
 	<update id="updateCartQty" parameterType="map">
 		UPDATE cart
-		   SET cart_qty = #{cartQty}
+		   SET cart_qty = cart_qty + #{cartQty}
 		 WHERE cart_no = #{cartNo}
 	</update>
 	
@@ -167,6 +167,20 @@
 		  JOIN product_option po
 		    ON pod.product_option_no=po.product_option_no
 		 WHERE c.cart_no=#{cartNo}
+	</select>
+
+	<!-- 제품 옵션 번호로 카트 번호 반환 -->
+	<select id="findCartNoByProductSelectedNo" parameterType="map" resultType="int">
+		SELECT c.cart_no
+ 		  FROM cart c
+ 		  JOIN product_selected ps
+   			ON c.cart_no = ps.cart_no
+		  JOIN product_selected_detail psd
+		    ON ps.product_selected_no=psd.product_selected_no
+		 WHERE c.customer_no = #{customerNo}
+	     	   AND c.product_no = #{productNo}
+               AND ps.product_selected_no = #{productSelectedNo}
+         GROUP BY c.cart_no
 	</select>
 
 

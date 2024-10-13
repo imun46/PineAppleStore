@@ -140,8 +140,13 @@ insert into product_image values (product_image_product_image_no_seq.nextval, 'p
 
 
 --PRODUCT_OPTION insert
+insert into product_option values(0,'기본',12);
+insert into product_option values(100,'기본',13);
+insert into product_option values(101,'기본',14);
+insert into product_option values(102,'기본',15);
+insert into product_option values(103,'기본',16);
+insert into product_option values(104,'기본',19);
 --핸드폰
-insert into product_option values(product_option_product_option_no_seq.nextval,'모델',1);
 insert into product_option values(product_option_product_option_no_seq.nextval,'색상',1);
 insert into product_option values(product_option_product_option_no_seq.nextval,'용량',1);
 insert into product_option values(product_option_product_option_no_seq.nextval,'모델',2);
@@ -198,6 +203,8 @@ insert into product_option values(product_option_product_option_no_seq.nextval,'
 insert into product_option values(product_option_product_option_no_seq.nextval,'모델',19);
 
 --PRODUCT_OPTION_DETAIL insert
+insert into product_option_detail values (0,'기본',0,0);
+
 --핸드폰
 --핸드폰: 아이폰14
 insert into product_option_detail values (product_option_detail_product_option_detail_no_seq.nextval,'Basic',0,1);

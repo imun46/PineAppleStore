@@ -23,7 +23,6 @@ public class CartService {
 	
 	// 카트 및 선택된 제품 등록
 	public int insertCart(Cart cart) throws Exception {
-		
 		// 선택된 제품 중복 여부 확인용 데이터 추출
 		// 회원 번호 추출
 		int customerNo = cart.getCustomer().getCustomerNo();
@@ -37,9 +36,12 @@ public class CartService {
 		for (ProductSelectedDetail productSelectedDetail : productSelected.getProductSelectedDetailList()) {
 			productSelectedOptionNoList.add(productSelectedDetail.getProductOptionDetail().getProductOptionDetailNo());
 		}
-		
+
+
 		// 중복 여부 확인
-		if(!checkProductSelected(customerNo, productNo, productSelectedOptionNoList)) {
+		// 중복 시 카트 번호 반환, 미중복 시 0 반환
+		int checkDuplCartNo = checkProductSelected(customerNo, productNo, productSelectedOptionNoList);
+		if(checkDuplCartNo==0) {
 			// 미중복 시
 			// 카트 등록
 			cartDao.insertCart(cart);
@@ -50,17 +52,20 @@ public class CartService {
 				productSelectedDetail.getProductSelected().setProductSelectedNo(cart.getProductSelectedList().get(0).getProductSelectedNo());
 				cartDao.insertProductSelectedDetail(productSelectedDetail);
 			}
-			
+
 		} else {
-			cartDao.updateByProductSelected();
+			// 중복 시 수량만 증가
+			cartDao.updateCartQty(checkDuplCartNo, cart.getCartQty());
 		}
-		
+
+
+
 		// 등록된 카트 번호 반환
 		return cart.getCartNo();
 	}
 	
 	// 카트 중복 여부 반환
-	public boolean checkProductSelected(Integer customerNo, Integer productNo, List<Integer> productSelectedList) throws Exception{
+	public Integer checkProductSelected(Integer customerNo, Integer productNo, List<Integer> productSelectedList) throws Exception{
 		// 회원 번호와 제품 번호 해쉬맵 입력
 	    Map<String, Object> paramMap = new HashMap<>();
 	    paramMap.put("customerNo", customerNo);
@@ -72,7 +77,7 @@ public class CartService {
 	    // 선택된 제품 번호 별로 전부 중복 여부 체크
 	    for (Integer productSelectedNo : productSelectedNoList) {
 	    	// 회원 번호, 제품 번호, 선택된 제품 번호 해쉬맵 입력
-	    	Map<String, Object> paramMapCheck = new HashMap<>();
+	    	Map<String, Integer> paramMapCheck = new HashMap<>();
 		    paramMapCheck.put("customerNo", customerNo);
 		    paramMapCheck.put("productNo", productNo);
 		    paramMapCheck.put("productSelectedNo", productSelectedNo);
@@ -82,7 +87,7 @@ public class CartService {
 		    
 		    // 옵션 리스트 NULL이면 false 반환
 		    if(checkProductSelectedList==null||productSelectedList==null) {
-		    	return false;
+		    	return 0;
 		    }
 		    // 옵션 리스트 내 NULL 값 제거
 		    checkProductSelectedList.removeIf(Objects::isNull);
@@ -92,14 +97,15 @@ public class CartService {
 		    Collections.sort(checkProductSelectedList);
 		    Collections.sort(productSelectedList);
 	    	
-		    // 반환된 리스트와 선택한 제품 옵션 상세 리스트 비교 결과 true시 true 반환
-		    if(checkProductSelectedList.equals(productSelectedList))
-		    	return true;
+		    // 반환된 리스트와 선택한 제품 옵션 상세 리스트 비교 결과 중복 시 해당 카트 번호 반환
+		    if(checkProductSelectedList.equals(productSelectedList)) {
+		    	return cartDao.findCartNoByProductSelectedNo(paramMapCheck);
+		    }
 	    	
 	    }
 		
-	    // 반환된 비교 결과 true가 없을 시 false 반환
-		return false;
+	    // 반환된 비교 결과 미중복 시 없을 시 0 반환
+		return 0;
 	}
 	
 	// 카트 옵션 수정 (추후 수정 예정)

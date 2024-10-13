@@ -58,7 +58,7 @@ public class CartDaoImpl implements CartDao {
 	
 	// 카트 중복 체크용 제품 옵션 상세 번호 리스트 반환
 	@Override
-	public List<Integer> checkProductSelected(Map<String, Object> paramMap) throws Exception {
+	public List<Integer> checkProductSelected(Map<String, Integer> paramMap) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		CartMapper cartMapper = sqlSession.getMapper(CartMapper.class);
 		List<Integer> productOptionDetailNoList = cartMapper.checkProductSelected(paramMap);
@@ -78,7 +78,7 @@ public class CartDaoImpl implements CartDao {
 	
 	@Override
 	public int updateByProductSelected() throws Exception {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 	
@@ -87,7 +87,7 @@ public class CartDaoImpl implements CartDao {
 	public int updateCartQty(Integer cartNo, Integer cartQty) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		CartMapper cartMapper = sqlSession.getMapper(CartMapper.class);
-	    Map<String, Object> paramMap = new HashMap<>();
+	    Map<String, Integer> paramMap = new HashMap<>();
 	    paramMap.put("cartNo", cartNo);
 	    paramMap.put("cartQty", cartQty);
 		int rowCount = cartMapper.updateCartQty(paramMap);
@@ -162,6 +162,16 @@ public class CartDaoImpl implements CartDao {
 		List<Cart> cartList = cartMapper.findByCartNo(cartNo);
 		sqlSession.close();
 		return cartList;
+	}
+	
+	// 제품 옵션 번호로 카트 번호 반환
+	@Override
+	public Integer findCartNoByProductSelectedNo(Map<String, Integer> paramMap) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		CartMapper cartMapper = sqlSession.getMapper(CartMapper.class);
+		Integer cartNo = cartMapper.findCartNoByProductSelectedNo(paramMap);
+		sqlSession.close();
+		return cartNo;
 	}
 	
 }

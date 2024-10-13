@@ -2,14 +2,34 @@
 <%@page import="java.util.List"%>
 <%@page import="com.itwill.shop.domain.Cart"%>
 <%@page import="com.itwill.shop.domain.ProductSelected"%>
+<%@page import="com.itwill.shop.domain.ProductSelectedDetail"%>
 <%@page import="com.itwill.shop.service.CartService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="customer_login_check.jspf"  %>    
 <%
-	int customerNo = 1;
+
+	int customerNo = Integer.parseInt((String)session.getAttribute("sCustomerNo"));
+
     CartService cartService = new CartService();
-    List<Cart> cart = cartService.findByCustomerNo(1);
+    List<Cart> cartList = cartService.findByCustomerNo(customerNo);
     java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
+    int totQty = 0;
+    for(Cart cart : cartList) {
+    	totQty += cart.getCartQty();
+    }
+    /*
+    // 카트 번호 리스트 세션에 추가
+    int[] cartNo = {};
+    for(int i=0; i<cartList.size(); i++) {
+    	cartNo[i] = cartList.get(i).getCartNo();
+	    System.out.println(cartNo[i]);
+    }
+    session.setAttribute("cartNo", cartNo);
+    */
+    
+    
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -97,7 +117,7 @@
 </form>
 
 <section>
-    <form name="cart_form" style="margin: 0;"> <!-- 삭제를 위한 폼 추가 -->
+    <form name="cart_form" id="cartForm" style="margin: 0;"> <!-- 삭제를 위한 폼 추가 -->
         <input type="hidden" name="customer_no" value="<%= customerNo %>"> <!-- customer_no 추가 -->
         <div class="cart-container">
             <div class="select-all-container">
@@ -109,53 +129,74 @@
                     style="margin-left: auto; padding: 5px 8px; font-size: 12px" type="button">삭제</button>
             </div>
             <%
-                for(Cart carts : cart) {
+                for(Cart cart : cartList) {
+                	// 카트 아이템 가격 계산
+                	int itemTotprice = cart.getProduct().getProductPrice()*cart.getCartQty();
+                	// 카트 옵션 이름들
+                	String itemsOptions = "";
+       				// 옵션 번호 문자열 합
+                	String productOptionDetailNos = "";
+                	
+       				
+       				for (int i=0; i<cart.getProductSelectedList().size(); i++) {
+                		for(int j=0; j<cart.getProductSelectedList().get(i).getProductSelectedDetailList().size(); j++) {
+                			itemTotprice += cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailPrice();
+                			itemsOptions += cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailName()+", ";
+                			productOptionDetailNos += cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailNo()+",";
+                		}
+                	}
+       				itemsOptions = itemsOptions.replaceAll(", $", "");
             %>
             <div class="cart-item">
                 <div class="item-info">
-                    <input type="hidden" name="cart_no" value="<%=carts.getCartNo() %>">
-                    <input type="hidden" name="cart_qty" value="<%= carts.getCartQty() %>"></input>
-                    <input type="hidden" name="product_price" value="carts.getProduct().getProductPrice()"></input>
+                    <input type="hidden" name="cartNo" 					value="<%=cart.getCartNo() 						%>"></input>
+                    <input type="hidden" name="itemsPrice"				value="<%=itemTotprice 							%>"></input>
+                    <input type="hidden" name="itemsQty" 				value="<%=cart.getCartQty() 					%>"></input>
+                    <input type="hidden" name="itemsOptions"			value="<%=itemsOptions 							%>"></input>
+                    <input type="hidden" name="productNo" 				value="<%=cart.getProduct().getProductNo() 		%>"></input>
+                    <input type="hidden" name="productName" 		    value="<%=cart.getProduct().getProductName() 	%>"></input>
                     
                     <input class='product_select' type="checkbox" name="selectItem" onchange="updatePrice()">
-                    <img src="../img/macBookAir.jpg" alt="<%= carts.getProductSelectedList() %>">
+                    <img src="../img/macBookAir.jpg" alt="<%= cart.getProductSelectedList() %>">
                     
                     <div class="item-details">
-                        <span>상품명: <%= carts.getProduct().getProductName() %></span>
+                        <span>상품명: <%= cart.getProduct().getProductName() %></span>
 							<%
 							    String options = "";
 								int total = 0;
-							    for (int i = 0; i < carts.getProductSelectedList().size(); i++) {
-							        for (int j = 0; j < carts.getProductSelectedList().get(i).getProductSelectedDetailList().size(); j++) {
-							            options += carts.getProductSelectedList().get(i).getProductSelectedDetailList().get(j)
+							    for (int i = 0; i < cart.getProductSelectedList().size(); i++) {
+							        for (int j = 0; j < cart.getProductSelectedList().get(i).getProductSelectedDetailList().size(); j++) {
+							            options += cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j)
 							                            .getProductOptionDetail().getProductOption().getProductOptionType() +
-							                       " - " + carts.getProductSelectedList().get(i).getProductSelectedDetailList().get(j)
-							                            .getProductOptionDetail().getProductOptionDetailName() + "(+ " + decimalFormat.format(carts.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailPrice())
+							                       " - " + cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j)
+							                            .getProductOptionDetail().getProductOptionDetailName() + "(+ " + decimalFormat.format(cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailPrice())
 							                            		+"원)<br>"; // 줄바꿈 추가
-							                            		
-							            total = carts.getProduct().getProductPrice() + carts.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailPrice();
+							                            		 
+							            total = cart.getProduct().getProductPrice() + cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailPrice();
 							        }
 							    }
 							%>
                         <span style="font-size: 13px;"><%=options %> </span>
-                        <span>수량: <%= carts.getCartQty() %> </span>
+                        <span>수량: <%= cart.getCartQty() %> </span>
                     </div>
                 </div>
                 <div class="item-price">
-                	가격: <%= decimalFormat.format(total) %> 원
+                	가격: <%= decimalFormat.format(itemTotprice) %> 원
                 </div>
             </div>
             <%
                 }
             %>
             <div class="item-price" style="display: flex; justify-content: flex-end;">
+                    <input type="hidden" name="ordersTotprice" value=""></input>
+                    <input type="hidden" name="ordersTotqty"   value="<%=totQty%>"></input>
                 <span>상품 총 금액:</span>
                 <span id="total_price">0</span>
                 <span>원</span>
             </div>
             <div class="actions" style="justify-content: center; gap: 20px;">
                 <button class="btn btn-secondary" type="button">옵션변경</button>
-                <button class="btn btn-primary" type="submit">바로주문</button>
+                <button class="btn btn-primary" type="button" onclick="submitPurchase()">바로주문</button>
             </div>
         </div>
     </form>
@@ -163,6 +204,27 @@
 
 <script>
     document.getElementById('selectAll').addEventListener('change', checkAll);
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log("Page is fully loaded, enabling inputs...");
+        enableAllInputs();  // Enable all inputs when the page is loaded
+    });
+
+    // Enable all inputs and checkboxes
+	function enableAllInputs() {
+    	const inputs = document.querySelectorAll('.cart-item input');
+    	inputs.forEach(input => {
+  	      console.log("Enabling input: ", input);  // Log each input for debugging
+  	      input.disabled = false; // Ensure all inputs are explicitly enabled
+  	      input.removeAttribute('disabled'); // Remove 'disabled' attribute if present
+  	  });
+
+  	  const checkboxes = document.querySelectorAll('.product_select');
+  	  checkboxes.forEach(checkbox => {
+  	      console.log("Enabling checkbox: ", checkbox);  // Log each checkbox for debugging
+  	      checkbox.disabled = false; // Ensure checkbox is explicitly enabled
+  	      checkbox.removeAttribute('disabled'); // Remove 'disabled' attribute if present
+    });
+}
     
     function checkAll() {
         var selectAllCheckbox = document.getElementById('selectAll');
@@ -188,6 +250,8 @@
     
         // 총 금액을 업데이트
         document.getElementById('total_price').innerText = total.toLocaleString();
+		document.querySelector('input[name="ordersTotprice"]').value = total;
+
     }
     
     function cart_delete_action() {
@@ -196,7 +260,7 @@
         
         selectedItems.forEach(function(item) {
             // 선택된 항목의 cart_no 값을 수집
-            var cartNo = item.closest('.cart-item').querySelector('input[name="cart_no"]').value;
+            var cartNo = item.closest('.cart-item').querySelector('input[name="cartNo"]').value;
             cartNos.push(cartNo);
         });
         
@@ -226,6 +290,33 @@
         cartDeleteForm.action = 'cart_delete_action.jsp';
         cartDeleteForm.method = 'POST'; // POST 방식으로 전송
         cartDeleteForm.submit(); // 폼 제출
+    }
+    
+    function submitPurchase() {
+		var form = document.getElementById('cartForm');
+		
+        var selectedItems = document.querySelectorAll('.product_select:checked');
+        
+        if (selectedItems.length === 0) {
+            alert('구매를 원하시는 제품을 체크해주세요.');
+            return;
+        }
+
+        // Disable inputs for unselected items to prevent them from being submitted
+        var allItems = document.querySelectorAll('.cart-item');
+        allItems.forEach(function(item) {
+            var checkbox = item.querySelector('.product_select');
+            if (!checkbox.checked) {
+                var inputs = item.querySelectorAll('input');
+                inputs.forEach(function(input) {
+                    input.disabled = true;
+                });
+            }
+        });
+
+		form.action = 'orders_ready_action.jsp';
+		form.method = 'POST';
+		form.submit();
     }
 </script>
 
