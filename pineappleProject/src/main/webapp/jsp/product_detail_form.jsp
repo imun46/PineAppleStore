@@ -10,6 +10,7 @@
 <%@ page import="com.itwill.shop.domain.ProductOptionDetail"%>
 <%@ page import="com.itwill.shop.domain.ProductImage"%>
 <%@ page import="com.itwill.shop.domain.Review"%>
+<%@ page import="com.itwill.shop.service.ReviewService"%>
 <%@ page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -38,7 +39,7 @@ if (productNoStr != null) {
 ProductService productService = new ProductService();
 Product product = productService.productDetail(productNo);
 ReviewService reviewService = new ReviewService();
-
+List<Review> reviewList = reviewService.findReviewByProductNo(productNo);
 List<String> productImages = new ArrayList<>();
 for(ProductImage productImage : product.getProductImageList()) {
 	productImages.add("/product_image/"+productImage.getProductImageFile());
@@ -48,6 +49,25 @@ for(String imageFile : productImages) {
 }
 
 request.setAttribute("productImages", productImages);
+
+//별점 계산
+List<Integer> reviewRatings = reviewService.findRatingsByProductNo(productNo);
+
+double reviewRatingsAvg = 0.0;
+int reviewRatingsAvgInt = 0;
+
+// 리뷰 존재 여부 확인
+if(reviewRatings!=null) {
+	int ratingsSum = 0;
+	for(int i=0; i<reviewRatings.size(); i++) {
+		ratingsSum += reviewRatings.get(i);
+	}
+	
+	reviewRatingsAvg = ratingsSum / ((double)reviewRatings.size());
+	reviewRatingsAvgInt = (int)reviewRatingsAvg;
+}
+
+
 
 %>
 
@@ -160,6 +180,16 @@ request.setAttribute("productImages", productImages);
 		        background-repeat: no-repeat; /* Prevent repetition */
 			}
 		
+    	.product-category {
+	        margin-bottom: 10px;
+	        font-size: 14px;
+	    }
+	    
+	    .review-ratings {
+		    color: #ffcc00;
+		    margin: 10px 0;
+		}
+		
 	</style>
 </head>
 <body>
@@ -182,6 +212,7 @@ request.setAttribute("productImages", productImages);
 	%>
 
 	<!-- Form to handle options and submit -->
+
 	<form id="productForm" method="POST">
 		<input type="hidden" name="productNo" value="<%=productNo%>" />
 		<input type="hidden" name="productName" value="<%=product.getProductName()%>" />
@@ -190,9 +221,12 @@ request.setAttribute("productImages", productImages);
 		<input type="hidden" name="ordersTotprice" />
 		<input type="hidden" name="ordersTotqty" value=1 />
 		<input type="hidden" id="itemsOptions" name="itemsOptions"/>
-
-		<div class="container mt-5">
+		<div class="container mt-3">
 			<!-- Product Information -->
+					<div>
+						<p class="text-muted category-text">
+							카테고리:<%=product.getProductCategory()%></p>
+					</div>
 			<div class="row">
 				<div class="col-md-6">
 					<!----------------------------------------------------------------- Product Image ------------------------------------------------------>
@@ -221,9 +255,26 @@ request.setAttribute("productImages", productImages);
 					<h1 class="display-5 fw-bold"><%=product.getProductName()%></h1>
 					<p class="lead" style="font-size: 22px"><%=decimalFormat.format(product.getProductPrice())%>원
 					</p>
-					<p class="text-muted">
-						카테고리:
-						<%=product.getProductCategory()%></p>
+					<span>
+					<%
+					if(reviewRatingsAvg>=1) { %>
+					<%= reviewRatingsAvg%>
+					<%
+					} else {
+					%>
+					0.0
+					<%} %>
+					</span>
+					<% for(int i=0; i<5; i++) {%>
+					<span class="review-ratings">
+						<%=(i < reviewRatingsAvgInt) ? "★" : "☆" %>
+					</span>
+						<% } %>
+					<a href="review_product_form.jsp?product_no=<%=productNo%>">
+						<span class="review-qty">
+							<%=reviewRatings.size() %>개 상품평
+						</span>
+					</a>
 					<p><%=product.getProductDesc()%></p>
 					<!-- Product Options (e.g., Size, Color) -->
 					<div id="product-options" class="mt-4">
@@ -298,8 +349,9 @@ request.setAttribute("productImages", productImages);
          	 <div class="section">
         <h2>리뷰 정보 </h2>              
         
+                <% if(reviewList.size()>0) { %>
             <div class="list-item">
-                <% List<Review> reviewList = reviewService.findReviewByProductNo(productNo); %>
+                
 
                 <%
                 int maxReviews = 3; // 최대 리뷰 수
@@ -341,6 +393,12 @@ request.setAttribute("productImages", productImages);
                     reviewCount++;   
                 } %>           
                 </div>
+                
+                <%} else { %>
+                	
+                	<span>리뷰가 없습니다.</span>
+                
+                <%} %>
                 <div class="review">
                 <a href="review_product_form.jsp?product_no=<%=productNoStr%>" class="productBtn">더보기</a>
                 
