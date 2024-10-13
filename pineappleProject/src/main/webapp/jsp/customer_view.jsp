@@ -406,7 +406,11 @@ End
 					<%=orders.getOrdersTotqty()%></p>
 				<p>
 					<strong>총 금액:</strong>
-					<%=orders.getOrdersFinalprice()%></p>
+					<%
+					java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
+                    String price = decimalFormat.format(orders.getOrdersFinalprice());
+					%>
+					<%=price %>원</p>
 				<p>
 					<strong>주소:</strong>
 					<%=orders.getOrdersAddress()%></p>
@@ -415,10 +419,10 @@ End
 					<%=orders.getOrdersStatus()%></p>
 				<p>
 					<strong>도착 날짜:</strong>
-					<%=orders.getOrdersArrivaldate()%></p>
+					<%=simpleDateFormat.format(orders.getOrdersArrivaldate())%></p>
 				<p>
 					<strong>주문 날짜:</strong>
-					<%=orders.getOrdersDate()%></p>
+					<%=simpleDateFormat.format(orders.getOrdersDate())%></p>
 			</div>
 			<%
 			orderCount++;
