@@ -26,17 +26,8 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../includes/include_top_menu.jsp"></jsp:include> 
 
 
-<!-- 해당 메뉴 이름-->
-	<header class="bg-dark py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-dark">
-            <h1 class="display-4 fw-bolder">리뷰 수정</h1>
-        </div>
-    </div>
-</header>
 <head>
     <meta charset="UTF-8">
     <title>리뷰 등록</title>
@@ -48,11 +39,125 @@
         }
         .star.checked {
             color: gold; /* 선택된 색상 */
-        }</style>
+        }
+		    /* Container styling */
+		form {
+		    width: 500px;
+		    margin: 50px auto;
+		    padding: 20px;
+		    border: 1px solid #ddd;
+		    border-radius: 10px;
+		    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+		    background-color: #f8f9fa;
+		}
+		
+		/* Section title */
+		h1 {
+		    font-size: 24px;
+		    text-align: center;
+		    color: #333;
+		    margin-bottom: 20px;
+		}
+		
+		/* Input and label styling */
+		label {
+		    font-weight: bold;
+		    display: block;
+		    margin-bottom: 8px;
+		    color: #555;
+		}
+		
+		input[type="text"],
+		textarea {
+		    width: 100%;
+		    padding: 10px;
+		    margin-bottom: 20px;
+		    border: 1px solid #ccc;
+		    border-radius: 5px;
+		    font-size: 16px;
+		}
+		
+		textarea {
+		    height: 100px;
+		    resize: none;
+		}
+		
+		/* Star rating styling */
+		.star {
+		    font-size: 20px;
+		    cursor: pointer;
+		    color: lightgray;
+		}
+		
+		.star.checked {
+		    color: gold;
+		}
+		
+		#star-rating {
+		    text-align: center;
+		    margin-bottom: 20px;
+		}
+		
+		/* File upload input */
+		input[type="file"] {
+		    margin-bottom: 20px;
+		}
+		
+		/* Buttons */
+		input[type="submit"],
+		a {
+		    display: inline-block;
+		    width: 48%;
+		    padding: 10px;
+		    text-align: center;
+		    font-size: 16px;
+		    background-color: #007bff;
+		    color: white;
+		    text-decoration: none;
+		    border: none;
+		    border-radius: 5px;
+		    transition: background-color 0.3s ease;
+		    cursor: pointer;
+		}
+		
+		input[type="submit"]:hover,
+		a:hover {
+		    background-color: #0056b3;
+		}
+		
+		/* Form layout spacing */
+		div {
+		    margin-bottom: 15px;
+		}
+		
+		/* Responsive */
+		@media (max-width: 600px) {
+		    form {
+		        width: 100%;
+		        padding: 10px;
+		    }
+		
+		    input[type="submit"],
+		    a {
+		        width: 100%;
+		    }
+		}
+		        
+        
+    </style>
+        
 </head>
-<body>
 
-<h1>리뷰 등록</h1>
+<body>
+<jsp:include page="../includes/include_top_menu.jsp"></jsp:include> 
+<!-- 해당 메뉴 이름-->
+	<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-dark">
+            <h1 class="display-4 fw-bolder">리뷰등록</h1>
+        </div>
+    </div>
+</header>
 
 <form id="reviewForm" action="/upload2" method="POST" enctype ="multipart/form-data">
    <input type="hidden" name="productNo" value="<%= product.getProductNo() %>">

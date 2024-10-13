@@ -287,7 +287,7 @@ request.setAttribute("productImages", productImages);
 			</div>
 
 			<!-- Product Detail -->
-			<div style="display: flex; justify-content: center;">
+			<div style="display: flex; justify-content: center; margin-top:20px;">
 			    <img alt="" src="../product_image/<%=product.getProductDetailpage() %>" style="max-width: 100%; height: auto;">
 			</div>
 			
