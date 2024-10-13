@@ -415,10 +415,10 @@ End
 					<%=orders.getOrdersStatus()%></p>
 				<p>
 					<strong>도착 날짜:</strong>
-					<%=orders.getOrdersArrivaldate()%></p>
+					<%=simpleDateFormat.format(orders.getOrdersArrivaldate())%></p>
 				<p>
 					<strong>주문 날짜:</strong>
-					<%=orders.getOrdersDate()%></p>
+					<%=simpleDateFormat.format(orders.getOrdersDate())%></p>
 			</div>
 			<%
 			orderCount++;
