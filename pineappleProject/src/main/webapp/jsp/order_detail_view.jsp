@@ -90,9 +90,6 @@
         .shipping-info, .payment-info {
             font-size: 16px;
         }
-        .btn-review{
-        	border: 1px solid #ccc;
-        }
         .total {
             font-size: 20px;
             font-weight: bold;
@@ -103,6 +100,53 @@
             margin-right: 10px;
             color: #007bff;
         }
+        .basicBtn {
+            background-color: transparent; /* 구매 버튼 색상 */
+            border: 1px solid #212529; /* 버튼 경계 색상 */
+            padding: 10px 25px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .basicBtn:hover {
+            color: #fff; /* 호버 시 텍스트 색상 */
+		    background-color: #212529; /* 호버 시 배경색 */
+		    border-color: #212529; /* 호버 시 경계 색상 */
+        }
+        .basicBtn:focus {
+		    outline: none; /* 포커스 시 외곽선 제거 */
+		    box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
+		}
+		.basicBtn:active {
+		    color: #fff; /* 클릭 시 텍스트 색상 */
+		    background-color: #212529; /* 클릭 시 배경색 */
+		    border-color: #212529; /* 클릭 시 경계 색상 */
+		}
+		.orderListBtn {
+			display: flex;
+			justify-content: center;
+		}
+		.orderListBtn > button {
+			padding: 15px 30px;
+			font-size: 20px;
+		}
+		.reviewWrite {
+			color: #fff; 
+		    background-color: #212529; 
+		}
+	    .reviewWriteDisabled {
+	        cursor: not-allowed; /* 비활성화 상태일 때 커서 */
+	        background-color: #999; /* 비활성화된 버튼 색상 */
+	        border-color: #999;
+	        color: #fff;
+	    }
+	    /* reviewWriteDisabled 클래스가 hover되었을 때 */
+	    .reviewWriteDisabled:hover {
+	        background-color: #999; /* 호버 시에도 같은 색상을 유지 */
+	        border-color: #999;
+	        color: #fff;
+	    }
     </style>
 </head>
 <body>
@@ -134,16 +178,16 @@
 		                		int orderQty = orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsQty();
 		                	%>
 		                	<p style="font-size:18px; font-weight:bold;"><%=productName %></p>
-		                	<p><%=productOptions %></p>
-		                	<p><%=orderQty %>개</p>
+		                	<p>옵션 : <%=productOptions %></p>
+		                	<p>수량 : <%=orderQty %>개</p>
 		
 		                    <p><%= String.format("%,d", orderList.get(0).getOrdersFinalprice()) %>원</p>
 		                </div>
 		                <div class="btn-review">
 		                    <% if (orderList.get(0).getOrdersStatus() != null && orderList.get(0).getOrdersStatus().equals("구매확정")) { %>
-		                        <button type="button" class="btn" onclick="submitForm('review')">리뷰쓰기</button>
+		                        <button type="button" class="basicBtn reviewWrite" onclick="reviewBtn(<%=orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductNo() %>)">리뷰쓰기</button>
 		                    <% } else { %>
-		                        <button type="button" class="btn" disabled>리뷰쓰기</button>
+		                        <button type="button" class="basicBtn reviewWriteDisabled" disabled>리뷰쓰기</button>
 		                    <% } %>
 		                </div>
 		        </div>
@@ -163,6 +207,19 @@
         <div class="total">
             합계: <%=decimalFormat.format(orderList.get(0).getOrdersFinalprice())  %>원
         </div>
+        <div class = "orderListBtn">
+        	<button type="button" class="basicBtn " onclick="orderListpage(<%=Integer.parseInt(orderNo) %>)">주문내역</button>
+        </div>
     </div>
+    
+    <script type="text/javascript">
+    	function orderListpage(orderNo){
+    		window.location.href = "order_list_form.jsp?ordersNo=" + orderNo;
+    	}
+    	
+    	function reviewBtn(productNo){
+    		window.location.href = "review_insert_form.jsp?productNo=" + productNo;
+    	}
+    </script>	
 </body>
 </html>

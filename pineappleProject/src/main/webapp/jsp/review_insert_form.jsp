@@ -8,15 +8,20 @@
 <%@ page import="com.itwill.shop.domain.Review" %> 
 <%@ page import="com.itwill.shop.service.ReviewService" %> 
 <%@ page import="java.util.Date" %>
-
-
-<%
+<%@ include file="customer_login_check.jspf"  %>   
+ 
+<%	
 	ReviewService reviewService = new ReviewService();
     ProductService productService = new ProductService();
-    Product product = productService.productDetail(1);
     
+    //productNo 파라미터 받기
+    Integer productNo = Integer.parseInt(request.getParameter("productNo"));
+    Product product = productService.productDetail(productNo);
+    
+    //customerNo session에서 받기
+    Integer customerNo = Integer.parseInt((String)session.getAttribute("sCustomerNo"));
     CustomerService customerService = new CustomerService();
-    Customer customer = customerService.findCustomerByNo(1);
+    Customer customer = customerService.findCustomerByNo(customerNo);
 %>
 
 <!DOCTYPE html>
@@ -27,9 +32,8 @@
 <!-- 해당 메뉴 이름-->
 	<header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
+        <div class="text-center text-dark">
             <h1 class="display-4 fw-bolder">리뷰 수정</h1>
-            <p class="lead fw-normal text-white-50 mb-0">어세오세욤 :)</p>
         </div>
     </div>
 </header>

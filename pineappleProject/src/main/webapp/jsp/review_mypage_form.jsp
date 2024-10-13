@@ -26,7 +26,7 @@ List<Review> reviewList = reviewService.findReviewByCustomerNo(customerNo);
 <!-- 해당 메뉴 이름-->
 <header class="bg-dark py-5">
 	<div class="container px-4 px-lg-5 my-5">
-		<div class="text-left text-black">
+		<div class="text-left text-dark">
 			<h1 class="display-4 fw-bolder">내가 쓴 리뷰</h1>
 		</div>
 	</div>
