@@ -11,7 +11,7 @@ INSERT INTO CUSTOMER (CUSTOMER_NO,CUSTOMER_ID,CUSTOMER_PASSWORD,CUSTOMER_NAME,CU
 VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'IDEX5','123456','김오오','2001-04-04','서울시 강오구','M','010-5555-5555','5555@naver.com','오식이등사람',sysdate);
 --TEST용 아이디
 INSERT INTO CUSTOMER (CUSTOMER_NO,CUSTOMER_ID,CUSTOMER_PASSWORD,CUSTOMER_NAME,CUSTOMER_DOB,CUSTOMER_ADDRESS,CUSTOMER_GENDER,CUSTOMER_PHONE,CUSTOMER_EMAIL,CUSTOMER_NICKNAME,CUSTOMER_JOINDATE) 
-VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'test','123','김오오','2001-04-04','서울시 강오구','M','010-5555-5555','5555@naver.com','오식이등사람',sysdate);
+VALUES (CUSTOMER_CUSTOMER_NO_SEQ.nextval,'test','123','김오오','2001-04-04','서울시 강오구','M','010-5555-9999','1115@naver.com','ddd',sysdate);
 
 
 --COUPON insert
@@ -140,13 +140,14 @@ insert into product_image values (product_image_product_image_no_seq.nextval, 'p
 
 
 --PRODUCT_OPTION insert
-insert into product_option values(0,'기본',12);
-insert into product_option values(100,'기본',13);
-insert into product_option values(101,'기본',14);
-insert into product_option values(102,'기본',15);
-insert into product_option values(103,'기본',16);
-insert into product_option values(104,'기본',19);
+insert into product_option values(100,'기본',12);
+insert into product_option values(101,'기본',13);
+insert into product_option values(102,'기본',14);
+insert into product_option values(103,'기본',15);
+insert into product_option values(104,'기본',16);
+insert into product_option values(105,'기본',19);
 --핸드폰
+insert into product_option values(product_option_product_option_no_seq.nextval,'모델',1);
 insert into product_option values(product_option_product_option_no_seq.nextval,'색상',1);
 insert into product_option values(product_option_product_option_no_seq.nextval,'용량',1);
 insert into product_option values(product_option_product_option_no_seq.nextval,'모델',2);
@@ -203,7 +204,13 @@ insert into product_option values(product_option_product_option_no_seq.nextval,'
 insert into product_option values(product_option_product_option_no_seq.nextval,'모델',19);
 
 --PRODUCT_OPTION_DETAIL insert
-insert into product_option_detail values (0,'기본',0,0);
+insert into product_option_detail values (200,'기본',0,100);
+insert into product_option_detail values (201,'기본',0,101);
+insert into product_option_detail values (202,'기본',0,102);
+insert into product_option_detail values (203,'기본',0,103);
+insert into product_option_detail values (204,'기본',0,104);
+insert into product_option_detail values (205,'기본',0,105);
+
 
 --핸드폰
 --핸드폰: 아이폰14
