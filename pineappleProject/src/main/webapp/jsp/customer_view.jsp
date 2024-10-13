@@ -406,7 +406,11 @@ End
 					<%=orders.getOrdersTotqty()%></p>
 				<p>
 					<strong>총 금액:</strong>
-					<%=orders.getOrdersFinalprice()%></p>
+					<%
+					java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
+                    String price = decimalFormat.format(orders.getOrdersFinalprice());
+					%>
+					<%=price %>원</p>
 				<p>
 					<strong>주소:</strong>
 					<%=orders.getOrdersAddress()%></p>
