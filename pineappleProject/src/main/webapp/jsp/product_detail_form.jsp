@@ -39,7 +39,7 @@ if (productNoStr != null) {
 ProductService productService = new ProductService();
 Product product = productService.productDetail(productNo);
 ReviewService reviewService = new ReviewService();
-
+List<Review> reviewList = reviewService.findReviewByProductNo(productNo);
 List<String> productImages = new ArrayList<>();
 for(ProductImage productImage : product.getProductImageList()) {
 	productImages.add("/product_image/"+productImage.getProductImageFile());
@@ -349,8 +349,9 @@ if(reviewRatings!=null) {
          	 <div class="section">
         <h2>리뷰 정보 </h2>              
         
+                <% if(reviewList.size()>0) { %>
             <div class="list-item">
-                <% List<Review> reviewList = reviewService.findReviewByProductNo(productNo); %>
+                
 
                 <%
                 int maxReviews = 3; // 최대 리뷰 수
@@ -392,6 +393,12 @@ if(reviewRatings!=null) {
                     reviewCount++;   
                 } %>           
                 </div>
+                
+                <%} else { %>
+                	
+                	<span>리뷰가 없습니다.</span>
+                
+                <%} %>
                 <div class="review">
                 <a href="review_product_form.jsp?product_no=<%=productNoStr%>" class="productBtn">더보기</a>
                 
