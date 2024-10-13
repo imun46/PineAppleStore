@@ -60,7 +60,7 @@
 	
 	<jsp:include page="../includes/include_top_menu.jsp" />
 	
-	<video autoplay muted style="width:100%; height: 600px;">
+	<video autoplay muted loop style="width:100%; height: 600px;">
 	 <source src="../img/banner_video.mp4" type="video/mp4">
 	</video>
 	<img alt="line image" src="../img/line.png" style="display:block; margin:0 auto;">
@@ -81,7 +81,9 @@
                  <div class="col mb-5">
                      <div class="card h-100">
                          <!-- Product image-->
+                         <a href="product_detail_form.jsp?product_no=<%=product.getProductNo() %>">
                          <img class="card-img-top" src="../product_image/<%= product.getProductImageList().get(0).getProductImageFile() %>" alt="상품이미지" />
+                         </a>
                          <!-- Product details-->
                          <div class="card-body p-4">
                              <div class="text-center">

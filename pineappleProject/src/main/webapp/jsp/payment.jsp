@@ -1,6 +1,9 @@
+<%@page import="com.itwill.shop.domain.ProductImage"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="com.itwill.shop.service.CustomerCouponsService"%>
 <%@page import="com.itwill.shop.domain.Product"%>
+<%@page import="com.itwill.shop.service.ProductService"%>
 <%@page import="com.itwill.shop.domain.Coupon"%>
 <%@page import="com.itwill.shop.domain.CustomerCoupons"%>
 <%@page import="com.itwill.shop.domain.Cart"%>
@@ -29,6 +32,7 @@
 	CustomerService customerService = new CustomerService();
 	CustomerCouponsService customerCouponsService = new CustomerCouponsService();
 	OrdersService ordersService = new OrdersService();
+	ProductService productService = new ProductService();
 	
 	// 로긴 유저 내용 가져오기
 	int customerNo = Integer.parseInt(sCustomerNo);
@@ -61,23 +65,20 @@
        		 out.println("Error parsing coupon number.");
     	}
 	}
-
+	for(int i=0; i<sOrders.getOrdersItemsList().size(); i++) {
+		int productNo = sOrders.getOrdersItemsList().get(i).getProduct().getProductNo();
+		String productImageFile = productService.productDetail(productNo).getProductImageList().get(0).getProductImageFile();
+		List<ProductImage> productImageList = new ArrayList<>();
+		productImageList.add(ProductImage.builder().productImageFile(productImageFile).build());
+		sOrders.getOrdersItemsList().get(i).getProduct().setProductImageList(productImageList);
+	}
+	
+	
     // Assume couponDiscountDb and sOrders are already initialized
     double totalPrice = sOrders.getOrdersTotprice(); // Get the total price from sOrders
     double finalPrice = totalPrice * (1 - couponDiscountDb); // Calculate the initial final price
 	
-	
-//	ArrayList<Integer> optionPriceList = new ArrayList<>();
-//
-	//for (int i = 0; i < product.getProductOptionList().size(); i++) {
-	  //      optionStr += product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailName() +"(+"+ decimalFormat.format(product.getProductOptionList().get(i).getProductOptionDetailList().get(i).getProductOptionDetailPrice())  + "원)/";
-	    //    
-	    //for (int j = 0; j < product.getProductOptionList().get(i).getProductOptionDetailList().size(); j++) {
-	      //  Integer optionPrice = product.getProductOptionList().get(i).getProductOptionDetailList().get(j).getProductOptionDetailPrice();
-	        //optionPriceList.add(optionPrice); // ArrayList에 가격 추가
-	        //tot += optionPrice; // 총합에 가격 더하기
-	   // }
-//	}
+
 	
 %>   
     
@@ -198,9 +199,9 @@
         
        <h3>주문상품</h3>
         <div class="order-details">
-        	<%for(OrdersItems ordersItems : sOrders.getOrdersItemsList()) { %>
+        	<% for(OrdersItems ordersItems : sOrders.getOrdersItemsList()) { %>
             <div class="product-info">
-             <img src="../product_image/iPhone14(1).jpg" alt="제품이미지">
+             <img src="../product_image/<%=ordersItems.getProduct().getProductImageList().get(0).getProductImageFile() %>" alt="제품이미지">
              	<div>
                 <p><strong>상품명:</strong> <%=ordersItems.getProduct().getProductName()%></p>
                 <p><strong>옵션:</strong> <%=ordersItems.getOrdersItemsOptions()%> </p>
@@ -209,7 +210,7 @@
             	<input type="hidden" name="ordersItemsFinalprice" value="<%=ordersItems.getOrdersItemsPrice()*(1-couponDiscountDb) %>">
             	</div>
             </div>
-            <%} %>
+            <%}%>
        </div>
             
             <div class="coupon-details">
