@@ -34,7 +34,7 @@ body {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	margin: 5px auto;
-	
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 .error-message {
     color: red;
@@ -137,7 +137,7 @@ body {
 }
 
 .header-container {
-    padding: 40px 0;
+    padding-bottom: 20px;
     text-align: center;
 }
 
@@ -179,7 +179,7 @@ function sample4_execDaumPostcode() {
 
 <body>
     <div id="logo-container">
-        <img src="/img/favicon.png" alt="Pineapple Logo" style="width: 40px; height: auto;">
+        <img src="/img/logo2.png" alt="Pineapple Logo" style="width: 60px; height: auto;">
     </div>
     <header class="header-container">
         <div class="container">

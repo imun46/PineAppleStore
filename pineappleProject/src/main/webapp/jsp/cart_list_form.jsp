@@ -48,11 +48,12 @@
     <script src="https://kit.fontawesome.com/2452117347.js" crossorigin="anonymous"></script>
     <style>
         .cart-container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
+			max-width: 1000px;
+			margin: 40px auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
         .cart-item {
             display: flex;
@@ -84,21 +85,35 @@
             justify-content: space-between;
             margin-top: 20px;
         }
-        .btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+        .basic-btn {
+			padding: 10px 25px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-weight: bold;
         }
-        .btn-primary {
-            background-color: #000;
-            color: #fff;
-            border: none;
+        .btn-purchase {
+			background-color: #212529; 
+			border-color: #212529; 
+			border: 1px solid #212529; 
+			color:#fff;
         }
+		.btn-purchase:hover {
+			background-color: #fff; /* 호버 시 배경색 */
+			border-color: #fff; /* 호버 시 경계 색상 */
+			border: 1px solid #212529; /* 버튼 경계 색상 */
+			color:#212529;
+		}
         .btn-secondary {
             background-color: #fff;
             color: #000;
             border: 1px solid #000;
         }
+		.btn-secondary:hover {
+		    background-color: #212529;
+		    color: #fff;
+		    border: 1px solid #212529;
+		}
         .select-all-container {
             display: flex;
             align-items: center;
@@ -259,8 +274,8 @@
                 <span>원</span>
             </div>
             <div class="actions" style="justify-content: center; gap: 20px;">
-                <button class="btn btn-secondary" type="button">옵션변경</button>
-                <button class="btn btn-primary" type="button" onclick="submitPurchase()">바로주문</button>
+                <button class="basic-btn btn-secondary" type="button">옵션변경</button>
+                <button class="basic-btn btn-purchase" type="button" onclick="submitPurchase()">바로주문</button>
             </div>
         </div>
     </form>
