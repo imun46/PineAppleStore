@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.itwill.shop.service.ReviewService"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -17,6 +18,7 @@
 
 
 <%
+DecimalFormat decimalFormatRating = new DecimalFormat("#.0");
 java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
 
 String productNoStr = request.getParameter("product_no");
@@ -190,6 +192,25 @@ if(reviewRatings!=null) {
 		    margin: 10px 0;
 		}
 		
+		.quantity-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .quantity-container input {
+            text-align: center;
+            width: 50px;
+            height: 30px;
+        }
+
+        .quantity-container button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+		
+		
 	</style>
 </head>
 <body>
@@ -258,7 +279,7 @@ if(reviewRatings!=null) {
 					<span>
 					<%
 					if(reviewRatingsAvg>=1) { %>
-					<%= reviewRatingsAvg%>
+					<%= decimalFormatRating.format(reviewRatingsAvg) %>
 					<%
 					} else {
 					%>
@@ -322,6 +343,14 @@ if(reviewRatings!=null) {
 					</div>
 
 					<div class="mt-3">
+					<!--  **********************************수량 변경************************************  -->
+						<div class="quantity-container">
+					    <!-- Ensure the buttons have type="button" to avoid form submission -->
+						    <button type="button" onclick="changeQuantity(-1)">-</button>
+						    <input type="text" id="quantity" value="1" onblur="validateQuantity()" onchange="updatePrice()">
+						    <button type="button" onclick="changeQuantity(1)">+</button>
+						</div>
+					<!--  *********************************************************************************  -->
 						<h3 class="fw-bold">
 							총 가격: <span id="total-price"><%=decimalFormat.format(product.getProductPrice())%></span>원
 						</h3>
@@ -425,11 +454,17 @@ if(reviewRatings!=null) {
 				totalPrice += optionPrice;
 			});
 
-			document.getElementById('total-price').innerText = totalPrice
+		    // Get the quantity entered by the user
+		    var quantity = parseInt(document.getElementById('quantity').value) || 1;
+			
+		    // Multiply the total price by the quantity
+		    var finalTotalPrice = totalPrice * quantity;
+		    
+			document.getElementById('total-price').innerText = finalTotalPrice
 					.toLocaleString();
 			
 			document.querySelector('input[name="itemsPrice"]').value = totalPrice;
-			document.querySelector('input[name="ordersTotprice"]').value = totalPrice;
+			document.querySelector('input[name="ordersTotprice"]').value = finalTotalPrice;
 		}
 		
 		function submitForm(action) {
@@ -515,6 +550,34 @@ if(reviewRatings!=null) {
 		}
 		
 		
+		function changeQuantity(change) {
+		    let quantityInput = document.getElementById("quantity");
+		    let currentQuantity = parseInt(quantityInput.value);
+
+		    // Prevent quantity from going below 1
+		    if (currentQuantity + change >= 1) {
+		        quantityInput.value = currentQuantity + change;
+		    }
+		    
+		    document.querySelector('input[name="itemsQty"]').value = quantityInput.value;
+
+		    updatePrice();
+		}
+
+		// Optional: Ensure that manually entered quantities are valid numbers
+		function validateQuantity() {
+		    let quantityInput = document.getElementById("quantity");
+		    let currentQuantity = parseInt(quantityInput.value);
+
+		    // If invalid input, reset to 1
+		    if (isNaN(currentQuantity) || currentQuantity < 1) {
+		        quantityInput.value = 1;
+		    }
+		    
+		    document.querySelector('input[name="itemsQty"]').value = quantityInput.value;
+
+		    updatePrice();
+		}
 		
 		
 	</script>
