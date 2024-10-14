@@ -285,12 +285,22 @@ End
 		window.location.reload();
 	}
 	function customerDelete() {
-		if (window.confirm("정말 탈퇴하시겠습니까?")) {
-			document.f.action = "customer_delete_action.jsp";
-			document.f.method = 'POST';
+	    if (window.confirm("정말 탈퇴하시겠습니까?")) {
+	        let checkPassword = prompt("비밀번호를 입력해주세요");
+
+	        // 비밀번호 입력 확인
+	        if (checkPassword == null || checkPassword === "") {
+	            alert("비밀번호를 입력해주세요");
+	            return;
+	        }
+			// 입력비밀번호 action에 전달
+			document.getElementById("inputPassword").value = checkPassword;
+			
+			document.f.action="customer_delete_action.jsp";
+			document.f.method="POST";
 			document.f.submit();
-		}
 	}
+}
 </script>
 </head>
 <body>
@@ -331,6 +341,7 @@ End
 					닉네임:
 					<%=customer.getCustomerNickname()%></p>
 				<form name="f" method="POST" action="customer_delete_action.jsp">
+					<input type="hidden" id="inputPassword" name="inputPassword" value="" ></input>
 					<button class="btn-style" type="button"
 						onClick="customerModifyForm()">정보 수정</button>
 					<button class="btn-style" type="button" onClick="customerDelete()">탈퇴</button>
