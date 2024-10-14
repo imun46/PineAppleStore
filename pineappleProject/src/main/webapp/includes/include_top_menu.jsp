@@ -24,7 +24,22 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<!-- style -->
+<style>
+  .badge {
+  display: inline-block;
+  background-color: black; /* 배경색 */
+  color: white; /* 글자색 */
+  border-radius: 50px; /* 둥글게 만들기 */
+  transition: background-color 0.3s; /* 부드러운 전환 효과 */
+}
 
+.badge:hover {
+  background-color: white; /* 배경색 */
+  color: black; /* 글자색 */
+}
+
+</style>
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">
@@ -69,7 +84,7 @@
                   <a class="btn btn-outline-dark" href="../jsp/cart_list_form.jsp">
                       <i class="bi-cart-fill me-1"></i>
                       Cart
-                      <span class="badge bg-dark text-dark ms-1 rounded-pill"><%=cart_item_count %></span>
+                      <span class="badge"><%=cart_item_count %></span>
                   </a>
               </form>
               <%} %>
