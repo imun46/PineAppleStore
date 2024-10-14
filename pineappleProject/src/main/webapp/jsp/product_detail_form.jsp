@@ -202,12 +202,16 @@ if(reviewRatings!=null) {
             text-align: center;
             width: 50px;
             height: 30px;
+            border: none; 
+            
         }
 
         .quantity-container button {
             padding: 5px 10px;
             margin: 0 5px;
             cursor: pointer;
+             border: none; 
+			    border-radius: 5px; /* 모서리 둥글게 */
         }
 		
 		
