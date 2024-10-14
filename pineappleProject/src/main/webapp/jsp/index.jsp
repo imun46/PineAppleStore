@@ -24,7 +24,7 @@
     <head>
         <title>PineApple</title>
         <!-- favicon -->
-		<link rel="icon" href="../img/favicon.png">
+		<link rel="icon" href="../img/logo2.png">
     </head>
 <body>
 	<!-- 팝업창 스타일 설정 start -->

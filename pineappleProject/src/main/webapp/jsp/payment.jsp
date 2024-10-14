@@ -92,7 +92,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .payment-container {
-            max-width: 600px;
+            max-width: 1000px;
             margin: 40px auto;
             padding: 20px;
             border: 1px solid #ccc;
@@ -183,6 +183,15 @@
 </head>
 <body>
 <jsp:include page="../includes/include_top_menu.jsp" />
+ <header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center">
+            <h1 class="display-4 fw-bolder">결제하기</h1>
+            <hr>
+        </div>
+    </div>
+</header>
+
 <div class="payment-container">
 	<form name="paymentForm" id="paymentForm" method="post">
     <input type="hidden" id="selectedCouponField" name="selectedCoupon" value="">

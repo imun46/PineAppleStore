@@ -19,12 +19,12 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         #container {
-            max-width: 60%;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			max-width: 1000px;
+			margin: 40px auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
