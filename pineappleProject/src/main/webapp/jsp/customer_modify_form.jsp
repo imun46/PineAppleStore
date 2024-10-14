@@ -164,35 +164,38 @@
         .buttons {
             margin-top: 10px;
             text-align: center;
-            
         }
-        button {
-         color: #212529; 
-         border: 1px solid #212529;
-         background-color: transparent;
-         padding: 10px 20px; 
-         cursor: pointer; 
-         font-size: 11px; 
-         font-weight: bold; 
-         border-radius: 5px; 
-         transition: background-color 0.3s, color 0.3s; 
+        .button {
+			display: inline-block;
+			padding: 10px 20px;
+			font-size: 16px;
+			font-weight: bold;
+			color: #212529; /* 텍스트 색상 */
+			background-color: transparent; /* 배경 색상 */
+			border: 1px solid #212529; /* 버튼 경계 색상 */
+			border-radius: 5px; /* 모서리 둥글게 */
+			text-align: center;
+			text-decoration: none; /* 링크 밑줄 없애기 */
+			cursor: pointer; /* 마우스 포인터 변경 */
+			transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+			margin-right: 10px;
         }
         
-        button:hover {
-                  color: #fff;
-                  background-color: #212529;
-                  border-color: #212529;
-              }
-              button:focus {
-                  outline: none;
-                  box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5);
-              }
-              button:active {
-                  color: #fff;
-                  background-color: #212529;
-                  border-color: #212529;
-              }
-        
+       .button:hover {
+          color: #fff;
+          background-color: #212529;
+          border-color: #212529;
+      }
+      .button:focus {
+          outline: none;
+          box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5);
+      }
+      .button:active {
+          color: #fff;
+          background-color: #212529;
+          border-color: #212529;
+      }
+
    
 </style>
 </head>
@@ -271,8 +274,8 @@
 		<input type="text" id="joindate" value="<%=simpleDateFormat.format(loginCustomer.getCustomerJoindate())%>" disabled>
 	 	</div>
 	 <div class="buttons" style="margin-top: 50px;">
-				<button type="button" onClick="customerModifyAction()">내정보수정</button>
-				<button type="button" onClick="customerView()">메인</button>
+				<button class="button" type="button" onClick="customerModifyAction()">내정보수정</button>
+				<button class="button" type="button" onClick="customerView()">메인</button>
 	</div>
 		
 		</div>
