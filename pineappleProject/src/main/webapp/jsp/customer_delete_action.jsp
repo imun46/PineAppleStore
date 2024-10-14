@@ -21,7 +21,6 @@
 	%>
 	        <script>
 	            alert('탈퇴가 완료되었습니다.');
-	            location.href = 'index.jsp'; // 탈퇴 완료 후 메인 페이지로 이동
 	        </script>
 	<%
 	    } else {
@@ -33,7 +32,6 @@
 	        </script>
 	<%
 	    }
-	%>
 	
     // 세션 무효화 후 로그인 페이지로 리다이렉트
     session.invalidate();
