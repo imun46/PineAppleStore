@@ -241,7 +241,7 @@
 
     <div>
         <input type="submit" value="등록">
-        <a href="review_detail.jsp">취소</a>
+        <a href="review_mypage_form.jsp">취소</a>
     </div>
 </form>
 
