@@ -195,7 +195,7 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-dark">
 				<h1 class="display-4 fw-bolder">유저 정보 수정</h1>
-				<p class="lead fw-normal text-dark mb-0">난 이제 끝이다 :)</p>
+				<p class="lead fw-normal text-dark mb-0"></p>
 			</div>
 		</div>
 	</header>
