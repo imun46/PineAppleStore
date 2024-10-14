@@ -53,18 +53,19 @@ for(int i=0; i<ordersItemsFinalprice.length; i++) {
 
 
 // 아이템 최종 가격 int cast
+int[] ordersItemsFinalpriceInt = new int[ordersItemsFinalprice.length];
 for(int i=0; i<ordersItemsFinalprice.length; i++) {
 	ordersItemsFinalprice[i] = ordersItemsFinalprice[i].replaceAll("\\.0$", "");
+	double price = Double.parseDouble(ordersItemsFinalprice[i]);
+	int finalPrice = (int)Math.round(price);
+	ordersItemsFinalpriceInt[i] = finalPrice;
+	
 }
 
 for(int i=0; i<ordersItemsFinalprice.length; i++) {
 	System.out.println("ordersItemsFinalPrice["+i+"]"+ordersItemsFinalprice[i]);
 }
 
-int[] ordersItemsFinalpriceInt = new int[ordersItemsFinalprice.length];
-for(int i=0; i<ordersItemsFinalprice.length; i++) {
-	ordersItemsFinalpriceInt[i] = Integer.parseInt(ordersItemsFinalprice[i]);
-}
 
 
 System.out.println(ordersItemsFinalpriceInt);
