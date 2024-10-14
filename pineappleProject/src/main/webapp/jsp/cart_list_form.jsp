@@ -116,6 +116,28 @@
 		    text-decoration: none;
 		}
         
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .quantity-container input {
+            text-align: center;
+            width: 50px;
+            height: 30px;
+            border: none; 
+            
+        }
+
+        .quantity-container button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+             border: none; 
+			    border-radius: 5px; /* 모서리 둥글게 */
+        }
+        
     </style>
 </head>
 <body>
@@ -145,8 +167,9 @@
             </div>
             <%
                 for(Cart cart : cartList) {
+                	int cartNo = cart.getCartNo();
                 	// 카트 아이템 가격 계산
-                	int itemTotprice = cart.getProduct().getProductPrice()*cart.getCartQty();
+                	int itemEachPrice = cart.getProduct().getProductPrice();
                 	// 카트 옵션 이름들
                 	String itemsOptions = "";
        				// 옵션 번호 문자열 합
@@ -155,18 +178,23 @@
        				
        				for (int i=0; i<cart.getProductSelectedList().size(); i++) {
                 		for(int j=0; j<cart.getProductSelectedList().get(i).getProductSelectedDetailList().size(); j++) {
-                			itemTotprice += cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailPrice();
+                			itemEachPrice += cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailPrice();
                 			itemsOptions += cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailName()+", ";
                 			productOptionDetailNos += cart.getProductSelectedList().get(i).getProductSelectedDetailList().get(j).getProductOptionDetail().getProductOptionDetailNo()+",";
                 		}
                 	}
        				itemsOptions = itemsOptions.replaceAll(", $", "");
+                	int itemTotprice = itemEachPrice*cart.getCartQty();
             %>
             <div class="cart-item">
                 <div class="item-info">
                     <input type="hidden" name="cartNo" 					value="<%=cart.getCartNo() 						%>"></input>
                     <input type="hidden" name="itemsPrice"				value="<%=itemTotprice 							%>"></input>
-                    <input type="hidden" name="itemsQty" 				value="<%=cart.getCartQty() 					%>"></input>
+               		<input type="hidden" name="itemsPrice_<%= cart.getCartNo() %>" value="<%= itemTotprice %>">
+       				<!-- 
+                    <input type="hidden" name="itemsQty[]" 				value="<%=cart.getCartQty() 					%>"></input>
+       				 -->
+                    <input type="hidden" name="itemsPrice_<%= cart.getCartNo() %>" value="<%= itemTotprice %>">
                     <input type="hidden" name="itemsOptions"			value="<%=itemsOptions 							%>"></input>
                     <input type="hidden" name="productNo" 				value="<%=cart.getProduct().getProductNo() 		%>"></input>
                     <input type="hidden" name="productName" 		    value="<%=cart.getProduct().getProductName() 	%>"></input>
@@ -195,12 +223,30 @@
 							    }
 							%>
                         <span style="font-size: 13px;"><%=options %> </span>
-                        <span>수량: <%= cart.getCartQty() %> </span>
+                        <!-- ******************************************수량 관련 내용********************************************************** -->
+<div class="quantity-container">
+    <span>수량:  </span>
+
+    <!-- Correctly pass cartNo as a number -->
+    <button type="button" onclick="changeQuantity(-1, <%= cartNo %>)">-</button>
+
+    <!-- Assign a unique ID to the input -->
+    <input type="text" name="quantity_<%= cartNo %>" id="quantity_<%= cartNo %>" value="<%= cart.getCartQty() %>" 
+           onblur="validateQuantity(<%= cartNo %>)" 
+           onchange="updateItemPrice(<%= cartNo %>)">
+
+    <!-- Correctly pass cartNo as a number -->
+    <button type="button" onclick="changeQuantity(1, <%= cartNo %>)">+</button>
+</div>
+
+                        <!-- ************************************************************************************************************** -->
                     </div>
                 </div>
-                <div class="item-price">
-                	가격: <%= decimalFormat.format(itemTotprice) %> 원
-                </div>
+				<div class="item-price" id="itemPrice_<%= cart.getCartNo() %>">
+    				가격: <span class="price-value"><%= decimalFormat.format(itemTotprice) %></span> 원
+				</div>
+                <input type="hidden" name="unitPrice_<%= cartNo %>" value="<%= itemEachPrice %>">
+                
             </div>
             <%
                 }
@@ -336,6 +382,120 @@
 		form.method = 'POST';
 		form.submit();
     }
+    
+    
+    
+    
+    // 수량 수정 관련
+// Function to change quantity and update the price dynamically
+function changeQuantity(change, cartNo) {
+    var quantityInputId = 'quantity_' + cartNo;
+    var quantityInput = document.getElementById(quantityInputId);
+
+    // Check if the element exists
+    if (quantityInput) {
+        var currentQuantity = parseInt(quantityInput.value);
+
+        // Ensure currentQuantity is a valid number, otherwise set it to 1
+        if (isNaN(currentQuantity)) {
+            currentQuantity = 1;
+        }
+
+        // Update the quantity based on the change, but don't allow it to go below 1
+        var newQuantity = currentQuantity + change;
+        if (newQuantity >= 1) {
+            quantityInput.value = newQuantity;  // Set the new value in the input field
+        }
+
+        // Update the item price based on the new quantity
+        updateItemPrice(cartNo);
+        updateTotalPrice();  // Update the total cart price
+    } else {
+        console.error('Element with ID ' + quantityInputId + ' not found.');
+    }
+}
+
+// Function to validate quantity and ensure it's a valid number
+function validateQuantity(cartNo) {
+    var quantityInputId = 'quantity_' + cartNo;
+    var quantityInput = document.getElementById(quantityInputId);
+
+    if (quantityInput) {
+        var currentQuantity = parseInt(quantityInput.value);
+
+        // If the input is not a valid number or less than 1, reset it to 1
+        if (isNaN(currentQuantity) || currentQuantity < 1) {
+            quantityInput.value = 1;
+        }
+
+        // Update the item price after validation
+        updateItemPrice(cartNo);
+        updateTotalPrice();  // Update the total cart price
+    } else {
+        console.error('Quantity input not found for cartNo: ' + cartNo);
+    }
+}
+
+// Function to update the price for a specific item
+function updateItemPrice(cartNo) {
+    var quantityInputId = 'quantity_' + cartNo;
+    var quantityInput = document.getElementById(quantityInputId);
+
+    if (quantityInput) {
+        var quantity = parseInt(quantityInput.value);
+
+        // Get the unit price element (this is the price for 1 quantity)
+        var unitPriceElement = document.querySelector('input[name="unitPrice_' + cartNo + '"]');
+
+        // Check if the unitPriceElement exists
+        if (unitPriceElement) {
+            var unitPrice = parseFloat(unitPriceElement.value);
+
+            // Calculate the new item price (unit price * quantity)
+            var newItemPrice = unitPrice * quantity;
+
+            // Update only the numeric part of the price (within the span)
+            var itemPriceDisplay = document.querySelector('#itemPrice_' + cartNo + ' .price-value');
+            if (itemPriceDisplay) {
+                itemPriceDisplay.innerText = newItemPrice.toLocaleString();
+            }
+        } else {
+            console.error('Unit price element not found for cartNo: ' + cartNo);
+        }
+    } else {
+        console.error('Quantity input not found for cartNo: ' + cartNo);
+    }
+}
+
+// Function to update the total price for all selected items
+function updateTotalPrice() {
+    var total = 0;
+
+    // Loop through all cart items and calculate the total price
+    document.querySelectorAll('.cart-item').forEach(function(item) {
+        var itemPriceElement = item.querySelector('.item-price');
+        if (itemPriceElement) {
+            var itemPrice = parseInt(itemPriceElement.textContent.replace(/[^0-9]/g, ''));
+            total += itemPrice;
+        }
+    });
+
+    // Update the total price in the UI
+    var totalPriceElement = document.getElementById('total_price');
+    if (totalPriceElement) {
+        totalPriceElement.innerText = total.toLocaleString() + ' 원';
+    }
+
+    var ordersTotPriceInput = document.querySelector('input[name="ordersTotprice"]');
+    if (ordersTotPriceInput) {
+        ordersTotPriceInput.value = total;
+    }
+}
+    
+    
+    
+    
+    
 </script>
 
 </body>

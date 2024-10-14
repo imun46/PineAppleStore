@@ -467,7 +467,7 @@ if(reviewRatings!=null) {
 			document.getElementById('total-price').innerText = finalTotalPrice
 					.toLocaleString();
 			
-			document.querySelector('input[name="itemsPrice"]').value = totalPrice;
+			document.querySelector('input[name="itemsPrice"]').value = finalTotalPrice;
 			document.querySelector('input[name="ordersTotprice"]').value = finalTotalPrice;
 		}
 		

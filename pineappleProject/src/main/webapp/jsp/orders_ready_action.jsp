@@ -17,46 +17,77 @@ if(request.getMethod().equalsIgnoreCase("GET")){
 
 // OrdersItems 필드 정보 리스트 받기
 String itemsPrice[] 	= request.getParameterValues("itemsPrice");
-String itemsQty[] 		= request.getParameterValues("itemsQty");
+
+String optionDetails[]  = request.getParameterValues("productOptionDetailNos");
+String cartNo[] 		= request.getParameterValues("cartNo");
+String itemsQty[]		= null;
+itemsQty 				= request.getParameterValues("itemsQty");
+List<Integer> itemsQtyCart = new ArrayList<>(); 
+
+System.out.println("itemsQty: "+itemsQty);
+
+if (cartNo!=null) {
+	for (int i=0; i<cartNo.length; i++) {
+		System.out.println(cartNo[i]);	
+	}
+	for (int i=0; i<cartNo.length; i++) {
+		String quantityParamName = "quantity_"+cartNo[i];
+		String quantityStr = request.getParameter(quantityParamName);
+		System.out.println(quantityStr);
+		itemsQtyCart.add(Integer.parseInt(quantityStr));
+	}
+}
+
+System.out.println(itemsQtyCart);
+
+
+/*
+for(int i=0; i<itemsPrice.length; i++) {
+	System.out.println(itemsPrice[i]);
+}
+*/
+
+
+
+
 String itemsOptions[] 	= request.getParameterValues("itemsOptions");
+System.out.println(itemsOptions);
+if(itemsOptions!=null) {
+	for(int i=0; i<itemsOptions.length; i++) {
+		System.out.println("itemsOptions: "+itemsOptions[i]);
+	}
+}
+
+
 String productNo[] 		= request.getParameterValues("productNo");
 String productName[] 	= request.getParameterValues("productName");
 // 상세페이지에서 바로 올 때
 String optionDetail[]	= request.getParameterValues("productOptionDetailNo");
 // 카트에서 올 때
-String optionDetails[]  = request.getParameterValues("productOptionDetailNos");
 
-String cartNo[] 		= request.getParameterValues("cartNo");
 
 // OrdersItems 개수 파악
 int ordersItemsCount = itemsPrice.length;
 
-/*
-// 정보 수령 여부 체크
-for(int i=0; i<itemsPrice.length; i++) {
-	System.out.println("itemsPrice: "+itemsPrice[i]);
-	System.out.println("itemsQty: "+itemsQty[i]);
-	System.out.println("itemsOptions: "+itemsOptions[i]);
-	System.out.println("productNo: "+productNo[i]);
-	//System.out.println("optionDetail: "+optionDetail[i]);
-}
-	System.out.println("cartNo: "+cartNo);
-for(int i=0; i<optionDetails.length; i++) {
-	System.out.println("optionDetails["+i+"]: "+optionDetails[i]);
-}
-*/
+
 String otp = request.getParameter("ordersTotprice");
-//String otq = request.getParameter("ordersTotqty");
-//System.out.println(otp);
-//System.out.println(otq);
+
 
 
 // Orders 멤버 필드는 Orders_Items 받고 계산
+String ordersTotpriceStr = request.getParameter("ordersTotprice");
+System.out.println("ordersTotprice: "+ordersTotpriceStr);
+
 int ordersTotprice = Integer.parseInt(request.getParameter("ordersTotprice"));
-//int ordersTotqty = Integer.parseInt(request.getParameter("ordersTotqty"));
 int ordersTotqty = 0;
-for(int i=0; i<itemsQty.length; i++) {
-	ordersTotqty += Integer.parseInt(itemsQty[i]);
+if (itemsQty!=null) {
+	for(int i=0; i<itemsQty.length; i++) {
+		ordersTotqty += Integer.parseInt(itemsQty[i]);
+	}
+} else if (cartNo!=null) {
+	for(int i=0; i<cartNo.length; i++) {
+		ordersTotqty += itemsQtyCart.get(i);
+	}
 }
 
 // OrdersItems 객체에 내용 입력
@@ -101,9 +132,9 @@ for (int i=0; i<optionDetails.length; i++) {
 */
 
 
+System.out.println("********** We are here ***************");
 
-
-
+if (itemsQty!=null) {
 	for (int i=0; i<ordersItemsCount; i++) {
 		OrdersItems ordersItems = new OrdersItems();
 		//OrdersItems 각 총 가격 계산 및 입력 (개수*가격)
@@ -116,6 +147,24 @@ for (int i=0; i<optionDetails.length; i++) {
 				.productNo(Integer.parseInt(productNo[i])).build());
 		ordersItemsList.add(ordersItems);
 	}
+	
+} else if (cartNo!=null) {
+	for (int i=0; i<ordersItemsCount; i++) {
+		OrdersItems ordersItems = new OrdersItems();
+		//OrdersItems 각 총 가격 계산 및 입력 (개수*가격)
+		ordersItems.setOrdersItemsPrice(Integer.parseInt(itemsPrice[i]));
+		ordersItems.setOrdersItemsQty(itemsQtyCart.get(i));
+		ordersItems.setOrdersItemsOptions(itemsOptions[i]);
+		ordersItems.setProduct(Product.builder()
+				.productName(productName[i])
+				.productOptionList(productOptionList)	
+				.productNo(Integer.parseInt(productNo[i])).build());
+		ordersItemsList.add(ordersItems);
+	}
+	
+	
+}
+
 	
 	
 	// Orders 객체에 내용 입력
