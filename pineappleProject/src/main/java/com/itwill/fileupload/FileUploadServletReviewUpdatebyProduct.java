@@ -29,8 +29,8 @@ import jakarta.servlet.http.Part;
  * @maxRequestSize request 시에 최대 크기를 지정한다. [자료형 : long]
  */
 @MultipartConfig( fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 100, maxRequestSize = 1024 * 1024 * 100)//MB
-@WebServlet("/upload")
-public class FileUploadServletReviewUpdate extends HttpServlet {
+@WebServlet("/upload0")
+public class FileUploadServletReviewUpdatebyProduct extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -102,7 +102,7 @@ public class FileUploadServletReviewUpdate extends HttpServlet {
         // 리뷰 업데이트
         reviewService.updateReview(review);
 
-        response.sendRedirect("jsp/review_detail_by_mypage.jsp?reviewNo=" + reviewNoStr);
+        response.sendRedirect("jsp/review_detail_by_product.jsp?reviewNo=" + reviewNoStr);
 
 		
 		} catch (Exception e) {

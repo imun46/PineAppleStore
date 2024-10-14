@@ -1,8 +1,11 @@
+<%@page import="com.itwill.shop.domain.CustomerCoupons"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwill.shop.domain.Orders"%>
 <%@page import="com.itwill.shop.service.OrdersService"%>
 <%@page import="com.itwill.shop.domain.Customer"%>
 <%@page import="com.itwill.shop.service.CustomerService"%>
+<%@page import="com.itwill.shop.service.CustomerCouponsService"%>
+<%@page import="com.itwill.shop.service.ProductService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -11,20 +14,43 @@
 
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
+   DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
 
-	String sCustomerNo = (String)session.getAttribute("sCustomerNo");
-	String orderNo = request.getParameter("ordersNo");
-	CustomerService customerService= new CustomerService();
-	OrdersService orderService = new OrdersService();
-	
-	Customer customer = customerService.findCustomerByNo(Integer.parseInt(sCustomerNo));
-	List<Orders> orderList = orderService.findByOrdersNo(Integer.parseInt(orderNo));
-	
-	int orderitemsSize = 0;
-	if(orderList.size()>0){
-	 orderitemsSize= orderList.get(0).getOrdersItemsList().size();
-	}
+   String sCustomerNo = (String)session.getAttribute("sCustomerNo");
+   String orderNo = request.getParameter("ordersNo");
+   CustomerService customerService= new CustomerService();
+   CustomerCouponsService customerCouponsService= new CustomerCouponsService();
+   OrdersService orderService = new OrdersService();
+   ProductService productService = new ProductService();
+   
+   Customer customer = customerService.findCustomerByNo(Integer.parseInt(sCustomerNo));
+   List<Orders> orderList = orderService.findByOrdersNo(Integer.parseInt(orderNo));
+   
+   int orderitemsSize = 0;
+   if(orderList.size()>0){
+    orderitemsSize= orderList.get(0).getOrdersItemsList().size();
+   }
+System.out.println("**************************************: "+orderNo);
+System.out.println("**************************************: "+orderNo.getClass());
+   
+
+
+// Retrieve the customerCouponsNo using the service method
+Integer customerCouponsNo = null;
+customerCouponsNo = orderService.findCustomerCouponsNoByOrdersNo(Integer.parseInt(orderNo));
+
+System.out.println("**************************************");
+// Initialize customerCouponName to null
+String customerCouponName = null;
+
+// Check if customerCouponsNo is not null before proceeding
+if (customerCouponsNo != null) {
+    // Fetch the coupon details only if customerCouponsNo is not null
+    CustomerCoupons customerCouponDetail = customerCouponsService.findCustomerCouponsDetailByNo(customerCouponsNo);
+    
+    if (customerCouponDetail != null && customerCouponDetail.getCoupon() != null) {
+        customerCouponName = customerCouponDetail.getCoupon().getCouponName();
+    }}
 %>
 
 <html>
@@ -55,7 +81,7 @@
             color: #000;
         }
         p{
-        	font-size: 17px;
+           font-size: 17px;
         }
         .section {
             margin-bottom: 20px;
@@ -111,42 +137,49 @@
         }
         .basicBtn:hover {
             color: #fff; /* 호버 시 텍스트 색상 */
-		    background-color: #212529; /* 호버 시 배경색 */
-		    border-color: #212529; /* 호버 시 경계 색상 */
+          background-color: #212529; /* 호버 시 배경색 */
+          border-color: #212529; /* 호버 시 경계 색상 */
         }
         .basicBtn:focus {
-		    outline: none; /* 포커스 시 외곽선 제거 */
-		    box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
+          outline: none; /* 포커스 시 외곽선 제거 */
+          box-shadow: 0 0 0 0.2rem rgba(33, 37, 41, 0.5); /* 포커스 시 그림자 효과 */
+      }
+      .basicBtn:active {
+          color: #fff; /* 클릭 시 텍스트 색상 */
+          background-color: #212529; /* 클릭 시 배경색 */
+          border-color: #212529; /* 클릭 시 경계 색상 */
+      }
+      .orderListBtn {
+         display: flex;
+         justify-content: center;
+      }
+      .orderListBtn > button {
+         padding: 15px 30px;
+         font-size: 20px;
+      }
+      .reviewWrite {
+         color: #fff; 
+          background-color: #212529; 
+      }
+       .reviewWriteDisabled {
+           cursor: not-allowed; /* 비활성화 상태일 때 커서 */
+           background-color: #999; /* 비활성화된 버튼 색상 */
+           border-color: #999;
+           color: #fff;
+       }
+       /* reviewWriteDisabled 클래스가 hover되었을 때 */
+       .reviewWriteDisabled:hover {
+           background-color: #999; /* 호버 시에도 같은 색상을 유지 */
+           border-color: #999;
+           color: #fff;
+       }
+       
+       .bold-black-link {
+		    font-weight: bold;
+		    color: black;
+		    text-decoration: none;
 		}
-		.basicBtn:active {
-		    color: #fff; /* 클릭 시 텍스트 색상 */
-		    background-color: #212529; /* 클릭 시 배경색 */
-		    border-color: #212529; /* 클릭 시 경계 색상 */
-		}
-		.orderListBtn {
-			display: flex;
-			justify-content: center;
-		}
-		.orderListBtn > button {
-			padding: 15px 30px;
-			font-size: 20px;
-		}
-		.reviewWrite {
-			color: #fff; 
-		    background-color: #212529; 
-		}
-	    .reviewWriteDisabled {
-	        cursor: not-allowed; /* 비활성화 상태일 때 커서 */
-	        background-color: #999; /* 비활성화된 버튼 색상 */
-	        border-color: #999;
-	        color: #fff;
-	    }
-	    /* reviewWriteDisabled 클래스가 hover되었을 때 */
-	    .reviewWriteDisabled:hover {
-	        background-color: #999; /* 호버 시에도 같은 색상을 유지 */
-	        border-color: #999;
-	        color: #fff;
-	    }
+       
     </style>
 </head>
 <body>
@@ -170,7 +203,12 @@
         <%if(orderList != null && !orderList.isEmpty()){ %>
 	        <% for (int i=0; i < orderitemsSize ;i++) { %>
 		        <div class="section product-info">
-		            <img src="../img/macBookAir.jpg" class="product-image" alt="상품 이미지">
+		        	<%
+                		int productNo = orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductNo();
+                		String productImageFile = productService.productDetail(productNo).getProductImageList().get(0).getProductImageFile();
+		        	%>
+		        	
+		            <img src="../product_image/<%=productImageFile %>" class="product-image" alt="상품 이미지">
 		                <div class="product-details">
 		                	<%
 		                		String productName = orderList.get(0).getOrdersItemsList().get(i).getProduct().getProductName();
@@ -180,8 +218,7 @@
 		                	<p style="font-size:18px; font-weight:bold;"><%=productName %></p>
 		                	<p>옵션 : <%=productOptions %></p>
 		                	<p>수량 : <%=orderQty %>개</p>
-		
-		                    <p><%= String.format("%,d", orderList.get(0).getOrdersFinalprice()) %>원</p>
+		                    <p>금액 : <%=decimalFormat.format(orderList.get(0).getOrdersItemsList().get(i).getOrdersItemsPrice()) %>원</p>
 		                </div>
 		                <div class="btn-review">
 		                    <% if (orderList.get(0).getOrdersStatus() != null && orderList.get(0).getOrdersStatus().equals("구매확정")) { %>
@@ -201,25 +238,33 @@
         </div>
         <h2>결제정보</h2>
         <div class="section payment-info">
-            <p>상품금액: <%= String.format("%,d", 111) %>원</p>
-            <p>할인: - <%= String.format("%,d", 111) %>원</p>
+            <p>상품금액: <%=decimalFormat.format(orderList.get(0).getOrdersTotprice())  %>원</p>
+            <%	
+            	int discountAmount = orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice();
+            	if(discountAmount != 0){ 
+            %>
+	            <p>할인: - <%=decimalFormat.format(orderList.get(0).getOrdersTotprice() - orderList.get(0).getOrdersFinalprice()) %>원</p>
+	        <%
+            	}	        	
+	        %>    
         </div>
         <div class="total">
             합계: <%=decimalFormat.format(orderList.get(0).getOrdersFinalprice())  %>원
         </div>
         <div class = "orderListBtn">
-        	<button type="button" class="basicBtn " onclick="orderListpage(<%=Integer.parseInt(orderNo) %>)">주문내역</button>
+           <button type="button" class="basicBtn " onclick="orderListpage(<%=Integer.parseInt(orderNo) %>)">주문내역</button>
         </div>
     </div>
     
+    
     <script type="text/javascript">
-    	function orderListpage(orderNo){
-    		window.location.href = "order_list_form.jsp?ordersNo=" + orderNo;
-    	}
-    	
-    	function reviewBtn(productNo){
-    		window.location.href = "review_insert_form.jsp?productNo=" + productNo;
-    	}
-    </script>	
+       function orderListpage(orderNo){
+          window.location.href = "order_list_form.jsp?ordersNo=" + orderNo;
+       }
+       
+       function reviewBtn(productNo){
+          window.location.href = "review_insert_form.jsp?productNo=" + productNo;
+       }
+    </script>   
 </body>
 </html>

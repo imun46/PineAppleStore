@@ -85,9 +85,8 @@
 	<!-- 회원 정보 수정 -->
 	<update id="updateCustomer" parameterType="Customer">
 		UPDATE customer
-		   SET customer_password = #{customerPassword},
+		SET
 			   customer_address = #{customerAddress},
-			   customer_gender = #{customerGender},
 			   customer_phone = #{customerPhone},
 			   customer_email = #{customerEmail},
 			   customer_nickname = #{customerNickname}

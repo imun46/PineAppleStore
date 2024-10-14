@@ -133,6 +133,13 @@
 		    ON r.customer_no=c.customer_no
 	</select>
 	
+	<!-- 제품 번호로 리뷰 별점 리스트 반환 -->
+	<select id="findRatingsByProductNo" resultType="int">
+		SELECT review_rating
+		  FROM review
+		 WHERE product_no=#{productNo}
+	</select>
+	
 	
 	
 </mapper>

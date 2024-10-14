@@ -172,7 +172,7 @@ input[type="file"] {
 <body>
 
 
-	<form id="reviewForm" class="custom-form" action="/upload" method="POST"
+	<form id="reviewForm" class="custom-form" action="/upload0" method="POST"
 		enctype="multipart/form-data">
 		<input type="hidden" name="reviewNo"
 			value="<%=review.getReviewNo()%>"> <input type="hidden"

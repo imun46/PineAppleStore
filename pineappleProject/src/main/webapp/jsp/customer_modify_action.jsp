@@ -22,10 +22,11 @@
 	CustomerService customerService = new CustomerService();
 	
 	/*** 아이디번호 가져와 int로 형변환 후 Customer객체 생성 ***/
+	//int customerNo = Integer.parseInt(sCustomerNo);
 	int customerNo = Integer.parseInt(sCustomerNo);
 	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
-try{	 
+		try{	 
 	 /*** 1. GET방식이면 customer_main.jsp redirection ***/
 	 if(request.getMethod().equalsIgnoreCase("GET")) {
 		 	response.sendRedirect("customer_view.jsp");
@@ -33,20 +34,15 @@ try{
 	 }
 
 	/*** 3. 파라메타받기 ***/
-	String password = request.getParameter("password");
-	String name = request.getParameter("name");
 	String address = request.getParameter("address");
-	String gender = request.getParameter("gender");
 	String phone = request.getParameter("phone");
 	String email = request.getParameter("email");
 	String nickname = request.getParameter("nickname");
 	
+	
 	int rowCount = customerService.updateCustomer(Customer.builder()
-			.customerNo(loginCustomer.getCustomerNo())
-			.customerPassword(password)
-			.customerName(name)
+			.customerNo(customerNo)
 			.customerAddress(address)
-			.customerGender(gender)
 			.customerPhone(phone)
 			.customerEmail(email)
 			.customerNickname(nickname)
@@ -60,7 +56,7 @@ try{
 	} catch(Exception e) {
 		e.printStackTrace();
 	    request.setAttribute("errorMessage", e.getMessage());
-	    response.sendRedirect("jsp/index.jsp");
+	    response.sendRedirect("index.jsp");
 	}
 	
 

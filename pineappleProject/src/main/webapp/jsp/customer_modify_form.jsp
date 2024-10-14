@@ -10,7 +10,7 @@
 	CustomerService customerService = new CustomerService();
 
 	/*** 로그인 아이디 부여 ***/
-	int customerNo = Integer.parseInt(sCustomerNo);
+	int customerNo = Integer.parseInt((String)session.getAttribute("sCustomerNo"));
 	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
 	/*** 날짜 포멧 ***/
@@ -223,7 +223,7 @@
 		<!-- 사용자 이름 -->
 		<div class="form-group2">	
 		<label for="name">사용자 이름 :</label>
-		<input type="text" id="name" value="<%=loginCustomer.getCustomerName() %>" disabled>
+		<input type="text" id="name" name="name" value="<%=loginCustomer.getCustomerName() %>" disabled>
 		</div>
 		
 		<!-- 사용자 생년월일 -->	

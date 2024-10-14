@@ -317,7 +317,7 @@ End
 					<%=simpleDateFormat.format(customer.getCustomerDob())%></p>
 				<p>
 					성별:
-					<%=customer.getCustomerGender()%></p>
+					<%=customer.getCustomerGender().equals("M") ? "남자" : "여자" %></p>
 				<p>
 					주소:
 					<%=customer.getCustomerAddress()%></p>
@@ -333,8 +333,7 @@ End
 				<form name="f" method="POST" action="customer_delete_action.jsp">
 					<button class="btn-style" type="button"
 						onClick="customerModifyForm()">정보 수정</button>
-					<button class="btn-style" type="button" onClick="customerDelete()">계정
-						삭제</button>
+					<button class="btn-style" type="button" onClick="customerDelete()">탈퇴</button>
 				</form>
 			</div>
 		</div>
@@ -406,7 +405,11 @@ End
 					<%=orders.getOrdersTotqty()%></p>
 				<p>
 					<strong>총 금액:</strong>
-					<%=orders.getOrdersFinalprice()%></p>
+					<%
+					java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
+                    String price = decimalFormat.format(orders.getOrdersFinalprice());
+					%>
+					<%=price %>원</p>
 				<p>
 					<strong>주소:</strong>
 					<%=orders.getOrdersAddress()%></p>
@@ -415,10 +418,10 @@ End
 					<%=orders.getOrdersStatus()%></p>
 				<p>
 					<strong>도착 날짜:</strong>
-					<%=orders.getOrdersArrivaldate()%></p>
+					<%=simpleDateFormat.format(orders.getOrdersArrivaldate())%></p>
 				<p>
 					<strong>주문 날짜:</strong>
-					<%=orders.getOrdersDate()%></p>
+					<%=simpleDateFormat.format(orders.getOrdersDate())%></p>
 			</div>
 			<%
 			orderCount++;
@@ -458,7 +461,7 @@ End
 					String formattedDate = dateFormat.format(reviewDate); // 날짜를 포맷합니다.
 				%>
 
-				<a href="review_detail.jsp?reviewNo=<%=review.getReviewNo()%>"
+				<a href="review_detail_by_mypage.jsp?reviewNo=<%=review.getReviewNo()%>"
 					class="card a">
 					<h2 class="review-title"><%=review.getReviewTitle()%></h2>
 					<div class="review-product-option">
