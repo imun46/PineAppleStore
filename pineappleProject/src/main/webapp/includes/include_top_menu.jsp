@@ -32,12 +32,12 @@
   color: white; /* 글자색 */
   border-radius: 50px; /* 둥글게 만들기 */
   transition: background-color 0.3s; /* 부드러운 전환 효과 */
-}
+	}
 
-.badge:hover {
-  background-color: white; /* 배경색 */
-  color: black; /* 글자색 */
-}
+	.badge:hover {
+	  background-color: white; /* 배경색 */
+	  color: black; /* 글자색 */
+	}
 
 </style>
   <!-- Navigation-->
@@ -56,7 +56,7 @@
                   <li class="nav-item"><a class="nav-link" href="../jsp/product_category_list.jsp?product_category=accessories">Accessory</a></li>
               </ul>
               <%if(sCustomerNo== null) {%>
-              <form class="d-flex">
+              <form class="d-flex" style="margin-bottom: 0px">
                   <a class="btn btn-outline-dark" href="../jsp/customer_login_form.jsp">
                       <i class="fa-solid fa-user"></i>
                       Login

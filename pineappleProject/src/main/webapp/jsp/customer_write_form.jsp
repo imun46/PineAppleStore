@@ -22,9 +22,20 @@
 <style type="text/css">
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
+.big-container{
+	width: 40%;
+	padding: 20px;
+	border-radius: 15px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	margin: 5px auto;
+	
+}
 .error-message {
     color: red;
     font-size: 0.9em;
@@ -33,11 +44,11 @@ body {
 
 #container {
     margin: 0 auto;
-    max-width: 768px;
+    max-width: 600px;
 }
 
 #logo-container {
-    padding: 100px 0 10px;
+    padding: 50px 0 10px;
     text-align: center;
 }
 
@@ -50,6 +61,8 @@ body {
 
 .inline {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .content {
@@ -62,13 +75,16 @@ body {
     padding: 10px 14px;
     border: 1px solid #dadada;
     border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 .input-label {
-    margin-top: 19px;
+    margin-top: 8px;
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
+    color: #333;
 }
 
 .join-button {
@@ -96,10 +112,11 @@ body {
     background-color: transparent;
     padding: 10px 20px;
     cursor: pointer;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
+    margin-left: 10px;
 }
 
 .addBt:hover {
@@ -108,6 +125,7 @@ body {
 }
 
 .inline-gender label {
+	margin-left: 20px;
     margin-right: 20px;
     font-size: 15px;
 }
@@ -115,6 +133,32 @@ body {
 .p-gender {
     font-size: 14px;
     font-weight: 700;
+    color: #333;
+}
+
+.header-container {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.header-container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.header-container p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .content {
+        margin: 0;
+    }
 }
 </style>
 <!-- CSS 끝 -->
@@ -137,115 +181,113 @@ function sample4_execDaumPostcode() {
     <div id="logo-container">
         <img src="/img/favicon.png" alt="Pineapple Logo" style="width: 40px; height: auto;">
     </div>
-    <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-dark">
-                <h1 class="display-4 fw-bolder">회원가입</h1>
-                <p class="lead fw-normal text-white-50 mb-0">어세오세욤 :)</p>
+    <header class="header-container">
+        <div class="container">
+            <div class="text-center">
+                <h1>회원가입</h1>
+                <p>반갑습니다 ! </p>
             </div>
         </div>
     </header>
 
-    <div>
-        <div>
-            <div id="container">
-                <form name="f" method="POST" action="customer_write_action.jsp">
-                    <div class="content">
-                        <div class="input-label">아이디</div>
-                        <div class="inline"> 
-                            <input class="input-style" type="text" name="id" /> 
-                        </div>
+    <div class="big-container">
+        <div id="container">
+            <form name="f" method="POST" action="customer_write_action.jsp">
+                <div class="content">
+                    <div class="input-label">아이디</div>
+                    <div class="inline"> 
+                        <input class="input-style" type="text" name="id" placeholder="아이디를 입력하세요" /> 
                     </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="content">
-                        <div class="input-label">비밀번호</div>
-                        <div class="inline">
-                            <input class="input-style" type="password" name="password1" />
-                        </div>
+                <div class="content">
+                    <div class="input-label">비밀번호</div>
+                    <div class="inline">
+                        <input class="input-style" type="password" name="password1" placeholder="비밀번호를 입력하세요" />
                     </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="content">
-                        <div class="input-label">비밀번호 확인</div>
-                        <div class="inline">
-                            <input class="input-style" type="password" name="password2" />
-                        </div>
+                <div class="content">
+                    <div class="input-label">비밀번호 확인</div>
+                    <div class="inline">
+                        <input class="input-style" type="password" name="password2" placeholder="비밀번호를 한 번 더 입력하세요" />
                     </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="content">
-                        <div class="input-label">이름</div>
-                        <div class="inline">
-                            <input class="input-style" type="text" name="name" />
-                        </div>
+                <div class="content">
+                    <div class="input-label">이름</div>
+                    <div class="inline">
+                        <input class="input-style" type="text" name="name" placeholder="이름을 입력하세요" />
                     </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="content">
-                        <div class="input-label">닉네임</div>
-                        <div class="inline">
-                            <input class="input-style" type="text" name="nickname" />
-                        </div>
+                <div class="content">
+                    <div class="input-label">닉네임</div>
+                    <div class="inline">
+                        <input class="input-style" type="text" name="nickname" placeholder="닉네임을 입력하세요" />
                     </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="content">
-                        <div class="input-label">생년월일</div>
-                        <div class="inline">
-                            <input class="input-style" type="date" name="dob" />
-                        </div>
+                <div class="content">
+                    <div class="input-label">생년월일</div>
+                    <div class="inline">
+                        <input class="input-style" type="date" name="dob" />
                     </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="content">
-                        <div class="input-label">이메일</div>
-                        <div class="inline">
-                            <input class="input-style" type="text" name="email" />
-                        </div>
+                <div class="content">
+                    <div class="input-label">이메일</div>
+                    <div class="inline">
+                        <input class="input-style" type="text" name="email" placeholder="이메일을 입력하세요" />
                     </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="addcontent">
-                        <input class="addBt" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
-                        <div class="input-label">주소</div>
-                        <div class="inline">
-                            <input class="input-style" type="text" name="address" />
-                        </div>
+                <div class="addcontent">
+                    <div class="input-label">주소</div>
+                    <div class="inline">
+                        <input class="input-style" type="text" name="address" placeholder="주소를 입력하세요" />
+	                    <input class="addBt" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
                     </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="content">
-                        <div class="input-label">전화번호</div>
-                        <div class="inline">
-                            <input class="input-style" type="text" name="phone" />
-                        </div>
+                <div class="content">
+                    <div class="input-label">전화번호</div>
+                    <div class="inline">
+                        <input class="input-style" type="text" name="phone" placeholder="전화번호를 입력하세요" />
                     </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="content">
-                        <div class="input-label">성별</div>
-                        <div class="inline-gender">
-                            <label>
-                                <input class="input-genderstyle" type="radio" name="gender" value="남">
-                                <p class="p-gender">남자</p> 
-                            </label> 
-                            <label> 
-                                <input class="input-genderstyle" type="radio" name="gender" value="여">
-                                <p class="p-gender">여자</p> 
-                            </label>
-                        </div>
+                <div class="content">
+                    <div class="input-label">성별</div>
+                    <div class="inline-gender">
+                        <label>
+                            <input class="input-genderstyle" type="radio" name="gender" value="남">
+                            <p class="p-gender">남자</p> 
+                        </label> 
+                        <label> 
+                            <input class="input-genderstyle" type="radio" name="gender" value="여">
+                            <p class="p-gender">여자</p> 
+                        </label>
                     </div>
+                </div>
 
-                    <div class="content">
-                        <div class="inline">
-                            <button type="button" class="join-button" onclick="customerCreate();">가입하기</button>
-                        </div>
+                <div class="content">
+                    <div class="inline">
+                        <button type="button" class="join-button" onclick="customerCreate();">가입하기</button>
                     </div>
-                </form>
-            </div>
-            <br />
+                </div>
+            </form>
         </div>
+        <br />
     </div>
 </body>
 </html>
