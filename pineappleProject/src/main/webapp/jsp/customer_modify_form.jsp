@@ -71,6 +71,14 @@
 				return false;
 			} */
 			
+			let checkPassword = prompt("비밀번호를 입력해주세요");
+			
+			if(checkPassword == null || checkPassword === "") {
+				alert("비밀번호를 입력해주세요");
+				return;
+			}
+			document.getElementById("inputPassword").value=checkPassword;
+					
 			document.f.action = "customer_modify_action.jsp";
 			console.log("customerModifyAction()");
 			document.f.method='POST';
@@ -191,6 +199,7 @@
 <body>
 <jsp:include page="../includes/include_top_menu.jsp" />
 <form name="f" method="post" class="modifyForm">
+	<input type="hidden" id="inputPassword" name="inputPassword" value="" />
            <header class="bg-dark py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-dark">
@@ -211,7 +220,7 @@
 		<!-- 사용자 비밀번호 -->	
 		<div class="form-group2">
 		<label for="password">비밀번호 :</label>
-		<input type="password" id="password" name="password" value="<%=loginCustomer.getCustomerPassword() %>"  disabled>
+		<input type="password" id="password" value="<%=loginCustomer.getCustomerPassword() %>"  disabled>
 		</div>
 			
 		<!-- 사용자 비밀번호 확인 -->	

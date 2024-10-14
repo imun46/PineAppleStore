@@ -26,39 +26,48 @@
 	int customerNo = Integer.parseInt(sCustomerNo);
 	Customer loginCustomer = customerService.findCustomerByNo(customerNo);
 	
-		try{	 
+	try{	 
 	 /*** 1. GET방식이면 customer_main.jsp redirection ***/
-	 if(request.getMethod().equalsIgnoreCase("GET")) {
-		 	response.sendRedirect("customer_view.jsp");
-			return;
-	 }
+		 if(request.getMethod().equalsIgnoreCase("GET")) {
+			 	response.sendRedirect("customer_view.jsp");
+				return;
+		 }
 
-	/*** 3. 파라메타받기 ***/
-	String address = request.getParameter("address");
-	String phone = request.getParameter("phone");
-	String email = request.getParameter("email");
-	String nickname = request.getParameter("nickname");
-	
-	
-	int rowCount = customerService.updateCustomer(Customer.builder()
-			.customerNo(customerNo)
-			.customerAddress(address)
-			.customerPhone(phone)
-			.customerEmail(email)
-			.customerNickname(nickname)
-			.build());
-	
-	if(rowCount == 0) {
-		throw new Exception("0");
-	}
-	response.sendRedirect("customer_view.jsp");
-	
+		/*** 3. 파라메타받기 ***/
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		String nickname = request.getParameter("nickname");
+		String inputPassword = request.getParameter("inputPassword");
+		
+		int rowCount = 0;
+		
+		if(inputPassword.equals(loginCustomer.getCustomerPassword())){
+			rowCount = customerService.updateCustomer(Customer.builder()
+					.customerNo(customerNo)
+					.customerAddress(address)
+					.customerPhone(phone)
+					.customerEmail(email)
+					.customerNickname(nickname)
+					.build());
+			
+			if(rowCount == 0) {
+				throw new Exception("0");
+			}
+			response.sendRedirect("customer_view.jsp");
+		}else{
+		%>
+		<script>
+            alert('비밀번호가 일치하지 않습니다. 다시 시도해주세요.');
+            history.back(); // 이전 페이지로 돌아가기
+        </script>	
+	<%	
+		}
 	} catch(Exception e) {
 		e.printStackTrace();
 	    request.setAttribute("errorMessage", e.getMessage());
 	    response.sendRedirect("index.jsp");
 	}
-	
 
 	
 %>  
