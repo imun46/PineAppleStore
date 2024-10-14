@@ -397,31 +397,33 @@ End
 				break;
 			%>
 			<div class="card">
-				<h3>
-					주문 번호:
-					<%=orders.getOrdersNo()%></h3>
-				<p>
-					<strong>총 개수:</strong>
-					<%=orders.getOrdersTotqty()%></p>
-				<p>
-					<strong>총 금액:</strong>
-					<%
-					java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
-                    String price = decimalFormat.format(orders.getOrdersFinalprice());
-					%>
-					<%=price %>원</p>
-				<p>
-					<strong>주소:</strong>
-					<%=orders.getOrdersAddress()%></p>
-				<p>
-					<strong>상태:</strong>
-					<%=orders.getOrdersStatus()%></p>
-				<p>
-					<strong>도착 날짜:</strong>
-					<%=simpleDateFormat.format(orders.getOrdersArrivaldate())%></p>
-				<p>
-					<strong>주문 날짜:</strong>
-					<%=simpleDateFormat.format(orders.getOrdersDate())%></p>
+				<a class="a" href="order_detail_view.jsp?ordersNo=<%=orders.getOrdersNo() %>" >
+					<h3>
+						주문 번호:
+						<%=orders.getOrdersNo()%></h3>
+					<p>
+						<strong>총 개수:</strong>
+						<%=orders.getOrdersTotqty()%></p>
+					<p>
+						<strong>총 금액:</strong>
+						<%
+						java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###");
+	                    String price = decimalFormat.format(orders.getOrdersFinalprice());
+						%>
+						<%=price %>원</p>
+					<p>
+						<strong>주소:</strong>
+						<%=orders.getOrdersAddress()%></p>
+					<p>
+						<strong>상태:</strong>
+						<%=orders.getOrdersStatus()%></p>
+					<p>
+						<strong>도착 날짜:</strong>
+						<%=simpleDateFormat.format(orders.getOrdersArrivaldate())%></p>
+					<p>
+						<strong>주문 날짜:</strong>
+						<%=simpleDateFormat.format(orders.getOrdersDate())%></p>
+				</a>
 			</div>
 			<%
 			orderCount++;
