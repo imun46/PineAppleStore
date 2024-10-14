@@ -124,8 +124,8 @@
 
 
 .review_btn_section {
+	margin-top:30px;
 	float: right; /* 글짜 오른쪽으로 옮김  */
-	margin-right: 515px;
 }
 
 /* 이민용 수정 끝  */
@@ -158,7 +158,6 @@
         <div class = "review-date">
         	작성일 : <%= formattedDate %>
         </div>
-        
       
       <div class="review_btn_section"> 
   <%if(customerNo1==review.getCustomer().getCustomerNo()){ %>
@@ -175,6 +174,7 @@
         <input type="submit" value="목록" class="review_btn">
     </form>
 	</div> 
+        </div>
     
     
     

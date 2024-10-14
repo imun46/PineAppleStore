@@ -124,8 +124,8 @@
 
 
 .review_btn_section {
+	margin-top : 30px;
 	float: right; /* 글짜 오른쪽으로 옮김  */
-	margin-right: 515px;
 }
 
 /* 이민용 수정 끝  */
@@ -160,11 +160,10 @@
         </div>
         <div class="review-author">
          작성자 : <%=review.getCustomer().getCustomerName() %></div>
-        </div>
       
       <div class="review_btn_section"> 
   <%if(customerNo1==review.getCustomer().getCustomerNo()){ %>
-	<form action="review_update_form.jsp?reviewNo=<%=review.getReviewNo() %>" method="post" style="display:inline;">
+	<form action="review_update_form_by_product.jsp?reviewNo=<%=review.getReviewNo() %>" method="post" style="display:inline;">
         <input type="hidden" name="reviewNo" value="<%= review.getReviewNo() %>">
         <input type="submit" value="수정" class="review_btn">
 	</form>
@@ -173,10 +172,11 @@
         <input type="submit" value="삭제" class="review_btn" onclick="return confirm('정말 삭제하시겠습니까?');">
     </form>
     <%} %>
-	<form action="review_product_form.jsp?productNo=<%=review.getProduct().getProductNo() %>" style="display:inline;">
+	<form action="review_product_form.jsp?product_no=<%=review.getProduct().getProductNo() %>" method="post" style="display:inline;">
         <input type="submit" value="목록" class="review_btn">
     </form>
 	</div> 
+        </div>
     
     
     
