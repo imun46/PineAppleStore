@@ -94,7 +94,7 @@ public class FileUploadServletReviewInsert extends HttpServlet {
 	        ReviewService reviewService = new ReviewService();
 	        reviewService.insertReview(review); // 항상 리뷰 정보를 DB에 저장
 
-	        response.sendRedirect("jsp/customer_view.jsp");
+	        response.sendRedirect("jsp/review_mypage_form.jsp");
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
