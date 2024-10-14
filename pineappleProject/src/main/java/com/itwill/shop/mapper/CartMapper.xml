@@ -90,7 +90,7 @@
 	<!-- 카트 수량 수정 -->
 	<update id="updateCartQty" parameterType="map">
 		UPDATE cart
-		   SET cart_qty = cart_qty + #{cartQty}
+		   SET cart_qty = #{cartQty}
 		 WHERE cart_no = #{cartNo}
 	</update>
 	

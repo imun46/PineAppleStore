@@ -421,7 +421,10 @@ function changeQuantity(change, cartNo) {
         if (newQuantity >= 1) {
             quantityInput.value = newQuantity;  // Set the new value in the input field
         }
-
+		
+        // 데이터베이스 업데이트
+        updateQuantityInDatabase(cartNo, newQuantity);
+        
         // Update the item price based on the new quantity
         updateItemPrice(cartNo);
         updateTotalPrice();  // Update the total cart price
@@ -508,6 +511,26 @@ function updateTotalPrice() {
 }
     
     
+    
+	//Function to update quantity in the database via AJAX
+	function updateQuantityInDatabase(cartNo, newQuantity) {
+    	var xhr = new XMLHttpRequest();
+    	xhr.open('POST', 'cart_update_quantity_action.jsp', true);
+    	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    
+    	// Prepare the data to send in the request
+    	var params = 'cartNo=' + cartNo + '&newQuantity=' + newQuantity;
+    
+    	// Handle the response
+    	xhr.onreadystatechange = function() {
+       		if (xhr.readyState == 4 && xhr.status == 200) {
+            	console.log('Quantity updated successfully for cartNo: ' + cartNo);
+        	}
+    	};
+
+    	// Send the request with cartNo and newQuantity
+    	xhr.send(params);
+	}
     
     
     
