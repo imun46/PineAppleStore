@@ -44,7 +44,8 @@
 <head>
     <meta charset="UTF-8">
     <title>장바구니</title>
-   	
+   	 <!-- favicon -->
+		<link rel="icon" href="../img/logo2.png">
     <script src="https://kit.fontawesome.com/2452117347.js" crossorigin="anonymous"></script>
     <style>
         .cart-container {

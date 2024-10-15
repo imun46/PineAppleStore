@@ -22,6 +22,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <!-- favicon -->
+		<link rel="icon" href="../img/logo2.png">
 <script type="text/javascript">
 		function customerModifyForm() {
 			

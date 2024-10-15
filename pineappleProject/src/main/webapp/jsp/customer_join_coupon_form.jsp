@@ -8,6 +8,8 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+ <!-- favicon -->
+		<link rel="icon" href="../img/logo2.png">
 <title>첫 가입 기념 쿠폰</title>
 <style>
     body {

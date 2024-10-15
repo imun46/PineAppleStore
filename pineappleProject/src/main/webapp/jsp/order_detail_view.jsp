@@ -43,6 +43,8 @@
 <head>
     <meta charset="UTF-8">
     <title>주문내역</title>
+     <!-- favicon -->
+		<link rel="icon" href="../img/logo2.png">
     <style>
         <style>
         body {

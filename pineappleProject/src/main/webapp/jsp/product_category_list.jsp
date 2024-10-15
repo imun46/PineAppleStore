@@ -13,6 +13,8 @@
 <html lang="en">
     <head>
         <title>PineApple</title>
+         <!-- favicon -->
+		<link rel="icon" href="../img/logo2.png">
     </head>
 <body>
 	<jsp:include page="../includes/include_top_menu.jsp" />

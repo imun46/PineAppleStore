@@ -17,6 +17,8 @@
     <meta charset="UTF-8">
     <title>주문리스트</title>
     <link rel="stylesheet" href="styles.css">
+     <!-- favicon -->
+		<link rel="icon" href="../img/logo2.png">
     <style>
         #container {
 			max-width: 1000px;
