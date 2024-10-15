@@ -270,11 +270,11 @@ function sample4_execDaumPostcode() {
                     <div class="input-label">성별</div>
                     <div class="inline-gender">
                         <label>
-                            <input class="input-genderstyle" type="radio" name="gender" value="남">
+                            <input class="input-genderstyle" type="radio" name="gender" value="남자">
                             <p class="p-gender">남자</p> 
                         </label> 
                         <label> 
-                            <input class="input-genderstyle" type="radio" name="gender" value="여">
+                            <input class="input-genderstyle" type="radio" name="gender" value="여자">
                             <p class="p-gender">여자</p> 
                         </label>
                     </div>

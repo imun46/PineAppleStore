@@ -327,7 +327,7 @@ End
 					<%=simpleDateFormat.format(customer.getCustomerDob())%></p>
 				<p>
 					성별:
-					<%=customer.getCustomerGender().equals("M") ? "남자" : "여자" %></p>
+					<%=customer.getCustomerGender() %></p>
 				<p>
 					주소:
 					<%=customer.getCustomerAddress()%></p>
