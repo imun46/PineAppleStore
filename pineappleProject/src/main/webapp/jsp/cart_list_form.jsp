@@ -152,7 +152,13 @@
              border: none; 
 			    border-radius: 5px; /* 모서리 둥글게 */
         }
-        
+        .a{
+        	text-decoration: none; /* 밑줄 제거 */
+  			color: inherit; /* 부모 요소의 텍스트 색상 상속 */
+        }
+        .a:hover{
+        	color: white;
+        }
     </style>
 </head>
 <body>
@@ -273,7 +279,7 @@
                 <span>원</span>
             </div>
             <div class="actions" style="justify-content: center; gap: 20px;">
-                <button class="basic-btn btn-secondary" type="button">옵션변경</button>
+                <button class="basic-btn btn-secondary" type="button"><a class="a" href="index.jsp">쇼핑하기</a> </button>
                 <button class="basic-btn btn-purchase" type="button" onclick="submitPurchase()">바로주문</button>
             </div>
         </div>
