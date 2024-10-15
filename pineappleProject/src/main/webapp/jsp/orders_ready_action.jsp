@@ -16,13 +16,16 @@ if(request.getMethod().equalsIgnoreCase("GET")){
 }
 
 // OrdersItems 필드 정보 리스트 받기
-String itemsPrice[] 	= request.getParameterValues("itemsPrice");
+String itemsPrice[]		= null;
+itemsPrice			 	= request.getParameterValues("itemsPrice");
 
 String optionDetails[]  = request.getParameterValues("productOptionDetailNos");
 String cartNo[] 		= request.getParameterValues("cartNo");
 String itemsQty[]		= null;
 itemsQty 				= request.getParameterValues("itemsQty");
 List<Integer> itemsQtyCart = new ArrayList<>(); 
+System.out.println("itemsQtyCart: "+itemsQtyCart);
+List<Integer> itemsPriceCart = new ArrayList<>(); 
 
 System.out.println("itemsQty: "+itemsQty);
 
@@ -35,6 +38,10 @@ if (cartNo!=null) {
 		String quantityStr = request.getParameter(quantityParamName);
 		System.out.println(quantityStr);
 		itemsQtyCart.add(Integer.parseInt(quantityStr));
+		String priceParamName = "itemsPrice_"+cartNo[i];
+		String priceStr = request.getParameter(priceParamName);
+		System.out.println("priceStr: "+priceStr);
+		itemsPriceCart.add(Integer.parseInt(priceStr));
 	}
 }
 
@@ -133,8 +140,10 @@ for (int i=0; i<optionDetails.length; i++) {
 
 
 System.out.println("********** We are here ***************");
+System.out.println("cartNo: "+cartNo);
 
-if (itemsQty!=null) {
+
+if (itemsQtyCart.isEmpty()) {
 	for (int i=0; i<ordersItemsCount; i++) {
 		OrdersItems ordersItems = new OrdersItems();
 		//OrdersItems 각 총 가격 계산 및 입력 (개수*가격)
@@ -148,11 +157,14 @@ if (itemsQty!=null) {
 		ordersItemsList.add(ordersItems);
 	}
 	
-} else if (cartNo!=null) {
+System.out.println("********** We are here ***************");
+} else {
+	
+	System.out.println("********** else문 ***************");
 	for (int i=0; i<ordersItemsCount; i++) {
 		OrdersItems ordersItems = new OrdersItems();
 		//OrdersItems 각 총 가격 계산 및 입력 (개수*가격)
-		ordersItems.setOrdersItemsPrice(Integer.parseInt(itemsPrice[i]));
+		ordersItems.setOrdersItemsPrice(itemsPriceCart.get(i));
 		ordersItems.setOrdersItemsQty(itemsQtyCart.get(i));
 		ordersItems.setOrdersItemsOptions(itemsOptions[i]);
 		ordersItems.setProduct(Product.builder()
