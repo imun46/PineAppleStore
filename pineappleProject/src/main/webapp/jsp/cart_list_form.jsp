@@ -205,7 +205,6 @@
                 <div class="item-info">
                     <input type="hidden" name="cartNo" 					value="<%=cart.getCartNo() 						%>"></input>
                     <input type="hidden" name="itemsPrice"				value="<%=itemTotprice 							%>"></input>
-               		<input type="hidden" name="itemsPrice_<%= cart.getCartNo() %>" value="<%= itemTotprice %>">
        				<!-- 
                     <input type="hidden" name="itemsQty[]" 				value="<%=cart.getCartQty() 					%>"></input>
        				 -->
