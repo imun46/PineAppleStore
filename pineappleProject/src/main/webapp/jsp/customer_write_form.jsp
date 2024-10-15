@@ -236,7 +236,7 @@ function sample4_execDaumPostcode() {
                 <div class="content">
                     <div class="input-label">생년월일</div>
                     <div class="inline">
-                        <input class="input-style" type="date" name="dob" />
+                        <input class="input-style" type="date" name="dob" max="2010-12-31" />
                     </div>
                 </div>
                 <br />
