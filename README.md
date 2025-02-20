@@ -1,4 +1,4 @@
-<img width="1211" alt="image" src="https://github.com/user-attachments/assets/19914bc9-8e69-43b9-b9c2-8adf85181a0d" /># 전자기기 쇼핑몰 PineAppleStore
+# 전자기기 쇼핑몰 PineAppleStore
 
 ## 📜 프로젝트
 
@@ -7,4 +7,4 @@
 
 ---
 ## ERD
-<img width="700" alt="PineApple_ERD" src="https://github.com/user-attachments/assets/ecc398ba-a3a2-4d29-a523-4db19286e697" />
+<img width="1220" alt="image" src="https://github.com/user-attachments/assets/19914bc9-8e69-43b9-b9c2-8adf85181a0d" />
